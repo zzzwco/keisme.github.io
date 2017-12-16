@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Swift提供Arrays、Sets和Dictionaries三种基本的集合类型用来存储集合数据。 1. 数组数组使用有序列表存储同一类型的多个值，相同的值可以多次出现。 1.1 创建一个空数组1var someInts = [Int]() 1.2 创建一个带有默认值得数组12var threeDoubles = Array(repeating: 0.0, count: 3)// 等价于[0.0,">
+<meta name="keywords" content="swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift中的集合类型">
+<meta property="og:url" content="http://keisme.cn/2017/05/11/Swift中的集合类型/index.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="Swift提供Arrays、Sets和Dictionaries三种基本的集合类型用来存储集合数据。 1. 数组数组使用有序列表存储同一类型的多个值，相同的值可以多次出现。 1.1 创建一个空数组1var someInts = [Int]() 1.2 创建一个带有默认值得数组12var threeDoubles = Array(repeating: 0.0, count: 3)// 等价于[0.0,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-16T10:49:09.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift中的集合类型">
+<meta name="twitter:description" content="Swift提供Arrays、Sets和Dictionaries三种基本的集合类型用来存储集合数据。 1. 数组数组使用有序列表存储同一类型的多个值，相同的值可以多次出现。 1.1 创建一个空数组1var someInts = [Int]() 1.2 创建一个带有默认值得数组12var threeDoubles = Array(repeating: 0.0, count: 3)// 等价于[0.0,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/2017/05/11/Swift中的集合类型/"/>
+
+
+
+
+
+  <title>Swift中的集合类型 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Happines is only real when Shared</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/2017/05/11/Swift中的集合类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift中的集合类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T03:30:57+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/11/Swift中的集合类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/11/Swift中的集合类型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,672
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift提供<code>Arrays</code>、<code>Sets</code>和<code>Dictionaries</code>三种基本的集合类型用来存储集合数据。</p>
+<h2 id="1-数组"><a href="#1-数组" class="headerlink" title="1. 数组"></a>1. 数组</h2><p>数组使用有序列表存储同一类型的多个值，相同的值可以多次出现。</p>
+<h2 id="1-1-创建一个空数组"><a href="#1-1-创建一个空数组" class="headerlink" title="1.1 创建一个空数组"></a>1.1 创建一个空数组</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var someInts = [<span class="string">Int</span>](<span class="link"></span>)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-创建一个带有默认值得数组"><a href="#1-2-创建一个带有默认值得数组" class="headerlink" title="1.2 创建一个带有默认值得数组"></a>1.2 创建一个带有默认值得数组</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> threeDoubles = <span class="built_in">Array</span>(<span class="keyword">repeating</span>: <span class="number">0.0</span>, count: <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 等价于[0.0, 0,0, 0.0]</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="1-3-通过两个数组相加创建一个数组"><a href="#1-3-通过两个数组相加创建一个数组" class="headerlink" title="1.3 通过两个数组相加创建一个数组"></a>1.3 通过两个数组相加创建一个数组</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> anotherThreeDoubles = <span class="built_in">Array</span>(<span class="keyword">repeating</span>: <span class="number">2.5</span>, count: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">var</span> sixDoubles = threeDoubles + anotherThreeDoubles</span><br><span class="line"><span class="comment">// sixDoubles被推断为[Double]</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-4-用数组字面量构造数组"><a href="#1-4-用数组字面量构造数组" class="headerlink" title="1.4 用数组字面量构造数组"></a>1.4 用数组字面量构造数组</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList:[<span class="built_in">String</span>] = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br><span class="line"><span class="comment">// shoppingList已经被构造并且拥有两个初始项</span></span><br></pre></td></tr></table></figure>
+<p>由于Swift的类型推断机制，当我们用字面量构造只拥有相同类型值数组的时候，可以省却数组的类型：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-访问和修改数组"><a href="#1-5-访问和修改数组" class="headerlink" title="1.5 访问和修改数组"></a>1.5 访问和修改数组</h2><ul>
+<li>count：获取数组中的元素数目</li>
+<li>isEmpty：检查<code>count</code>是否为0</li>
+<li>append(_:)：在数组后面添加新的数据</li>
+<li>insert(_:at:)：在某个具体索引值之前添加数据项</li>
+<li>remove(at:)：移除数组中的某一项</li>
+<li>removeLast()：移除数组的最后一项</li>
+</ul>
+<p><code>+=</code>运算符可以直接在数组后面添加一个或多个同类型的数据项：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shoppingList += [<span class="string">"Baking Powder"</span>]</span><br><span class="line">shoppingList += [<span class="string">"Chocolate Spread"</span>, <span class="string">"Cheese"</span>, <span class="string">"Butter"</span>]</span><br></pre></td></tr></table></figure>
+<p>我们可以通过下标获取或改变某个已有索引值对应的数据。<br>还可以利用下标来一次改变一系列的数据值：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shoppingList[<span class="number">4.</span>.&lt;<span class="number">6</span>] = [<span class="string">"Bananas"</span>, <span class="string">"Apples"</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-6-数组的遍历"><a href="#1-6-数组的遍历" class="headerlink" title="1.6 数组的遍历"></a>1.6 数组的遍历</h2><p>我们可以用<code>for-in</code>循环遍历所有数组中的数据项。<br>如果我们同时需要每个数据项的值和索引值，可以使用<code>enumerated()</code>方法。<code>enumerated()</code>返回一个由每一个数据项索引值和数据值组成的元组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (index, value) <span class="keyword">in</span> shoppingList.enumerated() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Item <span class="subst">\(String(index + <span class="number">1</span>)</span>): <span class="subst">\(value)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-集合"><a href="#2-集合" class="headerlink" title="2. 集合"></a>2. 集合</h1><p>集合用来存储相同类型并且没有确定顺序的值，集合内的元素不能重复。</p>
+<h2 id="2-1-集合类型的哈希值"><a href="#2-1-集合类型的哈希值" class="headerlink" title="2.1 集合类型的哈希值"></a>2.1 集合类型的哈希值</h2><p>存储在集合中的类型必须是可哈希化的，Swift的所有基本类型（比如<code>String</code>,<code>Int</code>,<code>Double</code>和<code>Bool</code>）默认都是可哈希化的，没有关联值额枚举成员值默认也是可哈希化的。</p>
+<p>你可以使用自定义的类型作为集合的值的类型或字典的键的类型，但需要使自定义类型符合Swift标准库中的<code>Hashable</code>协议。符合<code>Hashable</code>协议的类型需要提供一个类型为<code>Int</code>的可读属性<code>hashValue</code>。</p>
+<h2 id="2-2-集合类型语法"><a href="#2-2-集合类型语法" class="headerlink" title="2.2 集合类型语法"></a>2.2 集合类型语法</h2><h3 id="2-2-1-创建和构造一个空的集合"><a href="#2-2-1-创建和构造一个空的集合" class="headerlink" title="2.2.1 创建和构造一个空的集合"></a>2.2.1 创建和构造一个空的集合</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> letters = <span class="built_in">Set</span>&lt;Character&gt;()</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-用数组字面量创建集合"><a href="#2-2-2-用数组字面量创建集合" class="headerlink" title="2.2.2 用数组字面量创建集合"></a>2.2.2 用数组字面量创建集合</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> favoriteGenres: <span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; = [<span class="string">"Rock"</span>, <span class="string">"Classical"</span>, <span class="string">"Hip hop"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-访问和修改一个集合"><a href="#2-2-3-访问和修改一个集合" class="headerlink" title="2.2.3 访问和修改一个集合"></a>2.2.3 访问和修改一个集合</h3><ul>
+<li>count：返回<code>Set</code>中元素的数量</li>
+<li>isEmpty：检查<code>count</code>是否为0</li>
+<li>insert(_:)：添加一个新元素</li>
+<li>remove(_:)：删除一个元素（如果<code>Set</code>不包含该值，返回nil) </li>
+<li>removeAll()：删除所有元素</li>
+<li>contains(_:)：检查<code>Set</code>中是否包含一个特定的值</li>
+</ul>
+<h3 id="2-2-4-遍历一个集合"><a href="#2-2-4-遍历一个集合" class="headerlink" title="2.2.4 遍历一个集合"></a>2.2.4 遍历一个集合</h3><p>使用<code>for-in</code>遍历一个集合。<br>Swift的<code>Set</code>类型没有确定的顺序，为了按照特定的顺序来遍历一个<code>Set</code>中的值可以用<code>sorted()</code>方法，它将返回一个有序数组，这个数组的元素排列顺序又操作符<code>&lt;</code>对元素进行比较的结果来确定 。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> genre <span class="keyword">in</span> favoriteGenres.sorted() &#123;</span><br><span class="line">    print(<span class="string">"genre"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="regexp">//</span> 按顺序打印<span class="string">"Classical"</span>, <span class="string">"Hip hop"</span>, <span class="string">"Jazz"</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3-集合操作"><a href="#2-3-集合操作" class="headerlink" title="2.3 集合操作"></a>2.3 集合操作</h2><h3 id="2-3-1-基本集合操作"><a href="#2-3-1-基本集合操作" class="headerlink" title="2.3.1 基本集合操作"></a>2.3.1 基本集合操作</h3><ul>
+<li>intersection(_:)：根据两个集合中都包含的值创建一个新的集合</li>
+<li>symmetricDifference(_:)：根据在一个集合中但不在两个集合中的值创建一个新集合</li>
+<li>union(_:)：根据两个集合的值创建一个新集合</li>
+<li>subtracting(_:)：根据不在该集合中的值创建一个新集合</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> oddDigits: <span class="built_in">Set</span> = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br><span class="line"><span class="keyword">let</span> evenDigits: <span class="built_in">Set</span> = [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line"><span class="keyword">let</span> singleDigitPrimeNumbers: <span class="built_in">Set</span> = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">oddDigits.union(evenDigits).sorted()</span><br><span class="line"><span class="comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"></span><br><span class="line">oddDigits.intersection(evenDigits).sorted()</span><br><span class="line"><span class="comment">// []</span></span><br><span class="line"></span><br><span class="line">oddDigits.subtracting(singleDigitPrimeNumbers).sorted()</span><br><span class="line"><span class="comment">// [1, 9]</span></span><br><span class="line"></span><br><span class="line">oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()</span><br><span class="line"><span class="comment">// [1, 2, 9]</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-集合成员关系和相等"><a href="#2-3-2-集合成员关系和相等" class="headerlink" title="2.3.2 集合成员关系和相等"></a>2.3.2 集合成员关系和相等</h3><ul>
+<li>==：判断两个集合是否相等</li>
+<li>isSubset(of:)：判断一个集合中的值是否也被包含在另一个集合中</li>
+<li>isStrictSubset(of:)/isStrictSuperset(of:)：判断一个集合是否是另一个集合的子集合/父集合并且两个集合不相等</li>
+<li>isDisjoint(with:)：判断那两个集合是否有交集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> houseAnimals: <span class="built_in">Set</span> = [<span class="string">"dog"</span>, <span class="string">"cat"</span>]</span><br><span class="line"><span class="keyword">let</span> farmAnimals: <span class="built_in">Set</span> = [<span class="string">"cow"</span>, <span class="string">"chicken"</span>, <span class="string">"sheep"</span>, <span class="string">"dog"</span>, <span class="string">"cat"</span>]</span><br><span class="line"><span class="keyword">let</span> cityAnimals: <span class="built_in">Set</span> = [<span class="string">"bird"</span>, <span class="string">"mouse"</span>]</span><br><span class="line"></span><br><span class="line">houseAnimals.isSubset(<span class="keyword">of</span>: farmAnimals)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">farmAnimals.isSuperset(<span class="keyword">of</span>: houseAnimals)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">farmAnimals.isDisjoint(<span class="keyword">with</span>: cityAnimals)</span><br><span class="line"><span class="comment">// ture</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-字典"><a href="#3-字典" class="headerlink" title="3. 字典"></a>3. 字典</h2><p>字典是一种存储多个相同类型的值得容器，字典中的数据项没有具体顺序。</p>
+<h2 id="3-1-创建一个空字典"><a href="#3-1-创建一个空字典" class="headerlink" title="3.1 创建一个空字典"></a>3.1 创建一个空字典</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var namesOfIntegers = [<span class="string">Int: String</span>](<span class="link"></span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-用字典字面量创建字典"><a href="#3-2-用字典字面量创建字典" class="headerlink" title="3.2 用字典字面量创建字典"></a>3.2 用字典字面量创建字典</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> airports: [<span class="built_in">String</span>: <span class="built_in">String</span>] = [<span class="string">"XYZ"</span>: <span class="string">"Toronto Pearson"</span>, <span class="string">"DUB"</span>: <span class="string">"Dublin"</span>]</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> airports = [<span class="string">"XYZ"</span>: <span class="string">"Toronto Pearson"</span>, <span class="string">"DUB"</span>: <span class="string">"Dublin"</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-访问和修改字典"><a href="#3-3-访问和修改字典" class="headerlink" title="3.3 访问和修改字典"></a>3.3 访问和修改字典</h2><p>同数组和集合一样，字典同样具有<code>count</code>、<code>isEmpty</code>属性。<br>我们可以在字典中使用下表语法添加新的数据项，或者改变特定键对应的值。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airports[<span class="string">"LHR"</span>] = <span class="string">"London"</span></span><br><span class="line">airports[<span class="string">"LHR"</span>] = <span class="string">"London Heathrow"</span></span><br></pre></td></tr></table></figure>
+<p><code>updateValue(_:forKey:)</code>具有同样的功能，不同的是，这个方法返回更新值之前的原值，即对应值的类型的可选值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> oldValue = airports.updateValue(<span class="string">"Dublin Airport"</span>, forKey: <span class="string">"DUB"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The old value for DUB was <span class="subst">\(oldValue)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出 "The old value for DUB was Dublin</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以使用下标语法在字典中检索特定键对应的值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> airportName = airports[<span class="string">"DUB"</span>] &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The name of the airports is <span class="subst">\(airportName)</span>"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"That airport is not in the airports dictionary"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 打印 "The name of the airports is Dublin Airport"</span></span><br></pre></td></tr></table></figure>
+<p>我们还可以使用下标语法通过给某个键的对应值赋值为<code>nil</code>来从字典里移除一个键值对：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airports[<span class="string">"APL"</span>] = <span class="string">"Apple Internation"</span></span><br><span class="line">airports[<span class="string">"APL"</span>] = nil</span><br></pre></td></tr></table></figure>
+<p><code>removeValue(forKey:)</code>方法也可以用来移除键值对，返回被移除的值或者在没有值得情况下返回<code>nil</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> removedValue = airports.removeValue(forKey: <span class="string">"DUB"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The removed airports name is <span class="subst">\(removedValue)</span>"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The airports dictionary does not contain a value for DUB"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints "The removed airports name is Dublin Airport"</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-4-字典遍历"><a href="#3-4-字典遍历" class="headerlink" title="3.4 字典遍历"></a>3.4 字典遍历</h2><p>除了<code>for-in</code>玄幻遍历，我们也可以通过访问<code>keys</code>或者<code>values</code>属性，遍历字典的键或者值：</p>
+<p>Swift的字典类型是无序集合类型，为了以特定的顺序遍历字典的键或值，可以对字典的<code>keys</code>或<code>values</code>属性使用<code>sorted()</code>方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/2017/05/11/Swift中的集合类型/" title="Swift中的集合类型">http://keisme.cn/2017/05/11/Swift中的集合类型/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/Swift中的字符串和字符/" rel="next" title="Swift中的字符串和字符">
+                <i class="fa fa-chevron-left"></i> Swift中的字符串和字符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/14/Swift中的控制流/" rel="prev" title="Swift中的控制流">
+                Swift中的控制流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description">iOS, Snooker/斯诺克</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zengke1989" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                    
+                      <i class="fa fa-fw fa-play"></i>Youku</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
+                    
+                      <i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数组"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x6570;&#x7EC4;" class="headerlink" title="1. &#x6570;&#x7EC4;"></a>1. &#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-创建一个空数组"><span class="nav-number">2.</span> <span class="nav-text"><a href="#1-1-&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6570;&#x7EC4;" class="headerlink" title="1.1 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6570;&#x7EC4;"></a>1.1 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-创建一个带有默认值得数组"><span class="nav-number">3.</span> <span class="nav-text"><a href="#1-2-&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5E26;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x5F97;&#x6570;&#x7EC4;" class="headerlink" title="1.2 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5E26;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x5F97;&#x6570;&#x7EC4;"></a>1.2 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5E26;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x5F97;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-通过两个数组相加创建一个数组"><span class="nav-number">4.</span> <span class="nav-text"><a href="#1-3-&#x901A;&#x8FC7;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x76F8;&#x52A0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;" class="headerlink" title="1.3 &#x901A;&#x8FC7;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x76F8;&#x52A0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;"></a>1.3 &#x901A;&#x8FC7;&#x4E24;&#x4E2A;&#x6570;&#x7EC4;&#x76F8;&#x52A0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-用数组字面量构造数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#1-4-&#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x6784;&#x9020;&#x6570;&#x7EC4;" class="headerlink" title="1.4 &#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x6784;&#x9020;&#x6570;&#x7EC4;"></a>1.4 &#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x6784;&#x9020;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-访问和修改数组"><span class="nav-number">6.</span> <span class="nav-text"><a href="#1-5-&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x6570;&#x7EC4;" class="headerlink" title="1.5 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x6570;&#x7EC4;"></a>1.5 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-数组的遍历"><span class="nav-number">7.</span> <span class="nav-text"><a href="#1-6-&#x6570;&#x7EC4;&#x7684;&#x904D;&#x5386;" class="headerlink" title="1.6 &#x6570;&#x7EC4;&#x7684;&#x904D;&#x5386;"></a>1.6 &#x6570;&#x7EC4;&#x7684;&#x904D;&#x5386;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-集合"><span class="nav-number"></span> <span class="nav-text"><a href="#2-&#x96C6;&#x5408;" class="headerlink" title="2. &#x96C6;&#x5408;"></a>2. &#x96C6;&#x5408;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-集合类型的哈希值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#2-1-&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x7684;&#x54C8;&#x5E0C;&#x503C;" class="headerlink" title="2.1 &#x96C6;&#x5408;&#x7C7B;&#x578B;&#x7684;&#x54C8;&#x5E0C;&#x503C;"></a>2.1 &#x96C6;&#x5408;&#x7C7B;&#x578B;&#x7684;&#x54C8;&#x5E0C;&#x503C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-集合类型语法"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-2-&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x8BED;&#x6CD5;" class="headerlink" title="2.2 &#x96C6;&#x5408;&#x7C7B;&#x578B;&#x8BED;&#x6CD5;"></a>2.2 &#x96C6;&#x5408;&#x7C7B;&#x578B;&#x8BED;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-创建和构造一个空的集合"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-2-1-&#x521B;&#x5EFA;&#x548C;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x96C6;&#x5408;" class="headerlink" title="2.2.1 &#x521B;&#x5EFA;&#x548C;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x96C6;&#x5408;"></a>2.2.1 &#x521B;&#x5EFA;&#x548C;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x96C6;&#x5408;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-用数组字面量创建集合"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2-2-&#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x96C6;&#x5408;" class="headerlink" title="2.2.2 &#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x96C6;&#x5408;"></a>2.2.2 &#x7528;&#x6570;&#x7EC4;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x96C6;&#x5408;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-访问和修改一个集合"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#2-2-3-&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x96C6;&#x5408;" class="headerlink" title="2.2.3 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x96C6;&#x5408;"></a>2.2.3 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x96C6;&#x5408;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-遍历一个集合"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#2-2-4-&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x96C6;&#x5408;" class="headerlink" title="2.2.4 &#x904D;&#x5386;&#x4E00;&#x4E2A;&#x96C6;&#x5408;"></a>2.2.4 &#x904D;&#x5386;&#x4E00;&#x4E2A;&#x96C6;&#x5408;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-集合操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#2-3-&#x96C6;&#x5408;&#x64CD;&#x4F5C;" class="headerlink" title="2.3 &#x96C6;&#x5408;&#x64CD;&#x4F5C;"></a>2.3 &#x96C6;&#x5408;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-基本集合操作"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#2-3-1-&#x57FA;&#x672C;&#x96C6;&#x5408;&#x64CD;&#x4F5C;" class="headerlink" title="2.3.1 &#x57FA;&#x672C;&#x96C6;&#x5408;&#x64CD;&#x4F5C;"></a>2.3.1 &#x57FA;&#x672C;&#x96C6;&#x5408;&#x64CD;&#x4F5C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-集合成员关系和相等"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2-3-2-&#x96C6;&#x5408;&#x6210;&#x5458;&#x5173;&#x7CFB;&#x548C;&#x76F8;&#x7B49;" class="headerlink" title="2.3.2 &#x96C6;&#x5408;&#x6210;&#x5458;&#x5173;&#x7CFB;&#x548C;&#x76F8;&#x7B49;"></a>2.3.2 &#x96C6;&#x5408;&#x6210;&#x5458;&#x5173;&#x7CFB;&#x548C;&#x76F8;&#x7B49;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字典"><span class="nav-number">4.</span> <span class="nav-text"><a href="#3-&#x5B57;&#x5178;" class="headerlink" title="3. &#x5B57;&#x5178;"></a>3. &#x5B57;&#x5178;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-创建一个空字典"><span class="nav-number">5.</span> <span class="nav-text"><a href="#3-1-&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x5B57;&#x5178;" class="headerlink" title="3.1 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x5B57;&#x5178;"></a>3.1 &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x5B57;&#x5178;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-用字典字面量创建字典"><span class="nav-number">6.</span> <span class="nav-text"><a href="#3-2-&#x7528;&#x5B57;&#x5178;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x5B57;&#x5178;" class="headerlink" title="3.2 &#x7528;&#x5B57;&#x5178;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x5B57;&#x5178;"></a>3.2 &#x7528;&#x5B57;&#x5178;&#x5B57;&#x9762;&#x91CF;&#x521B;&#x5EFA;&#x5B57;&#x5178;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-访问和修改字典"><span class="nav-number">7.</span> <span class="nav-text"><a href="#3-3-&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x5B57;&#x5178;" class="headerlink" title="3.3 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x5B57;&#x5178;"></a>3.3 &#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x5B57;&#x5178;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-字典遍历"><span class="nav-number">8.</span> <span class="nav-text"><a href="#3-4-&#x5B57;&#x5178;&#x904D;&#x5386;" class="headerlink" title="3.4 &#x5B57;&#x5178;&#x904D;&#x5386;"></a>3.4 &#x5B57;&#x5178;&#x904D;&#x5386;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共43.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://keisme.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://keisme.cn/2017/05/11/Swift中的集合类型/';
+          this.page.identifier = '2017/05/11/Swift中的集合类型/';
+          this.page.title = 'Swift中的集合类型';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://keisme.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

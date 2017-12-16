@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="notes," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文转载于：https://program-think.blogspot.com/2017/04/The-Importance-of-Zheteng.html  引子前不久写了篇关于 Linux 的博文。看到博客评论区中有一些“关于折腾的抱怨”。之前俺写其它教程（比如：翻墙、操作系统虚拟机），也看到过类似的抱怨。 关于折腾的抱怨，俺总结下来有两类： 其一，“从不折腾的人”抱怨折腾太麻烦（这类抱怨">
+<meta name="keywords" content="notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊【折腾】的重要性">
+<meta property="og:url" content="http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/index.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="本文转载于：https://program-think.blogspot.com/2017/04/The-Importance-of-Zheteng.html  引子前不久写了篇关于 Linux 的博文。看到博客评论区中有一些“关于折腾的抱怨”。之前俺写其它教程（比如：翻墙、操作系统虚拟机），也看到过类似的抱怨。 关于折腾的抱怨，俺总结下来有两类： 其一，“从不折腾的人”抱怨折腾太麻烦（这类抱怨">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-16T09:42:16.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊【折腾】的重要性">
+<meta name="twitter:description" content="本文转载于：https://program-think.blogspot.com/2017/04/The-Importance-of-Zheteng.html  引子前不久写了篇关于 Linux 的博文。看到博客评论区中有一些“关于折腾的抱怨”。之前俺写其它教程（比如：翻墙、操作系统虚拟机），也看到过类似的抱怨。 关于折腾的抱怨，俺总结下来有两类： 其一，“从不折腾的人”抱怨折腾太麻烦（这类抱怨">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/"/>
+
+
+
+
+
+  <title>聊聊【折腾】的重要性 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Happines is only real when Shared</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">聊聊【折腾】的重要性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T16:03:37+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/06/聊聊【折腾】的重要性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/06/聊聊【折腾】的重要性/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,812
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文转载于：<a href="https://program-think.blogspot.com/2017/04/The-Importance-of-Zheteng.html" target="_blank" rel="noopener">https://program-think.blogspot.com/2017/04/The-Importance-of-Zheteng.html</a></p>
+</blockquote>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>前不久写了篇关于 Linux 的博文。看到博客评论区中有一些“关于折腾的抱怨”。之前俺写其它教程（比如：翻墙、操作系统虚拟机），也看到过类似的抱怨。</p>
+<p>关于折腾的抱怨，俺总结下来有两类：</p>
+<p>其一，“从不折腾的人”抱怨折腾太麻烦（这类抱怨往往是泛泛的）</p>
+<p>其二，“有过折腾经历的人”抱怨折腾太麻烦（这类抱怨往往是有具体所指的）</p>
+<p>所以今天就来聊聊“折腾”这个话题。</p>
+<a id="more"></a>
+<h1 id="名词定义：何为“折腾”"><a href="#名词定义：何为“折腾”" class="headerlink" title="名词定义：何为“折腾”"></a>名词定义：何为“折腾”</h1><p>为了避免某些人抬杠，先界定一下关键术语——“折腾”一词指的是啥？</p>
+<p>在下面的讨论中，“折腾”一词指的是：</p>
+<p>在你【不熟悉】的领域中干某些事情（如果是你【熟悉】的领域，那属于“轻车熟路”，不能算“折腾”）</p>
+<p>这些事情通常带有某种“探索/钻研”的性质（通常颇费周折）</p>
+<p>这些事情通常要耗费一定的时间和精力（能很快搞定的，就不能算“折腾”）</p>
+<p>这些事情通常具有不确定的结果（你不清楚是否能得到期望的结果）。</p>
+<p>举例：</p>
+<p>针对软件的折腾（比如：Linux）</p>
+<p>针对硬件的折腾（比如：树莓派）</p>
+<p>针对网络的折腾（比如：翻墙）</p>
+<p>……</p>
+<h1 id="“折腾”与“自学能力”"><a href="#“折腾”与“自学能力”" class="headerlink" title="“折腾”与“自学能力”"></a>“折腾”与“自学能力”</h1><p>◇“自学能力”的重要性</p>
+<p>博客的读者们应该都明白这玩意儿的重要性吧？俺随便说几点：</p>
+<p>比如：信息时代会有很多新生事物。你以前在学校课堂里学到的知识/技能已经无法应对这些新生事务，你需要通过自学来搞定它们。</p>
+<p>比如：在信息时代，知识的半衰期会变短。你以前在学校课堂里学到的知识/技能，等到你工作时，有些已经过时（失效）了。你需要通过自学来更新这部分过时的知识。</p>
+<p>比如：如今的职场竞争会比以往更激烈（信息流动加快使得人才流动加快）。自学能力强的人无疑会有更大的优势。</p>
+<p>……</p>
+<p>◇两者的关系</p>
+<p>前面俺强调了：折腾的前提是——在你【不熟悉】的领域。</p>
+<p>在这种领域中，你多半要通过自学，掌握某些知识或技能，让“不熟悉的领域”变为“熟悉的领域”。</p>
+<p>所以，喜欢折腾的人，他/她的自学能力会经常得到锻炼。</p>
+<p>当然啦，“经常锻炼自学能力”不一定就表示“自学能力很强”，但至少好于那些“从来没有得到锻炼的人”。</p>
+<h1 id="“折腾”与“解决问题能力”"><a href="#“折腾”与“解决问题能力”" class="headerlink" title="“折腾”与“解决问题能力”"></a>“折腾”与“解决问题能力”</h1><p>◇“解决问题能力”的重要性</p>
+<p>说到这个，俺又要趁机来恶毒攻击一下咱们天朝的教育体制了 :)</p>
+<p>如果你回顾一下学校（小学/中学/大学）里面的考试或课后作业，大部分的题目都有标准答案（理工科尤其明显）。</p>
+<p>但是当你进入职场后，很多工作中的问题，其解决方法是多种多样的，【没有标准答案】。</p>
+<p>这两类问题的解题思路是完全不同滴——</p>
+<p>【有】标准答案的问题，解题的思维过程通常是【收敛式】；</p>
+<p>【没有】标准答案的问题，解体的思维过程通常是【发散式】。</p>
+<p>有很多学校中的优秀生，他们很擅长于考试，但是在工作中的表现却令人难以恭维。因为他们擅长的【收敛式思维】，在工作中通常用不上。</p>
+<p>◇两者的关系</p>
+<p>“折腾”与“解题能力”有哪些关系捏？</p>
+<p>当你在不熟悉的领域中折腾，通常不会一帆风顺——整个过程必然会碰到各种各样的问题（困难和障碍），这些问题往往是没有标准答案滴。换句话说，折腾中碰到问题，【不同于】你在学校中碰到的考题，而【更接近于】你在实际工作中碰到问题。</p>
+<p>所以，经常折腾的人，会有更多的机会去锻炼他/她的【发散思维能力】。也就可以更多地弥补学校教育在这方面的缺陷。</p>
+<h1 id="“折腾”与“知识面-知识结构”"><a href="#“折腾”与“知识面-知识结构”" class="headerlink" title="“折腾”与“知识面/知识结构”"></a>“折腾”与“知识面/知识结构”</h1><p>◇知识面的重要性</p>
+<p>如今这个信息时代，【复合型人才】更有竞争优势。所谓的“复合型”，其主要特征【之一】就是“知识面比较广”。这类人往往兼具多个不同领域的技能。</p>
+<p>就拿自己来现身说法——简述一下：维护目前这个博客，大概需要哪些技能？</p>
+<p>基本的写作能力是必不可少滴——如果写出来的文章狗屁不通，就没人看了；</p>
+<p>翻墙是必不可少滴——俺必须把博客搭建在墙外，才能防止真理部的和谐；</p>
+<p>信息安全也是必不可少滴——否则早就被跨省追捕了；</p>
+<p>懂一些 Web 开发的技能（CSS 和 JS）是有好处滴——有助于俺把博客界面搞得好看/好用；</p>
+<p>除了上面这些，因为俺博客聊到了“政治、历史、心理学、管理、编程”这几类话题，所以俺在这几个领域多少还算略懂（不敢妄称精通）。</p>
+<p>◇什么样的知识结构才是合理的（有优势的）</p>
+<p>前面提到了“知识面的广度”。但仅仅有广度是【不够】滴。良好的知识结构，应该兼具【广度】与【深度】。</p>
+<p>至于“深度”与“广度”要如何搭配才比较好，可以看俺多年前的一篇博文《如何完善自己的知识结构》。</p>
+<p>◇两者的关系</p>
+<p>那么，“折腾”与“知识面/知识结构”有啥关系捏？</p>
+<p>比如说：你正在折腾 A领域 的某个事物，在折腾的过程中可能会依赖到相关领域的知识（比如说 B领域 和 C领域）。而 B领域 和 C领域 可能是你之前所不了解的。为了搞定 A领域，你就需要顺便去了解 B领域 和 C领域。无形中，你的知识面就拓宽了。</p>
+<p>举个栗子：</p>
+<p>某个技术菜鸟去折腾翻墙，当此人搞定之后，通常也顺便学会了一些网络相关的知识（比如：代理、VPN …）</p>
+<p>如果此人是通过 VPS 来搭建翻墙代理，说不定还顺便学会了一些 Linux 系统管理方面的知识。</p>
+<h1 id="“折腾”与“动手实践能力”"><a href="#“折腾”与“动手实践能力”" class="headerlink" title="“折腾”与“动手实践能力”"></a>“折腾”与“动手实践能力”</h1><p>◇两种不同的领域</p>
+<p>所有的领域可以分为两类——“记忆型”与“实践型”。</p>
+<p>（注：这两个术语是俺拍脑袋临时起的名儿，如果你有更恰当的叫法，欢迎告知俺）</p>
+<p>所谓的“记忆型”，意思就是说：你只需要依靠记忆力就可以掌握该领域。</p>
+<p>而“实践型”则完全不同——要掌握这种类型的领域，光靠记忆力是肯定不够滴，一定要经过动手实践。</p>
+<p>举例：</p>
+<p>“记忆型”的例子比较少：历史、艺术鉴赏…</p>
+<p>“实践型”的例子比较多：所有的体育项目、所有的棋牌游戏和电子游戏、烹调、编程、管理、艺术创作……</p>
+<p>对于“实践型”的领域，不管你看了多少相关的书籍，记住了多少相关的知识，最后都要经过实践，才能最终掌握该领域。套用一句古话就是：纸上得来终觉浅，绝知此事要躬行。</p>
+<p>举例：</p>
+<p>比如说下围棋——如果某人从来没有实际下过，即使此人看了 N 多的棋谱，看了 N 多的围棋理论书籍，也不能算是“会下棋”。</p>
+<p>学编程也类似——俺一直强调学编程（尤其是新人学编程）要：一边看书一边动手写点小程序练手。</p>
+<p>◇两者的关系</p>
+<p>俺个人认为：凡是需要折腾的领域，都是实践型的领域。</p>
+<p>而经常折腾的好处在于：每次折腾都是在锻炼你的动手实践能力。</p>
+<h1 id="“折腾”与“心理舒适区”"><a href="#“折腾”与“心理舒适区”" class="headerlink" title="“折腾”与“心理舒适区”"></a>“折腾”与“心理舒适区”</h1><p>◇啥是“心理舒适区”？</p>
+<p>两年前（2015）写过一篇《什么是【真正的】兴趣爱好？以及它有啥好处？》，其中正好聊过“心理舒适区”这个概念。下面这段直接引用那篇博文。</p>
+<p>首先来解释一下，何为“心理舒适区”。这玩意儿，洋文称之为“Comfort Zone”，用来描述一种“心理状态”。处于这种状态，你会感觉到放松，没有压力和焦虑。</p>
+<p>如果你处于某个环境中，在该环境下所需要的行为你都可以轻松搞定。那么，你就处于“心理舒适区”。</p>
+<p>举例：</p>
+<p>上网闲逛</p>
+<p>看电视剧</p>
+<p>看娱乐节目</p>
+<p>◇“走出心理舒适区”的重要性</p>
+<p>几乎所有的个人能力，如果要想得到提升，都需要你跳出“心理舒适区”。</p>
+<p>比如说那些优秀的体操运动员，他们需要不断练习自己【不熟悉】的动作，这样才能提高；反之，如果某个体操运动员总是练习自己最拿手的动作，那是没有长进的（或者说，长进非常有限）。</p>
+<p>◇为啥大部分人都【无法】走出心理舒适区？</p>
+<p>首先，人都是惰性的。</p>
+<p>停留在心理舒适区，极大地满足了人的惰性。</p>
+<p>要离开心理舒适区，就要克服这种惰性；这通常需要动用意志力，而且需要一定的技巧。</p>
+<p>大多数人的意志力是偏弱的；即使是少数意志力较强的人，其中还有一定比例是缺乏运用技巧的。</p>
+<p>如果你对这个结论有所怀疑，不妨去观察一下：大部分人在闲暇时间都在干嘛。你就会发现：大部分人都在用一些【轻松的/消遣性的/娱乐性的】活动来打发时光。</p>
+<p>◇两者的关系</p>
+<p>前面说过：折腾的往往是自己不熟悉的领域，所以折腾的过程往往会碰到一些障碍和困难。</p>
+<p>而搞定这些障碍和困难，通常需要你跳到“心理舒适区”【之外】。</p>
+<p>所以，经常折腾的人，就经常需要挑战困难和障碍，于是也就有更多机会去练习——如何跳出心理舒适区。</p>
+<h1 id="聊聊那些“不折腾”的理由或借口"><a href="#聊聊那些“不折腾”的理由或借口" class="headerlink" title="聊聊那些“不折腾”的理由或借口"></a>聊聊那些“不折腾”的理由或借口</h1><p>说完了“心理舒适区”，顺便列几个反面教材——关于“不折腾的理由或借口”。</p>
+<p>常见的理由/借口有如下几种：</p>
+<p>◇抱怨“无用功”</p>
+<p>很多人觉得：如果折腾某个东西，最后没有搞出来（失败了），那就白白浪费了时间，成为“无用功”。</p>
+<p>这个理由非常有迷惑性（尤其是在天朝这个功利主义非常盛行的社会）。</p>
+<p>实际情况是：即使你折腾某个东西最后失败了，也【不会】是无用功。</p>
+<p>因为在这个过程中，你会有很多收获——包括前面提到的几种能力提升和知识面的拓展。</p>
+<p>◇抱怨“时间不够”</p>
+<p>这可能是最常见的一种抱怨（借口）——说自己工作太忙，没有空闲的时间去折腾其它东西。</p>
+<p>首先，拿网上流传的一句话来反驳此借口——时间就像乳沟，只要你愿意挤，总是有的。</p>
+<p>然后，来分析一下俺博客的读者群，应该大部分是学生或者白领/蓝领。</p>
+<p>对于在校的学生</p>
+<p>（不管是大学生还是中学生）肯定是是有闲暇时间的（比如寒暑假）。</p>
+<p>即使是高三年很忙，只要等高考结束，之后那个假期总归是空闲的。</p>
+<p>对于工作中的上班族</p>
+<p>很多人抱怨“加班”占用时间。</p>
+<p>试问：有多少公司是一年365天，天天都加班（完全没有周末和节假日）；而且每天（无一例外）都加班到深夜，一回家就上床睡觉，然后一觉醒来就又去上班。这样的公司，就算有，占总体的比例肯定也是微乎其微的。</p>
+<p>还有一些人抱怨“养小孩”占用时间。</p>
+<p>这种借口同样是站不住脚滴。“养小孩”确实会占用一些业余时间，但比例肯定达不到100%；而且特别占时间的，通常是小孩刚出生的开头三五年。</p>
+<p>所以，绝大部分上班族肯定是有闲暇时间的。</p>
+<p>◇抱怨“精力不够”</p>
+<p>另一种常见的抱怨是：上班已经很累，下班回家哪还有精力去折腾其它东西。</p>
+<p>首先，很多人发这种抱怨是有夸大其辞的嫌疑。</p>
+<p>其次，退一步讲，就算有【少数工作】是每天都很累以至于每天下班回家都精疲力竭。但你至少还有周末的双休日可用啊。每年有52个星期，单算双休日就有一百多天呢！（这还没算上国定假日）</p>
+<p>◇抱怨“技能不够”</p>
+<p>有这种抱怨的人，要么是找借口，要么是太缺乏自信。</p>
+<p>在如今这个互联网很普及的时代（天朝网民据说已经6亿或7亿了），很多需要折腾的事物，都可以在网上找到教程，甚至是手把手的傻瓜教程。有了教程（尤其是傻瓜教程），折腾的门槛已经大大降低了。</p>
+<p>（至于如何在网上找到教程，可以参考《如何挖掘网络资源》系列博文）</p>
+<p>当然啦，即使有了再完备的教程，你依然会在折腾的过程中碰到一些困难和障碍。所以“教程的存在”并【不会】影响你锻炼“解决问题的能力”。</p>
+<p>◇小结</p>
+<p>上述所有这些，如果是【理由】的话，那都是不成立的；如果是【借口】的话，那都可以归咎于——不愿意离开心理舒适区。</p>
+<p>为啥很多人都在找借口捏？因为大部分人【不】愿意承认：自己总是停留在心理舒适区；并且大部分人更【不】愿意承认：自己无法离开心理舒适区。所以，他们需要找各种借口来掩饰。</p>
+<h1 id="俺写本文的目的"><a href="#俺写本文的目的" class="headerlink" title="俺写本文的目的"></a>俺写本文的目的</h1><p>在本文最后，稍微透露一下俺写本文的动机。</p>
+<p>可能大多数读者会【误以为】：俺写这篇是想劝那些不喜欢折腾的人改变习惯，多多折腾。</p>
+<p>NO，NO，NO！这不是俺的本意。</p>
+<p>前面说了：那些不喜欢折腾的人，无法（难以）跳出心理舒适区。这是由他们的本性（意志力、观念、性格 …）决定的。而一个人的本性，是【无法】轻易改变滴。所以，俺当然【不指望】：靠这样一篇短短的博文，就能改变他们的本性。</p>
+<p>那俺为啥还要写这篇博文捏？写此文的目的是：鼓励那些已经走上折腾之路的同学们，希望他们能在这条路上走得足够远。【好好折腾，天天向上】</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/" title="聊聊【折腾】的重要性">http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/2017斯诺克世锦赛记忆/" rel="next" title="2017斯诺克世锦赛记忆">
+                <i class="fa fa-chevron-left"></i> 2017斯诺克世锦赛记忆
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/06/《活在当下》摘录/" rel="prev" title="《活在当下》摘录">
+                《活在当下》摘录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description">iOS, Snooker/斯诺克</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zengke1989" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                    
+                      <i class="fa fa-fw fa-play"></i>Youku</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
+                    
+                      <i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5F15;&#x5B50;" class="headerlink" title="&#x5F15;&#x5B50;"></a>&#x5F15;&#x5B50;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词定义：何为“折腾”"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x540D;&#x8BCD;&#x5B9A;&#x4E49;&#xFF1A;&#x4F55;&#x4E3A;&#x201C;&#x6298;&#x817E;&#x201D;" class="headerlink" title="&#x540D;&#x8BCD;&#x5B9A;&#x4E49;&#xFF1A;&#x4F55;&#x4E3A;&#x201C;&#x6298;&#x817E;&#x201D;"></a>&#x540D;&#x8BCD;&#x5B9A;&#x4E49;&#xFF1A;&#x4F55;&#x4E3A;&#x201C;&#x6298;&#x817E;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“折腾”与“自学能力”"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x81EA;&#x5B66;&#x80FD;&#x529B;&#x201D;" class="headerlink" title="&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x81EA;&#x5B66;&#x80FD;&#x529B;&#x201D;"></a>&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x81EA;&#x5B66;&#x80FD;&#x529B;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“折腾”与“解决问题能力”"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x80FD;&#x529B;&#x201D;" class="headerlink" title="&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x80FD;&#x529B;&#x201D;"></a>&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x80FD;&#x529B;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“折腾”与“知识面-知识结构”"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x77E5;&#x8BC6;&#x9762;-&#x77E5;&#x8BC6;&#x7ED3;&#x6784;&#x201D;" class="headerlink" title="&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x77E5;&#x8BC6;&#x9762;/&#x77E5;&#x8BC6;&#x7ED3;&#x6784;&#x201D;"></a>&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x77E5;&#x8BC6;&#x9762;/&#x77E5;&#x8BC6;&#x7ED3;&#x6784;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“折腾”与“动手实践能力”"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x52A8;&#x624B;&#x5B9E;&#x8DF5;&#x80FD;&#x529B;&#x201D;" class="headerlink" title="&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x52A8;&#x624B;&#x5B9E;&#x8DF5;&#x80FD;&#x529B;&#x201D;"></a>&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x52A8;&#x624B;&#x5B9E;&#x8DF5;&#x80FD;&#x529B;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“折腾”与“心理舒适区”"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x5FC3;&#x7406;&#x8212;&#x9002;&#x533A;&#x201D;" class="headerlink" title="&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x5FC3;&#x7406;&#x8212;&#x9002;&#x533A;&#x201D;"></a>&#x201C;&#x6298;&#x817E;&#x201D;&#x4E0E;&#x201C;&#x5FC3;&#x7406;&#x8212;&#x9002;&#x533A;&#x201D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聊聊那些“不折腾”的理由或借口"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x804A;&#x804A;&#x90A3;&#x4E9B;&#x201C;&#x4E0D;&#x6298;&#x817E;&#x201D;&#x7684;&#x7406;&#x7531;&#x6216;&#x501F;&#x53E3;" class="headerlink" title="&#x804A;&#x804A;&#x90A3;&#x4E9B;&#x201C;&#x4E0D;&#x6298;&#x817E;&#x201D;&#x7684;&#x7406;&#x7531;&#x6216;&#x501F;&#x53E3;"></a>&#x804A;&#x804A;&#x90A3;&#x4E9B;&#x201C;&#x4E0D;&#x6298;&#x817E;&#x201D;&#x7684;&#x7406;&#x7531;&#x6216;&#x501F;&#x53E3;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#俺写本文的目的"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x4FFA;&#x5199;&#x672C;&#x6587;&#x7684;&#x76EE;&#x7684;" class="headerlink" title="&#x4FFA;&#x5199;&#x672C;&#x6587;&#x7684;&#x76EE;&#x7684;"></a>&#x4FFA;&#x5199;&#x672C;&#x6587;&#x7684;&#x76EE;&#x7684;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共43.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://keisme.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://keisme.cn/2017/05/06/聊聊【折腾】的重要性/';
+          this.page.identifier = '2017/05/06/聊聊【折腾】的重要性/';
+          this.page.title = '聊聊【折腾】的重要性';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://keisme.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
