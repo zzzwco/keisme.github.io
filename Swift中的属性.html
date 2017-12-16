@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="swift,属性," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 存储属性简单来说，每一个存储属性就是存储在特定类或结构体实例里的一个常量或变量。存储属性可以使变量存储属性，也可以是常量存储属性。 1.1 常量结构体的存储属性结构体属于值类型，值类型的实例被声明为常量的时候，它所有的属性也就成了常量。 而引用类型的类则不一样，把一个引用类型的实例赋给一个常量后，仍然可以修改该实例的变量属性。 1.2 延迟存储属性延迟存储属性是指当第一次被调用的时候才会计算">
+<meta name="keywords" content="swift,属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift中的属性">
+<meta property="og:url" content="http://keisme.cn/Swift中的属性.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="1. 存储属性简单来说，每一个存储属性就是存储在特定类或结构体实例里的一个常量或变量。存储属性可以使变量存储属性，也可以是常量存储属性。 1.1 常量结构体的存储属性结构体属于值类型，值类型的实例被声明为常量的时候，它所有的属性也就成了常量。 而引用类型的类则不一样，把一个引用类型的实例赋给一个常量后，仍然可以修改该实例的变量属性。 1.2 延迟存储属性延迟存储属性是指当第一次被调用的时候才会计算">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-16T10:58:08.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift中的属性">
+<meta name="twitter:description" content="1. 存储属性简单来说，每一个存储属性就是存储在特定类或结构体实例里的一个常量或变量。存储属性可以使变量存储属性，也可以是常量存储属性。 1.1 常量结构体的存储属性结构体属于值类型，值类型的实例被声明为常量的时候，它所有的属性也就成了常量。 而引用类型的类则不一样，把一个引用类型的实例赋给一个常量后，仍然可以修改该实例的变量属性。 1.2 延迟存储属性延迟存储属性是指当第一次被调用的时候才会计算">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Swift中的属性.html"/>
+
+
+
+
+
+  <title>Swift中的属性 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOS, Swift, Snooker, 斯诺克</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的属性.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift中的属性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T16:10:01+08:00">
+                2017-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,229
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-存储属性"><a href="#1-存储属性" class="headerlink" title="1. 存储属性"></a>1. 存储属性</h2><p>简单来说，每一个存储属性就是存储在特定类或结构体实例里的一个常量或变量。存储属性可以使变量存储属性，也可以是常量存储属性。</p>
+<h3 id="1-1-常量结构体的存储属性"><a href="#1-1-常量结构体的存储属性" class="headerlink" title="1.1 常量结构体的存储属性"></a>1.1 常量结构体的存储属性</h3><p>结构体属于值类型，值类型的实例被声明为常量的时候，它所有的属性也就成了常量。</p>
+<p>而引用类型的类则不一样，把一个引用类型的实例赋给一个常量后，仍然可以修改该实例的变量属性。</p>
+<h3 id="1-2-延迟存储属性"><a href="#1-2-延迟存储属性" class="headerlink" title="1.2 延迟存储属性"></a>1.2 延迟存储属性</h3><p>延迟存储属性是指当第一次被调用的时候才会计算其初始值的属性。在属性声明前使用<code>lazy</code>来标示一个延迟存储属性。</p>
+<blockquote>
+<p>注意：<br>必须将延迟存储属性声明成变量（使用<code>var</code>关键字），因为属性的初始值可能在实例构造完成之后才会得到。而常量属性在构造过程完成之前必须要有初始值，因此无法声明成延迟属性。</p>
+</blockquote>
+<a id="more"></a>
+<p>延迟属性很有用，当属性的值依赖于在实例的构造过程结束后才会知道影响值的外部因素时，或者当获得属性的初始值需要复杂或大量计算时，可以只在需要的时候计算它。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class DataImporter &#123;</span><br><span class="line">    <span class="selector-tag">var</span> fileName = <span class="string">"data.txt"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DataManager &#123;</span><br><span class="line">    lazy <span class="selector-tag">var</span> importer = DataImporter()</span><br><span class="line">    <span class="selector-tag">var</span> data = [String]()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let manager = DataManager()</span><br><span class="line">manager<span class="selector-class">.data</span><span class="selector-class">.append</span>(<span class="string">"Some data"</span>)</span><br><span class="line">manager<span class="selector-class">.data</span><span class="selector-class">.append</span>(<span class="string">"Some more data"</span>)</span><br><span class="line"><span class="comment">// DataImporter 实例的 importer 属性还没有被创建</span></span><br></pre></td></tr></table></figure>
+<p>由于使用了<code>lazy</code>，<code>importer</code>属性只有在第一次被访问的时候才被创建。比如访问它的属性<code>fileName</code>时：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">print</span><span class="params">(manager.importer.fileName)</span></span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：<br>如果一个被标记为<code>lazy</code>的属性没有被初始化就同时被多个线程访问，则无法保证该属性只会被初始化一次。</p>
+</blockquote>
+<h3 id="1-3-存储属性和实例变量"><a href="#1-3-存储属性和实例变量" class="headerlink" title="1.3 存储属性和实例变量"></a>1.3 存储属性和实例变量</h3><p>如果您有过 Objective-C 经验，应该知道 Objective-C 为类实例存储值和引用提供两种方法。除了属性之 外，还可以使用实例变量作为属性值的后端存储。</p>
+<p>Swift 编程语言中把这些理论统一用属性来实现。Swift 中的属性没有对应的实例变量，属性的后端存储也无法 直接访问。这就避免了不同场景下访问方式的困扰，同时也将属性的定义简化成一个语句。属性的全部信 息——包括命名、类型和内存管理特征——都在唯一一个地方(类型定义中)定义。</p>
+<h2 id="2-计算属性"><a href="#2-计算属性" class="headerlink" title="2. 计算属性"></a>2. 计算属性</h2><p>除存储属性外，类、结构体和枚举可以定义计算属性。计算属性不直接存储值，而是提供一个<code>getter</code>和一个可选的<code>setter</code>，来间接获取和设置其他属性或变量的值。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">struct Point &#123;</span><br><span class="line">    <span class="selector-tag">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line">struct Size &#123;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="attribute">width</span> = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line">struct Rect &#123;</span><br><span class="line">    <span class="selector-tag">var</span> origin = Point()</span><br><span class="line">    <span class="selector-tag">var</span> size = Size()</span><br><span class="line">    <span class="selector-tag">var</span> center: Point &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            let centerX = origin<span class="selector-class">.x</span> + (size<span class="selector-class">.width</span> / <span class="number">2</span>)</span><br><span class="line">            let centerY = origin<span class="selector-class">.y</span> + (size<span class="selector-class">.height</span> / <span class="number">2</span>)</span><br><span class="line">            return Point(x: centerX, y: centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        set(newCenter) &#123;</span><br><span class="line">            origin<span class="selector-class">.x</span> = newCenter<span class="selector-class">.x</span> - (size<span class="selector-class">.width</span> / <span class="number">2</span>)</span><br><span class="line">            origin<span class="selector-class">.y</span> = newCenter<span class="selector-class">.y</span> - (size<span class="selector-class">.height</span> / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">var</span> square = Rect(origin: Point(x: <span class="number">0.0</span>, y: <span class="number">0.0</span>),</span><br><span class="line">                  size: Size(<span class="attribute">width</span>: <span class="number">10.0</span>, height: <span class="number">10.0</span>))</span><br><span class="line">let initialSquareCenter = square.center</span><br><span class="line">square<span class="selector-class">.center</span> = Point(x: <span class="number">15.0</span>, y: <span class="number">15.0</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"square.origin is now at (\(square.origin.x), \(square.origin.y))"</span>)</span></span></span><br><span class="line"><span class="comment">// 打印 "square.origin is now at (10.0, 10.0)”</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-简化setter声明"><a href="#2-1-简化setter声明" class="headerlink" title="2.1 简化setter声明"></a>2.1 简化setter声明</h3><p>如果计算属性的<code>setter</code>没有定义表示新值的参数名，则可以使用默认名称<code>newValue</code>。下面是简化<code>setter</code>声明的<code>Rect</code>结构体代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct AlternativeRect &#123;</span><br><span class="line">    <span class="selector-tag">var</span> origin = Point()</span><br><span class="line">    <span class="selector-tag">var</span> size = Size()</span><br><span class="line">    <span class="selector-tag">var</span> center: Point &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            let centerX = origin<span class="selector-class">.x</span> + (size<span class="selector-class">.width</span> / <span class="number">2</span>)</span><br><span class="line">            let centerY = origin<span class="selector-class">.y</span> + (size<span class="selector-class">.height</span> / <span class="number">2</span>)</span><br><span class="line">            return Point(x: centerX, y: centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            origin<span class="selector-class">.x</span> = newValue<span class="selector-class">.x</span> - (size<span class="selector-class">.width</span> / <span class="number">2</span>)</span><br><span class="line">            origin<span class="selector-class">.y</span> = newValue<span class="selector-class">.y</span> - (size<span class="selector-class">.height</span> / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-只读计算属性"><a href="#2-2-只读计算属性" class="headerlink" title="2.2 只读计算属性"></a>2.2 只读计算属性</h3><p>只有<code>getter</code>没有<code>setter</code>的计算属性就是只读计算属性。只读计算属性总是返回一个值，可以通过点运算符访问，但不能设置新的值。</p>
+<blockquote>
+<p>注意：<br>必须使用 var 关键字定义计算属性，包括只读计算属性，因为它们的值不是固定的。let 关键字只用来声明 常量属性，表示初始化后再也无法修改的值。</p>
+</blockquote>
+<p>只读计算属性的声明可以去掉<code>get</code>关键字和花括号:</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct Cuboid &#123;</span><br><span class="line">    <span class="built_in">var</span> <span class="built_in">width</span> = <span class="number">0.0</span>, <span class="built_in">height</span> = <span class="number">0.0</span>, depth = <span class="number">0.0</span></span><br><span class="line">    <span class="built_in">var</span> volume: Double &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="built_in">width</span> * <span class="built_in">height</span> * depth</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">let</span> fourByFiveByTwo = Cuboid(<span class="built_in">width</span>: <span class="number">4.0</span>, <span class="built_in">height</span>: <span class="number">5.0</span>, depth: <span class="number">2.0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)"</span>)</span><br><span class="line">// 打印 <span class="string">"the volume of fourByFiveByTwo is 40.0"</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-属性观察器"><a href="#3-属性观察器" class="headerlink" title="3. 属性观察器"></a>3. 属性观察器</h2><p>属性观察器监控和响应属性值的变化，每次属性被设置值的时候都会调用属性观察器，即使新值和当前值相同的<br>时候也不例外。</p>
+<ul>
+<li><code>willSet</code>在新的值被设置之前调用  </li>
+<li><code>didSet</code>在新的值被设置之后立即调用</li>
+</ul>
+<blockquote>
+<p>注意：<br>父类的属性在子类的构造器中被赋值时，它在父类中的<code>willSet</code>和<code>didSet</code>观察器会被调用，随后才会调用子类的观察器。在父类初始化方法调用之前，子类给属性赋值时，观察器不会被调用。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StepCounter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> totalSteps: <span class="type">Int</span> = <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">willSet</span>(newTotalSteps) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"About to set totalSteps to <span class="subst">\(newTotalSteps)</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">didSet</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> totalSteps &gt; oldValue &#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"Addedd <span class="subst">\(totalSteps - oldValue)</span> steps"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stepCounter = <span class="type">StepCounter</span>()</span><br><span class="line">stepCounter.totalSteps = <span class="number">200</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 200</span></span><br><span class="line"><span class="comment">// Added 200 steps</span></span><br><span class="line">stepCounter.totalSteps = <span class="number">360</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 360</span></span><br><span class="line"><span class="comment">// Added 160 steps</span></span><br><span class="line">stepCounter.totalSteps = <span class="number">896</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 896</span></span><br><span class="line"><span class="comment">// Added 536 steps</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<br>如果将属性通过<code>in-out</code>方式传入函数，<code>willSet</code>和<code>didSet</code>也会调用。这是因为<code>in-out</code>参数采用了拷入拷出模式:即在函数内部使用的是参数的<code>copy</code>，函数结束后，又对参数重新赋值。</p>
+</blockquote>
+<h2 id="4-全局变量和局部变量"><a href="#4-全局变量和局部变量" class="headerlink" title="4. 全局变量和局部变量"></a>4. 全局变量和局部变量</h2><p>全局的常量或变量都是延迟计算的，不同的地方在于，全局的常量或变量不需要标记<code>lazy</code>修饰符。</p>
+<p>局部范围的常量或变量从不延迟计算。</p>
+<h2 id="5-类型属性"><a href="#5-类型属性" class="headerlink" title="5. 类型属性"></a>5. 类型属性</h2><p>实例属性属于一个特定类型的实例，每创建一个实例，实例都拥有属于自己的一套属性值，实例之间的属性相互<br>独立。</p>
+<p>也可以为类型本身定义属性，无论创建了多少个该类型的实例，这些属性都只有唯一一份。这种属性就是类型属<br>性。</p>
+<p>类型属性用于定义某个类型所有实例共享的数据，比如所有实例都能用的一个常量(就像 C 语言中的静态常 量)，或者所有实例都能访问的一个变量(就像 C 语言中的静态变量)。</p>
+<p>存储型类型属性可以是变量或常量，计算型类型属性跟实例的计算型属性一样只能定义成变量属性。</p>
+<blockquote>
+<p>注意：<br>跟实例的存储型属性不同，必须给存储型类型属性指定默认值，因为类型本身没有构造器，也就无法在初始化过 程中使用构造器给类型属性赋值。<br>存储型类型属性是延迟初始化的，它们只有在第一次被访问的时候才会被初始化。即使它们被多个线程同时访 问，系统也保证只会对其进行一次初始化，并且不需要对其使用<code>lazy</code>修饰符。</p>
+</blockquote>
+<h3 id="5-1-类型属性语法"><a href="#5-1-类型属性语法" class="headerlink" title="5.1 类型属性语法"></a>5.1 类型属性语法</h3><p>使用关键字<code>static</code>来定义类型属性。在为类定义计算型类型属性时，可以改用关键字<code>class</code>来支持子类对父 类的实现进行重写。下面的例子演示了存储型和计算型类型属性的语法:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some Value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some Value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some Value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">27</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">overrideableComputedTypeProperty</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">107</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-获取和设置类型属性的值"><a href="#5-2-获取和设置类型属性的值" class="headerlink" title="5.2 获取和设置类型属性的值"></a>5.2 获取和设置类型属性的值</h3><p>跟实例属性一样，类型属性也是通过点运算符来访问。但是，类型属性是通过类型本身来访问，而不是通过实例。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">struct AudioChannel &#123;</span><br><span class="line">    static let thresholdLEvel = <span class="number">10</span></span><br><span class="line">    static <span class="selector-tag">var</span> maxInputLevelForAllChannels = <span class="number">0</span></span><br><span class="line">    <span class="selector-tag">var</span> currentLevel: Int = <span class="number">0</span> &#123;</span><br><span class="line">        didSet &#123;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; AudioChannel<span class="selector-class">.thresholdLEvel</span> &#123;</span><br><span class="line">                currentLevel = AudioChannel.thresholdLEvel</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; AudioChannel<span class="selector-class">.maxInputLevelForAllChannels</span> &#123;</span><br><span class="line">                AudioChannel<span class="selector-class">.maxInputLevelForAllChannels</span> = currentLevel</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">var</span> leftChannel = AudioChannel()</span><br><span class="line"><span class="selector-tag">var</span> rightChannel = AudioChannel()</span><br><span class="line"></span><br><span class="line">leftChannel<span class="selector-class">.currentLevel</span> = <span class="number">7</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(leftChannel.currentLevel)</span></span></span><br><span class="line"><span class="comment">// print "7"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(AudioChannel.maxInputLevelForAllChannels)</span></span></span><br><span class="line"><span class="comment">// print "7"</span></span><br><span class="line"></span><br><span class="line">rightChannel<span class="selector-class">.currentLevel</span> = <span class="number">11</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(rightChannel.currentLevel)</span></span></span><br><span class="line"><span class="comment">// print "10"</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(AudioChannel.maxInputLevelForAllChannels)</span></span></span><br><span class="line"><span class="comment">// print "10"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift中的属性.html" title="Swift中的属性">http://keisme.cn/Swift中的属性.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+          
+            <a href="/tags/属性/" rel="tag"><i class="fa fa-tag"></i> 属性</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Git中文显示乱码的解决方案（Mac）.html" rel="next" title="Git中文显示乱码的解决方案（Mac）">
+                <i class="fa fa-chevron-left"></i> Git中文显示乱码的解决方案（Mac）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Swift中的方法.html" rel="prev" title="Swift中的方法">
+                Swift中的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description">iOS, Swift, Snooker, 斯诺克</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zengke1989" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                    
+                      <i class="fa fa-fw fa-play"></i>Youku</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
+                    
+                      <i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-存储属性"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x5B58;&#x50A8;&#x5C5E;&#x6027;" class="headerlink" title="1. &#x5B58;&#x50A8;&#x5C5E;&#x6027;"></a>1. &#x5B58;&#x50A8;&#x5C5E;&#x6027;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-常量结构体的存储属性"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1-&#x5E38;&#x91CF;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x5B58;&#x50A8;&#x5C5E;&#x6027;" class="headerlink" title="1.1 &#x5E38;&#x91CF;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x5B58;&#x50A8;&#x5C5E;&#x6027;"></a>1.1 &#x5E38;&#x91CF;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x5B58;&#x50A8;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-延迟存储属性"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#1-2-&#x5EF6;&#x8FDF;&#x5B58;&#x50A8;&#x5C5E;&#x6027;" class="headerlink" title="1.2 &#x5EF6;&#x8FDF;&#x5B58;&#x50A8;&#x5C5E;&#x6027;"></a>1.2 &#x5EF6;&#x8FDF;&#x5B58;&#x50A8;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-存储属性和实例变量"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#1-3-&#x5B58;&#x50A8;&#x5C5E;&#x6027;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;" class="headerlink" title="1.3 &#x5B58;&#x50A8;&#x5C5E;&#x6027;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;"></a>1.3 &#x5B58;&#x50A8;&#x5C5E;&#x6027;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-计算属性"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x8BA1;&#x7B97;&#x5C5E;&#x6027;" class="headerlink" title="2. &#x8BA1;&#x7B97;&#x5C5E;&#x6027;"></a>2. &#x8BA1;&#x7B97;&#x5C5E;&#x6027;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-简化setter声明"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-1-&#x7B80;&#x5316;setter&#x58F0;&#x660E;" class="headerlink" title="2.1 &#x7B80;&#x5316;setter&#x58F0;&#x660E;"></a>2.1 &#x7B80;&#x5316;setter&#x58F0;&#x660E;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-只读计算属性"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2-&#x53EA;&#x8BFB;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;" class="headerlink" title="2.2 &#x53EA;&#x8BFB;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;"></a>2.2 &#x53EA;&#x8BFB;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-属性观察器"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x5C5E;&#x6027;&#x89C2;&#x5BDF;&#x5668;" class="headerlink" title="3. &#x5C5E;&#x6027;&#x89C2;&#x5BDF;&#x5668;"></a>3. &#x5C5E;&#x6027;&#x89C2;&#x5BDF;&#x5668;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-全局变量和局部变量"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;" class="headerlink" title="4. &#x5168;&#x5C40;&#x53D8;&#x91CF;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;"></a>4. &#x5168;&#x5C40;&#x53D8;&#x91CF;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-类型属性"><span class="nav-number">5.</span> <span class="nav-text"><a href="#5-&#x7C7B;&#x578B;&#x5C5E;&#x6027;" class="headerlink" title="5. &#x7C7B;&#x578B;&#x5C5E;&#x6027;"></a>5. &#x7C7B;&#x578B;&#x5C5E;&#x6027;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-类型属性语法"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#5-1-&#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x8BED;&#x6CD5;" class="headerlink" title="5.1 &#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x8BED;&#x6CD5;"></a>5.1 &#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x8BED;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-获取和设置类型属性的值"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#5-2-&#x83B7;&#x53D6;&#x548C;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x7684;&#x503C;" class="headerlink" title="5.2 &#x83B7;&#x53D6;&#x548C;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x7684;&#x503C;"></a>5.2 &#x83B7;&#x53D6;&#x548C;&#x8BBE;&#x7F6E;&#x7C7B;&#x578B;&#x5C5E;&#x6027;&#x7684;&#x503C;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共43.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

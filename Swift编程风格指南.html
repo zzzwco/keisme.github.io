@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="swift,ios,编程风格," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 命名使用驼峰式命名法，类、结构体、枚举、协议的首字母应该大写，而方法、变量名首字母则小写。 123456private let maximumWidgetCount = 100class WidgetContainer &amp;#123;  var widgetButton: UIButton  let widgetHeightPercentage = 0.85&amp;#125;">
+<meta name="keywords" content="swift,ios,编程风格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift编程风格指南">
+<meta property="og:url" content="http://keisme.cn/Swift编程风格指南.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="1. 命名使用驼峰式命名法，类、结构体、枚举、协议的首字母应该大写，而方法、变量名首字母则小写。 123456private let maximumWidgetCount = 100class WidgetContainer &amp;#123;  var widgetButton: UIButton  let widgetHeightPercentage = 0.85&amp;#125;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-16T11:22:42.934Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift编程风格指南">
+<meta name="twitter:description" content="1. 命名使用驼峰式命名法，类、结构体、枚举、协议的首字母应该大写，而方法、变量名首字母则小写。 123456private let maximumWidgetCount = 100class WidgetContainer &amp;#123;  var widgetButton: UIButton  let widgetHeightPercentage = 0.85&amp;#125;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Swift编程风格指南.html"/>
+
+
+
+
+
+  <title>Swift编程风格指南 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOS, Swift, Snooker, 斯诺克</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift编程风格指南.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift编程风格指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T23:00:40+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,384
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-命名"><a href="#1-命名" class="headerlink" title="1. 命名"></a>1. 命名</h1><p>使用<code>驼峰式</code>命名法，<code>类</code>、<code>结构体</code>、<code>枚举</code>、<code>协议</code>的首字母应该大写，而<code>方法</code>、<code>变量</code>名首字母则小写。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> maximumWidgetCount = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">WidgetContainer</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> widgetButton: UIButton</span><br><span class="line">  <span class="keyword">let</span> widgetHeightPercentage = <span class="number">0.85</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="1-1-枚举"><a href="#1-1-枚举" class="headerlink" title="1.1 枚举"></a>1.1 枚举</h2><p>对于枚举值，应该使用首字母小写的驼峰命名法：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Shape</span> &#123;</span></span><br><span class="line">  <span class="keyword">case</span> Rectangle</span><br><span class="line">  <span class="keyword">case</span> Square</span><br><span class="line">  <span class="keyword">case</span> Triangle</span><br><span class="line">  <span class="keyword">case</span> Circle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="1-2-类名前缀-Class-Prefix"><a href="#1-2-类名前缀-Class-Prefix" class="headerlink" title="1.2 类名前缀(Class Prefix)"></a>1.2 类名前缀(Class Prefix)</h1><p>Swift 类型自动为模块名设置了命名空间，所以没有必要为 Swift 的类型添加类似 <code>KS</code> 这样的前缀了。如果两个来自不同模块的命名冲突了了，你可以在它们前面添加模块名来避免冲突。</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">import</span> SomeModule</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">myClass</span> = MyModule.UsefulClass()</span><br></pre></td></tr></table></figure>
+<h1 id="1-3-泛型"><a href="#1-3-泛型" class="headerlink" title="1.3 泛型"></a>1.3 泛型</h1><p>泛型名应该有较好的阅读性，用首字母大写的驼峰式命名。当一个类型没有有意义的关系和角色，使用传统的 <code>T</code>、<code>U</code>、<code>V</code> 来替代。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Stack</span>&lt;<span class="title">Element</span>&gt; </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">writeTo</span>&lt;Target: OutputStream&gt;<span class="params">(<span class="keyword">inout</span> target: Target)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span>&lt;T: Comparable&gt;<span class="params">(x: T, <span class="number">_</span> y: T)</span></span> -&gt; <span class="type">T</span></span><br></pre></td></tr></table></figure>
+<h1 id="1-4-语言"><a href="#1-4-语言" class="headerlink" title="1.4 语言"></a>1.4 语言</h1><p>使用美式英语，更符合苹果的 API 标准。</p>
+<h1 id="2-代码结构"><a href="#2-代码结构" class="headerlink" title="2. 代码结构"></a>2. 代码结构</h1><h2 id="2-1-代码分块"><a href="#2-1-代码分块" class="headerlink" title="2.1 代码分块"></a>2.1 代码分块</h2><p>使用<code>// MARK: -</code>对代码进行分块组织，代码的组织顺序从整体上尽量符合我们的认知顺序。</p>
+<h2 id="2-2-无用代码"><a href="#2-2-无用代码" class="headerlink" title="2.2 无用代码"></a>2.2 无用代码</h2><p>对于无用的代码，都应该被删掉。</p>
+<h2 id="2-3-最小引用"><a href="#2-3-最小引用" class="headerlink" title="2.3 最小引用"></a>2.3 最小引用</h2><p>只<code>import</code>你需要的模块。比如，如果引用<code>Foundation</code>以及足够，就不要再引用<code>UIKit</code>了。</p>
+<h1 id="3-类和结构体"><a href="#3-类和结构体" class="headerlink" title="3. 类和结构体"></a>3. 类和结构体</h1><h2 id="3-1-选择哪个？"><a href="#3-1-选择哪个？" class="headerlink" title="3.1 选择哪个？"></a>3.1 选择哪个？</h2><p>结构体是值类型，类是引用类型。</p>
+<p>按照通用的准则，当符合一条或多条以下条件时，请考虑构建结构体：</p>
+<ul>
+<li>该数据结构的主要目的是用来封装少量相关简单数据值。</li>
+<li>有理由预计该数据结构的实例在被赋值或传递时，封装的数据将会被拷贝而不是被引用。</li>
+<li>该数据结构中储存的值类型属性，也应该被拷贝，而不是被引用。</li>
+<li>该数据结构不需要去继承另一个既有类型的属性或者行为。</li>
+</ul>
+<h2 id="3-2-Self-的使用"><a href="#3-2-Self-的使用" class="headerlink" title="3.2 Self 的使用"></a>3.2 Self 的使用</h2><p>为了保持简洁，避免使用 self 关键词，Swift 不需要使用 self 来访问对象属性和调用对象方法。</p>
+<p>在以下情况中需要使用<code>self</code>：</p>
+<ul>
+<li>在构造器中，为了区分传入的参数和属性</li>
+<li>在闭包中访问属性</li>
+</ul>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BoardLocation</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> row: <span class="keyword">Int</span>, column: <span class="keyword">Int</span></span><br><span class="line"></span><br><span class="line">  init(row: <span class="keyword">Int</span>, column: <span class="keyword">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.row = row</span><br><span class="line">    <span class="keyword">self</span>.column = column</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> closure = &#123;</span><br><span class="line">      println(<span class="keyword">self</span>.row)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-计算属性"><a href="#3-3-计算属性" class="headerlink" title="3.3 计算属性"></a>3.3 计算属性</h2><p>如果一个计算属性是只读的，忽略 get 语句。只有在需要定义 set 语句的时候，才提供 get 语句。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var diameter: Double &#123;</span><br><span class="line">  return<span class="built_in"> radius </span>* 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-4-Final"><a href="#3-4-Final" class="headerlink" title="3.4 Final"></a>3.4 Final</h2><p>如果类不会被继承，那么用关键词 <code>final</code> 标记。</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">final <span class="keyword">class</span> Box&lt;T&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> <span class="keyword">value</span>: T </span><br><span class="line">	init(<span class="number">_</span> <span class="keyword">value</span>: T) &#123;</span><br><span class="line">		self.<span class="keyword">value</span> = <span class="keyword">value</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-协议遵守"><a href="#4-协议遵守" class="headerlink" title="4. 协议遵守"></a>4. 协议遵守</h1><p>当我们对一个类添加协议时，推荐使用一个单独的类扩展来实现协议的方法。这可以保持协议相关的方法聚合在一起，同时也可以简单的标识出一个协议对应类中需要实现哪些对应的方法。</p>
+<p><strong>推荐做法：</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyViewcontroller</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">  <span class="comment">// class stuff here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - UITableViewDataSource</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MyViewcontroller</span>: <span class="title">UITableViewDataSource</span> </span>&#123;</span><br><span class="line">  <span class="comment">// table view data source methods</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - UIScrollViewDelegate</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MyViewcontroller</span>: <span class="title">UIScrollViewDelegate</span> </span>&#123;</span><br><span class="line">  <span class="comment">// scroll view delegate methods</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>不推荐做法：</strong><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyViewcontroller</span>: <span class="type">UIViewController</span>, <span class="type">UITableViewDataSource</span>, <span class="type">UIScrollViewDelegate &#123;</span></span></span><br><span class="line">  <span class="comment">// all methods</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="5-函数声明"><a href="#5-函数声明" class="headerlink" title="5. 函数声明"></a>5. 函数声明</h1><p>保证短的函数定义在同一行中，并且包含左大括号：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reticulateSplines</span><span class="params">(spline: [Double])</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="comment">// reticulate code goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在一个长的函数定义时，在适当的地方进行换行，同时在下一行中添加一个额外的缩进：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reticulateSplines</span><span class="params">(spline: [Double], adjustmentFactor: Double,</span></span></span><br><span class="line"><span class="function"><span class="params">    translateConstant: Int, comment: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="comment">// reticulate code goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-闭包表达式"><a href="#6-闭包表达式" class="headerlink" title="6. 闭包表达式"></a>6. 闭包表达式</h1><p>详细参考：<a href="http://www.jianshu.com/p/f8da5998cf8c" target="_blank" rel="noopener">Swift 中的闭包</a></p>
+<h1 id="7-类型"><a href="#7-类型" class="headerlink" title="7. 类型"></a>7. 类型</h1><p>尽可能使用 Swift 原生类型。</p>
+<h2 id="7-1-常量"><a href="#7-1-常量" class="headerlink" title="7.1 常量"></a>7.1 常量</h2><p>常量定义使用 let 关键字，变量定义使用 var 关键字，如果变量的值不需要改变，请尽量使用 let 关键字。<br>提示：一个好的技巧是，使用 let 定义任何东西，只有在编译器告诉我们值需要改变的时候才改成 var 定义。</p>
+<h2 id="7-2-可选类型"><a href="#7-2-可选类型" class="headerlink" title="7.2 可选类型"></a>7.2 可选类型</h2><p>当一个变量或函数返回值可以为 nil 时，用 <code>?</code> 将其声明为可选类型。</p>
+<p>当确定变量在使用前被初始化，使用 <code>!</code> 来解包。</p>
+<p>必要时，使用可选值链：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">self</span><span class="selector-class">.textContainer</span>?<span class="selector-class">.textLabel</span>?<span class="selector-class">.setNeedsDisplay</span>()</span><br></pre></td></tr></table></figure>
+<p>对于需要将可选值解包，并多出使用的情况，使用可选值绑定：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> textContainer = self.textContainer &#123;</span><br><span class="line">  // <span class="built_in">do</span> many things <span class="built_in">with</span> textContainer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们命名一个可选变量和属性时，避免使用诸如 optionalString 和 maybeView 这样的命名，因为可选值的表达已经在类型定义中了。</p>
+<p>在可选值绑定中，直接映射原始的命名比使用诸如 unwrappedView 和 actualLabel 要好。</p>
+<p><strong>推荐做法：</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var subview: UIView?</span><br><span class="line">var <span class="keyword">volume</span><span class="bash">: Double?</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">// later on...</span></span><br><span class="line"><span class="bash"><span class="keyword">if</span> <span class="built_in">let</span> subview = subview, volume = volume &#123;</span></span><br><span class="line"><span class="bash">  // <span class="keyword">do</span> something with unwrapped subview and volume</span></span><br><span class="line"><span class="bash">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-3-语法糖"><a href="#7-3-语法糖" class="headerlink" title="7.3 语法糖"></a>7.3 语法糖</h2><p>推荐使用简短的类型声明。</p>
+<p><strong>推荐做法：</strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deviceModels: [<span class="built_in">String</span>]</span><br><span class="line"><span class="keyword">var</span> employees: [Int: <span class="built_in">String</span>]</span><br><span class="line"><span class="keyword">var</span> faxNumber: Int?</span><br></pre></td></tr></table></figure>
+<p><strong>不推荐做法：</strong></p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deviceModels: <span class="type">Array</span>&lt;<span class="keyword">String</span>&gt;</span><br><span class="line"><span class="keyword">var</span> employees: <span class="type">Dictionary</span>&lt;<span class="keyword">Int</span>, <span class="keyword">String</span>&gt;</span><br><span class="line"><span class="keyword">var</span> faxNumber: <span class="type">Optional</span>&lt;<span class="keyword">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="8-控制流"><a href="#8-控制流" class="headerlink" title="8. 控制流"></a>8. 控制流</h1><p>使用循环时，推荐用 <code>for-in</code> 表达式，而不是 <code>for-condition-increment</code> 表达式。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift编程风格指南.html" title="Swift编程风格指南">http://keisme.cn/Swift编程风格指南.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+            <a href="/tags/编程风格/" rel="tag"><i class="fa fa-tag"></i> 编程风格</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-中的一些关键字.html" rel="next" title="Swift 中的一些关键字">
+                <i class="fa fa-chevron-left"></i> Swift 中的一些关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017斯诺克上海大师赛记忆.html" rel="prev" title="2017斯诺克上海大师赛记忆">
+                2017斯诺克上海大师赛记忆 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description">iOS, Swift, Snooker, 斯诺克</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zengke1989" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                    
+                      <i class="fa fa-fw fa-play"></i>Youku</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
+                    
+                      <i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-命名"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x547D;&#x540D;" class="headerlink" title="1. &#x547D;&#x540D;"></a>1. &#x547D;&#x540D;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-枚举"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1-&#x679A;&#x4E3E;" class="headerlink" title="1.1 &#x679A;&#x4E3E;"></a>1.1 &#x679A;&#x4E3E;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2-类名前缀-Class-Prefix"><span class="nav-number">2.</span> <span class="nav-text"><a href="#1-2-&#x7C7B;&#x540D;&#x524D;&#x7F00;-Class-Prefix" class="headerlink" title="1.2 &#x7C7B;&#x540D;&#x524D;&#x7F00;(Class Prefix)"></a>1.2 &#x7C7B;&#x540D;&#x524D;&#x7F00;(Class Prefix)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-3-泛型"><span class="nav-number">3.</span> <span class="nav-text"><a href="#1-3-&#x6CDB;&#x578B;" class="headerlink" title="1.3 &#x6CDB;&#x578B;"></a>1.3 &#x6CDB;&#x578B;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-4-语言"><span class="nav-number">4.</span> <span class="nav-text"><a href="#1-4-&#x8BED;&#x8A00;" class="headerlink" title="1.4 &#x8BED;&#x8A00;"></a>1.4 &#x8BED;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-代码结构"><span class="nav-number">5.</span> <span class="nav-text"><a href="#2-&#x4EE3;&#x7801;&#x7ED3;&#x6784;" class="headerlink" title="2. &#x4EE3;&#x7801;&#x7ED3;&#x6784;"></a>2. &#x4EE3;&#x7801;&#x7ED3;&#x6784;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-代码分块"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#2-1-&#x4EE3;&#x7801;&#x5206;&#x5757;" class="headerlink" title="2.1 &#x4EE3;&#x7801;&#x5206;&#x5757;"></a>2.1 &#x4EE3;&#x7801;&#x5206;&#x5757;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-无用代码"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#2-2-&#x65E0;&#x7528;&#x4EE3;&#x7801;" class="headerlink" title="2.2 &#x65E0;&#x7528;&#x4EE3;&#x7801;"></a>2.2 &#x65E0;&#x7528;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-最小引用"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#2-3-&#x6700;&#x5C0F;&#x5F15;&#x7528;" class="headerlink" title="2.3 &#x6700;&#x5C0F;&#x5F15;&#x7528;"></a>2.3 &#x6700;&#x5C0F;&#x5F15;&#x7528;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-类和结构体"><span class="nav-number">6.</span> <span class="nav-text"><a href="#3-&#x7C7B;&#x548C;&#x7ED3;&#x6784;&#x4F53;" class="headerlink" title="3. &#x7C7B;&#x548C;&#x7ED3;&#x6784;&#x4F53;"></a>3. &#x7C7B;&#x548C;&#x7ED3;&#x6784;&#x4F53;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-选择哪个？"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#3-1-&#x9009;&#x62E9;&#x54EA;&#x4E2A;&#xFF1F;" class="headerlink" title="3.1 &#x9009;&#x62E9;&#x54EA;&#x4E2A;&#xFF1F;"></a>3.1 &#x9009;&#x62E9;&#x54EA;&#x4E2A;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Self-的使用"><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#3-2-Self-&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="3.2 Self &#x7684;&#x4F7F;&#x7528;"></a>3.2 Self &#x7684;&#x4F7F;&#x7528;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-计算属性"><span class="nav-number">6.3.</span> <span class="nav-text"><a href="#3-3-&#x8BA1;&#x7B97;&#x5C5E;&#x6027;" class="headerlink" title="3.3 &#x8BA1;&#x7B97;&#x5C5E;&#x6027;"></a>3.3 &#x8BA1;&#x7B97;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Final"><span class="nav-number">6.4.</span> <span class="nav-text"><a href="#3-4-Final" class="headerlink" title="3.4 Final"></a>3.4 Final</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-协议遵守"><span class="nav-number">7.</span> <span class="nav-text"><a href="#4-&#x534F;&#x8BAE;&#x9075;&#x5B88;" class="headerlink" title="4. &#x534F;&#x8BAE;&#x9075;&#x5B88;"></a>4. &#x534F;&#x8BAE;&#x9075;&#x5B88;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-函数声明"><span class="nav-number">8.</span> <span class="nav-text"><a href="#5-&#x51FD;&#x6570;&#x58F0;&#x660E;" class="headerlink" title="5. &#x51FD;&#x6570;&#x58F0;&#x660E;"></a>5. &#x51FD;&#x6570;&#x58F0;&#x660E;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-闭包表达式"><span class="nav-number">9.</span> <span class="nav-text"><a href="#6-&#x95ED;&#x5305;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="6. &#x95ED;&#x5305;&#x8868;&#x8FBE;&#x5F0F;"></a>6. &#x95ED;&#x5305;&#x8868;&#x8FBE;&#x5F0F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-类型"><span class="nav-number">10.</span> <span class="nav-text"><a href="#7-&#x7C7B;&#x578B;" class="headerlink" title="7. &#x7C7B;&#x578B;"></a>7. &#x7C7B;&#x578B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-常量"><span class="nav-number">10.1.</span> <span class="nav-text"><a href="#7-1-&#x5E38;&#x91CF;" class="headerlink" title="7.1 &#x5E38;&#x91CF;"></a>7.1 &#x5E38;&#x91CF;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-可选类型"><span class="nav-number">10.2.</span> <span class="nav-text"><a href="#7-2-&#x53EF;&#x9009;&#x7C7B;&#x578B;" class="headerlink" title="7.2 &#x53EF;&#x9009;&#x7C7B;&#x578B;"></a>7.2 &#x53EF;&#x9009;&#x7C7B;&#x578B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-语法糖"><span class="nav-number">10.3.</span> <span class="nav-text"><a href="#7-3-&#x8BED;&#x6CD5;&#x7CD6;" class="headerlink" title="7.3 &#x8BED;&#x6CD5;&#x7CD6;"></a>7.3 &#x8BED;&#x6CD5;&#x7CD6;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-控制流"><span class="nav-number">11.</span> <span class="nav-text"><a href="#8-&#x63A7;&#x5236;&#x6D41;" class="headerlink" title="8. &#x63A7;&#x5236;&#x6D41;"></a>8. &#x63A7;&#x5236;&#x6D41;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共43.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
