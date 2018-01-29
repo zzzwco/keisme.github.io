@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="keisme">
 <meta property="og:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T11:17:09.394Z">
+<meta property="og:updated_time" content="2018-01-29T16:06:25.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 中的一些关键字">
 <meta name="twitter:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  574
+                  643
                 </span>
               
 
@@ -456,6 +456,8 @@
 <ul>
 <li><p><code>guard</code>：与 if 相反，当不满足条件时执行后面的语句。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(input: Int?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> <span class="number">_</span> = input <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Input cannot be nil"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(input: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">// print "Input cannot be nil"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>defer</code>：该关键字包裹的一段代码会延迟执行，当前作用域结束的时候会被调用。当同一个作用域指定多个 <code>defer</code> 代码块，在当前作用域结束时，先定义的后执行，后定义的先执行。</p>
 </li>
 <li><p><code>static</code>：和 <code>class</code> 关键词一样，都用来生成类方法，不同的是，<code>class</code> 修饰的方法可以被重写，而 <code>static</code> 不行。</p>
 </li>
@@ -728,7 +730,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -753,7 +755,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共43.9k字</span>
+  <span class="post-count">博客全站共44.0k字</span>
 </div>
 
         

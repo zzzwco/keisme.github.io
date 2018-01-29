@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://keisme.cn/Swift-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97.html</loc>
+    <lastmod>2018-01-29T16:06:25.589Z</lastmod>
+    <data>
+        <display>
+        <title>Swift 中的一些关键字</title>
+        <pubTime>2017-11-07T14:24:47.000Z</pubTime>
+        
+        <tag>swift</tag>
+         
+        <tag>关键字</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="http://keisme.cn/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://keisme.cn/Mac%E5%AE%89%E8%A3%85Python3%E5%92%8CPyCharm%E6%9B%B4%E6%8D%A2Python%E7%89%88%E6%9C%AC.html</loc>
-    <lastmod>2017-12-16T22:59:29.346Z</lastmod>
+    <lastmod>2017-12-16T23:32:01.573Z</lastmod>
     <data>
         <display>
         <title>Mac安装Python3和PyCharm更换Python版本</title>
@@ -64,28 +86,6 @@
         <tag>TODO</tag>
          
         <tag>FIXME</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://keisme.cn/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://keisme.cn/Swift-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97.html</loc>
-    <lastmod>2017-12-16T11:17:09.394Z</lastmod>
-    <data>
-        <display>
-        <title>Swift 中的一些关键字</title>
-        <pubTime>2017-11-07T14:24:47.000Z</pubTime>
-        
-        <tag>swift</tag>
-         
-        <tag>关键字</tag>
          
          
            
