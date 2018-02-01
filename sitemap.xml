@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://keisme.cn/Swift%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85.html</loc>
+    
+    <lastmod>2018-02-01T15:56:44.545Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://keisme.cn/Swift-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97.html</loc>
     
     <lastmod>2018-01-29T16:06:25.589Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://keisme.cn/%E3%80%8ASwift%E5%BF%85%E5%A4%87Tips%E3%80%8B%E7%AC%94%E8%AE%B0.html</loc>
+    
+    <lastmod>2018-01-29T14:48:05.000Z</lastmod>
     
   </url>
   
@@ -47,13 +61,6 @@
     <loc>http://keisme.cn/iOS%E5%B0%8F%E8%B4%B4%E5%A3%AB.html</loc>
     
     <lastmod>2017-12-16T11:12:26.052Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://keisme.cn/Swift%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85.html</loc>
-    
-    <lastmod>2017-12-16T11:07:46.336Z</lastmod>
     
   </url>
   

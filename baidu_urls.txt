@@ -1,3 +1,4 @@
+http://keisme.cn/《Swift必备Tips》笔记.html
 http://keisme.cn/2017斯诺克英锦赛记忆.html
 http://keisme.cn/Swift-编译器提示-TODO-和-FIXME.html
 http://keisme.cn/Charles-显示乱码问题解决方案.html
@@ -7,4 +8,3 @@ http://keisme.cn/Swift-中的一些关键字.html
 http://keisme.cn/UIScrollView-AutoLayout.html
 http://keisme.cn/Swift中的闭包.html
 http://keisme.cn/iOS疑难杂症.html
-http://keisme.cn/Swift中的泛型.html

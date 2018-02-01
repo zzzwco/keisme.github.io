@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="keisme">
 <meta property="og:description" content="1. 闭包表达式语法123&amp;#123; (parameters) -&amp;gt; returnType in    statements&amp;#125; 下面是利用闭包对数组进行反向排序的一个例子： 123456let names = [&quot;Chris&quot;, &quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;David&quot;]let reservedNames = names.sorted &amp;#123; (s1:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T11:07:46.336Z">
+<meta property="og:updated_time" content="2018-02-01T15:56:44.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的闭包">
 <meta name="twitter:description" content="1. 闭包表达式语法123&amp;#123; (parameters) -&amp;gt; returnType in    statements&amp;#125; 下面是利用闭包对数组进行反向排序的一个例子： 123456let names = [&quot;Chris&quot;, &quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;David&quot;]let reservedNames = names.sorted &amp;#123; (s1:">
@@ -430,7 +430,7 @@
 <h2 id="5-尾随闭包"><a href="#5-尾随闭包" class="headerlink" title="5. 尾随闭包"></a>5. 尾随闭包</h2><p>如果你需要将一个很长的闭包表达式作为最后一个参数传递给函数，可以使用尾随闭包来增强函数的可读性。</p>
 <p>尾随闭包是一个书写在函数括号之后的闭包表达式，函数支持将其作为最后一个函数调用。在使用尾随闭包时，不用写出它的参数标签。</p>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reservedNames = names.sorted() &#123; $0 &gt; $1 &#125;</span><br></pre></td></tr></table></figure>
-<p>当闭包表达式是函数或方法的唯一参宿时，可以省略 <code>()</code> ：</p>
+<p>当闭包表达式是函数或方法的唯一参数时，可以省略 <code>()</code> ：</p>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reservedNames = names.sorted &#123; $0 &gt; $1 &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="6-值捕获"><a href="#6-值捕获" class="headerlink" title="6. 值捕获"></a>6. 值捕获</h2><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func makeIncremeter<span class="function"><span class="params">(forIncrement amount: Int)</span> -&gt;</span> <span class="function"><span class="params">()</span> -&gt;</span> Int &#123;</span><br><span class="line">    <span class="keyword">var</span> runningTotal = <span class="number">0</span></span><br><span class="line">    func incremeter<span class="function"><span class="params">()</span> -&gt;</span> Int &#123;</span><br><span class="line">        runningTotal += amount</span><br><span class="line">        <span class="keyword">return</span> runningTotal</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> incremeter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> incrementByTen = makeIncremeter(forIncrement: <span class="number">10</span>)</span><br><span class="line">incrementByTen() <span class="regexp">// return 10</span></span><br><span class="line"><span class="regexp">incrementByTen() //</span> <span class="keyword">return</span> <span class="number">20</span></span><br><span class="line">incrementByTen() <span class="regexp">// return 30</span></span><br></pre></td></tr></table></figure>
 <p><code>incrementer()</code> 是一个嵌套函数，它从外围函数捕获了 <code>runningTotal</code> 和 <code>amount</code> 变量的引用。捕获引用保证了 <code>runningTotal</code> 和 <code>amount</code> 变量在调用完 <code>makeIncrementer</code> 后不会消失，并且保证了在下一次执行 <code>incrementer</code>函数时， <code>runnningTotal</code>  依旧存在。</p>
@@ -637,7 +637,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +648,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -659,7 +659,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

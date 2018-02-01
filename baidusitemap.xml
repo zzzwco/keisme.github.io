@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://keisme.cn/Swift%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85.html</loc>
+    <lastmod>2018-02-01T15:56:44.545Z</lastmod>
+    <data>
+        <display>
+        <title>Swift中的闭包</title>
+        <pubTime>2017-10-19T03:45:02.000Z</pubTime>
+        
+        <tag>swift</tag>
+         
+        <tag>闭包</tag>
+         
+         
+           
+             
+              <breadCrumb title="swift" url="http://keisme.cn/categories/swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://keisme.cn/Swift-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97.html</loc>
     <lastmod>2018-01-29T16:06:25.589Z</lastmod>
     <data>
@@ -19,6 +41,28 @@
            
              
               <breadCrumb title="ios" url="http://keisme.cn/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://keisme.cn/%E3%80%8ASwift%E5%BF%85%E5%A4%87Tips%E3%80%8B%E7%AC%94%E8%AE%B0.html</loc>
+    <lastmod>2018-01-29T14:48:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>《Swift必备Tips》笔记</title>
+        <pubTime>2018-01-29T14:44:37.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="http://keisme.cn/categories/iOS/"/>
           
         </display>
     </data>
@@ -159,28 +203,6 @@
            
              
               <breadCrumb title="ios" url="http://keisme.cn/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://keisme.cn/Swift%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85.html</loc>
-    <lastmod>2017-12-16T11:07:46.336Z</lastmod>
-    <data>
-        <display>
-        <title>Swift中的闭包</title>
-        <pubTime>2017-10-19T03:45:02.000Z</pubTime>
-        
-        <tag>swift</tag>
-         
-        <tag>闭包</tag>
-         
-         
-           
-             
-              <breadCrumb title="swift" url="http://keisme.cn/categories/swift/"/>
           
         </display>
     </data>
