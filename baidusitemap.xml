@@ -48,28 +48,6 @@
 
     
   <url>
-    <loc>http://keisme.cn/%E3%80%8ASwift%E5%BF%85%E5%A4%87Tips%E3%80%8B%E7%AC%94%E8%AE%B0.html</loc>
-    <lastmod>2018-01-29T14:48:05.000Z</lastmod>
-    <data>
-        <display>
-        <title>《Swift必备Tips》笔记</title>
-        <pubTime>2018-01-29T14:44:37.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>Swift</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="http://keisme.cn/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://keisme.cn/Mac%E5%AE%89%E8%A3%85Python3%E5%92%8CPyCharm%E6%9B%B4%E6%8D%A2Python%E7%89%88%E6%9C%AC.html</loc>
     <lastmod>2017-12-16T23:32:01.573Z</lastmod>
     <data>
@@ -99,9 +77,9 @@
         <title>Swift编程风格指南</title>
         <pubTime>2017-11-07T15:00:40.000Z</pubTime>
         
-        <tag>swift</tag>
-         
         <tag>ios</tag>
+         
+        <tag>swift</tag>
          
         <tag>编程风格</tag>
          
@@ -123,9 +101,9 @@
         <title>Swift 编译器提示 TODO 和 FIXME</title>
         <pubTime>2017-11-25T17:03:40.000Z</pubTime>
         
-        <tag>swift</tag>
-         
         <tag>ios</tag>
+         
+        <tag>swift</tag>
          
         <tag>TODO</tag>
          
