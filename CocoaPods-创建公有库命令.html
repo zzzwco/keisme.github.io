@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="keisme">
 <meta property="og:description" content="1. 注册 CocoaPods 账号 通过终端运行一下命令注册账号：     1pod trunk register 邮箱地址 用户名 --verbose  然后去邮箱验证一下邮箱地址 注册成功后，可以通过 pod trunk me 查看账号信息和发布过的库  2. 公有库的内容构成2.1 共享的文件夹这里存放的是需要共享的内容，也就是别人通过 pod 安装得到的源码，.podspec 文件中的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T15:33:26.312Z">
+<meta property="og:updated_time" content="2018-03-28T06:25:35.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods 创建公有库命令">
 <meta name="twitter:description" content="1. 注册 CocoaPods 账号 通过终端运行一下命令注册账号：     1pod trunk register 邮箱地址 用户名 --verbose  然后去邮箱验证一下邮箱地址 注册成功后，可以通过 pod trunk me 查看账号信息和发布过的库  2. 公有库的内容构成2.1 共享的文件夹这里存放的是需要共享的内容，也就是别人通过 pod 安装得到的源码，.podspec 文件中的">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  429
+                  472
                 </span>
               
 
@@ -441,6 +441,7 @@
 <p>如果搜索不到，试试运行如下命令:  </p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod setup  </span><br><span class="line">rm ~<span class="regexp">/Library/</span>Caches<span class="regexp">/CocoaPods/</span>search_index.json</span><br></pre></td></tr></table></figure>
 <p>然后执行 <code>pod search 库名</code> </p>
+<h2 id="4-更新"><a href="#4-更新" class="headerlink" title="4. 更新"></a>4. 更新</h2><p>更新代码，更改 <code>.podspec</code> 文件的 <code>s.version</code> ，打上 <code>tag</code> ，推送最新的代码到远端服务器，执行 <code>pod lib lint</code> 和 <code>pod trunk push 库名.podspec</code></p>
 
       
     </div>
@@ -709,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-注册-CocoaPods-账号"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x6CE8;&#x518C;-CocoaPods-&#x8D26;&#x53F7;" class="headerlink" title="1. &#x6CE8;&#x518C; CocoaPods &#x8D26;&#x53F7;"></a>1. &#x6CE8;&#x518C; CocoaPods &#x8D26;&#x53F7;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-公有库的内容构成"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;" class="headerlink" title="2. &#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;"></a>2. &#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-共享的文件夹"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-1-&#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="2.1 &#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;"></a>2.1 &#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-LICENSE-文件"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2-LICENSE-&#x6587;&#x4EF6;" class="headerlink" title="2.2 LICENSE &#x6587;&#x4EF6;"></a>2.2 LICENSE &#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-podspec"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#2-3-podspec" class="headerlink" title="2.3 .podspec"></a>2.3 .podspec</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-发布"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x53D1;&#x5E03;" class="headerlink" title="3. &#x53D1;&#x5E03;"></a>3. &#x53D1;&#x5E03;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-错误排查"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#3-1-&#x9519;&#x8BEF;&#x6392;&#x67E5;" class="headerlink" title="3.1 &#x9519;&#x8BEF;&#x6392;&#x67E5;"></a>3.1 &#x9519;&#x8BEF;&#x6392;&#x67E5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-将工程提交到-GitHub"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#3-2-&#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230;-GitHub" class="headerlink" title="3.2 &#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230; GitHub"></a>3.2 &#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230; GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-打上-tag"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3-3-&#x6253;&#x4E0A;-tag" class="headerlink" title="3.3 &#x6253;&#x4E0A; tag"></a>3.3 &#x6253;&#x4E0A; tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-发布"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#3-4-&#x53D1;&#x5E03;" class="headerlink" title="3.4 &#x53D1;&#x5E03;"></a>3.4 &#x53D1;&#x5E03;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-注册-CocoaPods-账号"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x6CE8;&#x518C;-CocoaPods-&#x8D26;&#x53F7;" class="headerlink" title="1. &#x6CE8;&#x518C; CocoaPods &#x8D26;&#x53F7;"></a>1. &#x6CE8;&#x518C; CocoaPods &#x8D26;&#x53F7;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-公有库的内容构成"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;" class="headerlink" title="2. &#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;"></a>2. &#x516C;&#x6709;&#x5E93;&#x7684;&#x5185;&#x5BB9;&#x6784;&#x6210;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-共享的文件夹"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-1-&#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="2.1 &#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;"></a>2.1 &#x5171;&#x4EAB;&#x7684;&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-LICENSE-文件"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2-LICENSE-&#x6587;&#x4EF6;" class="headerlink" title="2.2 LICENSE &#x6587;&#x4EF6;"></a>2.2 LICENSE &#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-podspec"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#2-3-podspec" class="headerlink" title="2.3 .podspec"></a>2.3 .podspec</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-发布"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x53D1;&#x5E03;" class="headerlink" title="3. &#x53D1;&#x5E03;"></a>3. &#x53D1;&#x5E03;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-错误排查"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#3-1-&#x9519;&#x8BEF;&#x6392;&#x67E5;" class="headerlink" title="3.1 &#x9519;&#x8BEF;&#x6392;&#x67E5;"></a>3.1 &#x9519;&#x8BEF;&#x6392;&#x67E5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-将工程提交到-GitHub"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#3-2-&#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230;-GitHub" class="headerlink" title="3.2 &#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230; GitHub"></a>3.2 &#x5C06;&#x5DE5;&#x7A0B;&#x63D0;&#x4EA4;&#x5230; GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-打上-tag"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3-3-&#x6253;&#x4E0A;-tag" class="headerlink" title="3.3 &#x6253;&#x4E0A; tag"></a>3.3 &#x6253;&#x4E0A; tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-发布"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#3-4-&#x53D1;&#x5E03;" class="headerlink" title="3.4 &#x53D1;&#x5E03;"></a>3.4 &#x53D1;&#x5E03;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-更新"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x66F4;&#x65B0;" class="headerlink" title="4. &#x66F4;&#x65B0;"></a>4. &#x66F4;&#x65B0;</span></a></li></ol></div>
             
 
           </div>
@@ -753,7 +754,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.4k字</span>
+  <span class="post-count">博客全站共44.5k字</span>
 </div>
 
         
