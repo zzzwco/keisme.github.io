@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="keisme">
 <meta property="og:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T07:29:49.168Z">
+<meta property="og:updated_time" content="2018-04-11T07:32:43.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 中的一些关键字">
 <meta name="twitter:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
@@ -439,7 +439,7 @@
 <li><p><code>inout</code>：将值类型参数以引用方式传递</p>
 <figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">x</span> = <span class="number">10</span></span><br><span class="line">func <span class="keyword">add</span>(<span class="keyword">x</span>: inout Int, y: Int) &#123;</span><br><span class="line">    <span class="keyword">x</span> += y</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">add</span>(<span class="keyword">x</span>: &amp;<span class="keyword">x</span>, y: <span class="number">5</span>)</span><br><span class="line">print(<span class="keyword">x</span>) // <span class="keyword">x</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><code>is &amp; as</code>：is 用于类型判断，as 用于强制转换  </p>
+<li><p><code>is &amp; as</code>：is 用于类型判断，as 用于强制转换</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">view</span> : AnyObject <span class="keyword">in</span> self.<span class="built_in">view</span>.subviews  </span><br><span class="line">&#123;  </span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">view</span> <span class="built_in">is</span> UIButton  </span><br><span class="line">  &#123;  </span><br><span class="line">      <span class="built_in">let</span> btn = <span class="built_in">view</span> as UIButton;  </span><br><span class="line">      println(btn)  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>as</code> 使用场合：</p>
 </li>
