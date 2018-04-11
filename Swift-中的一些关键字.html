@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="keisme">
 <meta property="og:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T16:06:25.000Z">
+<meta property="og:updated_time" content="2018-04-11T07:29:49.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 中的一些关键字">
 <meta name="twitter:description" content="open：可以在任何地方访问、继承和重写  public：可以在任何地方被访问，在其他模块不能被继承和重写  internal：默认访问级别，在整个模块内都可以被访问  fileprivate：可以在同一个文件内被访问、继承和重写  private：只能在本类访问和使用，不包括扩展类  fallthrough ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fa">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  643
+                  684
                 </span>
               
 
@@ -436,11 +436,14 @@
 <li><p><code>where</code>：用于条件判断</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> yetAnotherPoint = (<span class="number">1</span>, -<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">switch</span> yetAnotherPoint &#123;  </span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y) <span class="keyword">where</span> x == y:  </span><br><span class="line"><span class="built_in">println</span>(<span class="string">"(\\(x), \\(y)) is on the line x == y"</span>)  </span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y) <span class="keyword">where</span> x == -y:  </span><br><span class="line"><span class="built_in">println</span>(<span class="string">"(\\(x), \\(y)) is on the line x == -y"</span>)  </span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y):  </span><br><span class="line"><span class="built_in">println</span>(<span class="string">"(\\(x), \\(y)) is just some arbitrary point"</span>)</span><br></pre></td></tr></table></figure>
 </li>
+<li><p><code>inout</code>：将值类型参数以引用方式传递</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">x</span> = <span class="number">10</span></span><br><span class="line">func <span class="keyword">add</span>(<span class="keyword">x</span>: inout Int, y: Int) &#123;</span><br><span class="line">    <span class="keyword">x</span> += y</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">add</span>(<span class="keyword">x</span>: &amp;<span class="keyword">x</span>, y: <span class="number">5</span>)</span><br><span class="line">print(<span class="keyword">x</span>) // <span class="keyword">x</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p><code>is &amp; as</code>：is 用于类型判断，as 用于强制转换  </p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">view</span> : AnyObject <span class="keyword">in</span> self.<span class="built_in">view</span>.subviews  </span><br><span class="line">&#123;  </span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">view</span> <span class="built_in">is</span> UIButton  </span><br><span class="line">  &#123;  </span><br><span class="line">      <span class="built_in">let</span> btn = <span class="built_in">view</span> as UIButton;  </span><br><span class="line">      println(btn)  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>as</code> 使用场合：</p>
 </li>
 </ul>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">view</span> : AnyObject <span class="keyword">in</span> self.<span class="built_in">view</span>.subviews  </span><br><span class="line">&#123;  </span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">view</span> <span class="built_in">is</span> UIButton  </span><br><span class="line">  &#123;  </span><br><span class="line">      <span class="built_in">let</span> btn = <span class="built_in">view</span> as UIButton;  </span><br><span class="line">      println(btn)  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <code>as</code> 使用场合：</p>
 <ol>
 <li><p>向上转型：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Animal</span> &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Cat</span>: <span class="title">Animal</span> &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> cat = Cat()</span><br><span class="line"><span class="keyword">let</span> animal = cat <span class="keyword">as</span> Animal</span><br></pre></td></tr></table></figure>
