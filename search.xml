@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift 运算符的重载和自定义]]></title>
+    <url>%2FSwift-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89.html</url>
+    <content type="text"><![CDATA[1. 运算符的重载1.1 基本运算符的重载1234567891011func * (lhs: String, rhs: Int) -&gt; String &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;let t = "abc"print(t * 3)// print "abcabcabc" 如上所示，我们重载了运算符 * 。再看看另一个例子： 123struct Vector2D &#123; var x = 0.0, y = 0.0&#125; 我们定义了如上的结构体，如果想把两个 Vector2D 类型的实例相加，编译器是会报错的。如果我们重载操作符 + ，就可以实现相加： 1234567func + (lhs: Vector2D, rhs: Vector2D) -&gt; Vector2D &#123; return Vector2D(x: lhs.x + lhs.x, y: rhs.y + rhs.y)&#125;let first = Vector2D(x: 1.0, y: 2.0)let second = Vector2D(x: 3.0, y: 4.0)print(first + second)// print "Vector2D(x: 4.0, y: 6.0)" 1.2 泛型运算符 1234567func * &lt;T&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125; 按照常理，我们会将第一个例子做如上改写，但是编译器会提示 Binary operator ‘+=’ cannot be applied to two ‘T’ operands ，这是因为 T 类型并不能直接使用加法符合运算符，我们可以通过让 T 类型遵循实现了加法功能的协议来解决这个问题，改写后的代码如下： 1234567891011121314151617protocol Type &#123; static func + (lhs: Self, rhs: Self) -&gt; Self static func += (lhs: inout Self, rhs: Self)&#125;extension String: Type &#123;&#125;extension Int: Type &#123;&#125;extension CGFloat: Type &#123;&#125;func * &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123;// result = result + lhs result += lhs &#125; return result&#125; 2. 运算符的自定义先介绍 Swift 中的三个关键字： prefix：前缀运算符，比如 ++i 中的 ++ postfix：后缀运算符，比如 i++ 中的 ++ infix：中缀运算符，比如 a + b 中的 + 这里仅以 infix 为例示范其用法，现在我们自定义一个运算符 ** 和符合运算符 **= ，实现第一个例子的功能。 12345678910111213141516171819202122infix operator **func ** &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;infix operator **=func **= &lt;T: Type&gt; (lhs: inout T, rhs: Int) &#123; lhs = lhs ** rhs&#125;let t = "abc"let s = t ** 3print(s)// print "abcabcabc"var u = "abc"u **= 3print(u)// print "abcabcabc" 至此，运算符的重载和自定义的基本功能就介绍完毕了。当然，自定义运算符同样是可以定义优先级和结合性的，这里不做过多讲解，有兴趣的朋友可以自行查阅资料。]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CocoaPods 创建公有库命令]]></title>
     <url>%2FCocoaPods-%E5%88%9B%E5%BB%BA%E5%85%AC%E6%9C%89%E5%BA%93%E5%91%BD%E4%BB%A4.html</url>
     <content type="text"><![CDATA[1. 注册 CocoaPods 账号 通过终端运行一下命令注册账号： 1pod trunk register 邮箱地址 用户名 --verbose 然后去邮箱验证一下邮箱地址 注册成功后，可以通过 pod trunk me 查看账号信息和发布过的库 2. 公有库的内容构成2.1 共享的文件夹这里存放的是需要共享的内容，也就是别人通过 pod 安装得到的源码，.podspec 文件中的 source_files 指定的就是这个共享文件夹的路径 2.2 LICENSE 文件如果你的公有库是放在 GitHub 上托管，可以将工程上传以后，直接在网页给工程添加 LICENSE 文件，GitHub 会自动给出开源协议的可选项，一般选择 MIT 2.3 .podspec本库的描述文件，需要提交给 CocoaPods 可以通过一下命令创建 .podspec： 1pod spec create 库名 CocoaPods 默认会生成一个 .podspec 的模版文件，更改相应的信息即可，关于 .podspec 的各个参数解释，这里不再赘述，有需要的自行上网查找 3. 发布3.1 错误排查pod lib lint 命令可以验证本地的 .podspec 文件是否合法，如果与错误，会给出相应的提示，根据提示解决错误 3.2 将工程提交到 GitHub3.3 打上 tag12git tag 1.0.0git push --tags 注意： .podspec 中的 s.version 的值要和 tag 保持一致 3.4 发布pod trunk push 库名.podspec 发布成功后，pod search 库名 应该就可以搜到自己的库了 如果搜索不到，试试运行如下命令: 12pod setup rm ~/Library/Caches/CocoaPods/search_index.json 然后执行 pod search 库名 4. 更新更新代码，更改 .podspec 文件的 s.version ，打上 tag ，推送最新的代码到远端服务器，执行 pod lib lint 和 pod trunk push 库名.podspec]]></content>
@@ -61,8 +73,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>上海大师赛</tag>
         <tag>奥沙利文</tag>
+        <tag>上海大师赛</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -319,8 +331,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>中锦赛</tag>
+        <tag>奥沙利文</tag>
       </tags>
   </entry>
   <entry>
