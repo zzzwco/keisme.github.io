@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="奥沙利文,notes," />
+  <meta name="keywords" content="ios, swift, 泛型, 闭包" />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
-<meta name="keywords" content="奥沙利文,notes">
+<meta name="description" content="1234567typealias Closure = (Any?) -&amp;gt; ()var closure: Closure?func closure(closure: @escaping closure) &amp;#123;	self. closure = closure&amp;#125; 通常我们会用如上方式使用闭包，但是最后会导致工程里面的typealias满天飞，这时候我们会想，有没有办法把这部分代码">
+<meta name="keywords" content="ios, swift, 泛型, 闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读《奔跑吧，奥沙利文》">
-<meta property="og:url" content="http://keisme.cn/读《奔跑吧，奥沙利文》.html">
+<meta property="og:title" content="Swift泛型和闭包的结合使用(Generic Closure)">
+<meta property="og:url" content="http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
+<meta property="og:description" content="1234567typealias Closure = (Any?) -&amp;gt; ()var closure: Closure?func closure(closure: @escaping closure) &amp;#123;	self. closure = closure&amp;#125; 通常我们会用如上方式使用闭包，但是最后会导致工程里面的typealias满天飞，这时候我们会想，有没有办法把这部分代码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T09:42:16.000Z">
+<meta property="og:updated_time" content="2018-11-12T16:40:17.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读《奔跑吧，奥沙利文》">
-<meta name="twitter:description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
+<meta name="twitter:title" content="Swift泛型和闭包的结合使用(Generic Closure)">
+<meta name="twitter:description" content="1234567typealias Closure = (Any?) -&amp;gt; ()var closure: Closure?func closure(closure: @escaping closure) &amp;#123;	self. closure = closure&amp;#125; 通常我们会用如上方式使用闭包，但是最后会导致工程里面的typealias满天飞，这时候我们会想，有没有办法把这部分代码">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/读《奔跑吧，奥沙利文》.html"/>
+  <link rel="canonical" href="http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html"/>
 
 
 
 
 
-  <title>读《奔跑吧，奥沙利文》 | keisme</title>
+  <title>Swift泛型和闭包的结合使用(Generic Closure) | keisme</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/读《奔跑吧，奥沙利文》.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">读《奔跑吧，奥沙利文》</h1>
+          <h1 class="post-title" itemprop="name headline">Swift泛型和闭包的结合使用(Generic Closure)</h1>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T04:02:54+08:00">
-                2017-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T23:10:43+08:00">
+                2018-11-12
               </time>
             
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
                   </a>
                 </span>
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  638
+                  208
                 </span>
               
 
@@ -416,14 +416,14 @@
       
 
       
-        <p>只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。</p>
-<p>“跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。</p>
-<p>国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常年寻医问药，后来才从一个瘦猴变成了一个微胖的小伙。高中开始失眠抑郁，直至今日亦是如此。所以一直以来我从未真正地感受过健康的状态，我最好的状态大概是我大学末期去健身房锻炼的某个学期。我并不以肌肉男为目的，而是刷脂减肥，果然后来瘦了，整个人的精神状态提升了不少，连颜值都涨了不少。这使我深信，运动可以改变一个人，它可以让你变得更好。</p>
+        <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typealias <span class="keyword">Closure </span>= (Any?) -&gt; ()</span><br><span class="line"></span><br><span class="line">var <span class="keyword">closure: </span><span class="keyword">Closure?</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">func </span><span class="keyword">closure(closure: </span>@escaping <span class="keyword">closure) </span>&#123;</span><br><span class="line">	self. <span class="keyword">closure </span>= <span class="keyword">closure</span></span><br><span class="line"><span class="keyword">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>通常我们会用如上方式使用闭包，但是最后会导致工程里面的<code>typealias</code>满天飞，这时候我们会想，有没有办法把这部分代码抽取出来一劳永逸呢？这时候，泛型就派上用场了。</p>
 <a id="more"></a>
-<p>我天性自由散漫，很难在一件事情上常年坚持。自从那个健身的学期之后，运动成了间歇性的爱好。运动尝到的甜头还是输给了自我放逐，我从来都没有达到过满意的身材。我不是那种凡是去做就一定要做第一的人，总的来说，我思想算是比较中庸，自然就会显得很平庸。我想我应该改变一些，让自己变得更追求完美可能会更好。</p>
-<p>从8月初到现在9月末，我不知道最近到底过得什么日子。沉迷游戏，逃避现实和孤独，没有任何运动，睡眠严重不足，工作和学习效率低下，恶性循环。。。然而心底却一直有个声音告诉自己不能放弃治疗，需要做出改变。</p>
-<p>我试图从书中去汲取力量，确实效果不错。读完了《奔跑吧，奥沙利文》，给了我很多启发和动力，我也对火老师有了更多的了解。他就是那么个真性情的人，我想我应该活得简单点，真实而温暖足矣。</p>
-<p>奔跑吧，去寻找真实的自我！</p>
+<p>我们对上面的闭包类型作如下定义：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">public</span> typealias <span class="type">Closure</span>&lt;<span class="type">T</span>&gt; = (<span class="type">T</span>) -&gt; ()</span><br></pre></td></tr></table></figure>
+<p>然后在需要用到闭包的地方添加该类型的属性和对应的回调方法即可：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn1Cls: <span class="type">Closure</span>&lt;<span class="type">String</span>&gt;?</span><br><span class="line"><span class="keyword">var</span> btn2Cls: <span class="type">Closure</span>&lt;(msg: <span class="type">String</span>, code: <span class="type">Int</span>, person: <span class="type">Person</span>)&gt;?</span><br><span class="line"><span class="keyword">var</span> voidCls: <span class="type">Closure</span>&lt;()&gt;?</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">btn1Cls</span><span class="params">(btn1Cls: @escaping Closure&lt;String&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">self</span>.btn1Cls = btn1Cls</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">btn2Cls</span><span class="params">(btn2Cls: @escaping Closure&lt;<span class="params">(msg: String, code: Int, person: Person)</span></span></span>&gt;) &#123;</span><br><span class="line">    <span class="keyword">self</span>.btn2Cls = btn2Cls</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">voidCls</span><span class="params">(voidCls: @escaping Closure&lt;<span class="params">()</span></span></span>&gt;) &#123;</span><br><span class="line">    <span class="keyword">self</span>.voidCls = voidCls</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>详细代码见：<a href="https://github.com/keisme/GenericClosure" target="_blank" rel="noopener">GenericClosure</a></p>
 
       
     </div>
@@ -473,7 +473,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://keisme.cn/读《奔跑吧，奥沙利文》.html" title="读《奔跑吧，奥沙利文》">http://keisme.cn/读《奔跑吧，奥沙利文》.html</a>
+    <a href="http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html" title="Swift泛型和闭包的结合使用(Generic Closure)">http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -488,9 +488,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/奥沙利文/" rel="tag"><i class="fa fa-tag"></i> 奥沙利文</a>
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
           
-            <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+          
+            <a href="/tags/泛型/" rel="tag"><i class="fa fa-tag"></i> 泛型</a>
+          
+            <a href="/tags/闭包/" rel="tag"><i class="fa fa-tag"></i> 闭包</a>
           
         </div>
       
@@ -503,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Swift中的类和结构体.html" rel="next" title="Swift中的类和结构体">
-                <i class="fa fa-chevron-left"></i> Swift中的类和结构体
+              <a href="/Go-concurrency-并发.html" rel="next" title="Go concurrency(并发)">
+                <i class="fa fa-chevron-left"></i> Go concurrency(并发)
               </a>
             
           </div>
@@ -512,10 +516,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Git中文显示乱码的解决方案（Mac）.html" rel="prev" title="Git中文显示乱码的解决方案（Mac）">
-                Git中文显示乱码的解决方案（Mac） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

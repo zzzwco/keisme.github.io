@@ -1,3 +1,4 @@
+http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html
 http://keisme.cn/Go-concurrency-并发.html
 http://keisme.cn/Go-reflection-反射.html
 http://keisme.cn/Go-interface-接口.html
@@ -7,4 +8,3 @@ http://keisme.cn/CocoaPods-创建公有库命令.html
 http://keisme.cn/2017斯诺克英锦赛记忆.html
 http://keisme.cn/Swift-编译器提示-TODO-和-FIXME.html
 http://keisme.cn/Charles-显示乱码问题解决方案.html
-http://keisme.cn/2017斯诺克上海大师赛记忆.html

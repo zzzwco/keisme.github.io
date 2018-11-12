@@ -305,6 +305,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的可选类型.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift中的可选类型.html" itemprop="url">Swift中的可选类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T16:26:49+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  749
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1、可选类型概念"><a href="#1、可选类型概念" class="headerlink" title="1、可选类型概念"></a>1、可选类型概念</h2><p><code>可选类型</code>用来处理值可能缺失的情况。</p>
+<p>下面的例子尝试将一个<code>String</code>转换成<code>Int</code>:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possibleNumber = <span class="comment">"123</span></span><br><span class="line"><span class="keyword">let</span> convertedNumber = Int(possibleNumber)</span><br><span class="line">// convertedNumber 被推测为类型<span class="string">"Int?"</span></span><br></pre></td></tr></table></figure>
+<p>可以给可选变量赋值为<code>nil</code>来表示它没有值：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> serverResponseCode: Int? = <span class="number">404</span></span><br><span class="line">serverResponseCode = <span class="keyword">nil</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<br><code>nil</code>不能用于非可选的常量和变量。如果代码中有常量或者变量需要处理值缺失的情况，应该声明称对应的可选类型。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Swift中的可选类型.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的元组.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1829,177 +2003,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/斯诺克的起源于发展.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/斯诺克的起源于发展.html" itemprop="url">斯诺克的起源于发展</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-07T03:08:11+08:00">
-                2017-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/snooker/" itemprop="url" rel="index">
-                    <span itemprop="name">snooker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  641
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="斯诺克的起源"><a href="#斯诺克的起源" class="headerlink" title="斯诺克的起源"></a>斯诺克的起源</h1><p>关于台球的诞生，众说纷纭，较为公认的说法，大概是起源于14或15世纪的西欧。</p>
-<p>斯诺克，是台球运动发展过程中演变出的多种形式之一。直到19世纪，斯诺克才在英国某个陆军军队问世，并很快流行开来。斯诺克一词是当时英国军队中对军校一年级新生的流行叫法。这使得斯诺克被这些军人们用来称呼这种新玩法的初学者，最终则成为了这项运动的名称。</p>
-<h1 id="斯诺克的发展"><a href="#斯诺克的发展" class="headerlink" title="斯诺克的发展"></a>斯诺克的发展</h1><p>1927年，在<code>现代斯诺克台球之父</code><a href="https://zh.wikipedia.org/wiki/%E4%B9%94%C2%B7%E6%88%B4%E7%BB%B4%E6%96%AF" target="_blank" rel="noopener">乔·戴维斯</a>等人的努力下，于伦敦举办了第一届斯诺克世界职业锦标赛，戴维斯本人也获得了冠军。</p>
-<img src="/斯诺克的起源于发展/乔·戴维斯.jpg" title="乔·戴维斯历史照片">
-<p>1950-1969年，斯诺克的发展陷入低潮，中间许多年份甚至没有任何锦标赛举行。知道1969年，BBC举行的Pot Black锦标赛才将人们的视线重新吸引到斯诺克上来。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/斯诺克的起源于发展.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2054,7 +2057,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2171,7 +2174,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.4k字</span>
+  <span class="post-count">博客全站共47.6k字</span>
 </div>
 
         

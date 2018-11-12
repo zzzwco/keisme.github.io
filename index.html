@@ -305,6 +305,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift泛型和闭包的结合使用-Generic-Closure.html" itemprop="url">Swift泛型和闭包的结合使用(Generic Closure)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T23:10:43+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  208
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typealias <span class="keyword">Closure </span>= (Any?) -&gt; ()</span><br><span class="line"></span><br><span class="line">var <span class="keyword">closure: </span><span class="keyword">Closure?</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">func </span><span class="keyword">closure(closure: </span>@escaping <span class="keyword">closure) </span>&#123;</span><br><span class="line">	self. <span class="keyword">closure </span>= <span class="keyword">closure</span></span><br><span class="line"><span class="keyword">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>通常我们会用如上方式使用闭包，但是最后会导致工程里面的<code>typealias</code>满天飞，这时候我们会想，有没有办法把这部分代码抽取出来一劳永逸呢？这时候，泛型就派上用场了。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Swift泛型和闭包的结合使用-Generic-Closure.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-concurrency-并发.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1854,178 +2022,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/2017斯诺克上海大师赛记忆.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017斯诺克上海大师赛记忆.html" itemprop="url">2017斯诺克上海大师赛记忆</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T10:27:45+08:00">
-                2017-11-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/snooker/" itemprop="url" rel="index">
-                    <span itemprop="name">snooker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,130
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>11月13 - 18日，几经折腾，第十一届上海大师赛如期举行。看国内举办的比赛不用熬夜了，这是件十分惬意的事情。</p>
-<p>丁丁因为眼疾退出比赛，放弃了卫冕冠军的资格。墨菲、威尔逊、萝卜资格赛就输掉了，二师兄又被禁赛，这次 TOP16 的阵容不算完整。</p>
-<p>首轮比赛，没有什么大的爆冷。有点可惜的是，瑞士小帅哥乌森巴赫首轮就遇上老辣的巫师，止步于此。</p>
-<p>14号，卢卡对斯蒂文斯。比赛没有一点悬念，卢卡一顿乱拳 5 - 0 打死斯蒂文斯。真是拳怕少壮，马修老矣。卢卡好像丢了球杆和行李？应该是找艾伦借的墨绿色超大号背心，配上他的大光头，活脱脱一个和尚造型。这场球没什么看点，我也不会上传视频了。我想说的不是这场比赛，而是裁判。我们终于见到了久违的诸英重回赛场执裁，还是气质美女一枚 : ]</p>
-<p>火老师15号早上九点半出场，现场观众爆棚啊。其中一局观众高呼 147，火箭也笑了，然而他还是选择了明智的粉球，如果 147 奖金累积到 5 万英镑，估计他会去打黑球~~ 最后单杆 144 清台，观众也是大饱眼福，这也是本次赛事截止当时的单杆最高分。</p>
-<p>晚上的比赛，火老师对阵乔·佩里，没有什么意外，5 - 1 晋级16强。其他球台的比赛也没什么爆冷，至此，16强全部产生。令人欣喜的是，“75三杰”同时晋级！</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017斯诺克上海大师赛记忆.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2080,7 +2076,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2197,7 +2193,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.4k字</span>
+  <span class="post-count">博客全站共47.6k字</span>
 </div>
 
         
