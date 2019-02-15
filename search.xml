@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Go Modules]]></title>
+    <url>%2FGo-Modules.html</url>
+    <content type="text"><![CDATA[简介Go modules是随着 Go 1.11 发布的新型的包管理工具，这也是官方推荐的。有了go mod，项目将不再依赖于GOPATH，你可以在任何路径下创建和管理项目，但是下载的依赖包仍然会存储在$GOPATH/pkg/mod路径。 使用配置在 Mac 下，编辑~/.bash_profile文件，写入export Go111MODULE=on 初始化 Modules在项目路径下，使用命令 go mod init &lt;packagename&gt;初始化 编辑 go.mod初始化的 go.mod 会显示如下内容： 1module packagename 添加依赖后： 123456module packagenamerequire ( github.com/test/A v1.2.3 github.com/test/B v1.2.3) 如果你不知道要依赖的版本，可以使用 latest代替版本号，在安装依赖时，go 会自动安装最新的版本。 go.mod 有四种指令： module：模块名称 require：依赖包列表以及版本 exclude：禁止依赖包列表（仅在当前模块为主模块时生效） replace：替换依赖包列表 （仅在当前模块为主模块时生效） 下载依赖包执行go get会下载指定的依赖包 其它命令： go get -u：更新至最新的版本 go get v -u=patch：只更新小的修订版本，例如从 v1.2.3 到 v1.2.4 go get github/com/test/test@v1.2.3：更新至指定版本 go mod vendorgo mod vendor将会复制 modules 到项目的 vendor 文件下，貌似只会复制代码中引用的库，而不是 go.mod 中定义的全部 modules go mod helpgo mod help会显示 go mod 命令帮助： 12345678download 下载依赖的module到本地cacheedit 编辑go.mod文件graph 打印模块依赖图init 再当前文件夹下初始化一个新的module, 创建go.mod文件tidy 增加丢失的module，去掉未用的modulevendor 将依赖复制到vendor下verify 校验依赖why 解释为什么需要依赖]]></content>
+      <categories>
+        <category>go</category>
+      </categories>
+      <tags>
+        <tag>go</tag>
+        <tag>modules</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift泛型和闭包的结合使用(Generic Closure)]]></title>
     <url>%2FSwift%E6%B3%9B%E5%9E%8B%E5%92%8C%E9%97%AD%E5%8C%85%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8-Generic-Closure.html</url>
     <content type="text"><![CDATA[1234567typealias Closure = (Any?) -&gt; ()var closure: Closure?func closure(closure: @escaping closure) &#123; self. closure = closure&#125; 通常我们会用如上方式使用闭包，但是最后会导致工程里面的typealias满天飞，这时候我们会想，有没有办法把这部分代码抽取出来一劳永逸呢？这时候，泛型就派上用场了。 我们对上面的闭包类型作如下定义： 1public typealias Closure&lt;T&gt; = (T) -&gt; () 然后在需要用到闭包的地方添加该类型的属性和对应的回调方法即可： 123456789101112131415var btn1Cls: Closure&lt;String&gt;?var btn2Cls: Closure&lt;(msg: String, code: Int, person: Person)&gt;?var voidCls: Closure&lt;()&gt;? func btn1Cls(btn1Cls: @escaping Closure&lt;String&gt;) &#123; self.btn1Cls = btn1Cls&#125; func btn2Cls(btn2Cls: @escaping Closure&lt;(msg: String, code: Int, person: Person)&gt;) &#123; self.btn2Cls = btn2Cls&#125; func voidCls(voidCls: @escaping Closure&lt;()&gt;) &#123; self.voidCls = voidCls&#125; 详细代码见：GenericClosure]]></content>
@@ -137,8 +149,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>上海大师赛</tag>
+        <tag>奥沙利文</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -395,8 +407,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>中锦赛</tag>
         <tag>奥沙利文</tag>
+        <tag>中锦赛</tag>
       </tags>
   </entry>
   <entry>
