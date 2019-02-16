@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Socks5 to http]]></title>
+    <url>%2FSocks5-to-http.html</url>
+    <content type="text"><![CDATA[安装和配置1brew install porivoxy 安装后，编辑 /usr/local/etc/privoxy/config，搜索socks5找到下面这句： 1#forward-socks5t / 127.0.0.1:9050 . 在下面添加： 1forward-socks5 / 127.0.0.1:port . port 为本机的 ss 代理的 socks5 端口。 配置文件中还有另外一句默认的： 1listen-address 127.0.0.1:8118 这表示 privacy 只监听本机的 8118 端。 开机启动1sudo brew services start privoxy 验证是否启动通过命令查看： 1netstat -an | grep 8118 使用Go 环境配置go get可能无法安装被墙的包，在完成以上步骤后，编辑~/.bash_profile文件，添加： 12export http_proxy=http://127.0.0.1:8118export https_proxy=http://127.0.0.1:8118 然后就可以成功的go get了。 VSCodeVSCode 安装插件的时候会失败，设置代理即可： 12"http.proxy": "http://127.0.0.1:8118","http.proxyStrictSSL": false]]></content>
+      <categories>
+        <category>trick</category>
+      </categories>
+      <tags>
+        <tag>trick</tag>
+        <tag>socks5, http, proxy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Go Modules]]></title>
     <url>%2FGo-Modules.html</url>
     <content type="text"><![CDATA[简介Go modules是随着 Go 1.11 发布的新型的包管理工具，这也是官方推荐的。有了go mod，项目将不再依赖于GOPATH，你可以在任何路径下创建和管理项目，但是下载的依赖包仍然会存储在$GOPATH/pkg/mod路径。 使用配置在 Mac 下，编辑~/.bash_profile文件，写入export Go111MODULE=on 初始化 Modules在项目路径下，使用命令 go mod init &lt;packagename&gt;初始化 编辑 go.mod初始化的 go.mod 会显示如下内容： 1module packagename 添加依赖后： 123456module packagenamerequire ( github.com/test/A v1.2.3 github.com/test/B v1.2.3) 如果你不知道要依赖的版本，可以使用 latest代替版本号，在安装依赖时，go 会自动安装最新的版本。 go.mod 有四种指令： module：模块名称 require：依赖包列表以及版本 exclude：禁止依赖包列表（仅在当前模块为主模块时生效） replace：替换依赖包列表 （仅在当前模块为主模块时生效） 下载依赖包执行go get会下载指定的依赖包 其它命令： go get -u：更新至最新的版本 go get v -u=patch：只更新小的修订版本，例如从 v1.2.3 到 v1.2.4 go get github/com/test/test@v1.2.3：更新至指定版本 go mod vendorgo mod vendor将会复制 modules 到项目的 vendor 文件下，貌似只会复制代码中引用的库，而不是 go.mod 中定义的全部 modules go mod helpgo mod help会显示 go mod 命令帮助： 12345678download 下载依赖的module到本地cacheedit 编辑go.mod文件graph 打印模块依赖图init 再当前文件夹下初始化一个新的module, 创建go.mod文件tidy 增加丢失的module，去掉未用的modulevendor 将依赖复制到vendor下verify 校验依赖why 解释为什么需要依赖]]></content>
