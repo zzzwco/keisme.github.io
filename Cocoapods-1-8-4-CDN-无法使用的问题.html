@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="swift,扩展," />
+  <meta name="keywords" content="ios, swift, cocoapods, cdn" />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="扩展就是为一个已有的类、结构体、枚举类型或者协议类型添加新功能。 1. 扩展语法123extension SomeType &amp;#123;	// code&amp;#125; 可以通过扩展来扩展一个已有类型，使其采纳一个或多个协议： 123extension SomeType: SomeProtocol, AnotherProtocol &amp;#123;	// protocol code&amp;#125;">
-<meta name="keywords" content="swift,扩展">
+<meta name="description" content="好久没升级 Cocoapods 了，正好想升级一下，看到 官方文档 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。 尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 pod repo remove master 命令了。 经过几个小时的折腾后，放弃了。。。 看到 github 上有人提了同样的 issue ，给出的解决方案是不要使用 trunk，而是继续使用 m">
+<meta name="keywords" content="ios, swift, cocoapods, cdn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift中的扩展">
-<meta property="og:url" content="http://keisme.cn/Swift中的扩展.html">
+<meta property="og:title" content="Cocoapods 1.8.4 CDN 无法使用的问题">
+<meta property="og:url" content="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="扩展就是为一个已有的类、结构体、枚举类型或者协议类型添加新功能。 1. 扩展语法123extension SomeType &amp;#123;	// code&amp;#125; 可以通过扩展来扩展一个已有类型，使其采纳一个或多个协议： 123extension SomeType: SomeProtocol, AnotherProtocol &amp;#123;	// protocol code&amp;#125;">
+<meta property="og:description" content="好久没升级 Cocoapods 了，正好想升级一下，看到 官方文档 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。 尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 pod repo remove master 命令了。 经过几个小时的折腾后，放弃了。。。 看到 github 上有人提了同样的 issue ，给出的解决方案是不要使用 trunk，而是继续使用 m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T11:03:15.000Z">
+<meta property="og:updated_time" content="2019-11-07T11:00:42.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift中的扩展">
-<meta name="twitter:description" content="扩展就是为一个已有的类、结构体、枚举类型或者协议类型添加新功能。 1. 扩展语法123extension SomeType &amp;#123;	// code&amp;#125; 可以通过扩展来扩展一个已有类型，使其采纳一个或多个协议： 123extension SomeType: SomeProtocol, AnotherProtocol &amp;#123;	// protocol code&amp;#125;">
+<meta name="twitter:title" content="Cocoapods 1.8.4 CDN 无法使用的问题">
+<meta name="twitter:description" content="好久没升级 Cocoapods 了，正好想升级一下，看到 官方文档 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。 尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 pod repo remove master 命令了。 经过几个小时的折腾后，放弃了。。。 看到 github 上有人提了同样的 issue ，给出的解决方案是不要使用 trunk，而是继续使用 m">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/Swift中的扩展.html"/>
+  <link rel="canonical" href="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html"/>
 
 
 
 
 
-  <title>Swift中的扩展 | keisme</title>
+  <title>Cocoapods 1.8.4 CDN 无法使用的问题 | keisme</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的扩展.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift中的扩展</h1>
+          <h1 class="post-title" itemprop="name headline">Cocoapods 1.8.4 CDN 无法使用的问题</h1>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T15:17:22+08:00">
-                2017-09-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T18:36:51+08:00">
+                2019-11-07
               </time>
             
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/swift/" itemprop="url" rel="index">
-                    <span itemprop="name">swift</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  650
+                  268
                 </span>
               
 
@@ -416,27 +416,13 @@
       
 
       
-        <p>扩展就是为一个已有的类、结构体、枚举类型或者协议类型添加新功能。</p>
-<h2 id="1-扩展语法"><a href="#1-扩展语法" class="headerlink" title="1. 扩展语法"></a>1. 扩展语法</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">	<span class="comment">// code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以通过扩展来扩展一个已有类型，使其采纳一个或多个协议：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SomeType</span>: <span class="title">SomeProtocol</span>, <span class="title">AnotherProtocol</span> </span>&#123;</span><br><span class="line">	<span class="comment">// protocol code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="2-计算型属性"><a href="#2-计算型属性" class="headerlink" title="2. 计算型属性"></a>2. 计算型属性</h2><figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">extension <span class="keyword">Double</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> km: <span class="keyword">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> * <span class="number">1000</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> m: <span class="keyword">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> cm: <span class="keyword">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">100.0</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> mm: <span class="keyword">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">1000.0</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> ft: <span class="keyword">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">3.28084</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> oneInch = <span class="number">25.4</span>.mm</span><br><span class="line"><span class="keyword">print</span>(<span class="string">"One inch is \(oneInch) meters"</span>)</span><br><span class="line"><span class="comment">// print "One inch is 0.0254 meters"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：<br>扩展可以添加新的计算属性，但是不可以添加存储属性，也不可以为已有属性添加属性观察器。  </p>
-</blockquote>
-<h2 id="3-构造器"><a href="#3-构造器" class="headerlink" title="3. 构造器"></a>3. 构造器</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">struct Size &#123;</span><br><span class="line">    <span class="selector-tag">var</span> <span class="attribute">width</span> = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Point &#123;</span><br><span class="line">    <span class="selector-tag">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Rect &#123;</span><br><span class="line">    <span class="selector-tag">var</span> origin = Point()</span><br><span class="line">    <span class="selector-tag">var</span> size = Size()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension Rect &#123;</span><br><span class="line">    init(center: Point, size: Size) &#123;</span><br><span class="line">        let originX = center<span class="selector-class">.x</span> - (size<span class="selector-class">.width</span> / <span class="number">2</span>)</span><br><span class="line">        let originY = center<span class="selector-class">.y</span> - (size<span class="selector-class">.height</span> / <span class="number">2</span>)</span><br><span class="line">        self.init(origin: Point(x: originX, y: originY), size: size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个新的构造器首先根据提供的<code>center</code>和<code>size</code>的值计算一个合适的原点。然后调用该结构体的逐一成员构造器<code>init(origin:size:)</code>，该构造器将新的原点和大小的值保存到了相应的属性中：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let centerRect = Rect(<span class="string">center:</span> Point(<span class="string">x:</span> <span class="number">4.0</span>, <span class="string">y:</span> <span class="number">4.0</span>), <span class="string">size:</span> Size(<span class="string">width:</span> <span class="number">3.0</span>, <span class="string">height:</span> <span class="number">3.0</span>))</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：<br>如果你使用扩展提供了一个新的构造器，你依旧有责任确保构造过程能够让实例完全初始化。</p>
-</blockquote>
-<h2 id="4-方法"><a href="#4-方法" class="headerlink" title="4. 方法"></a>4. 方法</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">repetitions</span><span class="params">(task:<span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="keyword">self</span> &#123;</span><br><span class="line">            task()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.repetitions &#123; </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// print "Hello"</span></span><br><span class="line"><span class="comment">// print "Hello"</span></span><br><span class="line"><span class="comment">// print "Hello"</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-1-可变实例方法"><a href="#4-1-可变实例方法" class="headerlink" title="4.1 可变实例方法"></a>4.1 可变实例方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span> = <span class="keyword">self</span> * <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> someInt = <span class="number">3</span></span><br><span class="line">someInt.square()</span><br><span class="line"><span class="built_in">print</span>(someInt)</span><br><span class="line"><span class="comment">// print "9"</span></span><br></pre></td></tr></table></figure>
-<h2 id="5-下标"><a href="#5-下标" class="headerlink" title="5. 下标"></a>5. 下标</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">extension Int &#123;</span><br><span class="line">    subscript(digitIndex: Int) -&gt; Int &#123;</span><br><span class="line">        <span class="built_in">var</span> decimalBase = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> <span class="symbol">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;digitIndex &#123;</span><br><span class="line">            decimalBase *= <span class="number">10</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> (self / decimalBase) <span class="symbol">%</span> <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">9876543210</span>[<span class="number">2</span>])</span><br><span class="line">// <span class="built_in">print</span> <span class="string">"2"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">9876543210</span>[<span class="number">3</span>])</span><br><span class="line">// <span class="built_in">print</span> <span class="string">"3"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">9876543210</span>[<span class="number">15</span>])</span><br><span class="line">// <span class="built_in">print</span> <span class="string">"0"</span></span><br></pre></td></tr></table></figure>
-<h2 id="6-嵌套类型"><a href="#6-嵌套类型" class="headerlink" title="6. 嵌套类型"></a>6. 嵌套类型</h2><p>扩展可以为已有的类、结构体和枚举添加新的嵌套类型。</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">extension Int &#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Kind</span> &#123;</span></span><br><span class="line">        <span class="keyword">case</span> Negative, Zero, Positive</span><br><span class="line">    &#125;</span><br><span class="line">    var <span class="symbol">kind:</span> Kind &#123;</span><br><span class="line">        switch <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> .Zero</span><br><span class="line">        <span class="keyword">case</span> let x where x &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> .Positive</span><br><span class="line">        <span class="symbol">default:</span></span><br><span class="line">            <span class="keyword">return</span> .Negative</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printIntegerKinds</span><span class="params">(<span class="number">_</span> numbers: [Int])</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">        <span class="keyword">switch</span> number.kind &#123;</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Negative</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"-"</span>, terminator:<span class="string">""</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Zero</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"0"</span>, terminator:<span class="string">""</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Positive</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"+"</span>, terminator:<span class="string">""</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">""</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printIntegerKinds([<span class="number">3</span>, <span class="number">19</span>, -<span class="number">27</span>, <span class="number">0</span>, -<span class="number">6</span>, <span class="number">0</span>, <span class="number">7</span>])</span><br><span class="line"><span class="comment">// print "++-0-0+"</span></span><br></pre></td></tr></table></figure>
+        <p>好久没升级 Cocoapods 了，正好想升级一下，看到 <a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/" target="_blank" rel="noopener">官方文档</a> 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。</p>
+<p>尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 <code>pod repo remove master</code> 命令了。</p>
+<p>经过几个小时的折腾后，放弃了。。。</p>
+<p>看到 github 上有人提了同样的 <a href="https://github.com/CocoaPods/CocoaPods/issues/9319" target="_blank" rel="noopener">issue</a> ，给出的解决方案是不要使用 trunk，而是继续使用 master 库。希望这个  issue 能早日解决吧~</p>
+<p>不得已，删除了 trunk (<code>pod repo remove trunk</code>)，使用 <a href="https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/" target="_blank" rel="noopener">镜像站点</a> 重装了 cocoapods。</p>
+<p>由于 Cocoapods 1.8.4 默认使用 CDN 来安装依赖，如果要用回原来的 master 库，需要指定 Podfile 的 source：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line">platform <span class="symbol">:ios</span>, <span class="string">'12.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># source 'https://github.com/CocoaPods/Specs.git'</span></span><br><span class="line">source <span class="string">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span></span><br><span class="line"></span><br><span class="line">target <span class="string">'test'</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don't want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment"># pod 'ImagesView'</span></span><br><span class="line">  pod <span class="string">'Kingfisher'</span></span><br><span class="line">  pod <span class="string">'SnapKit'</span></span><br><span class="line">  use_frameworks!</span><br><span class="line">  <span class="comment"># Pods for test</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -486,7 +472,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://keisme.cn/Swift中的扩展.html" title="Swift中的扩展">http://keisme.cn/Swift中的扩展.html</a>
+    <a href="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html" title="Cocoapods 1.8.4 CDN 无法使用的问题">http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -501,9 +487,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
           
-            <a href="/tags/扩展/" rel="tag"><i class="fa fa-tag"></i> 扩展</a>
+            <a href="/tags/cocoapods/" rel="tag"><i class="fa fa-tag"></i> cocoapods</a>
           
         </div>
       
@@ -516,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Swift中的析构过程.html" rel="next" title="Swift中的析构过程">
-                <i class="fa fa-chevron-left"></i> Swift中的析构过程
+              <a href="/Socks5-to-http.html" rel="next" title="Socks5 to http">
+                <i class="fa fa-chevron-left"></i> Socks5 to http
               </a>
             
           </div>
@@ -525,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/人与人之间的关系.html" rel="prev" title="人与人之间的关系">
-                人与人之间的关系 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -591,17 +573,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -699,22 +672,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-扩展语法"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x6269;&#x5C55;&#x8BED;&#x6CD5;" class="headerlink" title="1. &#x6269;&#x5C55;&#x8BED;&#x6CD5;"></a>1. &#x6269;&#x5C55;&#x8BED;&#x6CD5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-计算型属性"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x8BA1;&#x7B97;&#x578B;&#x5C5E;&#x6027;" class="headerlink" title="2. &#x8BA1;&#x7B97;&#x578B;&#x5C5E;&#x6027;"></a>2. &#x8BA1;&#x7B97;&#x578B;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-构造器"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-&#x6784;&#x9020;&#x5668;" class="headerlink" title="3. &#x6784;&#x9020;&#x5668;"></a>3. &#x6784;&#x9020;&#x5668;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-方法"><span class="nav-number">4.</span> <span class="nav-text"><a href="#4-&#x65B9;&#x6CD5;" class="headerlink" title="4. &#x65B9;&#x6CD5;"></a>4. &#x65B9;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-可变实例方法"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#4-1-&#x53EF;&#x53D8;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;" class="headerlink" title="4.1 &#x53EF;&#x53D8;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;"></a>4.1 &#x53EF;&#x53D8;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-下标"><span class="nav-number">5.</span> <span class="nav-text"><a href="#5-&#x4E0B;&#x6807;" class="headerlink" title="5. &#x4E0B;&#x6807;"></a>5. &#x4E0B;&#x6807;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-嵌套类型"><span class="nav-number">6.</span> <span class="nav-text"><a href="#6-&#x5D4C;&#x5957;&#x7C7B;&#x578B;" class="headerlink" title="6. &#x5D4C;&#x5957;&#x7C7B;&#x578B;"></a>6. &#x5D4C;&#x5957;&#x7C7B;&#x578B;</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

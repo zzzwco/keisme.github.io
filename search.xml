@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cocoapods 1.8.4 CDN 无法使用的问题]]></title>
+    <url>%2FCocoapods-1-8-4-CDN-%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98.html</url>
+    <content type="text"><![CDATA[好久没升级 Cocoapods 了，正好想升级一下，看到 官方文档 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。 尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 pod repo remove master 命令了。 经过几个小时的折腾后，放弃了。。。 看到 github 上有人提了同样的 issue ，给出的解决方案是不要使用 trunk，而是继续使用 master 库。希望这个 issue 能早日解决吧~ 不得已，删除了 trunk (pod repo remove trunk)，使用 镜像站点 重装了 cocoapods。 由于 Cocoapods 1.8.4 默认使用 CDN 来安装依赖，如果要用回原来的 master 库，需要指定 Podfile 的 source： 123456789101112131415# Uncomment the next line to define a global platform for your projectplatform :ios, '12.0'# source 'https://github.com/CocoaPods/Specs.git'source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'target 'test' do # Comment the next line if you don't want to use dynamic frameworks # pod 'ImagesView' pod 'Kingfisher' pod 'SnapKit' use_frameworks! # Pods for testend]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>cocoapods</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Socks5 to http]]></title>
     <url>%2FSocks5-to-http.html</url>
     <content type="text"><![CDATA[安装和配置1brew install porivoxy 安装后，编辑 /usr/local/etc/privoxy/config，搜索socks5找到下面这句： 1#forward-socks5t / 127.0.0.1:9050 . 在下面添加： 1forward-socks5 / 127.0.0.1:port . port 为本机的 ss 代理的 socks5 端口。 配置文件中还有另外一句默认的： 1listen-address 127.0.0.1:8118 这表示 privacy 只监听本机的 8118 端。 开机启动1sudo brew services start privoxy 验证是否启动通过命令查看： 1netstat -an | grep 8118 使用Go 环境配置go get可能无法安装被墙的包，在完成以上步骤后，编辑~/.bash_profile文件，添加： 12export http_proxy=http://127.0.0.1:8118export https_proxy=http://127.0.0.1:8118 然后就可以成功的go get了。 VSCodeVSCode 安装插件的时候会失败，设置代理即可： 12"http.proxy": "http://127.0.0.1:8118","http.proxyStrictSSL": false]]></content>
@@ -161,8 +173,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>上海大师赛</tag>
         <tag>奥沙利文</tag>
+        <tag>上海大师赛</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -419,8 +431,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>中锦赛</tag>
+        <tag>奥沙利文</tag>
       </tags>
   </entry>
   <entry>
