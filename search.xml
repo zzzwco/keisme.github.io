@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Git 查看某个文件的修改历史]]></title>
+    <url>%2FGit-%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2.html</url>
+    <content type="text"><![CDATA[查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &lt;commit-id&gt; [filename] 恢复某个文件至某个版本git checkout &lt;commit-id&gt; [filename] lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Cocoapods 1.8.4 CDN 无法使用的问题]]></title>
     <url>%2FCocoapods-1-8-4-CDN-%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98.html</url>
     <content type="text"><![CDATA[好久没升级 Cocoapods 了，正好想升级一下，看到 官方文档 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。 尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 pod repo remove master 命令了。 经过几个小时的折腾后，放弃了。。。 看到 github 上有人提了同样的 issue ，给出的解决方案是不要使用 trunk，而是继续使用 master 库。希望这个 issue 能早日解决吧~ 不得已，删除了 trunk (pod repo remove trunk)，使用 镜像站点 重装了 cocoapods。 由于 Cocoapods 1.8.4 默认使用 CDN 来安装依赖，如果要用回原来的 master 库，需要指定 Podfile 的 source： 123456789101112131415# Uncomment the next line to define a global platform for your projectplatform :ios, '12.0'# source 'https://github.com/CocoaPods/Specs.git'source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'target 'test' do # Comment the next line if you don't want to use dynamic frameworks # pod 'ImagesView' pod 'Kingfisher' pod 'SnapKit' use_frameworks! # Pods for testend]]></content>
       <categories>
-        <category>iOS</category>
+        <category>ios</category>
       </categories>
       <tags>
         <tag>ios</tag>
@@ -173,8 +184,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>上海大师赛</tag>
+        <tag>奥沙利文</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -356,8 +367,8 @@
         <category>trick</category>
       </categories>
       <tags>
-        <tag>trick</tag>
         <tag>git</tag>
+        <tag>trick</tag>
       </tags>
   </entry>
   <entry>
@@ -405,8 +416,8 @@
         <category>trick</category>
       </categories>
       <tags>
-        <tag>trick</tag>
         <tag>git</tag>
+        <tag>trick</tag>
         <tag>xcode</tag>
       </tags>
   </entry>
@@ -431,8 +442,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>中锦赛</tag>
         <tag>奥沙利文</tag>
+        <tag>中锦赛</tag>
       </tags>
   </entry>
   <entry>

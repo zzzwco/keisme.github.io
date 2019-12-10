@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="git,trick," />
+  <meta name="keywords" content="git" />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="终端运行以下命令即可： 1git config --global core.quotepath false">
-<meta name="keywords" content="git,trick">
+<meta name="description" content="查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &amp;lt;commit-id&amp;gt; [filename] 恢复某个文件至某个版本git checkout &amp;lt;commit-id&amp;gt; [filename]  lg = log --color --graph --prett">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git中文显示乱码的解决方案（Mac）">
-<meta property="og:url" content="http://keisme.cn/Git中文显示乱码的解决方案（Mac）.html">
+<meta property="og:title" content="Git 查看某个文件的修改历史">
+<meta property="og:url" content="http://keisme.cn/Git-查看某个文件的修改历史.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="终端运行以下命令即可： 1git config --global core.quotepath false">
+<meta property="og:description" content="查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &amp;lt;commit-id&amp;gt; [filename] 恢复某个文件至某个版本git checkout &amp;lt;commit-id&amp;gt; [filename]  lg = log --color --graph --prett">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T10:31:51.000Z">
+<meta property="og:updated_time" content="2019-12-10T04:05:58.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git中文显示乱码的解决方案（Mac）">
-<meta name="twitter:description" content="终端运行以下命令即可： 1git config --global core.quotepath false">
+<meta name="twitter:title" content="Git 查看某个文件的修改历史">
+<meta name="twitter:description" content="查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &amp;lt;commit-id&amp;gt; [filename] 恢复某个文件至某个版本git checkout &amp;lt;commit-id&amp;gt; [filename]  lg = log --color --graph --prett">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/Git中文显示乱码的解决方案（Mac）.html"/>
+  <link rel="canonical" href="http://keisme.cn/Git-查看某个文件的修改历史.html"/>
 
 
 
 
 
-  <title>Git中文显示乱码的解决方案（Mac） | keisme</title>
+  <title>Git 查看某个文件的修改历史 | keisme</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Git中文显示乱码的解决方案（Mac）.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Git-查看某个文件的修改历史.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git中文显示乱码的解决方案（Mac）</h1>
+          <h1 class="post-title" itemprop="name headline">Git 查看某个文件的修改历史</h1>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T16:06:14+08:00">
-                2017-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T11:46:34+08:00">
+                2019-12-10
               </time>
             
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/trick/" itemprop="url" rel="index">
-                    <span itemprop="name">trick</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  17
+                  88
                 </span>
               
 
@@ -416,8 +416,13 @@
       
 
       
-        <p>终端运行以下命令即可：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+        <h1 id="查看某文件的修改记录"><a href="#查看某文件的修改记录" class="headerlink" title="查看某文件的修改记录"></a>查看某文件的修改记录</h1><p><code>git lg [filename]</code></p>
+<h1 id="查看某文件所有变更历史"><a href="#查看某文件所有变更历史" class="headerlink" title="查看某文件所有变更历史"></a>查看某文件所有变更历史</h1><p><code>git lg -p [filename]</code></p>
+<h1 id="查看某文件在某次提交中的变更历史"><a href="#查看某文件在某次提交中的变更历史" class="headerlink" title="查看某文件在某次提交中的变更历史"></a>查看某文件在某次提交中的变更历史</h1><p><code>git show &lt;commit-id&gt; [filename]</code></p>
+<h1 id="恢复某个文件至某个版本"><a href="#恢复某个文件至某个版本" class="headerlink" title="恢复某个文件至某个版本"></a>恢复某个文件至某个版本</h1><p><code>git checkout &lt;commit-id&gt; [filename]</code></p>
+<blockquote>
+<p><code>lg</code> = <code>log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit</code></p>
+</blockquote>
 
       
     </div>
@@ -467,7 +472,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://keisme.cn/Git中文显示乱码的解决方案（Mac）.html" title="Git中文显示乱码的解决方案（Mac）">http://keisme.cn/Git中文显示乱码的解决方案（Mac）.html</a>
+    <a href="http://keisme.cn/Git-查看某个文件的修改历史.html" title="Git 查看某个文件的修改历史">http://keisme.cn/Git-查看某个文件的修改历史.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -484,8 +489,6 @@
           
             <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
           
-            <a href="/tags/trick/" rel="tag"><i class="fa fa-tag"></i> trick</a>
-          
         </div>
       
 
@@ -497,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/读《奔跑吧，奥沙利文》.html" rel="next" title="读《奔跑吧，奥沙利文》">
-                <i class="fa fa-chevron-left"></i> 读《奔跑吧，奥沙利文》
+              <a href="/Cocoapods-1-8-4-CDN-无法使用的问题.html" rel="next" title="Cocoapods 1.8.4 CDN 无法使用的问题">
+                <i class="fa fa-chevron-left"></i> Cocoapods 1.8.4 CDN 无法使用的问题
               </a>
             
           </div>
@@ -506,10 +509,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Swift中的属性.html" rel="prev" title="Swift中的属性">
-                Swift中的属性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -671,6 +679,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查看某文件的修改记录"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;" class="headerlink" title="&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;"></a>&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看某文件所有变更历史"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x6240;&#x6709;&#x53D8;&#x66F4;&#x5386;&#x53F2;" class="headerlink" title="&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x6240;&#x6709;&#x53D8;&#x66F4;&#x5386;&#x53F2;"></a>&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x6240;&#x6709;&#x53D8;&#x66F4;&#x5386;&#x53F2;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看某文件在某次提交中的变更历史"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x5728;&#x67D0;&#x6B21;&#x63D0;&#x4EA4;&#x4E2D;&#x7684;&#x53D8;&#x66F4;&#x5386;&#x53F2;" class="headerlink" title="&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x5728;&#x67D0;&#x6B21;&#x63D0;&#x4EA4;&#x4E2D;&#x7684;&#x53D8;&#x66F4;&#x5386;&#x53F2;"></a>&#x67E5;&#x770B;&#x67D0;&#x6587;&#x4EF6;&#x5728;&#x67D0;&#x6B21;&#x63D0;&#x4EA4;&#x4E2D;&#x7684;&#x53D8;&#x66F4;&#x5386;&#x53F2;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恢复某个文件至某个版本"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6062;&#x590D;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x81F3;&#x67D0;&#x4E2A;&#x7248;&#x672C;" class="headerlink" title="&#x6062;&#x590D;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x81F3;&#x67D0;&#x4E2A;&#x7248;&#x672C;"></a>&#x6062;&#x590D;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x81F3;&#x67D0;&#x4E2A;&#x7248;&#x672C;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
