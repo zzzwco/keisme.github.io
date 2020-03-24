@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="奥沙利文,notes," />
+  <meta name="keywords" content="ios, swift, associatedtype, 关联类型" />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
-<meta name="keywords" content="奥沙利文,notes">
+<meta name="description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
+<meta name="keywords" content="ios, swift, associatedtype, 关联类型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读《奔跑吧，奥沙利文》">
-<meta property="og:url" content="http://keisme.cn/读《奔跑吧，奥沙利文》.html">
+<meta property="og:title" content="Swift 关联类型（associatedtype）的使用">
+<meta property="og:url" content="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
+<meta property="og:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-16T09:42:16.000Z">
+<meta property="og:updated_time" content="2020-03-24T15:18:08.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读《奔跑吧，奥沙利文》">
-<meta name="twitter:description" content="只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。 “跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。 国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常">
+<meta name="twitter:title" content="Swift 关联类型（associatedtype）的使用">
+<meta name="twitter:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/读《奔跑吧，奥沙利文》.html"/>
+  <link rel="canonical" href="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html"/>
 
 
 
 
 
-  <title>读《奔跑吧，奥沙利文》 | keisme</title>
+  <title>Swift 关联类型（associatedtype）的使用 | keisme</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/读《奔跑吧，奥沙利文》.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -323,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">读《奔跑吧，奥沙利文》</h2>
+          <h2 class="post-title" itemprop="name headline">Swift 关联类型（associatedtype）的使用</h2>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T04:02:54+08:00">
-                2017-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T23:07:00+08:00">
+                2020-03-24
               </time>
             
 
@@ -358,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
                   </a>
                 </span>
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  638
+                  272
                 </span>
               
 
@@ -421,14 +421,11 @@
       
 
       
-        <p>只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。</p>
-<p>“跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。</p>
-<p>国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常年寻医问药，后来才从一个瘦猴变成了一个微胖的小伙。高中开始失眠抑郁，直至今日亦是如此。所以一直以来我从未真正地感受过健康的状态，我最好的状态大概是我大学末期去健身房锻炼的某个学期。我并不以肌肉男为目的，而是刷脂减肥，果然后来瘦了，整个人的精神状态提升了不少，连颜值都涨了不少。这使我深信，运动可以改变一个人，它可以让你变得更好。</p>
-<a id="more"></a>
-<p>我天性自由散漫，很难在一件事情上常年坚持。自从那个健身的学期之后，运动成了间歇性的爱好。运动尝到的甜头还是输给了自我放逐，我从来都没有达到过满意的身材。我不是那种凡是去做就一定要做第一的人，总的来说，我思想算是比较中庸，自然就会显得很平庸。我想我应该改变一些，让自己变得更追求完美可能会更好。</p>
-<p>从8月初到现在9月末，我不知道最近到底过得什么日子。沉迷游戏，逃避现实和孤独，没有任何运动，睡眠严重不足，工作和学习效率低下，恶性循环。。。然而心底却一直有个声音告诉自己不能放弃治疗，需要做出改变。</p>
-<p>我试图从书中去汲取力量，确实效果不错。读完了《奔跑吧，奥沙利文》，给了我很多启发和动力，我也对火老师有了更多的了解。他就是那么个真性情的人，我想我应该活得简单点，真实而温暖足矣。</p>
-<p>奔跑吧，去寻找真实的自我！</p>
+        <p>定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。<em>关联类型</em>给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">Food</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> f: Food)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">FootType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> breakfast</span><br><span class="line">    <span class="keyword">case</span> lunch</span><br><span class="line">    <span class="keyword">case</span> dinner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> f: T)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"eat food: <span class="subst">\(f)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 Food。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 Food，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">FootType</span>&gt;()</span><br><span class="line">p.eat(.breakfast)</span><br><span class="line">p.eat(.lunch)</span><br><span class="line">p.eat(.dinner)</span><br><span class="line"></span><br><span class="line"><span class="comment">// eat food: breakfast</span></span><br><span class="line"><span class="comment">// eat food: lunch</span></span><br><span class="line"><span class="comment">// eat food: dinner</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -478,7 +475,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://keisme.cn/读《奔跑吧，奥沙利文》.html" title="读《奔跑吧，奥沙利文》">http://keisme.cn/读《奔跑吧，奥沙利文》.html</a>
+    <a href="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html" title="Swift 关联类型（associatedtype）的使用">http://keisme.cn/Swift-关联类型（associatedtype）的使用.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -493,9 +490,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/奥沙利文/" rel="tag"><i class="fa fa-tag"></i> 奥沙利文</a>
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
           
-            <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
           
         </div>
       
@@ -508,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Swift中的类和结构体.html" rel="next" title="Swift中的类和结构体">
-                <i class="fa fa-chevron-left"></i> Swift中的类和结构体
+              <a href="/Mac-终端配置：fish-omf.html" rel="next" title="Mac 终端配置：fish + omf">
+                <i class="fa fa-chevron-left"></i> Mac 终端配置：fish + omf
               </a>
             
           </div>
@@ -517,10 +514,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Git中文显示乱码的解决方案（Mac）.html" rel="prev" title="Git中文显示乱码的解决方案（Mac）">
-                Git中文显示乱码的解决方案（Mac） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

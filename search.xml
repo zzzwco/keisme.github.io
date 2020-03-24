@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift 关联类型（associatedtype）的使用]]></title>
+    <url>%2FSwift-%E5%85%B3%E8%81%94%E7%B1%BB%E5%9E%8B%EF%BC%88associatedtype%EF%BC%89%E7%9A%84%E4%BD%BF%E7%94%A8.html</url>
+    <content type="text"><![CDATA[定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &#123; associatedtype Food func eat(_ f: Food)&#125;enum FootType &#123; case breakfast case lunch case dinner&#125;struct Person&lt;T&gt;: Eat &#123; func eat(_ f: T) &#123; print("eat food: \(f)") &#125;&#125; 我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 Food。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 Food，那么我们就能清晰地知道 Person 的实例到底吃的是什么。 12345678let p = Person&lt;FootType&gt;()p.eat(.breakfast)p.eat(.lunch)p.eat(.dinner)// eat food: breakfast// eat food: lunch// eat food: dinner]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mac 终端配置：fish + omf]]></title>
     <url>%2FMac-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9Afish-omf.html</url>
     <content type="text"><![CDATA[安装与配置 fish根据官网：https://fishshell.com/ 指引安装即可。 安装完之后，使用命令sudo vim /etc/shells打开配置文件，在文末加上/usr/local/bin/fish，保存退出。 运行chsh -s /usr/local/bin/fish命令使fish成为默认 shell。 使用fish_config配置主题，这里我选Solarized Dark。 安装 oh my fishcurl -L https://get.oh-my.fish | fish 安装之后，使用omf install eclm主题即可。 其它终端描述文件： https://github.com/altercation/solarized 下载后导入名为 Solarized Dark ansi 的配置文件。]]></content>
@@ -19,7 +31,7 @@
     <url>%2FGit-%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2.html</url>
     <content type="text"><![CDATA[查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &lt;commit-id&gt; [filename] 恢复某个文件至某个版本git checkout &lt;commit-id&gt; [filename] lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit]]></content>
       <categories>
-        <category>gitw</category>
+        <category>git</category>
       </categories>
       <tags>
         <tag>git</tag>
