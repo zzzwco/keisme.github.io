@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="iOS,Swift,snooker,斯诺克" />
+  <meta name="keywords" content="ios, swift, namespace, 命名空间" />
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="Just For Fun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="keisme">
-<meta property="og:url" content="http://keisme.cn/tags/闭包/index.html">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&amp;lt;WrappedType&amp;gt; &amp;#123;    /// 包装后的值    let wrappedValue: WrappedTy">
+<meta name="keywords" content="ios, swift, namespace, 命名空间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 命名空间（namespace）的实现">
+<meta property="og:url" content="http://keisme.cn/Swift-命名空间（namespace）的实现.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="Just For Fun">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&amp;lt;WrappedType&amp;gt; &amp;#123;    /// 包装后的值    let wrappedValue: WrappedTy">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-25T15:29:50.853Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="keisme">
-<meta name="twitter:description" content="Just For Fun">
+<meta name="twitter:title" content="Swift 命名空间（namespace）的实现">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&amp;lt;WrappedType&amp;gt; &amp;#123;    /// 包装后的值    let wrappedValue: WrappedTy">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/tags/闭包/"/>
+  <link rel="canonical" href="http://keisme.cn/Swift-命名空间（namespace）的实现.html"/>
 
 
 
 
 
-  <title>标签: 闭包 | keisme</title>
+  <title>Swift 命名空间（namespace）的实现 | keisme</title>
   
 
 
@@ -152,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -290,82 +292,250 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>闭包<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-命名空间（namespace）的实现.html">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/Swift泛型和闭包的结合使用-Generic-Closure.html" itemprop="url">
-              
-                <span itemprop="name">Swift泛型和闭包的结合使用(Generic Closure)</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Swift 命名空间（namespace）的实现</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-12T23:10:43+08:00"
-              content="2018-11-12" >
-          11-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T23:18:12+08:00">
+                2020-03-25
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  193
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/Swift中的闭包.html" itemprop="url">
-              
-                <span itemprop="name">Swift中的闭包</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-19T11:45:02+08:00"
-              content="2017-10-19" >
-          10-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 实例对象的包装器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">CCWrapper</span>&lt;<span class="title">WrappedType</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/// 包装后的值</span></span><br><span class="line">    <span class="keyword">let</span> wrappedValue: <span class="type">WrappedType</span></span><br><span class="line">    <span class="keyword">init</span>(wrappedValue: <span class="type">WrappedType</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.wrappedValue = wrappedValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">WrapperType</span></span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">WrapperType</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">WrapperType</span>.<span class="type">Type</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议默认实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>(wrappedValue: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt;.<span class="type">Type</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>.<span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">NameSpaceWrapper</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CCWrapper</span> <span class="title">where</span> <span class="title">WrappedType</span> == <span class="title">String</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> hi: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi, I'm <span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">(to person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span> say hi to <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">hi</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hi, <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bruce"</span>.cc.hi)</span><br><span class="line"><span class="comment">//Hi, I'm Bruce</span></span><br><span class="line"></span><br><span class="line"><span class="string">"Bruce"</span>.cc.sayHi(to: <span class="string">"Max"</span>)</span><br><span class="line"><span class="comment">//Bruce say hi to Max</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span>.cc.hi(<span class="string">"Jack"</span>)</span><br><span class="line"><span class="comment">//Hi, Jack</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift-命名空间（namespace）的实现.html" title="Swift 命名空间（namespace）的实现">http://keisme.cn/Swift-命名空间（namespace）的实现.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+            <a href="/tags/swift/" rel="tag"><i class="fa fa-tag"></i> swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-关联类型（associatedtype）的使用.html" rel="next" title="Swift 关联类型（associatedtype）的使用">
+                <i class="fa fa-chevron-left"></i> Swift 关联类型（associatedtype）的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -373,6 +543,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -658,6 +837,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -686,6 +869,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

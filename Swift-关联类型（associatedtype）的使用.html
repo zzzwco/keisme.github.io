@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
+<meta name="description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516171819202122232425protocol Eat &amp;#123;    associatedtype FoodType">
 <meta name="keywords" content="ios, swift, associatedtype, 关联类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift 关联类型（associatedtype）的使用">
 <meta property="og:url" content="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html">
 <meta property="og:site_name" content="keisme">
-<meta property="og:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
+<meta property="og:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516171819202122232425protocol Eat &amp;#123;    associatedtype FoodType">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-24T15:18:08.376Z">
+<meta property="og:updated_time" content="2020-03-25T15:17:16.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 关联类型（associatedtype）的使用">
-<meta name="twitter:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &amp;#123;    associatedtype Food    func eat(_ f: Food">
+<meta name="twitter:description" content="定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516171819202122232425protocol Eat &amp;#123;    associatedtype FoodType">
 
 
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  272
+                  330
                 </span>
               
 
@@ -423,9 +423,9 @@
       
         <p>定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。<em>关联类型</em>给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。</p>
 <p>举个例子：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">Food</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> f: Food)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">FootType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> breakfast</span><br><span class="line">    <span class="keyword">case</span> lunch</span><br><span class="line">    <span class="keyword">case</span> dinner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> f: T)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"eat food: <span class="subst">\(f)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 Food。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 Food，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">FootType</span>&gt;()</span><br><span class="line">p.eat(.breakfast)</span><br><span class="line">p.eat(.lunch)</span><br><span class="line">p.eat(.dinner)</span><br><span class="line"></span><br><span class="line"><span class="comment">// eat food: breakfast</span></span><br><span class="line"><span class="comment">// eat food: lunch</span></span><br><span class="line"><span class="comment">// eat food: dinner</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">FoodType</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: FoodType)</span></span> -&gt; <span class="type">FoodType</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Meat</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vegetable</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: Food)</span></span> -&gt; <span class="type">Food</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> food</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">Food</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food1 = p.eat(<span class="type">Meat</span>(weight: <span class="number">1.2</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food1.desc)</span>, weight <span class="subst">\(food1.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 1.2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food2 = p.eat(<span class="type">Vegetable</span>(weight: <span class="number">0.8</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food2.desc)</span>, weight <span class="subst">\(food2.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 0.8</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -515,6 +515,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/Swift-命名空间（namespace）的实现.html" rel="prev" title="Swift 命名空间（namespace）的实现">
+                Swift 命名空间（namespace）的实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -596,7 +600,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -713,7 +717,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共49.1k字</span>
+  <span class="post-count">博客全站共49.3k字</span>
 </div>
 
         

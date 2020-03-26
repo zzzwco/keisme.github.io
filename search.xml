@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift 命名空间（namespace）的实现]]></title>
+    <url>%2FSwift-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%88namespace%EF%BC%89%E7%9A%84%E5%AE%9E%E7%8E%B0.html</url>
+    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&lt;WrappedType&gt; &#123; /// 包装后的值 let wrappedValue: WrappedType init(wrappedValue: WrappedType) &#123; self.wrappedValue = wrappedValue &#125;&#125;/// 命名空间协议public protocol NameSpaceWrapper &#123; associatedtype WrapperType var cc: WrapperType &#123; get &#125; static var cc: WrapperType.Type &#123; get &#125;&#125;/// 命名空间协议默认实现public extension NameSpaceWrapper &#123; var cc: CCWrapper&lt;Self&gt; &#123; return CCWrapper(wrappedValue: self) &#125; static var cc: CCWrapper&lt;Self&gt;.Type &#123; return CCWrapper.self &#125;&#125;// 使用extension String: NameSpaceWrapper &#123;&#125;extension CCWrapper where WrappedType == String &#123; var hi: String &#123; return "Hi, I'm \(self.wrappedValue)" &#125; func sayHi(to person: String) &#123; print("\(self.wrappedValue) say hi to \(person)") &#125; static func hi(_ person: String) &#123; print("Hi, \(person)") &#125; &#125;print("Bruce".cc.hi)//Hi, I'm Bruce"Bruce".cc.sayHi(to: "Max")//Bruce say hi to MaxString.cc.hi("Jack")//Hi, Jack]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift 关联类型（associatedtype）的使用]]></title>
     <url>%2FSwift-%E5%85%B3%E8%81%94%E7%B1%BB%E5%9E%8B%EF%BC%88associatedtype%EF%BC%89%E7%9A%84%E4%BD%BF%E7%94%A8.html</url>
-    <content type="text"><![CDATA[定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516protocol Eat &#123; associatedtype Food func eat(_ f: Food)&#125;enum FootType &#123; case breakfast case lunch case dinner&#125;struct Person&lt;T&gt;: Eat &#123; func eat(_ f: T) &#123; print("eat food: \(f)") &#125;&#125; 我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 Food。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 Food，那么我们就能清晰地知道 Person 的实例到底吃的是什么。 12345678let p = Person&lt;FootType&gt;()p.eat(.breakfast)p.eat(.lunch)p.eat(.dinner)// eat food: breakfast// eat food: lunch// eat food: dinner]]></content>
+    <content type="text"><![CDATA[定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516171819202122232425protocol Eat &#123; associatedtype FoodType func eat(_ food: FoodType) -&gt; FoodType&#125;protocol Food &#123; var weight: CGFloat &#123; get set &#125; var desc: String &#123; get set &#125;&#125;struct Meat: Food &#123; var weight: CGFloat var desc: String&#125;struct Vegetable: Food &#123; var weight: CGFloat var desc: String&#125;struct Person&lt;T&gt;: Eat &#123; func eat(_ food: Food) -&gt; Food &#123; return food &#125;&#125; 我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。 123456789let p = Person&lt;Food&gt;()let food1 = p.eat(Meat(weight: 1.2, desc: "meat"))print("eat \(food1.desc), weight \(food1.weight)")// eat meat, weight 1.2let food2 = p.eat(Vegetable(weight: 0.8, desc: "meat"))print("eat \(food2.desc), weight \(food2.weight)")// eat meat, weight 0.8]]></content>
       <categories>
         <category>ios</category>
       </categories>
@@ -210,8 +222,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>上海大师赛</tag>
+        <tag>奥沙利文</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -468,8 +480,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>中锦赛</tag>
         <tag>奥沙利文</tag>
+        <tag>中锦赛</tag>
       </tags>
   </entry>
   <entry>
