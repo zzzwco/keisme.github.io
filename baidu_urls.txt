@@ -1,3 +1,5 @@
+http://keisme.cn/自定义-Xcode-文件头部注释.html
+http://keisme.cn/卸载-CocoaPods（Uninstall-CocoaPods）.html
 http://keisme.cn/Swift-命名空间（namespace）的实现.html
 http://keisme.cn/Swift-关联类型（associatedtype）的使用.html
 http://keisme.cn/Mac-终端配置：fish-omf.html
@@ -6,5 +8,3 @@ http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html
 http://keisme.cn/Socks5-to-http.html
 http://keisme.cn/Go-Modules.html
 http://keisme.cn/Swift泛型和闭包的结合使用-Generic-Closure.html
-http://keisme.cn/Go-concurrency-并发.html
-http://keisme.cn/Go-reflection-反射.html
