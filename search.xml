@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Xcode 创建自定义文件模板]]></title>
+    <url>%2FXcode-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF.html</url>
+    <content type="text"><![CDATA[首先，创建我们的自定义模板文件夹： 1mkdir -p ~/Library/Developer/Xcode/Templates/Custom 然后复制系统提供的模板文件，路径如下： 1/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates/Source/Swift File.xctemplate 将Swift File.xctemplate整个文件夹复制到刚才创建的Custom文件夹。 然后我们开始自定义，只需要修改___FILEBASENAME___.swift中的内容即可。 其中涉及到一些宏定义可以参考：Text macros reference。注意：宏定义前后必须加上三个下划线。 然后我们就可以使用了，如图：]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>xcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[自定义 Xcode 文件头部注释]]></title>
     <url>%2F%E8%87%AA%E5%AE%9A%E4%B9%89-Xcode-%E6%96%87%E4%BB%B6%E5%A4%B4%E9%83%A8%E6%B3%A8%E9%87%8A.html</url>
     <content type="text"><![CDATA[首先，用 Xcode 创建一个 plist 文件：IDETemplateMacros.plist。 在新建的 plist 文件中，添加键值对。key 为 FILEHEADER，value 参考 IDETemplateMacros.plist中的内容。 其中，FILENAME、PACKAGENAME等为宏定义，更多宏定义请可以通过 Xcode - Help 搜索“Text macros reference”获得。这里要注意的是，宏定义的前后必须要加上三个下划线。 然后我们将编辑好的 plist 文件放入指定的路径，关于路径有以下选择，对应不同的作用范围： Project - 某个用户 1&lt;ProjectName&gt;.xcodeproj/xcuserdata/[username].xcuserdatad/ Project - 所有用户 1&lt;ProjectName&gt;.xcodeproj/xcshareddata/ Workspace - 某个用户 1&lt;WorkspaceName&gt;.xcworkspace/xcuserdata/[username].xcuserdatad/ Workspace - 所有用户 1&lt;WorkspaceName&gt;.xcworkspace/xcshareddata/ Xcode -全局 1~/Library/Developer/Xcode/UserData/ 所有的工作已经完成了，试试创建一个新的文件看看效果吧！]]></content>
