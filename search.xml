@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SwiftFormat 的使用]]></title>
+    <url>%2FSwiftFormat-%E7%9A%84%E4%BD%BF%E7%94%A8.html</url>
+    <content type="text"><![CDATA[虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，SwiftFormat就是解决这一问题的好工具。 SwiftFormat具有多种使用方式，目前我在实际工作中使用的是CocoaPods集成。具体使用方法： pod &#39;SwiftFormat/CLI&#39;，安装 SwiftFormat TARGETS - Build Phases - New Run Script Phase，添加如下脚本： 1"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat" . --exclude Pods,Generated 在编译或运行的时候，SwiftFormat会对齐不符合格式的代码。Enjoy it~]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>xcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Xcode 创建自定义文件模板]]></title>
     <url>%2FXcode-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF.html</url>
     <content type="text"><![CDATA[首先，创建我们的自定义模板文件夹： 1mkdir -p ~/Library/Developer/Xcode/Templates/Custom 然后复制系统提供的模板文件，路径如下： 1/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates/Source/Swift File.xctemplate 将Swift File.xctemplate整个文件夹复制到刚才创建的Custom文件夹。 然后我们开始自定义，只需要修改___FILEBASENAME___.swift中的内容即可。 其中涉及到一些宏定义可以参考：Text macros reference。注意：宏定义前后必须加上三个下划线。 然后我们就可以使用了，如图：]]></content>
