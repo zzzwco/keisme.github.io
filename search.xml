@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Flutter PATH（fish shell）设置和镜像设置]]></title>
+    <url>%2FFlutter-PATH%EF%BC%88fish-shell%EF%BC%89%E8%AE%BE%E7%BD%AE%E5%92%8C%E9%95%9C%E5%83%8F%E8%AE%BE%E7%BD%AE.html</url>
+    <content type="text"><![CDATA[如果你在 Mac 下使用的 fish shell，按照官方教程设置 flutter 的路径是不会永久生效的。解决方法如下： vi ~/.config/fish/config.fish 写入如下内容： 1set PATH &lt;flutter安装路径&gt;/flutter/bin $PATH 使用echo $PATH查看，发现已经生效，即使退出终端再次打开，依然能正常使用 flutter 的相关命令。 安装好 flutter 后，使用flutter doctor命令，结果一直卡住不动了。。。后来才明白是 TC 的网络问题，参考官方的设置镜像即可。]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+        <tag>mirror</tag>
+        <tag>path</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SwiftFormat 的使用]]></title>
     <url>%2FSwiftFormat-%E7%9A%84%E4%BD%BF%E7%94%A8.html</url>
     <content type="text"><![CDATA[虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，SwiftFormat就是解决这一问题的好工具。 SwiftFormat具有多种使用方式，目前我在实际工作中使用的是CocoaPods集成。具体使用方法： pod &#39;SwiftFormat/CLI&#39;，安装 SwiftFormat TARGETS - Build Phases - New Run Script Phase，添加如下脚本： 1"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat" . --exclude Pods,Generated 在编译或运行的时候，SwiftFormat会对齐不符合格式的代码。Enjoy it~]]></content>
@@ -270,8 +283,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>上海大师赛</tag>
         <tag>奥沙利文</tag>
+        <tag>上海大师赛</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -528,8 +541,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>中锦赛</tag>
+        <tag>奥沙利文</tag>
       </tags>
   </entry>
   <entry>
