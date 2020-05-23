@@ -305,6 +305,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的泛型.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift中的泛型.html" itemprop="url">Swift中的泛型</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T11:02:13+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/swift/" itemprop="url" rel="index">
+                    <span itemprop="name">swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  550
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-泛型函数"><a href="#1-泛型函数" class="headerlink" title="1. 泛型函数"></a>1. 泛型函数</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func swapTwoValues&lt;T&gt;(_ <span class="selector-tag">a</span>: inout T, _ <span class="selector-tag">b</span>: inout T) &#123;</span><br><span class="line">    let t = a</span><br><span class="line">    <span class="selector-tag">a</span> = b</span><br><span class="line">    <span class="selector-tag">b</span> = t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">var</span> someInt = <span class="number">3</span></span><br><span class="line"><span class="selector-tag">var</span> anotherInt = <span class="number">7</span></span><br><span class="line"><span class="function"><span class="title">swapTwoValues</span><span class="params">(&amp;someInt, &amp;anotherInt)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"\(someInt), \(anotherInt)"</span>)</span></span></span><br><span class="line"><span class="comment">// print "7, 3"</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">var</span> someString = <span class="string">"hello"</span></span><br><span class="line"><span class="selector-tag">var</span> anotherString = <span class="string">"world"</span></span><br><span class="line"><span class="function"><span class="title">swapTwoValues</span><span class="params">(&amp;someString, &amp;anotherString)</span></span></span><br></pre></td></tr></table></figure>
+<p><code>T</code> 是占位类型名，用来代替实际类型名。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Swift中的泛型.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift中的协议.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1819,175 +1987,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/读《奔跑吧，奥沙利文》.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/读《奔跑吧，奥沙利文》.html" itemprop="url">读《奔跑吧，奥沙利文》</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T04:02:54+08:00">
-                2017-09-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  638
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>只用了三个晚上，就读完了这本书，这应该是我有史以来最快的读书速度了。因为他是我的偶像，我为之着迷。</p>
-<p>“跑步是我的信仰体系，是我赖以保持内心平静的途径。跑步的过程身体是痛苦难耐的，但跑步又是让我达到精神高度的最佳途径。”这段话出现在书的开头，我认为是全书精华所在。当我读到这里的时候，引起了我的一些共鸣。</p>
-<p>国人大多是不爱运动的，我从小也没什么运动天赋，也从未痴迷于某项运动。因我从小体弱多病，父亲为我常年寻医问药，后来才从一个瘦猴变成了一个微胖的小伙。高中开始失眠抑郁，直至今日亦是如此。所以一直以来我从未真正地感受过健康的状态，我最好的状态大概是我大学末期去健身房锻炼的某个学期。我并不以肌肉男为目的，而是刷脂减肥，果然后来瘦了，整个人的精神状态提升了不少，连颜值都涨了不少。这使我深信，运动可以改变一个人，它可以让你变得更好。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/读《奔跑吧，奥沙利文》.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2042,7 +2041,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2064,7 +2063,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2159,7 +2158,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.4k字</span>
+  <span class="post-count">博客全站共51.7k字</span>
 </div>
 
         
