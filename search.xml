@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[App Store 提交审核被拒记录]]></title>
+    <url>%2FApp-Store-%E6%8F%90%E4%BA%A4%E5%AE%A1%E6%A0%B8%E8%A2%AB%E6%8B%92%E8%AE%B0%E5%BD%95.html</url>
+    <content type="text"><![CDATA[ITMS-90809: Deprecated API Usage最近提交的 App 遇到了这个问题，邮件中提到的是被废弃的 UIWebView API，在工程中全局搜索后没有找到 UIWebView。想来必然是第三方静态库使用了，在工程目录下使用命令grep -r UIWebView .查看哪些库使用了 UIWebView，移除或升级相关库即可。 ITMS-90381: Too many symbol files项目本身设置了 Valid Architecture 为 arm64、arm64e，但是因为使用了支持 32 位设备的三方库，所以生成了冗余的 symbols 文件。 查询 symbols 文件的生成情况：Xcode Window -&gt; Organizer 选择有问题的 archive，右击选择 Show in finder，命令行进入 .app 中的 dSYMs 文件夹，执行 `dwarfdump –uuid ` 可以查询到是否生成了多余的文件。 解决方法是在 Podfile 中添加如下内容： 1234567post_install do |installer| installer.pods_project.targets.each do |target| target.build_configurations.each do |config| config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf' end endend 在platform :ios, &#39;12.0&#39;这一行下面添加即可，然后重新pod install --verbose。]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+        <tag>App Store</tag>
+        <tag>审核</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Flutter PATH（fish shell）设置和镜像设置]]></title>
     <url>%2FFlutter-PATH%EF%BC%88fish-shell%EF%BC%89%E8%AE%BE%E7%BD%AE%E5%92%8C%E9%95%9C%E5%83%8F%E8%AE%BE%E7%BD%AE.html</url>
     <content type="text"><![CDATA[如果你在 Mac 下使用的 fish shell，按照官方教程设置 flutter 的路径是不会永久生效的。解决方法如下： vi ~/.config/fish/config.fish 写入如下内容： 1set PATH &lt;flutter安装路径&gt;/flutter/bin $PATH 使用echo $PATH查看，发现已经生效，即使退出终端再次打开，依然能正常使用 flutter 的相关命令。 安装好 flutter 后，使用flutter doctor命令，结果一直卡住不动了。。。后来才明白是 TC 的网络问题，参考官方的设置镜像即可。]]></content>
@@ -283,8 +296,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>奥沙利文</tag>
         <tag>上海大师赛</tag>
+        <tag>奥沙利文</tag>
         <tag>特鲁姆普</tag>
       </tags>
   </entry>
@@ -541,8 +554,8 @@
       </categories>
       <tags>
         <tag>snooker</tag>
-        <tag>中锦赛</tag>
         <tag>奥沙利文</tag>
+        <tag>中锦赛</tag>
       </tags>
   </entry>
   <entry>

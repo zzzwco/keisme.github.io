@@ -305,6 +305,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocoapods-1-8-4-CDN-无法使用的问题.html" itemprop="url">Cocoapods 1.8.4 CDN 无法使用的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T18:36:51+08:00">
+                2019-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  268
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好久没升级 Cocoapods 了，正好想升级一下，看到 <a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/" target="_blank" rel="noopener">官方文档</a> 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。</p>
+<p>尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 <code>pod repo remove master</code> 命令了。</p>
+<p>经过几个小时的折腾后，放弃了。。。</p>
+<p>看到 github 上有人提了同样的 <a href="https://github.com/CocoaPods/CocoaPods/issues/9319" target="_blank" rel="noopener">issue</a> ，给出的解决方案是不要使用 trunk，而是继续使用 master 库。希望这个  issue 能早日解决吧~</p>
+<p>不得已，删除了 trunk (<code>pod repo remove trunk</code>)，使用 <a href="https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/" target="_blank" rel="noopener">镜像站点</a> 重装了 cocoapods。</p>
+<p>由于 Cocoapods 1.8.4 默认使用 CDN 来安装依赖，如果要用回原来的 master 库，需要指定 Podfile 的 source：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line">platform <span class="symbol">:ios</span>, <span class="string">'12.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># source 'https://github.com/CocoaPods/Specs.git'</span></span><br><span class="line">source <span class="string">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span></span><br><span class="line"></span><br><span class="line">target <span class="string">'test'</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don't want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment"># pod 'ImagesView'</span></span><br><span class="line">  pod <span class="string">'Kingfisher'</span></span><br><span class="line">  pod <span class="string">'SnapKit'</span></span><br><span class="line">  use_frameworks!</span><br><span class="line">  <span class="comment"># Pods for test</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Socks5-to-http.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1834,207 +2003,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/2017斯诺克英锦赛记忆.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017斯诺克英锦赛记忆.html" itemprop="url">2017斯诺克英锦赛记忆</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T14:41:08+08:00">
-                2017-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/snooker/" itemprop="url" rel="index">
-                    <span itemprop="name">snooker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,727
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>英锦赛，斯诺克历史上最悠久的赛事。40年前第一届英锦赛开打时，“75三杰”还在嗷嗷待哺。1993年，年仅17岁的火老师就摘得桂冠并成为历史上最年轻的排名赛冠军得主。这一纪录至今未被打破，刚刚过去的北爱公开赛，颜丙涛差点就刷新这项纪录，不过在接下来的两个多月里，他仍有希望打破这项纪录。</p>
-<p>赛前回顾历届英锦赛得主，冠军数排名表如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">球员</th>
-<th style="text-align:center">戴维斯</th>
-<th style="text-align:center">亨得利</th>
-<th style="text-align:center">奥沙利文</th>
-<th style="text-align:center">希金斯</th>
-<th style="text-align:center">蒙特乔</th>
-<th style="text-align:center">威廉姆斯</th>
-<th style="text-align:center">丁俊晖</th>
-<th style="text-align:center">罗伯逊</th>
-<th style="text-align:center">塞尔比</th>
-<th style="text-align:center">其他</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">次数</td>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
-</table>
-<p>丁丁首日登场，5 - 1 领先对手，却被对手直落 5 局惨遭逆转。赛后，排名 120 开外的对手费尔南德斯说“我觉得我赢了他可以退役了…”。英锦赛本是丁丁的福赛，如今去上演了惊天大冷门，令人唏嘘。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017斯诺克英锦赛记忆.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2089,7 +2057,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2111,7 +2079,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2206,7 +2174,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.1k字</span>
+  <span class="post-count">博客全站共50.4k字</span>
 </div>
 
         
