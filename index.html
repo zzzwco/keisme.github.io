@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程一：-Publisher、Subscriber.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程一：Publisher、Subscriber.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -324,7 +324,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Combine-简明教程一：-Publisher、Subscriber.html" itemprop="url">Combin 简明教程一： Publisher、Subscriber</a></h2>
+                <a class="post-title-link" href="/Combine-简明教程一：Publisher、Subscriber.html" itemprop="url">Combine 简明教程一： Publisher、Subscriber</a></h2>
         
 
         <div class="post-meta">
@@ -420,14 +420,14 @@
         
           <p><a href="https://github.com/keisme/SwiftUI_Learning/tree/master/CombineTutorial" target="_blank" rel="noopener">Source Code</a></p>
 <p>Publisher 用于向订阅者发布数据，Subscriber 用于接收订阅的发布者发布的数据。</p>
-<img src="/Combine-简明教程一：-Publisher、Subscriber/1.png">
+<img src="/Combine-简明教程一：Publisher、Subscriber/1.png">
 <h1 id="Publisher"><a href="#Publisher" class="headerlink" title="Publisher"></a>Publisher</h1><p>Combine 框架为我们提供了许多便利的 Publisher。</p>
 <p>SwiftUI 经常使用的属性包装器 @Published 和 @ObservedObject，源自 Combine，它们会隐式创建 Publisher。关于 SwiftUI 中的属性包装器，可以参考<a href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html">SwiftUI 中常见的属性包装器（Property Wrapper）概览</a>。</p>
 <h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><p>使用闭包初始化，并立即执行闭包，异步返回单个值或失败的结果，发布就结束了。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> someError</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> localizedDescription: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Some Error"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FutureView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> buttonTitle = <span class="string">"Tap me!"</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">Button</span>(buttonTitle) &#123;</span><br><span class="line">      <span class="keyword">let</span> publisher = <span class="type">Future</span>&lt;<span class="type">String</span>, <span class="type">SomeError</span>&gt;(&#123; (promise) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="type">Bool</span>.random() &#123;</span><br><span class="line">          promise(.success(<span class="string">"Succeed"</span>))</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          promise(.failure(.someError))</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      </span><br><span class="line">      <span class="number">_</span> = publisher.sink(receiveCompletion: &#123;</span><br><span class="line">        <span class="keyword">switch</span> $<span class="number">0</span> &#123;</span><br><span class="line">          <span class="keyword">case</span> .finished:</span><br><span class="line">            <span class="built_in">print</span>($<span class="number">0</span>)</span><br><span class="line">          <span class="keyword">case</span> .failure(<span class="keyword">let</span> error):</span><br><span class="line">            <span class="built_in">print</span>(error)</span><br><span class="line">            <span class="keyword">self</span>.buttonTitle = error.localizedDescription</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;, receiveValue: &#123;</span><br><span class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">self</span>.buttonTitle = $<span class="number">0</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Combine-简明教程一：-Publisher、Subscriber.html#more" rel="contents">
+            <a class="btn" href="/Combine-简明教程一：Publisher、Subscriber.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

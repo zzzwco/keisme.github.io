@@ -1,4 +1,4 @@
-http://keisme.cn/Combine-简明教程一：-Publisher、Subscriber.html
+http://keisme.cn/Combine-简明教程一：Publisher、Subscriber.html
 http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html
 http://keisme.cn/App-Store-提交审核被拒记录.html
 http://keisme.cn/Flutter-PATH（fish-shell）设置和镜像设置.html
