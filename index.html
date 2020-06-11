@@ -305,6 +305,521 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程四：Operators.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Combine-简明教程四：Operators.html" itemprop="url">Combine 简明教程四：Operators</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T08:40:56+08:00">
+                2020-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,491
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前面的文章我们对 Combine 有了一个基本的了解，简单地讲，Combine 使得我们以往的命令式编程变成了函数式、响应式编程，这大大提高了我们的工作效率。然而这远远不够，本章我们要讲的是 Combine 中的效率王者：Operators。什么是 Operators？先看下面这张图：</p>
+<img src="/Combine-简明教程四：Operators/1.png">
+<p>我们可以在数据流的管道中，使用 Operator 对上游的数据进行各种操作，然后再发送给下游的订阅者，这就是 Operators 的作用。</p>
+<p>打个比方，Publisher 是牧场，发送一头头生猛的牛，中间有一系列的 Operators，有的 Operator 负责屠宰、有的负责运送、有的负责烹饪等等，最终到达 Subscriber 的是一块香喷喷的牛排！我们只需要享受美味即可，其它的工序交给中间的操作者去处理即可。当然，我们也可能收到一些意外情况，比如某个中间环节出了问题，最后我们收到的不是牛排，而是 Failure。</p>
+<p>Combine 提供了大量的 Operator 给我们使用，我不会使用代码演示每一个 Operator 的使用，所谓一图胜千言，对于望图知意的 Operator，我只会给出图片示意。对于比较复杂的情况，我将添加文字说明，必要时会有代码示例。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Combine-简明教程四：Operators.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程三：Subject.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Combine-简明教程三：Subject.html" itemprop="url">Combine 简明教程三：Subject</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T08:38:26+08:00">
+                2020-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  622
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://github.com/keisme/SwiftUI_Learning/tree/master/CombineTutorial" target="_blank" rel="noopener">Source Code</a></p>
+<p>遵循 Subject 协议的 Publisher 是一种特定类型的 Publisher，可以手动调用<code>.send(_:)</code>方法向数据流中注入值。</p>
+<p>Combine 框架提供了两种内建的 Subject：<code>CurrentValueSubject</code> 和 <code>PassthroughSubject</code> 。它们很相似，区别在于，CurrentValueSubject 需要一个初始化的值，并且会保存最近发送的值，调用 <code>send(_:)</code> 方法时，会更新暂存的值。而 PassthroughSubject 特性，它只负责发送数据。</p>
+<h1 id="PassthroughSubject"><a href="#PassthroughSubject" class="headerlink" title="PassthroughSubject"></a>PassthroughSubject</h1><p>首先我们自定义一个 Publisher：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">MyError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> test</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSubscriber</span>: <span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">  <span class="keyword">typealias</span> <span class="type">Input</span> = <span class="type">String</span></span><br><span class="line">  <span class="keyword">typealias</span> <span class="type">Failure</span> = <span class="type">MyError</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(subscription: Subscription)</span></span> &#123;</span><br><span class="line">    subscription.request(.<span class="built_in">max</span>(<span class="number">2</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(<span class="number">_</span> input: String)</span></span> -&gt; <span class="type">Subscribers</span>.<span class="type">Demand</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Received value"</span>, input)</span><br><span class="line">    <span class="keyword">return</span> input == <span class="string">"World"</span> ? .<span class="built_in">max</span>(<span class="number">1</span>) : .<span class="keyword">none</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(completion: Subscribers.Completion&lt;MyError&gt;)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Received completion"</span>, completion)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Combine-简明教程三：Subject.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程二：自定义-Subscriber、Publisher.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Combine-简明教程二：自定义-Subscriber、Publisher.html" itemprop="url">Combine 简明教程二：自定义 Subscriber、Publisher</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T08:36:09+08:00">
+                2020-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  718
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://github.com/keisme/SwiftUI_Learning/tree/master/CombineTutorial" target="_blank" rel="noopener">Source Code</a></p>
+<p>一般来说，Combine 框架给我们提供的 Publishers 和 Subscribers 在多数场景下已经足够使用了。在少数情况下，我们需要自定义它们，下面的实例只是举例说明如何实现自定义。</p>
+<h1 id="自定义-Subscriber"><a href="#自定义-Subscriber" class="headerlink" title="自定义 Subscriber"></a>自定义 Subscriber</h1><p>遵循 Subscriber 协议，并实现对应的方法。</p>
+<p>下面是一个自定义的 IntSubscriber：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSubscriber</span>: <span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">  <span class="keyword">typealias</span> <span class="type">Input</span> = <span class="type">Int</span></span><br><span class="line">  <span class="keyword">typealias</span> <span class="type">Failure</span> = <span class="type">Never</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(subscription: Subscription)</span></span> &#123;</span><br><span class="line">    subscription.request(.<span class="built_in">max</span>(<span class="number">2</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(<span class="number">_</span> input: Int)</span></span> -&gt; <span class="type">Subscribers</span>.<span class="type">Demand</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> input &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> .<span class="built_in">max</span>(<span class="number">1</span>)</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> .<span class="keyword">none</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(completion: Subscribers.Completion&lt;Never&gt;)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Received completion: <span class="subst">\(completion)</span>"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们调用它：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> publisher = (<span class="number">1</span>...<span class="number">6</span>).publisher.<span class="built_in">print</span>()</span><br><span class="line"><span class="keyword">let</span> subscriber = <span class="type">IntSubscriber</span>()</span><br><span class="line">publisher.subscribe(subscriber)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Combine-简明教程二：自定义-Subscriber、Publisher.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程一：Publisher、Subscriber.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1501,513 +2016,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/卸载-CocoaPods（Uninstall-CocoaPods）.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/卸载-CocoaPods（Uninstall-CocoaPods）.html" itemprop="url">卸载 CocoaPods（Uninstall CocoaPods）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-27T00:43:58+08:00">
-                2020-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  181
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用命令卸载：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo gem uninstall cocoapods</span></span><br></pre></td></tr></table></figure>
-<p>最新版本的 MacOS 可能会提示错误：</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ERROR:  </span>While executing gem ... (Gem::FilePermissionError)</span><br><span class="line">    You don't have write permissions for the /usr/bin directory.</span><br></pre></td></tr></table></figure>
-<p>用以下命令可以解决：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo gem uninstall -n /usr/<span class="built_in">local</span>/bin cocoapods</span></span><br></pre></td></tr></table></figure>
-<p>然后查看本机安装的 cocoapods 相关的东西：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gem list --<span class="built_in">local</span> | grep cocoapods</span></span><br></pre></td></tr></table></figure>
-<p>一般会有如下显示：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cocoapods-core</span> (1<span class="selector-class">.9</span><span class="selector-class">.1</span>, 1<span class="selector-class">.8</span><span class="selector-class">.4</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-deintegrate</span> (1<span class="selector-class">.0</span><span class="selector-class">.4</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-downloader</span> (1<span class="selector-class">.2</span><span class="selector-class">.2</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-plugins</span> (1<span class="selector-class">.0</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-search</span> (1<span class="selector-class">.0</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-stats</span> (1<span class="selector-class">.1</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-trunk</span> (1<span class="selector-class">.4</span><span class="selector-class">.1</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-try</span> (1<span class="selector-class">.1</span><span class="selector-class">.0</span>)</span><br></pre></td></tr></table></figure>
-<p>然后使用命令逐个删除，比如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo gem uninstall cocoapods-core</span></span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="keyword">uninstall</span> -n /usr/<span class="keyword">local</span>/<span class="keyword">bin</span> cocoapods-core</span><br></pre></td></tr></table></figure>
-<p>卸载完成后重新<a href="https://guides.cocoapods.org/using/getting-started.html" target="_blank" rel="noopener">安装</a>即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-命名空间（namespace）的实现.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Swift-命名空间（namespace）的实现.html" itemprop="url">Swift 命名空间（namespace）的实现</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T23:18:12+08:00">
-                2020-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  193
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 实例对象的包装器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">CCWrapper</span>&lt;<span class="title">WrappedType</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/// 包装后的值</span></span><br><span class="line">    <span class="keyword">let</span> wrappedValue: <span class="type">WrappedType</span></span><br><span class="line">    <span class="keyword">init</span>(wrappedValue: <span class="type">WrappedType</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.wrappedValue = wrappedValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">WrapperType</span></span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">WrapperType</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">WrapperType</span>.<span class="type">Type</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议默认实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>(wrappedValue: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt;.<span class="type">Type</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>.<span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">NameSpaceWrapper</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CCWrapper</span> <span class="title">where</span> <span class="title">WrappedType</span> == <span class="title">String</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> hi: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi, I'm <span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">(to person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span> say hi to <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">hi</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hi, <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bruce"</span>.cc.hi)</span><br><span class="line"><span class="comment">//Hi, I'm Bruce</span></span><br><span class="line"></span><br><span class="line"><span class="string">"Bruce"</span>.cc.sayHi(to: <span class="string">"Max"</span>)</span><br><span class="line"><span class="comment">//Bruce say hi to Max</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span>.cc.hi(<span class="string">"Jack"</span>)</span><br><span class="line"><span class="comment">//Hi, Jack</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Swift-关联类型（associatedtype）的使用.html" itemprop="url">Swift 关联类型（associatedtype）的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T23:07:00+08:00">
-                2020-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  330
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。<em>关联类型</em>给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。</p>
-<p>举个例子：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">FoodType</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: FoodType)</span></span> -&gt; <span class="type">FoodType</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Meat</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vegetable</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: Food)</span></span> -&gt; <span class="type">Food</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> food</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">Food</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food1 = p.eat(<span class="type">Meat</span>(weight: <span class="number">1.2</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food1.desc)</span>, weight <span class="subst">\(food1.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 1.2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food2 = p.eat(<span class="type">Vegetable</span>(weight: <span class="number">0.8</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food2.desc)</span>, weight <span class="subst">\(food2.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 0.8</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2062,7 +2070,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2084,7 +2092,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2179,7 +2187,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共52.6k字</span>
+  <span class="post-count">博客全站共57.4k字</span>
 </div>
 
         

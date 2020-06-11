@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="ios, combine, operators, 简明, 教程" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前面的文章我们对 Combine 有了一个基本的了解，简单地讲，Combine 使得我们以往的命令式编程变成了函数式、响应式编程，这大大提高了我们的工作效率。然而这远远不够，本章我们要讲的是 Combine 中的效率王者：Operators。什么是 Operators？先看下面这张图：  我们可以在数据流的管道中，使用 Operator 对上游的数据进行各种操作，然后再发送给下游的订阅者，这就是">
+<meta name="keywords" content="ios, combine, operators, 简明, 教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combine 简明教程四：Operators">
+<meta property="og:url" content="http://keisme.cn/Combine-简明教程四：Operators.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="前面的文章我们对 Combine 有了一个基本的了解，简单地讲，Combine 使得我们以往的命令式编程变成了函数式、响应式编程，这大大提高了我们的工作效率。然而这远远不够，本章我们要讲的是 Combine 中的效率王者：Operators。什么是 Operators？先看下面这张图：  我们可以在数据流的管道中，使用 Operator 对上游的数据进行各种操作，然后再发送给下游的订阅者，这就是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/1.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/scan.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/stryScan.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/map.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/flatMap.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/setFailureType.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/compactMap.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/filter.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/removeDuplicates.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/replaceEmpty.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/replaceNil.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/collect.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/reduce.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/max.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/count.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/allSatisfy.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/contains.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/containsWhere.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/first.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/last.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/dropFirst.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/dropUntilOutput.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/dropWhile.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prepend.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prepend2.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prepend3.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/append.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/append2.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/append3.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prefix.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prefixWhile.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/prefixUntilOutput.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/output.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/output2.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/combineLatest.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/merge.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/zip.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/switchToLatest.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/debounce.png">
+<meta property="og:image" content="http://keisme.cn/Combine-简明教程四：Operators/throttle.png">
+<meta property="og:updated_time" content="2020-06-11T00:48:15.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Combine 简明教程四：Operators">
+<meta name="twitter:description" content="前面的文章我们对 Combine 有了一个基本的了解，简单地讲，Combine 使得我们以往的命令式编程变成了函数式、响应式编程，这大大提高了我们的工作效率。然而这远远不够，本章我们要讲的是 Combine 中的效率王者：Operators。什么是 Operators？先看下面这张图：  我们可以在数据流的管道中，使用 Operator 对上游的数据进行各种操作，然后再发送给下游的订阅者，这就是">
+<meta name="twitter:image" content="http://keisme.cn/Combine-简明教程四：Operators/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Combine-简明教程四：Operators.html"/>
+
+
+
+
+
+  <title>Combine 简明教程四：Operators | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Combine-简明教程四：Operators.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Combine 简明教程四：Operators</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T08:40:56+08:00">
+                2020-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,491
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面的文章我们对 Combine 有了一个基本的了解，简单地讲，Combine 使得我们以往的命令式编程变成了函数式、响应式编程，这大大提高了我们的工作效率。然而这远远不够，本章我们要讲的是 Combine 中的效率王者：Operators。什么是 Operators？先看下面这张图：</p>
+<img src="/Combine-简明教程四：Operators/1.png">
+<p>我们可以在数据流的管道中，使用 Operator 对上游的数据进行各种操作，然后再发送给下游的订阅者，这就是 Operators 的作用。</p>
+<p>打个比方，Publisher 是牧场，发送一头头生猛的牛，中间有一系列的 Operators，有的 Operator 负责屠宰、有的负责运送、有的负责烹饪等等，最终到达 Subscriber 的是一块香喷喷的牛排！我们只需要享受美味即可，其它的工序交给中间的操作者去处理即可。当然，我们也可能收到一些意外情况，比如某个中间环节出了问题，最后我们收到的不是牛排，而是 Failure。</p>
+<p>Combine 提供了大量的 Operator 给我们使用，我不会使用代码演示每一个 Operator 的使用，所谓一图胜千言，对于望图知意的 Operator，我只会给出图片示意。对于比较复杂的情况，我将添加文字说明，必要时会有代码示例。</p>
+<a id="more"></a>
+<h2 id="Mapping-elements"><a href="#Mapping-elements" class="headerlink" title="Mapping elements"></a>Mapping elements</h2><h3 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h3><img src="/Combine-简明教程四：Operators/scan.png">
+<h3 id="tryScan"><a href="#tryScan" class="headerlink" title="tryScan"></a>tryScan</h3><img src="/Combine-简明教程四：Operators/stryScan.png">
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><img src="/Combine-简明教程四：Operators/map.png">
+<p>map 还能使用 keyPath 进行操作，最多支持三个属性，其方法签名如下：</p>
+<ul>
+<li><code>map&lt;T&gt;(_:)</code></li>
+<li><code>map&lt;T0, T1&gt;(_:_:)</code></li>
+<li><code>map&lt;T0, T1, T2&gt;(_:_:_:)</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> publisher = <span class="type">PassthroughSubject</span>&lt;<span class="type">Person</span>, <span class="type">Never</span>&gt;()</span><br><span class="line">publisher</span><br><span class="line">  .<span class="built_in">map</span>(\.name, \.age)</span><br><span class="line">  .sink &#123; (name, age) <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The person's name: <span class="subst">\(name)</span>, age: <span class="subst">\(age)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">The</span> person's name: <span class="type">JFF</span>, age: <span class="number">28</span></span><br></pre></td></tr></table></figure>
+<h3 id="tryMap"><a href="#tryMap" class="headerlink" title="tryMap"></a>tryMap</h3><p>同 tryScan，允许抛出错误。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Just</span>(<span class="string">"Directory name that does not exist"</span>)</span><br><span class="line">    .tryMap &#123; <span class="keyword">try</span> <span class="type">FileManager</span>.<span class="keyword">default</span>.contentsOfDirectory(atPath: $<span class="number">0</span>) &#125;</span><br><span class="line">    .sink(receiveCompletion: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;,</span><br><span class="line">          receiveValue: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br></pre></td></tr></table></figure>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>将所有上游的 publishers 发送的数据转化成一个另一个 publisher，并发送给下游，通过 maxPublishers 参数可以控制需要转化的 publishers 的数量。</p>
+<img src="/Combine-简明教程四：Operators/flatMap.png">
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> age: <span class="type">CurrentValueSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, age: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.age = <span class="type">CurrentValueSubject</span>(age)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="type">Person</span>(name: <span class="string">"JFF"</span>, age: <span class="number">28</span>)</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="type">Person</span>(name: <span class="string">"cc"</span>, age: <span class="number">27</span>)</span><br><span class="line"><span class="keyword">let</span> p3 = <span class="type">Person</span>(name: <span class="string">"maomao"</span>, age: <span class="number">18</span>)</span><br><span class="line"><span class="keyword">let</span> subject = <span class="type">CurrentValueSubject</span>&lt;<span class="type">Person</span>, <span class="type">Never</span>&gt;(p1)</span><br><span class="line">subject</span><br><span class="line">  .sink(receiveValue: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">  .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br><span class="line">subject.value = p2</span><br><span class="line">subject.value = p3</span><br><span class="line">p1.age.value = <span class="number">29</span></span><br><span class="line">p2.age.value = <span class="number">28</span></span><br><span class="line">p3.age.value = <span class="number">19</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Person</span>(name: <span class="string">"JFF"</span>, age: <span class="type">Combine</span>.<span class="type">CurrentValueSubject</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>, <span class="type">Swift</span>.<span class="type">Never</span>&gt;)</span><br><span class="line"><span class="type">Person</span>(name: <span class="string">"cc"</span>, age: <span class="type">Combine</span>.<span class="type">CurrentValueSubject</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>, <span class="type">Swift</span>.<span class="type">Never</span>&gt;)</span><br><span class="line"><span class="type">Person</span>(name: <span class="string">"maomao"</span>, age: <span class="type">Combine</span>.<span class="type">CurrentValueSubject</span>&lt;<span class="type">Swift</span>.<span class="type">Int</span>, <span class="type">Swift</span>.<span class="type">Never</span>&gt;)</span><br></pre></td></tr></table></figure>
+<p>我们发现当我们向 p1.age 发送新的值时，该值并未被打印出来。如果我们需要监听 age 的变化，flatMap 就派上用场了</p>
+<p>将代码改成如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">subject</span><br><span class="line">  .flatMap &#123; $<span class="number">0</span>.age &#125;</span><br><span class="line">  .sink(receiveValue: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">  .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">28</span></span><br><span class="line"><span class="number">27</span></span><br><span class="line"><span class="number">18</span></span><br><span class="line"><span class="number">29</span></span><br><span class="line"><span class="number">28</span></span><br><span class="line"><span class="number">19</span></span><br></pre></td></tr></table></figure>
+<p>我们发现，管道中所有发送的数据都被 flatMap “捕捉”到了并发送给了下游。我们对 flatMap 再做如下改动：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.flatMap(maxPublishers: .<span class="built_in">max</span>(<span class="number">2</span>)) &#123; $<span class="number">0</span>.age &#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">28</span></span><br><span class="line"><span class="number">27</span></span><br><span class="line"><span class="number">29</span></span><br><span class="line"><span class="number">28</span></span><br></pre></td></tr></table></figure>
+<p>p3 产生的数据并没有被发送至下游，因为我们指定了 maxPublishers 的值为 .max(2)，只有 p1、p2 发送的数据才会被处理。</p>
+<h3 id="setFailureType"><a href="#setFailureType" class="headerlink" title="setFailureType"></a>setFailureType</h3><img src="/Combine-简明教程四：Operators/setFailureType.png">
+<p>上游的 publisher 的 Failure 类型必须是 Never。</p>
+<h2 id="Filtering-elements"><a href="#Filtering-elements" class="headerlink" title="Filtering elements"></a>Filtering elements</h2><h3 id="compactMap"><a href="#compactMap" class="headerlink" title="compactMap"></a>compactMap</h3><img src="/Combine-简明教程四：Operators/compactMap.png">
+<h3 id="tryCompactMap"><a href="#tryCompactMap" class="headerlink" title="tryCompactMap"></a>tryCompactMap</h3><p>同 tryMap，允许抛出错误。</p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><img src="/Combine-简明教程四：Operators/filter.png">
+<h3 id="tryFilter"><a href="#tryFilter" class="headerlink" title="tryFilter"></a>tryFilter</h3><p>略。</p>
+<h3 id="removeDuplicates"><a href="#removeDuplicates" class="headerlink" title="removeDuplicates"></a>removeDuplicates</h3><img src="/Combine-简明教程四：Operators/removeDuplicates.png">
+<h3 id="tryRemoveDuplicates"><a href="#tryRemoveDuplicates" class="headerlink" title="tryRemoveDuplicates"></a>tryRemoveDuplicates</h3><p>略。</p>
+<h3 id="replaceEmpty"><a href="#replaceEmpty" class="headerlink" title="replaceEmpty"></a>replaceEmpty</h3><img src="/Combine-简明教程四：Operators/replaceEmpty.png">
+<h3 id="replaceError"><a href="#replaceError" class="headerlink" title="replaceError"></a>replaceError</h3><p>用给定的值替换数据流中的任何一个错误。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.replaceError(with: <span class="string">"foo"</span>)</span><br></pre></td></tr></table></figure>
+<p>如果我们不关心错误的类型，可以用  catch 更优雅地处理：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.<span class="keyword">catch</span> &#123; err <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="type">Just</span>(<span class="string">"foo"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="replaceNil"><a href="#replaceNil" class="headerlink" title="replaceNil"></a>replaceNil</h3><img src="/Combine-简明教程四：Operators/replaceNil.png">
+<h2 id="Reducing-elements"><a href="#Reducing-elements" class="headerlink" title="Reducing elements"></a>Reducing elements</h2><h3 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h3><img src="/Combine-简明教程四：Operators/collect.png">
+<p>collect 不带参数时，会收集所有上游的数据，将其暂存在内存中，直至收到上游的 publisher 发送的 completion 时，它会将所有收集到的数据以数组的形式发送出去。如果上游发送了错误事件，collect 会向下游传递错误。</p>
+<p>iOS 13.3 新增了两个收集数据的策略：</p>
+<ul>
+<li><p>byTime：每隔一段时间，发送一次收集到的数据</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> q = <span class="type">DispatchQueue</span>(label: <span class="keyword">self</span>.debugDescription)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cancellable = publisher</span><br><span class="line">    .collect(.byTime(q, <span class="number">1.0</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>byTimeOrCount：每隔一段时间，或收到指定数量的数据时，发送一次收集到的数据</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> q = <span class="type">DispatchQueue</span>(label: <span class="keyword">self</span>.debugDescription)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cancellable = publisher</span><br><span class="line">    .collect(.byTimeOrCount(q, <span class="number">1.0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="ignoreOutput"><a href="#ignoreOutput" class="headerlink" title="ignoreOutput"></a>ignoreOutput</h3><p>忽略所有上游发送的数据，只传递 completion（finish 或 failed）。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.ignoreOutput()</span><br><span class="line">.sink(receiveCompletion: &#123; completion <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">".sink() received the completion"</span>, <span class="type">String</span>(describing: completion))</span><br><span class="line">    <span class="comment">// 收到 completion 时调用</span></span><br><span class="line">    <span class="keyword">switch</span> completion &#123;</span><br><span class="line">    <span class="keyword">case</span> .finished: </span><br><span class="line">        finishReceived = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> .failure(<span class="keyword">let</span> anError): </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"received error: "</span>, anError)</span><br><span class="line">        failureReceived = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;, receiveValue: &#123; <span class="number">_</span> <span class="keyword">in</span> </span><br><span class="line">		<span class="comment">// 永远不会调用</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">".sink() data received"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><img src="/Combine-简明教程四：Operators/reduce.png">
+<h3 id="tryReduce"><a href="#tryReduce" class="headerlink" title="tryReduce"></a>tryReduce</h3><p>略。</p>
+<h2 id="Mathematic-operations-on-elements"><a href="#Mathematic-operations-on-elements" class="headerlink" title="Mathematic operations on elements"></a>Mathematic operations on elements</h2><h3 id="max"><a href="#max" class="headerlink" title="max"></a>max</h3><img src="/Combine-简明教程四：Operators/max.png">
+<p>如果发送的数据没有遵循 Comparable 协议，可以指定排序策略：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.<span class="built_in">max</span> &#123; (struct1, struct2) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">    <span class="comment">// 必须是由小到大的顺序</span></span><br><span class="line">    <span class="keyword">return</span> struct1.property1 &lt; struct2.property1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tryMax"><a href="#tryMax" class="headerlink" title="tryMax"></a>tryMax</h3><p>略。</p>
+<h3 id="min"><a href="#min" class="headerlink" title="min"></a>min</h3><p>略。</p>
+<h3 id="tryMin"><a href="#tryMin" class="headerlink" title="tryMin"></a>tryMin</h3><p>略。</p>
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><img src="/Combine-简明教程四：Operators/count.png">
+<h2 id="Applying-matching-criteria-to-elements"><a href="#Applying-matching-criteria-to-elements" class="headerlink" title="Applying matching criteria to elements"></a>Applying matching criteria to elements</h2><h3 id="allSatisfy"><a href="#allSatisfy" class="headerlink" title="allSatisfy"></a>allSatisfy</h3><img src="/Combine-简明教程四：Operators/allSatisfy.png">
+<h3 id="tryAllSatisfy"><a href="#tryAllSatisfy" class="headerlink" title="tryAllSatisfy"></a>tryAllSatisfy</h3><p>略。</p>
+<h3 id="contains"><a href="#contains" class="headerlink" title="contains"></a>contains</h3><img src="/Combine-简明教程四：Operators/contains.png">
+<p>一旦找到匹配的值，contains 就会忽略后面产生的数据。如果管道中的所有数据在完成匹配操作前，上游发送了 completion，则会理解返回 false 并且结束数据的发送。</p>
+<h3 id="containsWhere"><a href="#containsWhere" class="headerlink" title="containsWhere"></a>containsWhere</h3><img src="/Combine-简明教程四：Operators/containsWhere.png">
+<h3 id="tryContainsWhere"><a href="#tryContainsWhere" class="headerlink" title="tryContainsWhere"></a>tryContainsWhere</h3><p>略。</p>
+<h2 id="Applying-sequence-operations-to-elements"><a href="#Applying-sequence-operations-to-elements" class="headerlink" title="Applying sequence operations to elements"></a>Applying sequence operations to elements</h2><h3 id="first"><a href="#first" class="headerlink" title="first"></a>first</h3><img src="/Combine-简明教程四：Operators/first.png">
+<h3 id="firstWhere"><a href="#firstWhere" class="headerlink" title="firstWhere"></a>firstWhere</h3><p>略。</p>
+<h3 id="tryFirstWhere"><a href="#tryFirstWhere" class="headerlink" title="tryFirstWhere"></a>tryFirstWhere</h3><p>略</p>
+<h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><img src="/Combine-简明教程四：Operators/last.png">
+<h3 id="lastWhere"><a href="#lastWhere" class="headerlink" title="lastWhere"></a>lastWhere</h3><p>略。</p>
+<h3 id="tryLastWhere"><a href="#tryLastWhere" class="headerlink" title="tryLastWhere"></a>tryLastWhere</h3><p>略。</p>
+<h3 id="dropFirst"><a href="#dropFirst" class="headerlink" title="dropFirst"></a>dropFirst</h3><img src="/Combine-简明教程四：Operators/dropFirst.png">
+<h3 id="dropUntilOutput"><a href="#dropUntilOutput" class="headerlink" title="dropUntilOutput"></a>dropUntilOutput</h3><img src="/Combine-简明教程四：Operators/dropUntilOutput.png">
+<p>忽略所有上游 publisher1 发送的数据，直到另一个 publisher2 发送数据时，才接收 publisher1 发送的数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isReady = <span class="type">PassthroughSubject</span>&lt;<span class="type">Void</span>, <span class="type">Never</span>&gt;()</span><br><span class="line"><span class="keyword">let</span> taps = <span class="type">PassthroughSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;()</span><br><span class="line"></span><br><span class="line">taps</span><br><span class="line">  .drop(untilOutputFrom: isReady)</span><br><span class="line">  .sink(receiveValue: &#123;</span><br><span class="line">    <span class="built_in">print</span>($<span class="number">0</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br><span class="line"></span><br><span class="line">(<span class="number">1</span>...<span class="number">5</span>).forEach &#123; n <span class="keyword">in</span></span><br><span class="line">  taps.send(n)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> n == <span class="number">3</span> &#123;</span><br><span class="line">    isReady.send()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="dropWhile"><a href="#dropWhile" class="headerlink" title="dropWhile"></a>dropWhile</h3><img src="/Combine-简明教程四：Operators/dropWhile.png">
+<h3 id="tryDropWhile"><a href="#tryDropWhile" class="headerlink" title="tryDropWhile"></a>tryDropWhile</h3><p>略。</p>
+<h3 id="prepend"><a href="#prepend" class="headerlink" title="prepend"></a>prepend</h3><img src="/Combine-简明教程四：Operators/prepend.png">
+<img src="/Combine-简明教程四：Operators/prepend2.png">
+<img src="/Combine-简明教程四：Operators/prepend3.png">
+<h3 id="append"><a href="#append" class="headerlink" title="append"></a>append</h3><img src="/Combine-简明教程四：Operators/append.png">
+<img src="/Combine-简明教程四：Operators/append2.png">
+<img src="/Combine-简明教程四：Operators/append3.png">
+<h3 id="prefix"><a href="#prefix" class="headerlink" title="prefix"></a>prefix</h3><img src="/Combine-简明教程四：Operators/prefix.png">
+<h3 id="prefixWhile"><a href="#prefixWhile" class="headerlink" title="prefixWhile"></a>prefixWhile</h3><img src="/Combine-简明教程四：Operators/prefixWhile.png">
+<h3 id="prefixUntilOutput"><a href="#prefixUntilOutput" class="headerlink" title="prefixUntilOutput"></a>prefixUntilOutput</h3><img src="/Combine-简明教程四：Operators/prefixUntilOutput.png">
+<h3 id="tryPrefixWhile"><a href="#tryPrefixWhile" class="headerlink" title="tryPrefixWhile"></a>tryPrefixWhile</h3><p>略。</p>
+<h3 id="output"><a href="#output" class="headerlink" title="output"></a>output</h3><p>发送指定范围内的数据。</p>
+<img src="/Combine-简明教程四：Operators/output.png">
+<img src="/Combine-简明教程四：Operators/output2.png">
+<h2 id="Mixing-elements-from-multiple-publishers"><a href="#Mixing-elements-from-multiple-publishers" class="headerlink" title="Mixing elements from multiple publishers"></a>Mixing elements from multiple publishers</h2><h3 id="combineLatest"><a href="#combineLatest" class="headerlink" title="combineLatest"></a>combineLatest</h3><p>融合一个或多个 publisher，将所有 publishers 的最后发送的值组合成元组向下游发送。combineLatest 发送数据的前提时，所有被融合的 publisher 必须发送至少一个数据。</p>
+<img src="/Combine-简明教程四：Operators/combineLatest.png">
+<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>merge 同 combineLatest 一样，可以传入一个或多个 publisher 参数。</p>
+<img src="/Combine-简明教程四：Operators/merge.png">
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip 可以传入多个 publisher 参数，其输出的元组总是成对的，即需要进行 zip 操作的多个 publisher 之间会相互等待其它的 publisher 发出数据，只有每个 publisher 都发出同样数量的数据后，zip 才会发送组合的元组到下游。</p>
+<img src="/Combine-简明教程四：Operators/zip.png">
+<h2 id="Handling-errors"><a href="#Handling-errors" class="headerlink" title="Handling errors"></a>Handling errors</h2><h3 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h3><p>将上游发送的 .failure 类型的 completion 替换成另一个 publisher，也就是说，使用 catch 后，错位类型等同于变成了 Never。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TestFailureCondition</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> invalidServerResponse</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> simplePublisher = <span class="type">PassthroughSubject</span>&lt;<span class="type">String</span>, <span class="type">Error</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="number">_</span> = simplePublisher</span><br><span class="line">    .<span class="keyword">catch</span> &#123; err <span class="keyword">in</span></span><br><span class="line">        <span class="comment">// must return a Publisher</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">Just</span>(<span class="string">"replacement value"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .sink(receiveCompletion: &#123; fini <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">".sink() received the completion:"</span>, <span class="type">String</span>(describing: fini))</span><br><span class="line">    &#125;, receiveValue: &#123; stringValue <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">".sink() received <span class="subst">\(stringValue)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">simplePublisher.send(<span class="string">"oneValue"</span>)</span><br><span class="line">simplePublisher.send(<span class="string">"twoValue"</span>)</span><br><span class="line">simplePublisher.send(completion: <span class="type">Subscribers</span>.<span class="type">Completion</span>.failure(<span class="type">TestFailureCondition</span>.invalidServerResponse))</span><br><span class="line">simplePublisher.send(<span class="string">"redValue"</span>)</span><br><span class="line">simplePublisher.send(<span class="string">"blueValue"</span>)</span><br><span class="line">simplePublisher.send(completion: .finished)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.sink() received oneValue</span><br><span class="line">.sink() received twoValue</span><br><span class="line">.sink() received replacement value</span><br><span class="line">.sink() received the completion: finished</span><br></pre></td></tr></table></figure>
+<h3 id="tryCatch"><a href="#tryCatch" class="headerlink" title="tryCatch"></a>tryCatch</h3><p>catch 不会抛出 Error 类型的错误，但是 tryCatch 可以。</p>
+<h3 id="assertNoFailure"><a href="#assertNoFailure" class="headerlink" title="assertNoFailure"></a>assertNoFailure</h3><p>一旦上游发送了 .failure 类型的 completion，assertNoFailure 会抛出一个致命的错误，一般用于测试。</p>
+<h3 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h3><p>当 subscription 接收到 .failure 时，尝试指定次数的重试。比如下面的示例就是在网络请求失败时，指定 3 次重试次数，如果都失败了，则会向下游发送错误。不过，我们使用 catch 抛出了一个替换后的  publisher。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IPInfo</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// matching the data structure returned from ip.jsontest.com</span></span><br><span class="line">    <span class="keyword">var</span> ip: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> myURL = <span class="type">URL</span>(string: <span class="string">"http://ip.jsontest.com"</span>)</span><br><span class="line"><span class="comment">// NOTE(heckj): you'll need to enable insecure downloads</span></span><br><span class="line"><span class="comment">// in your  Info.plist for this example</span></span><br><span class="line"><span class="comment">// because the URL scheme is 'http'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> remoteDataPublisher = <span class="type">URLSession</span>.shared.dataTaskPublisher(<span class="keyword">for</span>: myURL!)</span><br><span class="line">    <span class="comment">// the dataTaskPublisher output combination is</span></span><br><span class="line">    <span class="comment">// (data: Data, response: URLResponse)</span></span><br><span class="line">    .retry(<span class="number">3</span>)</span><br><span class="line">    <span class="comment">// if the URLSession returns a .failure completion,</span></span><br><span class="line">    <span class="comment">// retry at most 3 times to get a successful response</span></span><br><span class="line">    .<span class="built_in">map</span>(&#123; (inputTuple) -&gt; <span class="type">Data</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> inputTuple.data</span><br><span class="line">    &#125;)</span><br><span class="line">    .decode(type: <span class="type">IPInfo</span>.<span class="keyword">self</span>, decoder: <span class="type">JSONDecoder</span>())</span><br><span class="line">    .<span class="keyword">catch</span> &#123; err <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">Publishers</span>.<span class="type">Just</span>(<span class="type">IPInfo</span>(ip: <span class="string">"8.8.8.8"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    .eraseToAnyPublisher()</span><br></pre></td></tr></table></figure>
+<h3 id="mapError"><a href="#mapError" class="headerlink" title="mapError"></a>mapError</h3><p>将失败的结果转化为错误。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.mapError &#123; error -&gt; <span class="type">ChangingErrorTests</span>.<span class="type">APIError</span> <span class="keyword">in</span></span><br><span class="line">    <span class="comment">// if it's our kind of error already, we can return it directly</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error <span class="keyword">as</span>? <span class="type">APIError</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> error</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if it is a URLError, we can convert it into our more general error kind</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> urlerror = error <span class="keyword">as</span>? <span class="type">URLError</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">APIError</span>.networkError(from: urlerror)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if all else fails, return the unknown error condition</span></span><br><span class="line">    <span class="keyword">return</span> <span class="type">APIError</span>.unknown</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Adapting-publisher-types"><a href="#Adapting-publisher-types" class="headerlink" title="Adapting publisher types"></a>Adapting publisher types</h2><h3 id="switchToLatest"><a href="#switchToLatest" class="headerlink" title="switchToLatest"></a>switchToLatest</h3><p>字面意思就是切换到最近的 publisher，这比较难理解，结合图解和代码来看：</p>
+<img src="/Combine-简明教程四：Operators/switchToLatest.png">
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> publisher1 = <span class="type">PassthroughSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;()</span><br><span class="line"><span class="keyword">let</span> publisher2 = <span class="type">PassthroughSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;()</span><br><span class="line"><span class="keyword">let</span> publisher3 = <span class="type">PassthroughSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> publishers = <span class="type">PassthroughSubject</span>&lt;<span class="type">PassthroughSubject</span>&lt;<span class="type">Int</span>, <span class="type">Never</span>&gt;, <span class="type">Never</span>&gt;()</span><br><span class="line"></span><br><span class="line">publishers</span><br><span class="line">  .switchToLatest()</span><br><span class="line">  .sink(receiveCompletion: &#123; <span class="number">_</span> <span class="keyword">in</span> <span class="built_in">print</span>(<span class="string">"Completed!"</span>) &#125;,</span><br><span class="line">        receiveValue: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">  .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br><span class="line"></span><br><span class="line">publishers.send(publisher1)</span><br><span class="line">publisher1.send(<span class="number">1</span>)</span><br><span class="line">publisher1.send(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">publishers.send(publisher2)</span><br><span class="line">publisher1.send(<span class="number">3</span>)</span><br><span class="line">publisher2.send(<span class="number">4</span>)</span><br><span class="line">publisher2.send(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">publishers.send(publisher3)</span><br><span class="line">publisher2.send(<span class="number">6</span>)</span><br><span class="line">publisher3.send(<span class="number">7</span>)</span><br><span class="line">publisher3.send(<span class="number">8</span>)</span><br><span class="line">publisher3.send(<span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">publisher3.send(completion: .finished)</span><br><span class="line">publishers.send(completion: .finished)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="type">Completed</span>!</span><br></pre></td></tr></table></figure>
+<p>从中我们可以看出，3 和 6 并没有输出。正是因为 <code>switchToLatest</code> 的作用，当我们调用 publishers.send 时，之前的 subscription 会被取消，新的 publisher 成为 publishers 当前有效的 subscription，之前被取消的 subscription 继续调用 send(_:) 自然不会起作用了。</p>
+<p>想象一下如下场景，当我们点击一个按钮发起网络请求时，当网络请求还没有返回数据时，如果我们再点击一次按钮，发送一个新的网络请求，我们希望使用第二个网络请求返回的数据，该如何处理？switchToLatest 就是答案。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> url = <span class="type">URL</span>(string: <span class="string">"https://source.unsplash.com/random"</span>)!</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getImage</span><span class="params">()</span></span> -&gt; <span class="type">AnyPublisher</span>&lt;<span class="type">UIImage</span>?, <span class="type">Never</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">URLSession</span>.shared</span><br><span class="line">                     .dataTaskPublisher(<span class="keyword">for</span>: url)</span><br><span class="line">                     .<span class="built_in">map</span> &#123; data, <span class="number">_</span> <span class="keyword">in</span> <span class="type">UIImage</span>(data: data) &#125;</span><br><span class="line">                     .<span class="built_in">print</span>(<span class="string">"image"</span>)</span><br><span class="line">                     .replaceError(with: <span class="literal">nil</span>)</span><br><span class="line">                     .eraseToAnyPublisher()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> taps = <span class="type">PassthroughSubject</span>&lt;<span class="type">Void</span>, <span class="type">Never</span>&gt;()</span><br><span class="line">taps</span><br><span class="line">  .<span class="built_in">map</span> &#123; <span class="number">_</span> <span class="keyword">in</span> getImage() &#125; </span><br><span class="line">  .switchToLatest() </span><br><span class="line">  .sink(receiveValue: &#123; <span class="number">_</span> <span class="keyword">in</span> &#125;)</span><br><span class="line">  .store(<span class="keyword">in</span>: &amp;subscriptions)</span><br><span class="line"></span><br><span class="line">taps.send()</span><br><span class="line"><span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">3</span>) &#123;</span><br><span class="line">  taps.send()</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">DispatchQueue</span>.main.asyncAfter(deadline: .now() + <span class="number">3.1</span>) &#123;</span><br><span class="line">  taps.send()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码演示了三次点击事件获取网络图片的过程，第二次和第三次间隔时间只有 0.1 s，最后输出的结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">image: receive subscription: (<span class="type">DataTaskPublisher</span>)</span><br><span class="line">image: request unlimited</span><br><span class="line">image: receive value: (<span class="type">Optional</span>(&lt;<span class="type">UIImage</span>:<span class="number">0x600000364120</span> anonymous &#123;<span class="number">1080</span>, <span class="number">720</span>&#125;&gt;))</span><br><span class="line">image: receive finished</span><br><span class="line">image: receive subscription: (<span class="type">DataTaskPublisher</span>)</span><br><span class="line">image: request unlimited</span><br><span class="line">image: receive cancel</span><br><span class="line">image: receive subscription: (<span class="type">DataTaskPublisher</span>)</span><br><span class="line">image: request unlimited</span><br><span class="line">image: receive value: (<span class="type">Optional</span>(&lt;<span class="type">UIImage</span>:<span class="number">0x600000378d80</span> anonymous &#123;<span class="number">1080</span>, <span class="number">1620</span>&#125;&gt;))</span><br><span class="line">image: receive finished”</span><br></pre></td></tr></table></figure>
+<p>我们可以明显地看到，在 0.1s 后，第三次点击事件触发时，第二次点击事件尚未返回图片时，第二次 subscription 被取消了，最新的 subscription 切换至了第三次 subscription。</p>
+<h2 id="Controlling-timing"><a href="#Controlling-timing" class="headerlink" title="Controlling timing"></a>Controlling timing</h2><h3 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h3><p>在指定的时间内，如果管道没有接收到新的数据，就将最近的数据发送至下游。比如，我们在一个 TextField 中输入内容需要即时搜索，但是又不希望每次输入内容发生变化时就立即发起网络请求，就可以用到 debounce，指定一个时间，当用户停止输入的某个时间后，再去请求网络，以节省资源。</p>
+<img src="/Combine-简明教程四：Operators/debounce.png">
+<h3 id="delay"><a href="#delay" class="headerlink" title="delay"></a>delay</h3><p>延迟要发送的数据。</p>
+<h3 id="measureInterval"><a href="#measureInterval" class="headerlink" title="measureInterval"></a>measureInterval</h3><p>计量并输出上游输出事件之间的间隔时间。</p>
+<h3 id="throttle"><a href="#throttle" class="headerlink" title="throttle"></a>throttle</h3><p>与 debounce 相似，区别在于，debounce 选择的是指定时间间隔后的前一个值，而 throttle 选择的是后面的值，而且可以指定是否最后一个值。</p>
+<img src="/Combine-简明教程四：Operators/throttle.png">
+<h3 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h3><p>如果在指定时间内，上游没有发出所需的数据，那就结束发布事件。比如，我们可以用它来指定网络请求允许的时间。</p>
+<h2 id="Encoding-and-decoding"><a href="#Encoding-and-decoding" class="headerlink" title="Encoding and decoding"></a>Encoding and decoding</h2><h3 id="encode"><a href="#encode" class="headerlink" title="encode"></a>encode</h3><p>使用指定的编码器加密输出的数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="class"><span class="keyword">struct</span> <span class="title">PostmanEchoTimeStampCheckResponse</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> valid: <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dataProvider = <span class="type">PassthroughSubject</span>&lt;<span class="type">PostmanEchoTimeStampCheckResponse</span>, <span class="type">Never</span>&gt;()</span><br><span class="line">    .encode(encoder: <span class="type">JSONEncoder</span>())</span><br><span class="line">    .sink &#123; data <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">".sink() data received <span class="subst">\(data)</span>"</span>)</span><br><span class="line">        <span class="keyword">let</span> stringRepresentation = <span class="type">String</span>(data: data, encoding: .utf8)</span><br><span class="line">        <span class="built_in">print</span>(stringRepresentation)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h3><p>使用指定的解码器解码输出的数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testUrlString = <span class="string">"https://postman-echo.com/time/valid?timestamp=2016-10-10"</span></span><br><span class="line"><span class="comment">// checks the validity of a timestamp - this one should return &#123;"valid":true&#125;</span></span><br><span class="line"><span class="comment">// matching the data structure returned from https://postman-echo.com/time/valid</span></span><br><span class="line"><span class="keyword">fileprivate</span> <span class="class"><span class="keyword">struct</span> <span class="title">PostmanEchoTimeStampCheckResponse</span>: <span class="title">Decodable</span>, <span class="title">Hashable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> valid: <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> remoteDataPublisher = <span class="type">URLSession</span>.shared.dataTaskPublisher(<span class="keyword">for</span>: <span class="type">URL</span>(string: testUrlString)!)</span><br><span class="line">    <span class="comment">// the dataTaskPublisher output combination is (data: Data, response: URLResponse)</span></span><br><span class="line">    .<span class="built_in">map</span> &#123; $<span class="number">0</span>.data &#125;</span><br><span class="line">    .decode(type: <span class="type">PostmanEchoTimeStampCheckResponse</span>.<span class="keyword">self</span>, decoder: <span class="type">JSONDecoder</span>())</span><br></pre></td></tr></table></figure>
+<h2 id="Working-with-multiple-subscribers"><a href="#Working-with-multiple-subscribers" class="headerlink" title="Working with multiple subscribers"></a>Working with multiple subscribers</h2><h3 id="share、multicast"><a href="#share、multicast" class="headerlink" title="share、multicast"></a>share、multicast</h3><p>Publisher 一般都是结构体类型，调用 share() 会返回一个引用类型的 Publisher，可以实现多个 Subscriber 共享一个 Publisher 的效果，避免重复创建多个 Publisher。</p>
+<p>然而，share() 有个弊端，当下游的 Subscriber 向 Publisher 索取数据的时候，如果共享的 Publisher 已经结束了数据的发布，下游的 Subscriber 就只能接收发布的结束事件，无法获取到数据流中的数据。</p>
+<p>这时，我们需要用到 multicast()，它能确保所有的订阅者都能收到数据流中的数据。</p>
+<h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><h3 id="breakpoint"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</h3><p>在需要触发断点的地方，触发断点调试。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.breakpoint(receiveSubscription: &#123; subscription <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// return true to throw SIGTRAP and invoke the debugger</span></span><br><span class="line">&#125;, receiveOutput: &#123; value <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// return true to throw SIGTRAP and invoke the debugger</span></span><br><span class="line">&#125;, receiveCompletion: &#123; completion <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="comment">// return true to throw SIGTRAP and invoke the debugger</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="breakpointOnError"><a href="#breakpointOnError" class="headerlink" title="breakpointOnError"></a>breakpointOnError</h3><p>遇到错误时，触发断点调试。</p>
+<h3 id="handleEvents"><a href="#handleEvents" class="headerlink" title="handleEvents"></a>handleEvents</h3><p>publisher 发布的事件状态发生变化时的回调。主要有以下几种状态：</p>
+<ul>
+<li><code>receiveSubscription</code></li>
+<li><code>receiveOutput</code></li>
+<li><code>receiveCompletion</code></li>
+<li><code>receiveCancel</code></li>
+<li><code>receiveRequest</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.handleEvents(receiveSubscription: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">    <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">        <span class="keyword">self</span>.activityIndicator.startAnimating()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, receiveCompletion: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">    <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">        <span class="keyword">self</span>.activityIndicator.stopAnimating()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, receiveCancel: &#123;</span><br><span class="line">    <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">        <span class="keyword">self</span>.activityIndicator.stopAnimating()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>打印发布事件的日志信息。</p>
+<h2 id="Scheduler-and-Thread-handling-operators"><a href="#Scheduler-and-Thread-handling-operators" class="headerlink" title="Scheduler and Thread handling operators"></a>Scheduler and Thread handling operators</h2><h3 id="receive"><a href="#receive" class="headerlink" title="receive"></a>receive</h3><p>指定接收数据的调度器（<a href="https://developer.apple.com/documentation/combine/scheduler" target="_blank" rel="noopener">Scheduler</a>)，通常这里的 Scheduler 指的是：<a href="https://developer.apple.com/documentation/foundation/runloop" target="_blank" rel="noopener">RunLoop</a>、<a href="https://developer.apple.com/documentation/dispatch/dispatchqueue" target="_blank" rel="noopener">DispatchQueue</a>、<a href="https://developer.apple.com/documentation/foundation/operationqueue" target="_blank" rel="noopener">OperationQueue</a>。</p>
+<h3 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h3><p>指定运行 publisher 的调度器。与 receive 不同，subscribe 影响的是管道的上游，而 receive 影响的是下游。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">networkDataPublisher</span><br><span class="line">    .subscribe(on: backgroundQueue) </span><br><span class="line">    .receive(on: <span class="type">RunLoop</span>.main) </span><br><span class="line">    .assign(to: \.text, on: yourLabel)</span><br></pre></td></tr></table></figure>
+<p>上面这段代码的意思是：在 backgroundQueue 线程调用 publisher，在主线程接收数据并更新 youLabel。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://heckj.github.io/swiftui-notes/" target="_blank" rel="noopener">Using Combine</a></li>
+<li><a href="https://store.raywenderlich.com/products/combine-asynchronous-programming-with-swift" target="_blank" rel="noopener">Combine: Asynchronous Programming with Swift</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Combine-简明教程四：Operators.html" title="Combine 简明教程四：Operators">http://keisme.cn/Combine-简明教程四：Operators.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+            <a href="/tags/combine/" rel="tag"><i class="fa fa-tag"></i> combine</a>
+          
+            <a href="/tags/operators/" rel="tag"><i class="fa fa-tag"></i> operators</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Combine-简明教程三：Subject.html" rel="next" title="Combine 简明教程三：Subject">
+                <i class="fa fa-chevron-left"></i> Combine 简明教程三：Subject
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/zengke1989" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                    
+                      <i class="fa fa-fw fa-play"></i>Youku</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
+                    
+                      <i class="fa fa-fw fa-music"></i>Music</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapping-elements"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Mapping-elements" class="headerlink" title="Mapping elements"></a>Mapping elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scan"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#scan" class="headerlink" title="scan"></a>scan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryScan"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#tryScan" class="headerlink" title="tryScan"></a>tryScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#map" class="headerlink" title="map"></a>map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryMap"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#tryMap" class="headerlink" title="tryMap"></a>tryMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flatMap"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setFailureType"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#setFailureType" class="headerlink" title="setFailureType"></a>setFailureType</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filtering-elements"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Filtering-elements" class="headerlink" title="Filtering elements"></a>Filtering elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compactMap"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#compactMap" class="headerlink" title="compactMap"></a>compactMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryCompactMap"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#tryCompactMap" class="headerlink" title="tryCompactMap"></a>tryCompactMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#filter" class="headerlink" title="filter"></a>filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryFilter"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#tryFilter" class="headerlink" title="tryFilter"></a>tryFilter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#removeDuplicates"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#removeDuplicates" class="headerlink" title="removeDuplicates"></a>removeDuplicates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryRemoveDuplicates"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#tryRemoveDuplicates" class="headerlink" title="tryRemoveDuplicates"></a>tryRemoveDuplicates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replaceEmpty"><span class="nav-number">2.7.</span> <span class="nav-text"><a href="#replaceEmpty" class="headerlink" title="replaceEmpty"></a>replaceEmpty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replaceError"><span class="nav-number">2.8.</span> <span class="nav-text"><a href="#replaceError" class="headerlink" title="replaceError"></a>replaceError</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replaceNil"><span class="nav-number">2.9.</span> <span class="nav-text"><a href="#replaceNil" class="headerlink" title="replaceNil"></a>replaceNil</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reducing-elements"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Reducing-elements" class="headerlink" title="Reducing elements"></a>Reducing elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#collect"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#collect" class="headerlink" title="collect"></a>collect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ignoreOutput"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#ignoreOutput" class="headerlink" title="ignoreOutput"></a>ignoreOutput</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryReduce"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#tryReduce" class="headerlink" title="tryReduce"></a>tryReduce</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematic-operations-on-elements"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Mathematic-operations-on-elements" class="headerlink" title="Mathematic operations on elements"></a>Mathematic operations on elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#max"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#max" class="headerlink" title="max"></a>max</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryMax"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#tryMax" class="headerlink" title="tryMax"></a>tryMax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#min"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#min" class="headerlink" title="min"></a>min</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryMin"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#tryMin" class="headerlink" title="tryMin"></a>tryMin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#count"><span class="nav-number">4.5.</span> <span class="nav-text"><a href="#count" class="headerlink" title="count"></a>count</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applying-matching-criteria-to-elements"><span class="nav-number">5.</span> <span class="nav-text"><a href="#Applying-matching-criteria-to-elements" class="headerlink" title="Applying matching criteria to elements"></a>Applying matching criteria to elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#allSatisfy"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#allSatisfy" class="headerlink" title="allSatisfy"></a>allSatisfy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryAllSatisfy"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#tryAllSatisfy" class="headerlink" title="tryAllSatisfy"></a>tryAllSatisfy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#contains"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#contains" class="headerlink" title="contains"></a>contains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#containsWhere"><span class="nav-number">5.4.</span> <span class="nav-text"><a href="#containsWhere" class="headerlink" title="containsWhere"></a>containsWhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryContainsWhere"><span class="nav-number">5.5.</span> <span class="nav-text"><a href="#tryContainsWhere" class="headerlink" title="tryContainsWhere"></a>tryContainsWhere</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applying-sequence-operations-to-elements"><span class="nav-number">6.</span> <span class="nav-text"><a href="#Applying-sequence-operations-to-elements" class="headerlink" title="Applying sequence operations to elements"></a>Applying sequence operations to elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#first"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#first" class="headerlink" title="first"></a>first</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firstWhere"><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#firstWhere" class="headerlink" title="firstWhere"></a>firstWhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryFirstWhere"><span class="nav-number">6.3.</span> <span class="nav-text"><a href="#tryFirstWhere" class="headerlink" title="tryFirstWhere"></a>tryFirstWhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">6.4.</span> <span class="nav-text"><a href="#last" class="headerlink" title="last"></a>last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lastWhere"><span class="nav-number">6.5.</span> <span class="nav-text"><a href="#lastWhere" class="headerlink" title="lastWhere"></a>lastWhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryLastWhere"><span class="nav-number">6.6.</span> <span class="nav-text"><a href="#tryLastWhere" class="headerlink" title="tryLastWhere"></a>tryLastWhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropFirst"><span class="nav-number">6.7.</span> <span class="nav-text"><a href="#dropFirst" class="headerlink" title="dropFirst"></a>dropFirst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropUntilOutput"><span class="nav-number">6.8.</span> <span class="nav-text"><a href="#dropUntilOutput" class="headerlink" title="dropUntilOutput"></a>dropUntilOutput</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropWhile"><span class="nav-number">6.9.</span> <span class="nav-text"><a href="#dropWhile" class="headerlink" title="dropWhile"></a>dropWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryDropWhile"><span class="nav-number">6.10.</span> <span class="nav-text"><a href="#tryDropWhile" class="headerlink" title="tryDropWhile"></a>tryDropWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prepend"><span class="nav-number">6.11.</span> <span class="nav-text"><a href="#prepend" class="headerlink" title="prepend"></a>prepend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#append"><span class="nav-number">6.12.</span> <span class="nav-text"><a href="#append" class="headerlink" title="append"></a>append</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prefix"><span class="nav-number">6.13.</span> <span class="nav-text"><a href="#prefix" class="headerlink" title="prefix"></a>prefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prefixWhile"><span class="nav-number">6.14.</span> <span class="nav-text"><a href="#prefixWhile" class="headerlink" title="prefixWhile"></a>prefixWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prefixUntilOutput"><span class="nav-number">6.15.</span> <span class="nav-text"><a href="#prefixUntilOutput" class="headerlink" title="prefixUntilOutput"></a>prefixUntilOutput</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryPrefixWhile"><span class="nav-number">6.16.</span> <span class="nav-text"><a href="#tryPrefixWhile" class="headerlink" title="tryPrefixWhile"></a>tryPrefixWhile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output"><span class="nav-number">6.17.</span> <span class="nav-text"><a href="#output" class="headerlink" title="output"></a>output</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixing-elements-from-multiple-publishers"><span class="nav-number">7.</span> <span class="nav-text"><a href="#Mixing-elements-from-multiple-publishers" class="headerlink" title="Mixing elements from multiple publishers"></a>Mixing elements from multiple publishers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#combineLatest"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#combineLatest" class="headerlink" title="combineLatest"></a>combineLatest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">7.2.</span> <span class="nav-text"><a href="#merge" class="headerlink" title="merge"></a>merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip"><span class="nav-number">7.3.</span> <span class="nav-text"><a href="#zip" class="headerlink" title="zip"></a>zip</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-errors"><span class="nav-number">8.</span> <span class="nav-text"><a href="#Handling-errors" class="headerlink" title="Handling errors"></a>Handling errors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#catch"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#catch" class="headerlink" title="catch"></a>catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tryCatch"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#tryCatch" class="headerlink" title="tryCatch"></a>tryCatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assertNoFailure"><span class="nav-number">8.3.</span> <span class="nav-text"><a href="#assertNoFailure" class="headerlink" title="assertNoFailure"></a>assertNoFailure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#retry"><span class="nav-number">8.4.</span> <span class="nav-text"><a href="#retry" class="headerlink" title="retry"></a>retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapError"><span class="nav-number">8.5.</span> <span class="nav-text"><a href="#mapError" class="headerlink" title="mapError"></a>mapError</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapting-publisher-types"><span class="nav-number">9.</span> <span class="nav-text"><a href="#Adapting-publisher-types" class="headerlink" title="Adapting publisher types"></a>Adapting publisher types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#switchToLatest"><span class="nav-number">9.1.</span> <span class="nav-text"><a href="#switchToLatest" class="headerlink" title="switchToLatest"></a>switchToLatest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controlling-timing"><span class="nav-number">10.</span> <span class="nav-text"><a href="#Controlling-timing" class="headerlink" title="Controlling timing"></a>Controlling timing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#debounce"><span class="nav-number">10.1.</span> <span class="nav-text"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delay"><span class="nav-number">10.2.</span> <span class="nav-text"><a href="#delay" class="headerlink" title="delay"></a>delay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#measureInterval"><span class="nav-number">10.3.</span> <span class="nav-text"><a href="#measureInterval" class="headerlink" title="measureInterval"></a>measureInterval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#throttle"><span class="nav-number">10.4.</span> <span class="nav-text"><a href="#throttle" class="headerlink" title="throttle"></a>throttle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timeout"><span class="nav-number">10.5.</span> <span class="nav-text"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoding-and-decoding"><span class="nav-number">11.</span> <span class="nav-text"><a href="#Encoding-and-decoding" class="headerlink" title="Encoding and decoding"></a>Encoding and decoding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encode"><span class="nav-number">11.1.</span> <span class="nav-text"><a href="#encode" class="headerlink" title="encode"></a>encode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decode"><span class="nav-number">11.2.</span> <span class="nav-text"><a href="#decode" class="headerlink" title="decode"></a>decode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-multiple-subscribers"><span class="nav-number">12.</span> <span class="nav-text"><a href="#Working-with-multiple-subscribers" class="headerlink" title="Working with multiple subscribers"></a>Working with multiple subscribers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#share、multicast"><span class="nav-number">12.1.</span> <span class="nav-text"><a href="#share&#x3001;multicast" class="headerlink" title="share&#x3001;multicast"></a>share&#x3001;multicast</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debugging"><span class="nav-number">13.</span> <span class="nav-text"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#breakpoint"><span class="nav-number">13.1.</span> <span class="nav-text"><a href="#breakpoint" class="headerlink" title="breakpoint"></a>breakpoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#breakpointOnError"><span class="nav-number">13.2.</span> <span class="nav-text"><a href="#breakpointOnError" class="headerlink" title="breakpointOnError"></a>breakpointOnError</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handleEvents"><span class="nav-number">13.3.</span> <span class="nav-text"><a href="#handleEvents" class="headerlink" title="handleEvents"></a>handleEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#print"><span class="nav-number">13.4.</span> <span class="nav-text"><a href="#print" class="headerlink" title="print"></a>print</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scheduler-and-Thread-handling-operators"><span class="nav-number">14.</span> <span class="nav-text"><a href="#Scheduler-and-Thread-handling-operators" class="headerlink" title="Scheduler and Thread handling operators"></a>Scheduler and Thread handling operators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#receive"><span class="nav-number">14.1.</span> <span class="nav-text"><a href="#receive" class="headerlink" title="receive"></a>receive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subscribe"><span class="nav-number">14.2.</span> <span class="nav-text"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共57.4k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
