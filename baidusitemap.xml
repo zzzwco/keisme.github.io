@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://keisme.cn/LazyHStack%E3%80%81LazyVStack%E3%80%81LazyHGrid%E3%80%81LazyVGrid-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html</loc>
-    <lastmod>2020-07-22T15:15:51.340Z</lastmod>
+    <loc>http://keisme.cn/SwiftUI%EF%BC%88iOS-14%EF%BC%89%E6%96%B0%E5%A2%9E%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%EF%BC%88Property-Wrapper%EF%BC%89.html</loc>
+    <lastmod>2020-07-22T15:21:03.567Z</lastmod>
     <data>
         <display>
-        <title>LazyHStack、LazyVStack、LazyHGrid、LazyVGrid 使用手册</title>
-        <pubTime>2020-07-22T14:43:17.000Z</pubTime>
+        <title>SwiftUI（iOS 14）新增属性包装器（Property Wrapper）</title>
+        <pubTime>2020-07-22T14:36:20.000Z</pubTime>
         
         <tag>ios</tag>
          
@@ -26,12 +26,12 @@
 
     
   <url>
-    <loc>http://keisme.cn/SwiftUI%EF%BC%88iOS-14%EF%BC%89%E6%96%B0%E5%A2%9E%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%EF%BC%88Property-Wrapper%EF%BC%89.html</loc>
-    <lastmod>2020-07-22T14:39:16.427Z</lastmod>
+    <loc>http://keisme.cn/LazyHStack%E3%80%81LazyVStack%E3%80%81LazyHGrid%E3%80%81LazyVGrid-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html</loc>
+    <lastmod>2020-07-22T15:15:51.340Z</lastmod>
     <data>
         <display>
-        <title>SwiftUI（iOS 14）新增属性包装器（Property Wrapper）</title>
-        <pubTime>2020-07-22T14:36:20.000Z</pubTime>
+        <title>LazyHStack、LazyVStack、LazyHGrid、LazyVGrid 使用手册</title>
+        <pubTime>2020-07-22T14:43:17.000Z</pubTime>
         
         <tag>ios</tag>
          
