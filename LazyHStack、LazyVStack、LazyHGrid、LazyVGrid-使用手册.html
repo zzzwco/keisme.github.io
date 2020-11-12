@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://keisme.cn/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册/h2.png">
 <meta property="og:image" content="http://keisme.cn/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册/v1.png">
 <meta property="og:image" content="http://keisme.cn/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册/v2.png">
-<meta property="og:updated_time" content="2020-07-22T15:15:51.340Z">
+<meta property="og:updated_time" content="2020-11-12T14:51:47.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LazyHStack、LazyVStack、LazyHGrid、LazyVGrid 使用手册">
 <meta name="twitter:description" content="LazyStackLazyHStack、LazyVStack 就是 HStack、VStack 的懒加载版，使用较简单。 LazyHStack12345678910111213141516171819202122232425struct LazyHStackView: View &amp;#123;  var body: some View &amp;#123;    VStack(spacing: 20) &amp;#">
@@ -430,6 +430,7 @@
       
         <h2 id="LazyStack"><a href="#LazyStack" class="headerlink" title="LazyStack"></a>LazyStack</h2><p>LazyHStack、LazyVStack 就是 HStack、VStack 的懒加载版，使用较简单。</p>
 <h3 id="LazyHStack"><a href="#LazyHStack" class="headerlink" title="LazyHStack"></a>LazyHStack</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LazyHStackView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">VStack</span>(spacing: <span class="number">20</span>) &#123;</span><br><span class="line">      <span class="type">ScrollView</span>(.horizontal) &#123;</span><br><span class="line">        <span class="type">LazyHStack</span> &#123;</span><br><span class="line">          <span class="type">ForEach</span>(<span class="number">1</span>...<span class="number">100</span>, id: \.<span class="keyword">self</span>) &#123; <span class="built_in">count</span> <span class="keyword">in</span></span><br><span class="line">            <span class="type">Text</span>(<span class="string">"Placeholder <span class="subst">\(<span class="built_in">count</span>)</span>"</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="type">ScrollView</span>(.horizontal, showsIndicators: <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="type">LazyHStack</span>(alignment: .center, spacing: <span class="number">20</span>, pinnedViews: [.sectionHeaders, .sectionFooters]) &#123;</span><br><span class="line">          <span class="type">Section</span>(</span><br><span class="line">            header: <span class="type">Text</span>(<span class="string">"Header"</span>).background(<span class="type">Color</span>.white),</span><br><span class="line">            footer: <span class="type">Text</span>(<span class="string">"Footer"</span>).background(<span class="type">Color</span>.white)) &#123;</span><br><span class="line">            <span class="type">ForEach</span>(<span class="number">1</span>...<span class="number">100</span>, id: \.<span class="keyword">self</span>) &#123; <span class="built_in">count</span> <span class="keyword">in</span></span><br><span class="line">              <span class="type">Text</span>(<span class="string">"Placeholder <span class="subst">\(<span class="built_in">count</span>)</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <img src="/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册/1.png">
 <h3 id="LazyVStack"><a href="#LazyVStack" class="headerlink" title="LazyVStack"></a>LazyVStack</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LazyVStackView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="type">VStack</span>(spacing: <span class="number">20</span>) &#123;</span><br><span class="line">      <span class="type">ScrollView</span> &#123;</span><br><span class="line">        <span class="type">LazyVStack</span> &#123;</span><br><span class="line">          <span class="type">ForEach</span>(<span class="number">1</span>...<span class="number">100</span>, id: \.<span class="keyword">self</span>) &#123; <span class="built_in">count</span> <span class="keyword">in</span></span><br><span class="line">            <span class="type">Text</span>(<span class="string">"Placeholder <span class="subst">\(<span class="built_in">count</span>)</span>"</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="type">Divider</span>()</span><br><span class="line">      </span><br><span class="line">      <span class="type">ScrollView</span>(showsIndicators: <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="type">LazyVStack</span>(alignment: .center, spacing: <span class="number">20</span>, pinnedViews: [.sectionHeaders, .sectionFooters]) &#123;</span><br><span class="line">          <span class="type">Section</span>(</span><br><span class="line">            header: <span class="type">Text</span>(<span class="string">"Header"</span>)</span><br><span class="line">              .frame(maxWidth: .infinity)</span><br><span class="line">              .background(<span class="type">Color</span>.white),</span><br><span class="line">            footer: <span class="type">Text</span>(<span class="string">"Footer"</span>)</span><br><span class="line">              .frame(maxWidth: .infinity)</span><br><span class="line">              .background(<span class="type">Color</span>.white)) &#123;</span><br><span class="line">            <span class="type">ForEach</span>(<span class="number">1</span>...<span class="number">100</span>, id: \.<span class="keyword">self</span>) &#123; <span class="built_in">count</span> <span class="keyword">in</span></span><br><span class="line">              <span class="type">Text</span>(<span class="string">"Placeholder <span class="subst">\(<span class="built_in">count</span>)</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      .edgesIgnoringSafeArea(.all)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <img src="/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册/2.png">
@@ -532,6 +533,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/Swift-中的协议、泛型、不透明类型.html" rel="prev" title="Swift 中的协议、泛型、不透明类型">
+                Swift 中的协议、泛型、不透明类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -622,7 +627,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -644,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -670,15 +675,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                  <a href="https://twitter.com/J2F147" target="_blank" title="Twitter">
                     
-                      <i class="fa fa-fw fa-play"></i>Youku</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
-                    
-                      <i class="fa fa-fw fa-music"></i>Music</a>
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
             
@@ -755,7 +754,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共58.8k字</span>
+  <span class="post-count">博客全站共62.4k字</span>
 </div>
 
         

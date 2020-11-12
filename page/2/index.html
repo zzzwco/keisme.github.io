@@ -305,6 +305,514 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/App-Store-提交审核被拒记录.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/App-Store-提交审核被拒记录.html" itemprop="url">App Store 提交审核被拒记录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-23T22:27:22+08:00">
+                2020-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  258
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ITMS-90809-Deprecated-API-Usage"><a href="#ITMS-90809-Deprecated-API-Usage" class="headerlink" title="ITMS-90809: Deprecated API Usage"></a><strong>ITMS-90809: Deprecated API Usage</strong></h1><p>最近提交的 App 遇到了这个问题，邮件中提到的是被废弃的 UIWebView API，在工程中全局搜索后没有找到 UIWebView。想来必然是第三方静态库使用了，在工程目录下使用命令<code>grep -r UIWebView .</code>查看哪些库使用了 UIWebView，移除或升级相关库即可。</p>
+<h1 id="ITMS-90381-Too-many-symbol-files"><a href="#ITMS-90381-Too-many-symbol-files" class="headerlink" title="ITMS-90381: Too many symbol files"></a>ITMS-90381: Too many symbol files</h1><p>项目本身设置了 Valid Architecture 为 arm64、arm64e，但是因为使用了支持 32 位设备的三方库，所以生成了冗余的 symbols 文件。</p>
+<p>查询 symbols 文件的生成情况：Xcode Window -&gt; Organizer 选择有问题的 archive，右击选择 Show in finder，命令行进入 <em>.app 中的 dSYMs 文件夹，执行 `dwarfdump –uuid </em>` 可以查询到是否生成了多余的文件。</p>
+<p>解决方法是在 Podfile 中添加如下内容：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">post_install <span class="built_in">do</span> |<span class="type">installer</span>|<span class="type"></span></span><br><span class="line"><span class="type">    installer</span>.pods_project.targets.each <span class="built_in">do</span> |<span class="type">target</span>|<span class="type"></span></span><br><span class="line"><span class="type">        target</span>.build_configurations.each <span class="built_in">do</span> |<span class="type">config</span>|<span class="type"></span></span><br><span class="line"><span class="type">            config</span>.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>在<code>platform :ios, &#39;12.0&#39;</code>这一行下面添加即可，然后重新<code>pod install --verbose</code>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Flutter-PATH（fish-shell）设置和镜像设置.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Flutter-PATH（fish-shell）设置和镜像设置.html" itemprop="url">Flutter PATH（fish shell）设置和镜像设置</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-14T22:38:22+08:00">
+                2020-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  137
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你在 Mac 下使用的 fish shell，按照<a href="https://flutter.dev/docs/get-started/install/macos#update-your-path" target="_blank" rel="noopener">官方教程</a>设置 flutter 的路径是不会永久生效的。解决方法如下：</p>
+<p><code>vi ~/.config/fish/config.fish</code></p>
+<p>写入如下内容：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">PATH</span> &lt;flutter安装路径&gt;/flutter/<span class="keyword">bin</span> $<span class="keyword">PATH</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>echo $PATH</code>查看，发现已经生效，即使退出终端再次打开，依然能正常使用 flutter 的相关命令。</p>
+<p>安装好 flutter 后，使用<code>flutter doctor</code>命令，结果一直卡住不动了。。。后来才明白是 TC 的网络问题，参考官方的<a href="https://flutter.cn/community/china]" target="_blank" rel="noopener">设置镜像</a>即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftFormat-的使用.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/SwiftFormat-的使用.html" itemprop="url">SwiftFormat 的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T13:49:28+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  131
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，<a href="https://github.com/nicklockwood/SwiftFormat" target="_blank" rel="noopener">SwiftFormat</a>就是解决这一问题的好工具。</p>
+<p><code>SwiftFormat</code>具有多种使用方式，目前我在实际工作中使用的是<code>CocoaPods</code>集成。具体使用方法：</p>
+<ol>
+<li><p><code>pod &#39;SwiftFormat/CLI&#39;</code>，安装 SwiftFormat</p>
+</li>
+<li><p><code>TARGETS - Build Phases - New Run Script Phase</code>，添加如下脚本：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat"</span> . <span class="comment">--exclude Pods,Generated</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在编译或运行的时候，<code>SwiftFormat</code>会对齐不符合格式的代码。Enjoy it~</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://keisme.cn/Xcode-创建自定义文件模板.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1495,524 +2003,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Cocoapods-1-8-4-CDN-无法使用的问题.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocoapods-1-8-4-CDN-无法使用的问题.html" itemprop="url">Cocoapods 1.8.4 CDN 无法使用的问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T18:36:51+08:00">
-                2019-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  268
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>好久没升级 Cocoapods 了，正好想升级一下，看到 <a href="http://blog.cocoapods.org/CocoaPods-1.8.0-beta/" target="_blank" rel="noopener">官方文档</a> 的视频演示，满心欢喜地去试用 CDN 。结果，心灰意冷了。</p>
-<p>尝试了很多方法，仍然无法使用卖家秀一样的新特性。更可恨的是，我已经使用了 <code>pod repo remove master</code> 命令了。</p>
-<p>经过几个小时的折腾后，放弃了。。。</p>
-<p>看到 github 上有人提了同样的 <a href="https://github.com/CocoaPods/CocoaPods/issues/9319" target="_blank" rel="noopener">issue</a> ，给出的解决方案是不要使用 trunk，而是继续使用 master 库。希望这个  issue 能早日解决吧~</p>
-<p>不得已，删除了 trunk (<code>pod repo remove trunk</code>)，使用 <a href="https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/" target="_blank" rel="noopener">镜像站点</a> 重装了 cocoapods。</p>
-<p>由于 Cocoapods 1.8.4 默认使用 CDN 来安装依赖，如果要用回原来的 master 库，需要指定 Podfile 的 source：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Uncomment the next line to define a global platform for your project</span></span><br><span class="line">platform <span class="symbol">:ios</span>, <span class="string">'12.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># source 'https://github.com/CocoaPods/Specs.git'</span></span><br><span class="line">source <span class="string">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span></span><br><span class="line"></span><br><span class="line">target <span class="string">'test'</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Comment the next line if you don't want to use dynamic frameworks</span></span><br><span class="line">  <span class="comment"># pod 'ImagesView'</span></span><br><span class="line">  pod <span class="string">'Kingfisher'</span></span><br><span class="line">  pod <span class="string">'SnapKit'</span></span><br><span class="line">  use_frameworks!</span><br><span class="line">  <span class="comment"># Pods for test</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Socks5-to-http.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Socks5-to-http.html" itemprop="url">Socks5 to http</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T12:51:05+08:00">
-                2019-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/trick/" itemprop="url" rel="index">
-                    <span itemprop="name">trick</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  216
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h1><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>porivoxy</span><br></pre></td></tr></table></figure>
-<p>安装后，编辑 <code>/usr/local/etc/privoxy/config</code>，搜索<code>socks5</code>找到下面这句：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#forward-socks5t</span>	/		<span class="selector-tag">127</span><span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:9050</span>	.</span><br></pre></td></tr></table></figure>
-<p>在下面添加：</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forward-socks5	/		<span class="number">127.0</span><span class="meta">.0</span><span class="meta">.1</span>:port	.</span><br></pre></td></tr></table></figure>
-<p>port 为本机的 ss 代理的 socks5 端口。</p>
-<p>配置文件中还有另外一句默认的：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">listen-address</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:8118</span></span><br></pre></td></tr></table></figure>
-<p>这表示 privacy 只监听本机的 8118 端。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Socks5-to-http.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-Modules.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Go-Modules.html" itemprop="url">Go Modules</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T17:09:56+08:00">
-                2019-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  490
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>Go modules</code>是随着 Go 1.11 发布的新型的包管理工具，这也是官方推荐的。有了<code>go mod</code>，项目将不再依赖于<code>GOPATH</code>，你可以在任何路径下创建和管理项目，但是下载的依赖包仍然会存储在<code>$GOPATH/pkg/mod</code>路径。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在 Mac 下，编辑<code>~/.bash_profile</code>文件，写入<code>export Go111MODULE=on</code></p>
-<h2 id="初始化-Modules"><a href="#初始化-Modules" class="headerlink" title="初始化 Modules"></a>初始化 Modules</h2><p>在项目路径下，使用命令 <code>go mod init &lt;packagename&gt;</code>初始化</p>
-<h2 id="编辑-go-mod"><a href="#编辑-go-mod" class="headerlink" title="编辑 go.mod"></a>编辑 go.mod</h2><p>初始化的 go.mod 会显示如下内容：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">packagename</span></span></span><br></pre></td></tr></table></figure>
-<p>添加依赖后：</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module packagename</span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	github.com/<span class="keyword">test</span>/A v1<span class="meta">.2</span><span class="meta">.3</span></span><br><span class="line">	github.com/<span class="keyword">test</span>/B v1<span class="meta">.2</span><span class="meta">.3</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>如果你不知道要依赖的版本，可以使用 <code>latest</code>代替版本号，在安装依赖时，go 会自动安装最新的版本。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Go-Modules.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2067,7 +2057,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2089,7 +2079,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2115,15 +2105,9 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="http://i.youku.com/snnoker" target="_blank" title="Youku">
+                  <a href="https://twitter.com/J2F147" target="_blank" title="Twitter">
                     
-                      <i class="fa fa-fw fa-play"></i>Youku</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://music.163.com/#/playlist?id=935998068" target="_blank" title="Music">
-                    
-                      <i class="fa fa-fw fa-music"></i>Music</a>
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
             
@@ -2184,7 +2168,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共58.8k字</span>
+  <span class="post-count">博客全站共62.4k字</span>
 </div>
 
         

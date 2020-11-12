@@ -1,3 +1,6 @@
+http://keisme.cn/SwiftUI-PreferenceKey.html
+http://keisme.cn/SwiftUI-GeometryReader-与坐标系.html
+http://keisme.cn/Swift-中的协议、泛型、不透明类型.html
 http://keisme.cn/LazyHStack、LazyVStack、LazyHGrid、LazyVGrid-使用手册.html
 http://keisme.cn/SwiftUI（iOS-14）新增属性包装器（Property-Wrapper）.html
 http://keisme.cn/Combine-简明教程四：Operators.html
@@ -5,6 +8,3 @@ http://keisme.cn/Combine-简明教程三：Subject.html
 http://keisme.cn/Combine-简明教程二：自定义-Subscriber、Publisher.html
 http://keisme.cn/Combine-简明教程一：Publisher、Subscriber.html
 http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html
-http://keisme.cn/App-Store-提交审核被拒记录.html
-http://keisme.cn/Flutter-PATH（fish-shell）设置和镜像设置.html
-http://keisme.cn/SwiftFormat-的使用.html
