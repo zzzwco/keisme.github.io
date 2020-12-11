@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SwiftUI 教程 App：Eul]]></title>
+    <url>%2FSwiftUI-%E6%95%99%E7%A8%8B-App%EF%BC%9AEul.html</url>
+    <content type="text"><![CDATA[简介Eul 是一款 SwiftUI 教程类 App（iOS、macOS），以文章（文字、图片、代码）配合真机示例（Xcode 12+、iOS 14+，macOS 11+）的形式呈现给读者。 笔者意在尽可能使用简洁明了的语言阐述 SwiftUI 相关的知识，使读者能快速掌握并在 iOS 开发中实践。内容多为基础至中等难度，所述皆为实用技能。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。读者若求更高修为，需自行修炼，推荐尽可能细究 Apple 官方教程和历年 WWDC 素材。 由于笔者目前尚未购入 M1芯片的 mac，暂时不会提供苹果芯片版本。 下面是 App 内实图： iOS： macOS： 下载链接iOS/macOS：https://apps.apple.com/cn/app/eul/id1541991958 联系反馈 邮箱：bruce8.0@outlook.com 微博：Bruce2077 twitter：Bruce_2077]]></content>
+      <categories>
+        <category>SwiftUI</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>SwiftUI</tag>
+        <tag>Eul</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SwiftUI PreferenceKey]]></title>
     <url>%2FSwiftUI-PreferenceKey.html</url>
     <content type="text"><![CDATA[下图所示是一个常规的登录界面，只需少量代码即可实现： 123456789101112131415161718192021struct ContentView : View &#123; @State private var email = "" @State private var password = "" var body: some View &#123; Form &#123; HStack &#123; Text("电子邮箱") TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; HStack &#123; Text("密码") TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; &#125; &#125;&#125; 但是通常我们为了美观，会将左边的文字列等宽对齐，也许固定宽度是个不错的想法，但是可扩展性太差，我们如何解决这个问题呢？ 常规的思路就是，获取文字列所有的内容的宽度，取最大值，重绘界面即可。那么问题来了，如何获取这个最大值呢？答案就是 PreferenceKey，它可以收集视图树中子视图的数据，回传给父视图（跨层级亦可）。这里我们需要获取尺寸，还用到了 GeometryReader。 改造后的效果和代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253struct ContentView : View &#123; @State private var email = "" @State private var password = "" // 保存、更新文字列所需要的合适宽度，这里是最大值 @State private var textWidth: CGFloat? var body: some View &#123; Form &#123; HStack &#123; Text("电子邮箱") .frame(width: textWidth, alignment: .leading) .background(TextBackgroundView()) TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; HStack &#123; Text("密码") .frame(width: textWidth, alignment: .leading) .background(TextBackgroundView()) TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; &#125; .onPreferenceChange(TextWidthPreferenceKey.self) &#123; (value) in print(value) textWidth = value.max() &#125; &#125;&#125;struct TextBackgroundView: View &#123; var body: some View &#123; GeometryReader &#123; gr in Rectangle() .fill(Color.clear) .preference(key: TextWidthPreferenceKey.self, value: [gr.size.width]) &#125; &#125;&#125;struct TextWidthPreferenceKey: PreferenceKey &#123; // 偏好值没有被设定时，使用默认值 static var defaultValue: [CGFloat] = [] // 收集视图树中的数据 // nextValue 的闭包是惰性调用的，只有需要用到它时才会去获取相应的值 static func reduce(value: inout [CGFloat], nextValue: () -&gt; [CGFloat]) &#123; value.append(contentsOf: nextValue()) &#125;&#125; 有一点需要注意，为什么我们要使用 TextBackgroundView 来作为背景回传所需要的值呢？因为我们期望 Form 列表的布局是根据子视图的布局来更新的，而子视图又依赖父视图传入的宽度值，这样形成了一个得不到结果的死循环。而 TextBackgroundView 可以打破这个僵局，父视图所依赖的布局不再是文字的布局，而是背景层的视图布局。 补充说明一下，SwiftUI 的视图层级是不同于 UIKit 的，在 UIKit 中，背景是控件的属性，而 SwiftUI 中，.background 会在视图树中生成一个新的视图，是独立与所修饰的控件的。 另外有一点令我不解的是，既然我是要获取最大宽度，只需要在 TextWidthPreferenceKey 将关联类型设置为 CGFloat 即可，在 reduce 方法中写入 value = max(value, nextValue())，然后在 onPreferenceChange 中将最大值传给 textWidth ，这样不是更简单吗？但是事与愿违，这样达不到我们想要的效果，观察控制台，我发现确实可以获取到最大宽度值，但是不会更新视图布局，百思不得其解，网上也没找到合理的解释。暂且放下，以后再研究一下这个问题。 参考： PreferenceKey’s reduce method demystified Inspecting the View Tree – Part 1: PreferenceKey SwiftUI 小技巧：透過 PreferenceKey 簡單對齊視圖]]></content>
