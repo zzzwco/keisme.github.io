@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="iOS,Swift" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Xcode 14 beta 3  Swift 5.7   简化的可选绑定（SE-0345）对可选类型解包时无需显式绑定，写法更简洁： 12345678910let s1: String? = &quot;s1&quot;if let s1 &amp;#123;  print(s1)&amp;#125;guard let s1 else &amp;#123;  exit(0)&amp;#125;print(s1) 更强大的类型推断默认表达式的类型推断">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 5.7 新特性">
+<meta property="og:url" content="http://keisme.cn/Swift-5-7-新特性.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="Xcode 14 beta 3  Swift 5.7   简化的可选绑定（SE-0345）对可选类型解包时无需显式绑定，写法更简洁： 12345678910let s1: String? = &quot;s1&quot;if let s1 &amp;#123;  print(s1)&amp;#125;guard let s1 else &amp;#123;  exit(0)&amp;#125;print(s1) 更强大的类型推断默认表达式的类型推断">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-07-23T02:16:07.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 5.7 新特性">
+<meta name="twitter:description" content="Xcode 14 beta 3  Swift 5.7   简化的可选绑定（SE-0345）对可选类型解包时无需显式绑定，写法更简洁： 12345678910let s1: String? = &quot;s1&quot;if let s1 &amp;#123;  print(s1)&amp;#125;guard let s1 else &amp;#123;  exit(0)&amp;#125;print(s1) 更强大的类型推断默认表达式的类型推断">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Swift-5-7-新特性.html"/>
+
+
+
+
+
+<script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>Swift 5.7 新特性 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-5-7-新特性.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Swift 5.7 新特性</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-23T09:40:10+08:00">
+                2022-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,535
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Xcode 14 beta 3</code>  <code>Swift 5.7</code>  </p>
+<h1 id="简化的可选绑定（SE-0345）"><a href="#简化的可选绑定（SE-0345）" class="headerlink" title="简化的可选绑定（SE-0345）"></a>简化的可选绑定（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0345-if-let-shorthand.md" target="_blank" rel="noopener">SE-0345</a>）</h1><p>对可选类型解包时无需显式绑定，写法更简洁：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1: <span class="type">String</span>? = <span class="string">"s1"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> s1 &#123;</span><br><span class="line">  <span class="built_in">print</span>(s1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> s1 <span class="keyword">else</span> &#123;</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(s1)</span><br></pre></td></tr></table></figure>
+<h1 id="更强大的类型推断"><a href="#更强大的类型推断" class="headerlink" title="更强大的类型推断"></a>更强大的类型推断</h1><h2 id="默认表达式的类型推断（SE-0347）"><a href="#默认表达式的类型推断（SE-0347）" class="headerlink" title="默认表达式的类型推断（SE-0347）"></a>默认表达式的类型推断（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0347-type-inference-from-default-exprs.md" target="_blank" rel="noopener">SE-0347</a>）</h2><p>Swift 现在支持给泛型参数赋予默认值，并且能根据上下文推断泛型参数的具体类型。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compute</span>&lt;C: Collection&gt;<span class="params">(<span class="number">_</span> values: C = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span></span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">compute([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// [Int]</span></span><br><span class="line">compute([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]) <span class="comment">// [String]</span></span><br><span class="line">compute([<span class="number">1</span>, <span class="string">"2"</span>, &#123;&#125;]) <span class="comment">// [Any]</span></span><br></pre></td></tr></table></figure>
+<h2 id="多语句闭包的类型推断（SE-0326）"><a href="#多语句闭包的类型推断（SE-0326）" class="headerlink" title="多语句闭包的类型推断（SE-0326）"></a>多语句闭包的类型推断（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0326-extending-multi-statement-closure-inference.md" target="_blank" rel="noopener">SE-0326</a>）</h2><p>以前的多语句闭包必须写明参数和返回值类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="number">_</span> = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>].<span class="built_in">map</span> &#123; v -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">if</span> v &lt; <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> v &gt; <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"positive"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，编译器会自动推断：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="number">_</span> = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>].<span class="built_in">map</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> $<span class="number">0</span> &lt; <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> $<span class="number">0</span> &gt; <span class="number">0</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"positive"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="更灵活的正则表达式"><a href="#更灵活的正则表达式" class="headerlink" title="更灵活的正则表达式"></a>更灵活的正则表达式</h1><h2 id="正则类型（SE-0350）"><a href="#正则类型（SE-0350）" class="headerlink" title="正则类型（SE-0350）"></a>正则类型（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0350-regex-type-overview.md" target="_blank" rel="noopener">SE-0350</a>）</h2><p>Swift 5.7 新增了正则类型 <code>Regex&lt;Output&gt;</code>，用于便捷地构建正则表达式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="string">"Stay hungry, stay foolish."</span></span><br><span class="line"><span class="keyword">let</span> regex1 = <span class="keyword">try</span>! <span class="type">Regex</span>(<span class="string">"[Ss]tay"</span>)</span><br><span class="line"><span class="keyword">let</span> matches1 = s.matches(of: regex1)</span><br><span class="line"><span class="keyword">for</span> match <span class="keyword">in</span> matches1 &#123;</span><br><span class="line">  <span class="keyword">let</span> l = match.range.lowerBound</span><br><span class="line">  <span class="keyword">let</span> r = match.range.upperBound</span><br><span class="line">  printLog(s[l..&lt;r])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="正则构造器-DSL（SE-0351）"><a href="#正则构造器-DSL（SE-0351）" class="headerlink" title="正则构造器 DSL（SE-0351）"></a>正则构造器 DSL（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0351-regex-builder.md#regex-builder-dsl" target="_blank" rel="noopener">SE-0351</a>）</h2><p>正则表达式简洁有力，但难以书写。因此 Swift 提供了 DSL 供我们使用，便于方便地书写正则表达式。比如下面示例代码中的 <code>OneOrMore(.word)</code> 表达的意思和 <code>/[A-Za-z0-9]+/</code> 是一样的。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">**<span class="keyword">import</span> RegexBuilder**</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> regex2 = <span class="type">Regex</span> &#123;</span><br><span class="line">  <span class="string">"Stay "</span></span><br><span class="line">  <span class="type">Capture</span> &#123;</span><br><span class="line">    <span class="type">OneOrMore</span>(.word) <span class="comment">// matches2.1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">", stay "</span></span><br><span class="line">  <span class="type">Capture</span> &#123;</span><br><span class="line">    <span class="type">OneOrMore</span>(.word) <span class="comment">// matches2.2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">"."</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> matches2 = <span class="keyword">try</span> regex2.wholeMatch(<span class="keyword">in</span>: s) &#123;</span><br><span class="line">  <span class="comment">// matches2.0 是整个匹配的字符串</span></span><br><span class="line">  printLog(matches2.<span class="number">0</span>, matches2.<span class="number">1</span>, matches2.<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Regex 还支持使用别名和下标来获取匹配结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = <span class="type">Reference</span>(<span class="type">Substring</span>.<span class="keyword">self</span>)</span><br><span class="line"><span class="keyword">let</span> ref2 = <span class="type">Reference</span>(<span class="type">Substring</span>.<span class="keyword">self</span>)</span><br><span class="line"><span class="keyword">let</span> regex3 = <span class="type">Regex</span> &#123;</span><br><span class="line">  <span class="string">"Stay "</span></span><br><span class="line">  <span class="type">Capture</span>(<span class="keyword">as</span>: ref1) &#123; <span class="comment">// res[ref1]</span></span><br><span class="line">    <span class="type">OneOrMore</span>(.word)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">", stay "</span></span><br><span class="line">  <span class="type">Capture</span>(<span class="keyword">as</span>: ref2) &#123; <span class="comment">// res[ref2]</span></span><br><span class="line">    <span class="type">OneOrMore</span>(.word)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">"."</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> matches3 = <span class="keyword">try</span> regex3.wholeMatch(<span class="keyword">in</span>: s) &#123;</span><br><span class="line">  printLog(matches3[ref1], matches3[ref2])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，RegexBuilder 中的 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0348-buildpartialblock.md" target="_blank" rel="noopener">buildPartialBlock</a> 实现了基于结果生成器的重载。这是 SwiftUI 喜闻乐见的，因为此前的 <a href="https://developer.apple.com/documentation/swiftui/viewbuilder" target="_blank" rel="noopener">ViewBuilder</a> 最多只能从 10 个子 view 构建，但 <code>buildPartialBlock</code> 可以突破这个限制。这和 <code>reduce</code> 函数有点类似，在前一个生成的结果基础上，继续累积新的值。</p>
+<p>更多相关 API 请查看：<a href="https://developer.apple.com/documentation/RegexBuilder" target="_blank" rel="noopener">RegexBuilder</a>。</p>
+<h2 id="正则字面量（SE-0354）"><a href="#正则字面量（SE-0354）" class="headerlink" title="正则字面量（SE-0354）"></a>正则字面量（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0354-regex-literals.md" target="_blank" rel="noopener">SE-0354</a>）</h2><p>Swift 支持使用字面量直接构建正则表达式，构建方式非常简单，只需要将表达式置于两个 <code>/</code> 之间：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex4 = /[<span class="type">Ss</span>]tay/</span><br><span class="line"><span class="keyword">let</span> matches4 = s.matches(of: regex4)</span><br><span class="line"><span class="keyword">for</span> match <span class="keyword">in</span> matches4 &#123;</span><br><span class="line">  <span class="keyword">let</span> l = match.range.lowerBound</span><br><span class="line">  <span class="keyword">let</span> r = match.range.upperBound</span><br><span class="line">  printLog(s[l..&lt;r])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字面量构建的正则表达式同样支持使用别名对匹配结果进行引用：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex5 = /<span class="type">Stay</span> (?&lt;s1&gt;.+), stay (?&lt;s2&gt;[<span class="type">A</span>-<span class="type">Za</span>-z0-<span class="number">9</span>]+)./</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> matches5 = <span class="keyword">try</span> regex5.wholeMatch(<span class="keyword">in</span>: s) &#123;</span><br><span class="line">  printLog(matches5.s1, matches5.s2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，基于字符串构建的 Regex 类型必须在运行时才能对该字符串进行正确解析。而<strong>正则字面量在编译期就能被编译器诊断出错误</strong>，这也是我们应该优先使用正则字面量的原因。下面是 Regex 类型和字面量结合使用的示例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex6 = <span class="type">Regex</span> &#123;</span><br><span class="line">  <span class="string">"Stay"</span></span><br><span class="line">  <span class="type">Capture</span> &#123; <span class="comment">// 空格使用使用\\转义</span></span><br><span class="line">    /\\ .+/</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">", stay"</span></span><br><span class="line">  <span class="type">Capture</span> &#123;</span><br><span class="line">    /\\ [<span class="type">A</span>-<span class="type">Za</span>-z0-<span class="number">9</span>]+/</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">"."</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> matches6 = <span class="keyword">try</span> regex6.wholeMatch(<span class="keyword">in</span>: s) &#123;</span><br><span class="line">  printLog(matches6.<span class="number">1</span>, matches6.<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="基于正则的字符串处理算法（SE-0357）"><a href="#基于正则的字符串处理算法（SE-0357）" class="headerlink" title="基于正则的字符串处理算法（SE-0357）"></a>基于正则的字符串处理算法（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0357-regex-string-processing-algorithms.md" target="_blank" rel="noopener">SE-0357</a>）</h2><p>除了上面提到的 <code>matches(of:)</code>、<code>wholeMatch(in:)</code>，Swift 中的集合类型许多原有的方法也提供了对 Regex 的支持。比如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printLog(s.replacing(/[<span class="type">Ss</span>]tay/, with: <span class="string">"be"</span>))</span><br><span class="line">printLog(s.<span class="built_in">contains</span>(/\\ foo.+/))</span><br></pre></td></tr></table></figure>
+<h1 id="阐明了非隔离异步函数的执行（SE-0338）"><a href="#阐明了非隔离异步函数的执行（SE-0338）" class="headerlink" title="阐明了非隔离异步函数的执行（SE-0338）"></a>阐明了非隔离异步函数的执行（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0338-clarify-execution-non-actor-async.md" target="_blank" rel="noopener">SE-0338</a>）</h1><p>在此之前，在 <code>g</code> 中调用 <code>f</code> 时，<code>f</code> 可能会 actor 上执行并造成长时间的阻塞。</p>
+<p>而现在所有的非隔离异步函数的执行，都会在全局的协作并发池上执行。当然，从 actor 切换至全局并发池执行时，程序依然会进行 <code>Sendable</code> 检查。比如，在 <code>g</code> 中调用 <code>f</code> 时，如果 c 没有实现 <code>Sendable</code>，编译器会发出警告。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总是在全局的协作并发池上执行</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(<span class="number">_</span>: C)</span></span> async &#123; &#125;</span><br><span class="line"></span><br><span class="line">actor <span class="type">A</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">g</span><span class="params">(<span class="built_in">c</span>: C)</span></span> async &#123;</span><br><span class="line">		<span class="comment">// 总是在 actor 上执行</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"on the actor"</span>)</span><br><span class="line"></span><br><span class="line">    await f(<span class="built_in">c</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="新的时间-API-（SE-0329）"><a href="#新的时间-API-（SE-0329）" class="headerlink" title="新的时间 API （SE-0329）"></a>新的时间 API （<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0329-clock-instant-duration.md" target="_blank" rel="noopener">SE-0329</a>）</h1><p>Swift 5.7 提供了一种新的标准化时间组件，由以下三部分组成：</p>
+<ul>
+<li>Clock：基于 Clock 协议实现，是一种计算时间的机制，定义了现在以及将来某个指定的时间点唤醒工作的方式。</li>
+<li>Instant：基于 <a href="https://developer.apple.com/documentation/swift/instantprotocol?changes=latest_major&amp;language=_5" target="_blank" rel="noopener">InstantProtocol</a> 协议实现，表示某个时间点。</li>
+<li><a href="https://developer.apple.com/documentation/swift/duration?changes=latest_major&amp;language=_5" target="_blank" rel="noopener">Duration</a>：基于 <a href="https://developer.apple.com/documentation/swift/durationprotocol?changes=latest_major&amp;language=_5" target="_blank" rel="noopener">DurationProtocol</a> 协议实现，表示两个时间点之间的间隔。</li>
+</ul>
+<p>Clock 协议定义如下，其中的关联类型 <code>Instant</code> 遵循 <code>InstantProtocol</code> 协议，而另一个关联类型 <code>Duration</code> 和 <code>InstantProtocol</code> 协议中的 <code>Duration: DurationProtocol</code> 的类型保持一致：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@available</span>(macOS <span class="number">13.0</span>, iOS <span class="number">16.0</span>, watchOS <span class="number">9.0</span>, tvOS <span class="number">16.0</span>, *)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">Clock</span> : <span class="title">Sendable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    associatedtype <span class="type">Duration</span> <span class="keyword">where</span> <span class="type">Self</span>.<span class="type">Duration</span> == <span class="type">Self</span>.<span class="type">Instant</span>.<span class="type">Duration</span></span><br><span class="line"></span><br><span class="line">    associatedtype <span class="type">Instant</span> : <span class="type">InstantProtocol</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> now: <span class="type">Self</span>.<span class="type">Instant</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> minimumResolution: <span class="type">Self</span>.<span class="type">Duration</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sleep</span><span class="params">(until deadline: <span class="keyword">Self</span>.Instant, tolerance: <span class="keyword">Self</span>.Instant.Duration?)</span></span> async <span class="keyword">throws</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>系统内置了两种 Clock：</p>
+<ul>
+<li>ContinuousClock：系统睡眠时，仍能计时。</li>
+<li>SuspendingClock：系统睡眠时，停止计时。</li>
+</ul>
+<p>两种 Clock 使用方式一样，这里以 ContinuousClock 为例。比如用来计算某个同步操作的耗时：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> clock = <span class="type">ContinuousClock</span>()</span><br><span class="line"><span class="keyword">let</span> elapsed = clock.measure &#123;</span><br><span class="line">  <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">999999</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">printLog(<span class="string">"Loop duration: \\(elapsed)"</span>)</span><br></pre></td></tr></table></figure>
+<p>Clock 还能用来计算异步事件的耗时，Task 也新增了对 Clock 的支持：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delayWork</span><span class="params">()</span></span> async <span class="keyword">throws</span> &#123;</span><br><span class="line">  <span class="comment">// tolerance 为容差，默认为 nil</span></span><br><span class="line">  <span class="comment">// 这里表示任务会睡眠 0.5 至 1 秒</span></span><br><span class="line">  <span class="keyword">let</span> elapsed = <span class="keyword">try</span> await clock.measure &#123;</span><br><span class="line">    <span class="keyword">try</span> await <span class="type">Task</span>.sleep(until: .now + .seconds(<span class="number">0.5</span>), tolerance: .seconds(<span class="number">0.5</span>), clock: .continuous)</span><br><span class="line">  &#125;</span><br><span class="line">  printLog(<span class="string">"Sleep duration: \\(elapsed)"</span>)</span><br><span class="line">  printLog(<span class="string">"Time is up, keep working..."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> await delayWork()</span><br></pre></td></tr></table></figure>
+<p>如果任务在睡眠时间结束前就结束了，会抛出 <code>CancellationError</code> 类型的错误。</p>
+<h1 id="不透明类型增强了使用范围（SE-0341）"><a href="#不透明类型增强了使用范围（SE-0341）" class="headerlink" title="不透明类型增强了使用范围（SE-0341）"></a>不透明类型增强了使用范围（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0341-opaque-parameters.md" target="_blank" rel="noopener">SE-0341</a>）</h1><p>此前，不透明类型只能用于返回值。现在，我们还可以将其用于属性、下标、函数参数以及结构化的返回类型（元组、数组、闭包等）。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tuple</span><span class="params">(<span class="number">_</span> v1: some View, <span class="number">_</span> v2: some View)</span></span> -&gt; (some <span class="type">View</span>, some <span class="type">View</span>) &#123;</span><br><span class="line">  (v1, v2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="主要关联类型以及轻量级同类型要求（SE-0346）"><a href="#主要关联类型以及轻量级同类型要求（SE-0346）" class="headerlink" title="主要关联类型以及轻量级同类型要求（SE-0346）"></a>主要关联类型以及轻量级同类型要求（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0346-light-weight-same-type-syntax.md" target="_blank" rel="noopener">SE-0346</a>）</h1><p>协议支持多个关联类型，使用尖括号声明（类似泛型写法）的则是主要关联类型。</p>
+<p>我们来看看 <code>Collection</code> 协议最新的定义：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">Collection</span>&lt;<span class="title">Element</span>&gt; : <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  associatedtype <span class="type">Element</span></span><br><span class="line">  associatedtype <span class="type">Iterator</span> = <span class="type">IndexingIterator</span>&lt;<span class="type">Self</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>Element</code>，就是主要关联类型。借助这一特性以及增强了使用范围的不透明类型，在使用具有主要关联类型的协议时，写法可以更优雅。比如下面这个用于比较两个集合的函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compare</span>&lt;C1: Collection, C2: Collection&gt;<span class="params">(<span class="number">_</span> c1: C1, <span class="number">_</span> c2: C2)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">where</span> <span class="type">C1</span>.<span class="type">Element</span> == <span class="type">C2</span>.<span class="type">Element</span>, <span class="type">C1</span>.<span class="type">Element</span>: <span class="type">Equatable</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>可以写得更简洁易读：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compare</span>&lt;E: Equatable&gt;<span class="params">(<span class="number">_</span> c1: some Collection&lt;E&gt;, <span class="number">_</span> c2: some Collection&lt;E&gt;)</span></span> -&gt; <span class="type">Bool</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>实际上，以前类似的泛型写法 <code>T where T: P, T.E: V</code> 一般都可以简写为 <code>some P&lt;V&gt;</code>。</p>
+<h1 id="关于存在类型的改进"><a href="#关于存在类型的改进" class="headerlink" title="关于存在类型的改进"></a>关于存在类型的改进</h1><h2 id="所有协议都可以作为存在类型使用（SE-0309）"><a href="#所有协议都可以作为存在类型使用（SE-0309）" class="headerlink" title="所有协议都可以作为存在类型使用（SE-0309）"></a>所有协议都可以作为存在类型使用（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0309-unlock-existential-types-for-all-protocols.md" target="_blank" rel="noopener">SE-0309</a>）</h2><p>Swift 5.6 之前，我么经常遇到协议相关的编译错误：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Protocol can only be used as a generic constraint because it has 'Self' or associated type requirements</span><br></pre></td></tr></table></figure>
+<p>通常我们的解决方法是将协议作为泛型约束来解决，Swift 5.6 为此引入了存在类型（一个能够容纳任意遵循某个协议的具体类型的容器类型），并新增了 <code>any</code> 关键字来进行标记。这一特性在 Swift 5.7 中全面解锁，所有的协议都可以使用 <code>any</code> 关键字来进行修饰。</p>
+<p>值得注意的是，存在类型会导致性能损耗，<code>any</code> 关键字的主要作用其实是为了提醒我们它带来的潜在副作用，因此我们应该尽量避免使用它，除非你真的需要一个动态的类型。</p>
+<h2 id="隐式打开的存在的类型（SE-0352）"><a href="#隐式打开的存在的类型（SE-0352）" class="headerlink" title="隐式打开的存在的类型（SE-0352）"></a>隐式打开的存在的类型（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0352-implicit-open-existentials.md" target="_blank" rel="noopener">SE-0352</a>）</h2><p>前面我们提到存在类型是一种容器类型，它只有在运行时才能将容器打开获取到内部的具体类型。这会导致如下的代码报错：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">P</span> </span>&#123;</span><br><span class="line">  associatedtype <span class="type">A</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">getA</span><span class="params">()</span></span> -&gt; <span class="type">A</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">takeP</span>&lt;T: P&gt;<span class="params">(<span class="number">_</span> value: T)</span></span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(p: any P)</span></span> &#123;</span><br><span class="line">  <span class="comment">// error: protocol 'P' as a type cannot conform to itself</span></span><br><span class="line">  takeP(p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为泛型约束，<code>takeP</code> 在入参时需要传入一个实现协议 <code>P</code> 的具体类型。而 <code>test</code> 中的 <code>p</code> 是存在类型，它是一个容器类型，其内部的具体类型可以动态改变，并且只有在运行时才能获取到真正的具体类型。所以，我们会看到如上的编译错误。</p>
+<p>但现在这个错误不存在了，Swift 赋予了存在类型隐式打开的特性。在 <code>test</code> 中将 <code>p</code> 传入 <code>takeP</code> 时，<code>p</code> 容器内部的具体类型会被自动取出，然后被传递至 <code>takeP</code> 函数。这个自动拆箱的过程，有点类似可选类型中的隐式解包。</p>
+<h2 id="受约束的存在类型（SE-0353）"><a href="#受约束的存在类型（SE-0353）" class="headerlink" title="受约束的存在类型（SE-0353）"></a>受约束的存在类型（<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0353-constrained-existential-types.md" target="_blank" rel="noopener">SE-0353</a>）</h2><p>具有主要关联类型的协议可以用于存在类型，通过主要关联类型对其进行约束。</p>
+<p>比如我们将某个包含整数的集合转换称数组类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapNumbers</span><span class="params">(<span class="number">_</span> <span class="built_in">c</span>: any Collection&lt;Int&gt;)</span></span> -&gt; [<span class="type">Int</span>] &#123;</span><br><span class="line">  <span class="built_in">c</span>.<span class="built_in">map</span> &#123; $<span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="分布式-actor"><a href="#分布式-actor" class="headerlink" title="分布式 actor"></a>分布式 actor</h1><p>分布式 actor 主要用于服务端，有兴趣的读者可以参考：<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0336-distributed-actor-isolation.md" target="_blank" rel="noopener">SE-0336</a>、<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0344-distributed-actor-runtime.md" target="_blank" rel="noopener">SE-0344</a>。</p>
+<hr>
+<p><em>本文仅是抛砖引玉，关于 Swift 5.7 更详细的变更请参考： <a href="https://github.com/apple/swift/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Swift/CHANGELOG.md</a></em></p>
+<p><em>文中涉及源码参考：<a href="https://github.com/zzzwco/ios-evalution/blob/main/swift-language/Swift5.7/main.swift" target="_blank" rel="noopener">Source code</a>。</em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift-5-7-新特性.html" title="Swift 5.7 新特性">http://keisme.cn/Swift-5-7-新特性.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"><i class="fa fa-tag"></i> Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-5-6-新特性.html" rel="next" title="Swift 5.6 新特性">
+                <i class="fa fa-chevron-left"></i> Swift 5.6 新特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Swift-中的不透明类型、存在类型以及-some、any-关键字.html" rel="prev" title="Swift 中的不透明类型、存在类型以及 some、any 关键字">
+                Swift 中的不透明类型、存在类型以及 some、any 关键字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简化的可选绑定（SE-0345）"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7B80;&#x5316;&#x7684;&#x53EF;&#x9009;&#x7ED1;&#x5B9A;&#xFF08;SE-0345&#xFF09;" class="headerlink" title="&#x7B80;&#x5316;&#x7684;&#x53EF;&#x9009;&#x7ED1;&#x5B9A;&#xFF08;SE-0345&#xFF09;"></a>&#x7B80;&#x5316;&#x7684;&#x53EF;&#x9009;&#x7ED1;&#x5B9A;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0345-if-let-shorthand.md" target="_blank" rel="noopener">SE-0345</a>&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更强大的类型推断"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x66F4;&#x5F3A;&#x5927;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;" class="headerlink" title="&#x66F4;&#x5F3A;&#x5927;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;"></a>&#x66F4;&#x5F3A;&#x5927;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认表达式的类型推断（SE-0347）"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x9ED8;&#x8BA4;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;SE-0347&#xFF09;" class="headerlink" title="&#x9ED8;&#x8BA4;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;SE-0347&#xFF09;"></a>&#x9ED8;&#x8BA4;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0347-type-inference-from-default-exprs.md" target="_blank" rel="noopener">SE-0347</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多语句闭包的类型推断（SE-0326）"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x591A;&#x8BED;&#x53E5;&#x95ED;&#x5305;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;SE-0326&#xFF09;" class="headerlink" title="&#x591A;&#x8BED;&#x53E5;&#x95ED;&#x5305;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;SE-0326&#xFF09;"></a>&#x591A;&#x8BED;&#x53E5;&#x95ED;&#x5305;&#x7684;&#x7C7B;&#x578B;&#x63A8;&#x65AD;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0326-extending-multi-statement-closure-inference.md" target="_blank" rel="noopener">SE-0326</a>&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的正则表达式"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则类型（SE-0350）"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x7C7B;&#x578B;&#xFF08;SE-0350&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x7C7B;&#x578B;&#xFF08;SE-0350&#xFF09;"></a>&#x6B63;&#x5219;&#x7C7B;&#x578B;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0350-regex-type-overview.md" target="_blank" rel="noopener">SE-0350</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则构造器-DSL（SE-0351）"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x6784;&#x9020;&#x5668;-DSL&#xFF08;SE-0351&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x6784;&#x9020;&#x5668; DSL&#xFF08;SE-0351&#xFF09;"></a>&#x6B63;&#x5219;&#x6784;&#x9020;&#x5668; DSL&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0351-regex-builder.md#regex-builder-dsl" target="_blank" rel="noopener">SE-0351</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则字面量（SE-0354）"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x5B57;&#x9762;&#x91CF;&#xFF08;SE-0354&#xFF09;" class="headerlink" title="&#x6B63;&#x5219;&#x5B57;&#x9762;&#x91CF;&#xFF08;SE-0354&#xFF09;"></a>&#x6B63;&#x5219;&#x5B57;&#x9762;&#x91CF;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0354-regex-literals.md" target="_blank" rel="noopener">SE-0354</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于正则的字符串处理算法（SE-0357）"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5904;&#x7406;&#x7B97;&#x6CD5;&#xFF08;SE-0357&#xFF09;" class="headerlink" title="&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5904;&#x7406;&#x7B97;&#x6CD5;&#xFF08;SE-0357&#xFF09;"></a>&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5904;&#x7406;&#x7B97;&#x6CD5;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0357-regex-string-processing-algorithms.md" target="_blank" rel="noopener">SE-0357</a>&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阐明了非隔离异步函数的执行（SE-0338）"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x9610;&#x660E;&#x4E86;&#x975E;&#x9694;&#x79BB;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#xFF08;SE-0338&#xFF09;" class="headerlink" title="&#x9610;&#x660E;&#x4E86;&#x975E;&#x9694;&#x79BB;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#xFF08;SE-0338&#xFF09;"></a>&#x9610;&#x660E;&#x4E86;&#x975E;&#x9694;&#x79BB;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0338-clarify-execution-non-actor-async.md" target="_blank" rel="noopener">SE-0338</a>&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新的时间-API-（SE-0329）"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x65B0;&#x7684;&#x65F6;&#x95F4;-API-&#xFF08;SE-0329&#xFF09;" class="headerlink" title="&#x65B0;&#x7684;&#x65F6;&#x95F4; API &#xFF08;SE-0329&#xFF09;"></a>&#x65B0;&#x7684;&#x65F6;&#x95F4; API &#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0329-clock-instant-duration.md" target="_blank" rel="noopener">SE-0329</a>&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不透明类型增强了使用范围（SE-0341）"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x589E;&#x5F3A;&#x4E86;&#x4F7F;&#x7528;&#x8303;&#x56F4;&#xFF08;SE-0341&#xFF09;" class="headerlink" title="&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x589E;&#x5F3A;&#x4E86;&#x4F7F;&#x7528;&#x8303;&#x56F4;&#xFF08;SE-0341&#xFF09;"></a>&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x589E;&#x5F3A;&#x4E86;&#x4F7F;&#x7528;&#x8303;&#x56F4;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0341-opaque-parameters.md" target="_blank" rel="noopener">SE-0341</a>&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要关联类型以及轻量级同类型要求（SE-0346）"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x4E3B;&#x8981;&#x5173;&#x8054;&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x8F7B;&#x91CF;&#x7EA7;&#x540C;&#x7C7B;&#x578B;&#x8981;&#x6C42;&#xFF08;SE-0346&#xFF09;" class="headerlink" title="&#x4E3B;&#x8981;&#x5173;&#x8054;&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x8F7B;&#x91CF;&#x7EA7;&#x540C;&#x7C7B;&#x578B;&#x8981;&#x6C42;&#xFF08;SE-0346&#xFF09;"></a>&#x4E3B;&#x8981;&#x5173;&#x8054;&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x8F7B;&#x91CF;&#x7EA7;&#x540C;&#x7C7B;&#x578B;&#x8981;&#x6C42;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0346-light-weight-same-type-syntax.md" target="_blank" rel="noopener">SE-0346</a>&#xFF09;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于存在类型的改进"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x7684;&#x6539;&#x8FDB;" class="headerlink" title="&#x5173;&#x4E8E;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x7684;&#x6539;&#x8FDB;"></a>&#x5173;&#x4E8E;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x7684;&#x6539;&#x8FDB;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#所有协议都可以作为存在类型使用（SE-0309）"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#&#x6240;&#x6709;&#x534F;&#x8BAE;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x4F7F;&#x7528;&#xFF08;SE-0309&#xFF09;" class="headerlink" title="&#x6240;&#x6709;&#x534F;&#x8BAE;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x4F7F;&#x7528;&#xFF08;SE-0309&#xFF09;"></a>&#x6240;&#x6709;&#x534F;&#x8BAE;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x4F7F;&#x7528;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0309-unlock-existential-types-for-all-protocols.md" target="_blank" rel="noopener">SE-0309</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式打开的存在的类型（SE-0352）"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#&#x9690;&#x5F0F;&#x6253;&#x5F00;&#x7684;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x578B;&#xFF08;SE-0352&#xFF09;" class="headerlink" title="&#x9690;&#x5F0F;&#x6253;&#x5F00;&#x7684;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x578B;&#xFF08;SE-0352&#xFF09;"></a>&#x9690;&#x5F0F;&#x6253;&#x5F00;&#x7684;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x578B;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0352-implicit-open-existentials.md" target="_blank" rel="noopener">SE-0352</a>&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受约束的存在类型（SE-0353）"><span class="nav-number">8.3.</span> <span class="nav-text"><a href="#&#x53D7;&#x7EA6;&#x675F;&#x7684;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#xFF08;SE-0353&#xFF09;" class="headerlink" title="&#x53D7;&#x7EA6;&#x675F;&#x7684;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#xFF08;SE-0353&#xFF09;"></a>&#x53D7;&#x7EA6;&#x675F;&#x7684;&#x5B58;&#x5728;&#x7C7B;&#x578B;&#xFF08;<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0353-constrained-existential-types.md" target="_blank" rel="noopener">SE-0353</a>&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式-actor"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x5206;&#x5E03;&#x5F0F;-actor" class="headerlink" title="&#x5206;&#x5E03;&#x5F0F; actor"></a>&#x5206;&#x5E03;&#x5F0F; actor</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共66.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

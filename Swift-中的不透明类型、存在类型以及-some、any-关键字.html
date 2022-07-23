@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="iOS,Swift,some,any,不透明类型,存在类型" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Xcode 14 beta 3  Swift 5.7 不透明类型、some 关键字some 关键字由 Swift 5.1 引入，它用来修饰某个协议，使之成为不透明类型。 不透明类型是隐藏类型信息的抽象类型，其底层的具体类型不可动态改变。 初次接触 SwiftUI 的读者会看到这样的代码： 123var body: some View &amp;#123;  Text(&quot;Hello&quot;)&amp;#125; body">
+<meta name="keywords" content="iOS,Swift,some,any,不透明类型,存在类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 中的不透明类型、存在类型以及 some、any 关键字">
+<meta property="og:url" content="http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="Xcode 14 beta 3  Swift 5.7 不透明类型、some 关键字some 关键字由 Swift 5.1 引入，它用来修饰某个协议，使之成为不透明类型。 不透明类型是隐藏类型信息的抽象类型，其底层的具体类型不可动态改变。 初次接触 SwiftUI 的读者会看到这样的代码： 123var body: some View &amp;#123;  Text(&quot;Hello&quot;)&amp;#125; body">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-07-23T02:25:10.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 中的不透明类型、存在类型以及 some、any 关键字">
+<meta name="twitter:description" content="Xcode 14 beta 3  Swift 5.7 不透明类型、some 关键字some 关键字由 Swift 5.1 引入，它用来修饰某个协议，使之成为不透明类型。 不透明类型是隐藏类型信息的抽象类型，其底层的具体类型不可动态改变。 初次接触 SwiftUI 的读者会看到这样的代码： 123var body: some View &amp;#123;  Text(&quot;Hello&quot;)&amp;#125; body">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html"/>
+
+
+
+
+
+<script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>Swift 中的不透明类型、存在类型以及 some、any 关键字 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Swift 中的不透明类型、存在类型以及 some、any 关键字</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-23T10:16:36+08:00">
+                2022-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,763
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Xcode 14 beta 3</code>  <code>Swift 5.7</code></p>
+<h1 id="不透明类型、some-关键字"><a href="#不透明类型、some-关键字" class="headerlink" title="不透明类型、some 关键字"></a>不透明类型、some 关键字</h1><p><code>some</code> 关键字由 Swift 5.1 引入，它用来修饰某个协议，使之成为<strong>不透明类型</strong>。</p>
+<p>不透明类型是隐藏类型信息的抽象类型，其底层的具体类型不可动态改变。</p>
+<p>初次接触 SwiftUI 的读者会看到这样的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">  <span class="type">Text</span>(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>body</code> 是不透明类型 <code>some View</code>，调用者只知其是一个遵循 <code>View</code> 协议的抽象类型，却不知其底层的具体类型（<code>Text</code>），因为不透明类型对调用者隐藏了类型信息。</p>
+<p>这里的”不可见“是对调用者而言的，而编译器具有”透视“视角，它能够在编译期获取到不透明类型底层的具体类型（<code>Text</code>），并确保其底层类型是静态的。</p>
+<p>如果在 <code>body</code> 内这样写：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Bool</span>.random() ? <span class="type">Text</span>(<span class="string">"Hello"</span>) : <span class="type">Image</span>(systemName: <span class="string">"swift"</span>)</span><br></pre></td></tr></table></figure>
+<p>编译器能够诊断出 <code>Text</code> 和 <code>Image</code> 是不同的类型，因而抛出错误。假设 <code>body</code> 内部可以动态地改变其底层的具体类型，这意味着更多的内存占用和复杂计算，这会导致程序的性能损耗。</p>
+<p>基于以上特性，不透明类型非常适合在模块之间调用，它可以保护类型信息为私有状态而不被暴露，而编译器能够访问类型信息并作出优化工作。</p>
+<a id="more"></a>
+<p>不透明类型受实现者约束，这和泛型受调用者约束是相反的。因此，不透明类型又被称为<strong>反向泛型</strong>。比如下面的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">build1</span>&lt;V: View&gt;<span class="params">(<span class="number">_</span> v: V)</span></span> -&gt; <span class="type">V</span> &#123;</span><br><span class="line">  v</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// v1 is Text</span></span><br><span class="line"><span class="keyword">let</span> v1 = build1(<span class="type">Text</span>(<span class="string">"Hello"</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">build2</span><span class="params">()</span></span> -&gt; some <span class="type">View</span> &#123;</span><br><span class="line">  <span class="type">Text</span>(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// v2 is View</span></span><br><span class="line"><span class="keyword">let</span> v2 = build2()</span><br></pre></td></tr></table></figure>
+<p>调用 <code>build1</code> 时就需要指定具体类型，此处入参为 <code>Text</code> 类型，因此 <code>v1</code> 的类型也是 <code>Text</code>。</p>
+<p><code>build2</code> 返回的具体类型由内部实现决定，这里返回的是 <code>Text</code> 类型。鉴于不透明类型对调用者隐藏了类型信息，因此 <code>v2</code> 的类型在编译期是 <code>View</code>，在运行时是 <code>Text</code>。</p>
+<h1 id="更优雅的泛型"><a href="#更优雅的泛型" class="headerlink" title="更优雅的泛型"></a>更优雅的泛型</h1><p>下面的代码用于比较两个集合，如果所有元素相同，返回 true。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compare</span>&lt;C1: Collection, C2: Collection&gt;<span class="params">(<span class="number">_</span> c1: C1, <span class="number">_</span> c2: C2)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="keyword">where</span> <span class="type">C1</span>.<span class="type">Element</span> == <span class="type">C2</span>.<span class="type">Element</span>, <span class="type">C1</span>.<span class="type">Element</span>: <span class="type">Equatable</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> c1.<span class="built_in">count</span> != c2.<span class="built_in">count</span> &#123; <span class="keyword">return</span> <span class="literal">false</span> &#125;</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;c1.<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> v1 = c1[c1.index(c1.startIndex, offsetBy: i)]</span><br><span class="line">    <span class="keyword">let</span> v2 = c2[c2.index(c2.startIndex, offsetBy: i)]</span><br><span class="line">    <span class="keyword">if</span> v1 != v2 &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c1: [<span class="type">Int</span>] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> c2: <span class="type">Set</span>&lt;<span class="type">Int</span>&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> ans = compare(c1, c2) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>这里使用泛型约束保证 <code>C1</code> 和 <code>C2</code> 是集合类型，使用 <code>where</code> 分句确保二者的关联类型 <code>Element</code> 是能够判等的相同类型。功能虽已实现，但写起来非常繁琐，也不利于阅读。那么，该如何简化呢？</p>
+<p>在简化之前，先来看看 Swift 5.7 新增的两个新特性：</p>
+<ol>
+<li><p>使用范围更广的不透明类型</p>
+<p>此前，不透明类型只能用于返回值。现在，我们还可以将其用于属性、下标以及函数参数。</p>
+</li>
+<li><p>主要关联类型</p>
+<p>协议支持多个关联类型，使用尖括号声明（类似泛型写法）的则是主要关联类型。</p>
+<p>如下 <code>Collection</code> 协议中的 <code>Element</code>，就是主要关联类型。</p>
+<p>借助这一特性，在使用具有关联类型的协议时，写法可以非常简洁。比如上面的 <code>where</code> 分句，我们可以简写成 <code>Collection&lt;Equatable&gt;</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">Collection</span>&lt;<span class="title">Element</span>&gt; : <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  associatedtype <span class="type">Element</span></span><br><span class="line">  associatedtype <span class="type">Iterator</span> = <span class="type">IndexingIterator</span>&lt;<span class="type">Self</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>将以上两点结合起来，更优雅的写法如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compare</span>&lt;E: Equatable&gt;<span class="params">(<span class="number">_</span> c1: some Collection&lt;E&gt;, <span class="number">_</span> c2: some Collection&lt;E&gt;)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>c1</code> 和 <code>c2</code> 可以是任意集合类型，如果没有使用 <code>some</code> 标记，它就是下文提到的存在类型，编译器会提示使用 <code>any</code> 修饰。但这里将其声明为不透明类型，基于以下两点：</p>
+<ol>
+<li>旧函数在调用时就已经确定了入参的具体类型，这和 <code>any</code> 的表达的意思有悖。</li>
+<li>此处的不透明类型并没有用作返回值，只是在函数被调用时的入参，其具体类型是固定的，没有必要使用 <code>any</code>，这和旧函数表达的意图一致。</li>
+</ol>
+<p>仔细对比两个函数，能够发现：<code>some P</code> 和 <code>T where T: P</code> 表达的意思其实是一样的。如果 <code>P</code> 带有关联类型 <code>E</code>，那么 <code>T where T: P, T.E: V</code> 可以简写为 <code>some P&lt;V&gt;</code>。</p>
+<h1 id="存在类型、any-关键字"><a href="#存在类型、any-关键字" class="headerlink" title="存在类型、any 关键字"></a>存在类型、any 关键字</h1><p><code>any</code> 关键字由 Swift 5.6 引入，它用来修饰<strong>存在类型</strong>：一个能够容纳任意遵循某个协议的的具体类型的容器类型。</p>
+<p>我们结合下面的代码来理解这段抽象的描述：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">P</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CP1</span>: <span class="title">P</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CP2</span>: <span class="title">P</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">(<span class="number">_</span> p: any P)</span></span> -&gt; any <span class="type">P</span> &#123;</span><br><span class="line">  p</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f2</span>&lt;V: P&gt;<span class="params">(<span class="number">_</span> p: V)</span></span> -&gt; <span class="type">V</span> &#123;</span><br><span class="line">  p</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>f1</code> 中的 <code>p</code> 及其返回值都是存在类型，只要是遵循协议 <code>P</code> 的类型实例都是合法的。</p>
+<p><code>f2</code> 中的 <code>p</code> 及其返回值都不是存在类型，而是遵循协议 <code>P</code> 的某个<strong>具体类型</strong>。</p>
+<p>在编译期间，<code>f1</code> 中 <code>p</code> 是存在类型（<code>any P</code>），它将 <code>p</code> 底层的具体类型包装在一个“容器”中。而在运行时，从容器中取出内容物才能得知 <code>p</code> 底层的具体类型。<code>p</code> 的类型可被任何遵循协议 <code>P</code> 的某个具体类型进行替换，因此存在类型具有<strong>动态分发</strong>的特性。</p>
+<p>比如下面的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f3</span><span class="params">()</span></span> -&gt; any <span class="type">P</span> &#123;</span><br><span class="line">  <span class="type">Bool</span>.random() ? <span class="type">CP1</span>() : <span class="type">CP2</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>f3</code> 的返回类型在编译期间是存在类型 <code>any P</code>，但是在运行期间的具体类型是 <code>CP1</code> 或 <code>CP2</code>。</p>
+<p>而 <code>f2</code> 中的 <code>p</code> 没有被“容器”包装，无需进行装箱、拆箱操作。由于泛型的约束，当我们调用该方法时，就已经确定了它的具体类型。无论是编译期还是运行时，它的类型都是具体的，这又称为<strong>静态分发</strong>。比如这样调用时：<code>f2(CP1())</code> ，入参和返回值类型都就已经固化为 <code>CP1</code>，在编译期和运行时都保持为该具体类型。</p>
+<p>因为动态分发会带来一定的性能损耗，因此 Swift 引入了 <code>any</code> 关键字来向我们警示存在类型的负面影响，我们应该尽量避免使用它。</p>
+<p>上面的示例代码不使用 <code>any</code> 关键字还能通过编译，但从 Swift 6 开始，当我们使用存在类型时，编译器会强制要求使用 <code>any</code> 关键字标记，否则会报错。</p>
+<p>在实际开发中，推荐优先使用泛型和 <code>some</code>，尽可能地避免使用 <code>any</code>，除非你真的需要一个动态的类型。</p>
+<hr>
+<p><em>文中涉及源码参考：<a href="https://github.com/zzzwco/ios-evalution/blob/main/swift-language/Examples/any-some/main.swift" target="_blank" rel="noopener">Source code</a>。</em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html" title="Swift 中的不透明类型、存在类型以及 some、any 关键字">http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"><i class="fa fa-tag"></i> Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-5-7-新特性.html" rel="next" title="Swift 5.7 新特性">
+                <i class="fa fa-chevron-left"></i> Swift 5.7 新特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不透明类型、some-关键字"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x3001;some-&#x5173;&#x952E;&#x5B57;" class="headerlink" title="&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x3001;some &#x5173;&#x952E;&#x5B57;"></a>&#x4E0D;&#x900F;&#x660E;&#x7C7B;&#x578B;&#x3001;some &#x5173;&#x952E;&#x5B57;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更优雅的泛型"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x66F4;&#x4F18;&#x96C5;&#x7684;&#x6CDB;&#x578B;" class="headerlink" title="&#x66F4;&#x4F18;&#x96C5;&#x7684;&#x6CDB;&#x578B;"></a>&#x66F4;&#x4F18;&#x96C5;&#x7684;&#x6CDB;&#x578B;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在类型、any-关键字"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x3001;any-&#x5173;&#x952E;&#x5B57;" class="headerlink" title="&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x3001;any &#x5173;&#x952E;&#x5B57;"></a>&#x5B58;&#x5728;&#x7C7B;&#x578B;&#x3001;any &#x5173;&#x952E;&#x5B57;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共66.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

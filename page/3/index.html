@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-concurrency-并发.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftFormat-的使用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -325,7 +325,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Go-concurrency-并发.html" itemprop="url">Go concurrency(并发)</a></h2>
+                <a class="post-title-link" href="/SwiftFormat-的使用.html" itemprop="url">SwiftFormat 的使用</a></h2>
         
 
         <div class="post-meta">
@@ -337,517 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T02:33:27+08:00">
-                2018-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  966
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p><code>goroutine</code> 是 <code>Go</code> 中的并发执行单位，可以理解为“线程”，但它不是“线程”。生成一个 <code>goroutine</code> 非常简单，只需 <code>go</code> 一下就实现了。在同一个程序中所有的 <code>goroutine</code> 共享一个地址空间。<code>goroutine</code> 通过通信来共享内存，而不是共享内存来通信。</p>
-<p><code>channel</code> 是各个 <code>goroutine</code> 之间通信的管道，它是引用类型，可以使用 <code>==</code> 进行比较，如果引用了相同的数据结构，则结果为真。传数据用 <code>channel &lt;- data</code>，取数据用 <code>&lt;- channel</code>。多数情况下，它是阻塞同步的。<code>channel</code> 可以设置为单向或双向，也可以设置缓存大小，在未被填满前不会发生阻塞。</p>
-<p><code>select</code> 可处理一个或多个 <code>channel</code> 的发送与接收，同时有多个可用的 <code>channel</code> 时按随机顺序处理。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Go-concurrency-并发.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-reflection-反射.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Go-reflection-反射.html" itemprop="url">Go reflection(反射)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T21:21:18+08:00">
-                2018-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  481
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-反射的基本使用"><a href="#1-反射的基本使用" class="headerlink" title="1. 反射的基本使用"></a>1. 反射的基本使用</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	Id <span class="keyword">int</span></span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u User)</span> <span class="title">Hello</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"Hello, world"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Info</span><span class="params">(o <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	t := reflect.TypeOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"type:"</span>, t.Name())</span><br><span class="line">	<span class="comment">// print "type: User"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> k := t.Kind(); k != reflect.Struct &#123;</span><br><span class="line">		fmt.Println(<span class="string">"类型错误"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	v := reflect.ValueOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"fields:"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; t.NumField(); i++ &#123;</span><br><span class="line">		f := t.Field(i)</span><br><span class="line">		val := v.Field(i).Interface()</span><br><span class="line">		fmt.Printf(<span class="string">"%6s: %v = %v\n"</span>, f.Name, f.Type, val)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// print</span></span><br><span class="line">	<span class="comment">// fields:</span></span><br><span class="line">	<span class="comment">//    Id: int = 1</span></span><br><span class="line">	<span class="comment">//  Name: string = ok</span></span><br><span class="line">	<span class="comment">//   Age: int = 12</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; t.NumMethod(); i++ &#123;</span><br><span class="line">		m := t.Method(i)</span><br><span class="line">		fmt.Printf(<span class="string">"%6s: %v\n"</span>, m.Name, m.Type)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// print "Hello: func(main.User)"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	u := User&#123;<span class="number">1</span>, <span class="string">"ok"</span>, <span class="number">12</span>&#125;</span><br><span class="line">	Info(u)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：<code>User</code> 中的属性必须为大写程序才能正常运行，<code>Go</code> 是根据属性的首字母大小写来确定访问权限的，大写表示公有，小写表示私有。同理，方法签名 <code>Hello</code> 为小写，一样无法反射出对应的方法名。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Go-reflection-反射.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-interface-接口.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Go-interface-接口.html" itemprop="url">Go interface(接口)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-28T17:02:08+08:00">
-                2018-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/go/" itemprop="url" rel="index">
-                    <span itemprop="name">go</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  402
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><p>接口是一个或多个方法签名的集合，只有方法声明，没有实现。</p>
-<p>只要某个类型拥有该接口的所有方法签名，即算实现了该接口，无需显式声明了哪个接口，这称为 <code>Structural Typing</code> 。</p>
-<p>接口也是一种类型，它是一种抽象类型，空接口 <code>interface {}</code> 类似于 <code>NSObject</code> 这样的万物之主，虽然 <code>Go</code> 中是没有 <code>class</code> 的概念，但 <code>interface</code> 实现了继承多态的效果。</p>
-<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Go-interface-接口.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-正则表达式的使用.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Swift-正则表达式的使用.html" itemprop="url">Swift 正则表达式的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T09:51:24+08:00">
-                2018-04-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T13:49:28+08:00">
+                2020-04-05
               </time>
             
 
@@ -902,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  434
+                  131
                 </span>
               
 
@@ -928,15 +419,19 @@
 
       
         
-          <p>Swift 中的正则表达式使用非常简单，直接上代码：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// 默认区分大小写，如需忽略大小写，options = .caseInsensitive</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">match</span><span class="params">(pattern: String, options: NSRegularExpression.Options = [])</span></span> -&gt; [<span class="type">NSTextCheckingResult</span>]? &#123;</span><br><span class="line">        <span class="keyword">let</span> regex = <span class="keyword">try</span>? <span class="type">NSRegularExpression</span>(pattern: pattern, options: options)</span><br><span class="line">        <span class="keyword">guard</span> regex != <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> regex!.matches(<span class="keyword">in</span>: <span class="keyword">self</span>, options: .reportProgress, range: <span class="type">NSRange</span>(location: <span class="number">0</span>, length: <span class="keyword">self</span>.<span class="built_in">count</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Swift-正则表达式的使用.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，<a href="https://github.com/nicklockwood/SwiftFormat" target="_blank" rel="noopener">SwiftFormat</a>就是解决这一问题的好工具。</p>
+<p><code>SwiftFormat</code>具有多种使用方式，目前我在实际工作中使用的是<code>CocoaPods</code>集成。具体使用方法：</p>
+<ol>
+<li><p><code>pod &#39;SwiftFormat/CLI&#39;</code>，安装 SwiftFormat</p>
+</li>
+<li><p><code>TARGETS - Build Phases - New Run Script Phase</code>，添加如下脚本：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat"</span> . <span class="comment">--exclude Pods,Generated</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在编译或运行的时候，<code>SwiftFormat</code>会对齐不符合格式的代码。Enjoy it~</p>
+
+          
         
       
     </div>
@@ -983,7 +478,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-运算符的重载和自定义.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftFormat-的使用-NSConflict-keisme-mac13.0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -1002,7 +497,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Swift-运算符的重载和自定义.html" itemprop="url">Swift 运算符的重载和自定义</a></h2>
+                <a class="post-title-link" href="/SwiftFormat-的使用-NSConflict-keisme-mac13.0.html" itemprop="url">SwiftFormat 的使用</a></h2>
         
 
         <div class="post-meta">
@@ -1014,8 +509,180 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T17:11:56+08:00">
-                2018-04-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T13:49:28+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  131
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，<a href="https://github.com/nicklockwood/SwiftFormat" target="_blank" rel="noopener">SwiftFormat</a>就是解决这一问题的好工具。</p>
+<p><code>SwiftFormat</code>具有多种使用方式，目前我在实际工作中使用的是<code>CocoaPods</code>集成。具体使用方法：</p>
+<ol>
+<li><p><code>pod &#39;SwiftFormat/CLI&#39;</code>，安装 SwiftFormat</p>
+</li>
+<li><p><code>TARGETS - Build Phases - New Run Script Phase</code>，添加如下脚本：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat"</span> . <span class="comment">--exclude Pods,Generated</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在编译或运行的时候，<code>SwiftFormat</code>会对齐不符合格式的代码。Enjoy it~</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Xcode-创建自定义文件模板.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Xcode-创建自定义文件模板.html" itemprop="url">Xcode 创建自定义文件模板</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T12:52:06+08:00">
+                2020-03-28
               </time>
             
 
@@ -1070,7 +737,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  618
+                  142
                 </span>
               
 
@@ -1096,19 +763,19 @@
 
       
         
-          <h1 id="1-运算符的重载"><a href="#1-运算符的重载" class="headerlink" title="1. 运算符的重载"></a>1. 运算符的重载</h1><h2 id="1-1-基本运算符的重载"><a href="#1-1-基本运算符的重载" class="headerlink" title="1.1 基本运算符的重载"></a>1.1 基本运算符的重载</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func * (<span class="built_in">lhs</span>: String, <span class="built_in">rhs</span>: Int) -&gt; String &#123;</span><br><span class="line">    <span class="built_in">var</span> result = <span class="built_in">lhs</span></span><br><span class="line">    <span class="keyword">for</span> <span class="symbol">_</span> <span class="keyword">in</span> <span class="number">1</span>..&lt;<span class="built_in">rhs</span> &#123;</span><br><span class="line">        result += <span class="built_in">lhs</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> t = <span class="string">"abc"</span></span><br><span class="line"><span class="built_in">print</span>(t * <span class="number">3</span>)</span><br><span class="line">// <span class="built_in">print</span> <span class="string">"abcabcabc"</span></span><br></pre></td></tr></table></figure>
-<p>如上所示，我们重载了运算符 <code>*</code> 。再看看另一个例子：</p>
-<figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    var x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们定义了如上的结构体，如果想把两个 <code>Vector2D</code> 类型的实例相加，编译器是会报错的。如果我们重载操作符 <code>+</code> ，就可以实现相加：</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func + (<span class="built_in">lhs</span>: Vector2D, <span class="built_in">rhs</span>: Vector2D) -&gt; Vector2D &#123;</span><br><span class="line">    <span class="built_in">return</span> Vector2D(x: <span class="built_in">lhs</span>.x + <span class="built_in">lhs</span>.x, y: <span class="built_in">rhs</span>.y + <span class="built_in">rhs</span>.y)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">first</span> = Vector2D(x: <span class="number">1.0</span>, y: <span class="number">2.0</span>)</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">second</span> = Vector2D(x: <span class="number">3.0</span>, y: <span class="number">4.0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">first</span> + <span class="built_in">second</span>)</span><br><span class="line">// <span class="built_in">print</span> <span class="string">"Vector2D(x: 4.0, y: 6.0)"</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-2-泛型运算符"><a href="#1-2-泛型运算符" class="headerlink" title="1.2 泛型运算符"></a>1.2 泛型运算符</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Swift-运算符的重载和自定义.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>首先，创建我们的自定义模板文件夹：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~<span class="regexp">/Library/</span>Developer<span class="regexp">/Xcode/</span>Templates<span class="regexp">/Custom</span></span><br></pre></td></tr></table></figure>
+<p>然后复制系统提供的模板文件，路径如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/Library/</span>Xcode<span class="regexp">/Templates/</span><span class="keyword">File</span> Templates<span class="regexp">/Source/</span>Swift <span class="keyword">File</span>.xctemplate</span><br></pre></td></tr></table></figure>
+<p>将<code>Swift File.xctemplate</code>整个文件夹复制到刚才创建的<code>Custom</code>文件夹。</p>
+<img src="/Xcode-创建自定义文件模板/1.png">
+<p>然后我们开始自定义，只需要修改<code>___FILEBASENAME___.swift</code>中的内容即可。</p>
+<img src="/Xcode-创建自定义文件模板/2.png">
+<p>其中涉及到一些宏定义可以参考：<a href="https://help.apple.com/xcode/mac/9.0/index.html?localePath=en.lproj#/dev7fe737ce0" target="_blank" rel="noopener">Text macros reference</a>。注意：宏定义前后必须加上三个下划线。</p>
+<p>然后我们就可以使用了，如图：</p>
+<img src="/Xcode-创建自定义文件模板/3.png">
+          
         
       
     </div>
@@ -1155,7 +822,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/CocoaPods-创建公有库命令.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Xcode-创建自定义文件模板-NSConflict-keisme-mac13.0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -1174,7 +841,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/CocoaPods-创建公有库命令.html" itemprop="url">CocoaPods 创建公有库命令</a></h2>
+                <a class="post-title-link" href="/Xcode-创建自定义文件模板-NSConflict-keisme-mac13.0.html" itemprop="url">Xcode 创建自定义文件模板</a></h2>
         
 
         <div class="post-meta">
@@ -1186,8 +853,180 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T22:46:13+08:00">
-                2018-03-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T12:52:06+08:00">
+                2020-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  142
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先，创建我们的自定义模板文件夹：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~<span class="regexp">/Library/</span>Developer<span class="regexp">/Xcode/</span>Templates<span class="regexp">/Custom</span></span><br></pre></td></tr></table></figure>
+<p>然后复制系统提供的模板文件，路径如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/Library/</span>Xcode<span class="regexp">/Templates/</span><span class="keyword">File</span> Templates<span class="regexp">/Source/</span>Swift <span class="keyword">File</span>.xctemplate</span><br></pre></td></tr></table></figure>
+<p>将<code>Swift File.xctemplate</code>整个文件夹复制到刚才创建的<code>Custom</code>文件夹。</p>
+
+<p>然后我们开始自定义，只需要修改<code>___FILEBASENAME___.swift</code>中的内容即可。</p>
+
+<p>其中涉及到一些宏定义可以参考：<a href="https://help.apple.com/xcode/mac/9.0/index.html?localePath=en.lproj#/dev7fe737ce0" target="_blank" rel="noopener">Text macros reference</a>。注意：宏定义前后必须加上三个下划线。</p>
+<p>然后我们就可以使用了，如图：</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/自定义-Xcode-文件头部注释.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/自定义-Xcode-文件头部注释.html" itemprop="url">自定义 Xcode 文件头部注释</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-27T00:45:18+08:00">
+                2020-03-27
               </time>
             
 
@@ -1242,7 +1081,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  472
+                  199
                 </span>
               
 
@@ -1268,23 +1107,31 @@
 
       
         
-          <h2 id="1-注册-CocoaPods-账号"><a href="#1-注册-CocoaPods-账号" class="headerlink" title="1. 注册 CocoaPods 账号"></a>1. 注册 CocoaPods 账号</h2><ul>
-<li>通过终端运行一下命令注册账号：   </li>
-</ul>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk <span class="keyword">register</span> 邮箱地址 用户名 <span class="comment">--verbose</span></span><br></pre></td></tr></table></figure>
+          
+            <p>首先，用 Xcode 创建一个 plist 文件：<em>IDETemplateMacros.plist</em>。</p>
+<p>在新建的 plist 文件中，添加键值对。key 为 <code>FILEHEADER</code>，value 参考 <a href="https://github.com/keisme/Efficient-Mac/blob/master/IDETemplateMacros.plist" target="_blank" rel="noopener">IDETemplateMacros.plist</a>中的内容。</p>
+<p>其中，<code>FILENAME</code>、<code>PACKAGENAME</code>等为宏定义，更多宏定义请可以通过 Xcode - Help 搜索“Text macros reference”获得。这里要注意的是，宏定义的前后必须要加上三个下划线。</p>
+<p>然后我们将编辑好的 plist 文件放入指定的路径，关于路径有以下选择，对应不同的作用范围：</p>
 <ul>
-<li>然后去邮箱验证一下邮箱地址</li>
-<li>注册成功后，可以通过 <code>pod trunk me</code> 查看账号信息和发布过的库</li>
+<li><p>Project - 某个用户</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;ProjectName&gt;</span>.xcodeproj<span class="meta-keyword">/xcuserdata/</span>[username].xcuserdatad/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Project - 所有用户</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;ProjectName&gt;</span>.xcodeproj<span class="meta-keyword">/xcshareddata/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Workspace - 某个用户</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;WorkspaceName&gt;</span>.xcworkspace<span class="meta-keyword">/xcuserdata/</span>[username].xcuserdatad/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Workspace - 所有用户</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;WorkspaceName&gt;</span>.xcworkspace<span class="meta-keyword">/xcshareddata/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Xcode -全局</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~<span class="regexp">/Library/</span>Developer<span class="regexp">/Xcode/</span>UserData<span class="regexp">/</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="2-公有库的内容构成"><a href="#2-公有库的内容构成" class="headerlink" title="2. 公有库的内容构成"></a>2. 公有库的内容构成</h2><h3 id="2-1-共享的文件夹"><a href="#2-1-共享的文件夹" class="headerlink" title="2.1 共享的文件夹"></a>2.1 共享的文件夹</h3><p>这里存放的是需要共享的内容，也就是别人通过 <code>pod</code> 安装得到的源码，<code>.podspec</code> 文件中的 <code>source_files</code> 指定的就是这个共享文件夹的路径</p>
-<h3 id="2-2-LICENSE-文件"><a href="#2-2-LICENSE-文件" class="headerlink" title="2.2 LICENSE 文件"></a>2.2 LICENSE 文件</h3><p>如果你的公有库是放在 GitHub 上托管，可以将工程上传以后，直接在网页给工程添加 <code>LICENSE</code> 文件，GitHub 会自动给出开源协议的可选项，一般选择 <code>MIT</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/CocoaPods-创建公有库命令.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>所有的工作已经完成了，试试创建一个新的文件看看效果吧！</p>
+
+          
         
       
     </div>
@@ -1331,7 +1178,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-编译器提示-TODO-和-FIXME.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/卸载-CocoaPods（Uninstall-CocoaPods）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -1350,7 +1197,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Swift-编译器提示-TODO-和-FIXME.html" itemprop="url">Swift 编译器提示 TODO 和 FIXME</a></h2>
+                <a class="post-title-link" href="/卸载-CocoaPods（Uninstall-CocoaPods）.html" itemprop="url">卸载 CocoaPods（Uninstall CocoaPods）</a></h2>
         
 
         <div class="post-meta">
@@ -1362,8 +1209,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-26T01:03:40+08:00">
-                2017-11-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-27T00:43:58+08:00">
+                2020-03-27
               </time>
             
 
@@ -1418,7 +1265,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  96
+                  181
                 </span>
               
 
@@ -1445,10 +1292,21 @@
       
         
           
-            <p><code>Build Phases</code>，点击 <code>+</code>，添加 <code>New Run Script Phase</code>，添加如下内容：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">TAGS</span>=<span class="string">"TODO:|FIXME:"</span></span><br><span class="line">echo <span class="string">"searching <span class="variable">$&#123;SRCROOT&#125;</span> for <span class="variable">$&#123;TAGS&#125;</span>"</span></span><br><span class="line"><span class="builtin-name">find</span> <span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>"</span> \( -name <span class="string">"*.swift"</span> \) -print0 | xargs -0 egrep --with-filename --line-number --only-matching <span class="string">"(<span class="variable">$TAGS</span>).*\$"</span> | perl -p -e <span class="string">"s/(<span class="variable">$TAGS</span>)/ warning: \$1/"</span></span><br></pre></td></tr></table></figure>
-<p>在代码处添加如下标记：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> TODO: something to <span class="keyword">do</span></span><br><span class="line"><span class="regexp">//</span> FIXME: fix bug</span><br></pre></td></tr></table></figure></p>
-<p>编译器会自动给出相应的警告，并且可以快速定位到相应的代码处。</p>
+            <p>使用命令卸载：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo gem uninstall cocoapods</span></span><br></pre></td></tr></table></figure>
+<p>最新版本的 MacOS 可能会提示错误：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ERROR:  </span>While executing gem ... (Gem::FilePermissionError)</span><br><span class="line">    You don't have write permissions for the /usr/bin directory.</span><br></pre></td></tr></table></figure>
+<p>用以下命令可以解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo gem uninstall -n /usr/<span class="built_in">local</span>/bin cocoapods</span></span><br></pre></td></tr></table></figure>
+<p>然后查看本机安装的 cocoapods 相关的东西：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gem list --<span class="built_in">local</span> | grep cocoapods</span></span><br></pre></td></tr></table></figure>
+<p>一般会有如下显示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">cocoapods-core</span> (1<span class="selector-class">.9</span><span class="selector-class">.1</span>, 1<span class="selector-class">.8</span><span class="selector-class">.4</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-deintegrate</span> (1<span class="selector-class">.0</span><span class="selector-class">.4</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-downloader</span> (1<span class="selector-class">.2</span><span class="selector-class">.2</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-plugins</span> (1<span class="selector-class">.0</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-search</span> (1<span class="selector-class">.0</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-stats</span> (1<span class="selector-class">.1</span><span class="selector-class">.0</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-trunk</span> (1<span class="selector-class">.4</span><span class="selector-class">.1</span>)</span><br><span class="line"><span class="selector-tag">cocoapods-try</span> (1<span class="selector-class">.1</span><span class="selector-class">.0</span>)</span><br></pre></td></tr></table></figure>
+<p>然后使用命令逐个删除，比如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo gem uninstall cocoapods-core</span></span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="keyword">uninstall</span> -n /usr/<span class="keyword">local</span>/<span class="keyword">bin</span> cocoapods-core</span><br></pre></td></tr></table></figure>
+<p>卸载完成后重新<a href="https://guides.cocoapods.org/using/getting-started.html" target="_blank" rel="noopener">安装</a>即可。</p>
 
           
         
@@ -1497,7 +1355,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Charles-显示乱码问题解决方案.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-命名空间（namespace）的实现-NSConflict-keisme-mac13.0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -1516,7 +1374,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Charles-显示乱码问题解决方案.html" itemprop="url">Charles 显示乱码问题解决方案</a></h2>
+                <a class="post-title-link" href="/Swift-命名空间（namespace）的实现-NSConflict-keisme-mac13.0.html" itemprop="url">Swift 命名空间（namespace）的实现</a></h2>
         
 
         <div class="post-meta">
@@ -1528,8 +1386,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T22:56:21+08:00">
-                2017-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T23:18:12+08:00">
+                2020-03-25
               </time>
             
 
@@ -1551,8 +1409,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/trick/" itemprop="url" rel="index">
-                    <span itemprop="name">trick</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -1584,7 +1442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  91
+                  193
                 </span>
               
 
@@ -1611,14 +1469,7 @@
       
         
           
-            <blockquote>
-<p>Charles 版本：4.2</p>
-</blockquote>
-<ul>
-<li>安装 Mac 的 cer 证书后，点击 Charles 的 <code>proxy - SSL Proxying Settings - SSL Proxying - Add</code>，<code>Host</code> 填写 <code>*</code> ，<code>Port</code> 填写 <code>443</code></li>
-<li>安装手机上的 CA 证书后，点击 <code>通用 - 关于本机 - 证书信任设置</code> ，信任对应的证书</li>
-<li><code>Charles.app</code> 右键显示包内容，打开 <code>info.plist</code> ，添加 <code>vmoption</code> 字段，设置对应的值为 <code>-Dfile.encoding=UTF-8</code></li>
-</ul>
+            <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 实例对象的包装器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">CCWrapper</span>&lt;<span class="title">WrappedType</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/// 包装后的值</span></span><br><span class="line">    <span class="keyword">let</span> wrappedValue: <span class="type">WrappedType</span></span><br><span class="line">    <span class="keyword">init</span>(wrappedValue: <span class="type">WrappedType</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.wrappedValue = wrappedValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">WrapperType</span></span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">WrapperType</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">WrapperType</span>.<span class="type">Type</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议默认实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>(wrappedValue: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt;.<span class="type">Type</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>.<span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">NameSpaceWrapper</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CCWrapper</span> <span class="title">where</span> <span class="title">WrappedType</span> == <span class="title">String</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> hi: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi, I'm <span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">(to person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span> say hi to <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">hi</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hi, <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bruce"</span>.cc.hi)</span><br><span class="line"><span class="comment">//Hi, I'm Bruce</span></span><br><span class="line"></span><br><span class="line"><span class="string">"Bruce"</span>.cc.sayHi(to: <span class="string">"Max"</span>)</span><br><span class="line"><span class="comment">//Bruce say hi to Max</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span>.cc.hi(<span class="string">"Jack"</span>)</span><br><span class="line"><span class="comment">//Hi, Jack</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -1667,7 +1518,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift编程风格指南.html">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-命名空间（namespace）的实现.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="keisme">
@@ -1686,7 +1537,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Swift编程风格指南.html" itemprop="url">Swift编程风格指南</a></h2>
+                <a class="post-title-link" href="/Swift-命名空间（namespace）的实现.html" itemprop="url">Swift 命名空间（namespace）的实现</a></h2>
         
 
         <div class="post-meta">
@@ -1698,176 +1549,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T23:00:40+08:00">
-                2017-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,384
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-命名"><a href="#1-命名" class="headerlink" title="1. 命名"></a>1. 命名</h1><p>使用<code>驼峰式</code>命名法，<code>类</code>、<code>结构体</code>、<code>枚举</code>、<code>协议</code>的首字母应该大写，而<code>方法</code>、<code>变量</code>名首字母则小写。</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> maximumWidgetCount = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">WidgetContainer</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> widgetButton: UIButton</span><br><span class="line">  <span class="keyword">let</span> widgetHeightPercentage = <span class="number">0.85</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Swift编程风格指南.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-中的一些关键字.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Swift-中的一些关键字.html" itemprop="url">Swift 中的一些关键字</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T22:24:47+08:00">
-                2017-11-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T23:18:12+08:00">
+                2020-03-25
               </time>
             
 
@@ -1922,7 +1605,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  684
+                  193
                 </span>
               
 
@@ -1948,28 +1631,344 @@
 
       
         
-          <ul>
-<li><p><code>open</code>：可以在任何地方访问、继承和重写</p>
-</li>
-<li><p><code>public</code>：可以在任何地方被访问，在其他模块不能被继承和重写</p>
-</li>
-<li><p><code>internal</code>：默认访问级别，在整个模块内都可以被访问</p>
-</li>
-<li><p><code>fileprivate</code>：可以在同一个文件内被访问、继承和重写</p>
-</li>
-<li><p><code>private</code>：只能在本类访问和使用，不包括扩展类</p>
-</li>
-<li><p><code>fallthrough</code> ：Swift 中的 switch 语句可以省略 break，满足条件直接跳出循环。fallthrough 则具有贯穿作用，会继续执行后续的 case，直到碰到 break 或 default 才跳出循环。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> integerToDescribe &#123;  </span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>:  </span><br><span class="line">    <span class="keyword">description</span> += <span class="string">" a prime number, and also"</span>;  </span><br><span class="line">    fallthrough      <span class="comment">// 执行到此并不跳出循环,而是继续执行case5</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">5</span>:  </span><br><span class="line">    <span class="keyword">description</span> += <span class="string">" an integer"</span>    <span class="comment">// 执行到这一步,跳出循环</span></span><br><span class="line"><span class="keyword">default</span> :  </span><br><span class="line">    <span class="keyword">description</span> += <span class="string">" finished"</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Swift-中的一些关键字.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 实例对象的包装器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">CCWrapper</span>&lt;<span class="title">WrappedType</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/// 包装后的值</span></span><br><span class="line">    <span class="keyword">let</span> wrappedValue: <span class="type">WrappedType</span></span><br><span class="line">    <span class="keyword">init</span>(wrappedValue: <span class="type">WrappedType</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.wrappedValue = wrappedValue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">WrapperType</span></span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">WrapperType</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">WrapperType</span>.<span class="type">Type</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 命名空间协议默认实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">NameSpaceWrapper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>(wrappedValue: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> cc: <span class="type">CCWrapper</span>&lt;<span class="type">Self</span>&gt;.<span class="type">Type</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">CCWrapper</span>.<span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span>: <span class="title">NameSpaceWrapper</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CCWrapper</span> <span class="title">where</span> <span class="title">WrappedType</span> == <span class="title">String</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> hi: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi, I'm <span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHi</span><span class="params">(to person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(<span class="keyword">self</span>.wrappedValue)</span> say hi to <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">hi</span><span class="params">(<span class="number">_</span> person: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hi, <span class="subst">\(person)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bruce"</span>.cc.hi)</span><br><span class="line"><span class="comment">//Hi, I'm Bruce</span></span><br><span class="line"></span><br><span class="line"><span class="string">"Bruce"</span>.cc.sayHi(to: <span class="string">"Max"</span>)</span><br><span class="line"><span class="comment">//Bruce say hi to Max</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span>.cc.hi(<span class="string">"Jack"</span>)</span><br><span class="line"><span class="comment">//Hi, Jack</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-关联类型（associatedtype）的使用-NSConflict-keisme-mac13.0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift-关联类型（associatedtype）的使用-NSConflict-keisme-mac13.0.html" itemprop="url">Swift 关联类型（associatedtype）的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T23:07:00+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  330
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。<em>关联类型</em>给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">FoodType</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: FoodType)</span></span> -&gt; <span class="type">FoodType</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Meat</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vegetable</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: Food)</span></span> -&gt; <span class="type">Food</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> food</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">Food</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food1 = p.eat(<span class="type">Meat</span>(weight: <span class="number">1.2</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food1.desc)</span>, weight <span class="subst">\(food1.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 1.2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food2 = p.eat(<span class="type">Vegetable</span>(weight: <span class="number">0.8</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food2.desc)</span>, weight <span class="subst">\(food2.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 0.8</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-关联类型（associatedtype）的使用.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift-关联类型（associatedtype）的使用.html" itemprop="url">Swift 关联类型（associatedtype）的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T23:07:00+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  330
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。<em>关联类型</em>给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。</p>
+<p>举个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">FoodType</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: FoodType)</span></span> -&gt; <span class="type">FoodType</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span> &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Meat</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vegetable</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weight: <span class="type">CGFloat</span></span><br><span class="line">    <span class="keyword">var</span> desc: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>&lt;<span class="title">T</span>&gt;: <span class="title">Eat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">eat</span><span class="params">(<span class="number">_</span> food: Food)</span></span> -&gt; <span class="type">Food</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> food</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="type">Person</span>&lt;<span class="type">Food</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food1 = p.eat(<span class="type">Meat</span>(weight: <span class="number">1.2</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food1.desc)</span>, weight <span class="subst">\(food1.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 1.2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> food2 = p.eat(<span class="type">Vegetable</span>(weight: <span class="number">0.8</span>, desc: <span class="string">"meat"</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"eat <span class="subst">\(food2.desc)</span>, weight <span class="subst">\(food2.weight)</span>"</span>)</span><br><span class="line"><span class="comment">// eat meat, weight 0.8</span></span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -2007,7 +2006,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2057,7 +2056,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2068,7 +2067,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2079,7 +2078,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2143,7 +2142,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -2168,7 +2167,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.7k字</span>
+  <span class="post-count">博客全站共66.1k字</span>
 </div>
 
         

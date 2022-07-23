@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="ios, swiftui, 属性, 包装器, property, wrapper" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="@State由 SwiftUI 管理的可读写的属性包装器，当修饰的属性值改变的时候，界面会随之更新。由 @State 包装的属性通常用 private 修饰，在 body 内使用。 下面的实例是一个可以切换天气的界面，并且可以控制天气是否可变。  1234567891011121314151617181920212223242526272829303132333435363738394041424">
+<meta name="keywords" content="ios, swiftui, 属性, 包装器, property, wrapper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SwiftUI 中常见的属性包装器（Property Wrapper）概览">
+<meta property="og:url" content="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览-NSConflict-keisme-mac13.0.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="@State由 SwiftUI 管理的可读写的属性包装器，当修饰的属性值改变的时候，界面会随之更新。由 @State 包装的属性通常用 private 修饰，在 body 内使用。 下面的实例是一个可以切换天气的界面，并且可以控制天气是否可变。  1234567891011121314151617181920212223242526272829303132333435363738394041424">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-06-28T12:21:42.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SwiftUI 中常见的属性包装器（Property Wrapper）概览">
+<meta name="twitter:description" content="@State由 SwiftUI 管理的可读写的属性包装器，当修饰的属性值改变的时候，界面会随之更新。由 @State 包装的属性通常用 private 修饰，在 body 内使用。 下面的实例是一个可以切换天气的界面，并且可以控制天气是否可变。  1234567891011121314151617181920212223242526272829303132333435363738394041424">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览-NSConflict-keisme-mac13.0.html"/>
+
+
+
+
+
+<script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>SwiftUI 中常见的属性包装器（Property Wrapper）概览 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览-NSConflict-keisme-mac13.0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SwiftUI 中常见的属性包装器（Property Wrapper）概览</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-23T23:24:52+08:00">
+                2020-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,338
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="State"><a href="#State" class="headerlink" title="@State"></a>@State</h1><p>由 SwiftUI 管理的可读写的属性包装器，当修饰的属性值改变的时候，界面会随之更新。由 @State 包装的属性通常用 private 修饰，在 body 内使用。</p>
+<p>下面的实例是一个可以切换天气的界面，并且可以控制天气是否可变。</p>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weather</span>: <span class="title">String</span>, <span class="title">CaseIterable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> sun = <span class="string">"Sun"</span></span><br><span class="line">  <span class="keyword">case</span> cloud = <span class="string">"Cloud"</span></span><br><span class="line">  <span class="keyword">case</span> rain = <span class="string">"Rain"</span></span><br><span class="line">  <span class="keyword">case</span> snow = <span class="string">"Snow"</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> imageName: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> .sun:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"sun.max"</span></span><br><span class="line">      <span class="keyword">case</span> .cloud:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"cloud"</span></span><br><span class="line">      <span class="keyword">case</span> .rain:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"cloud.rain"</span></span><br><span class="line">      <span class="keyword">case</span> .snow:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"snow"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StateView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> weather: <span class="type">Weather</span> = .sun</span><br><span class="line">  @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> mutableWeather = <span class="literal">false</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">VStack</span> &#123;</span><br><span class="line">      <span class="type">Toggle</span>(isOn: $mutableWeather) &#123;</span><br><span class="line">        <span class="type">Text</span>(mutableWeather ? <span class="string">"Mutable"</span> : <span class="string">"Immutable"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      .padding()</span><br><span class="line">      <span class="comment">// add weather view</span></span><br><span class="line">      <span class="type">Spacer</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    .navigationBarTitle(<span class="string">"Weather"</span>, displayMode: .inline)</span><br><span class="line">    .navigationBarItems(trailing: <span class="type">Button</span>(action: &#123;</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">self</span>.mutableWeather &#123;</span><br><span class="line">        <span class="keyword">let</span> random = <span class="type">Int</span>.random(<span class="keyword">in</span>: <span class="number">0</span>..&lt;<span class="type">Weather</span>.allCases.<span class="built_in">count</span>)</span><br><span class="line">        <span class="keyword">self</span>.weather = <span class="type">Weather</span>.allCases[random]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;) &#123;</span><br><span class="line">      <span class="type">Text</span>(weather.rawValue)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Binding"><a href="#Binding" class="headerlink" title="@Binding"></a>@Binding</h1><p>接下来，我们用自定义的 WeatherView 去展示天气图片，图片会跟随父视图天气变化做相应改变，并且在 WeatherView 中可以通过点击改变天气。这个时候，我们就需要用到 @binding 来做数据的双向绑定。</p>
+<a id="more"></a>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">WeatherView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">Binding</span> <span class="keyword">var</span> weather: <span class="type">Weather</span></span><br><span class="line">  @<span class="type">Binding</span> <span class="keyword">var</span> mutableWeather: <span class="type">Bool</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">Image</span>(systemName: weather.imageName)</span><br><span class="line">      .resizable()</span><br><span class="line">      .scaledToFill()</span><br><span class="line">      .frame(width: <span class="number">150</span>, height: <span class="number">150</span>)</span><br><span class="line">      .onTapGesture &#123;</span><br><span class="line">        <span class="keyword">self</span>.mutableWeather = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">let</span> random = <span class="type">Int</span>.random(<span class="keyword">in</span>: <span class="number">0</span>..&lt;<span class="type">Weather</span>.allCases.<span class="built_in">count</span>)</span><br><span class="line">        <span class="keyword">self</span>.weather = <span class="type">Weather</span>.allCases[random]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们在 <code>// add weather view</code>下面添加如下代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WeatherView</span>(weather: $weather, mutableWeather: $mutableWeather)</span><br></pre></td></tr></table></figure>
+
+<h1 id="ObservedObject、-Published、ObservableObject"><a href="#ObservedObject、-Published、ObservableObject" class="headerlink" title="@ObservedObject、@Published、ObservableObject"></a>@ObservedObject、@Published、ObservableObject</h1><p>遵循 ObservableObject 协议的类的属性可以用 @Published 包装，在多个界面之间同步数据，只需要将需要监听的实例对象用 @ObservedObject 包装即可。注意：这里适用的对象类型是 class，因为 class 是在内存中共享数据的。</p>
+<p>下面是一个可以编辑一个人姓名和年龄的实例，在 EditView 所做的更改，会同步至 Person 界面。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">  @<span class="type">Published</span> <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  @<span class="type">Published</span> <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, age: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">EditView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">ObservedObject</span> <span class="keyword">var</span> person: <span class="type">Person</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="comment">// TextField 只能绑定 String，需要自定义 Binding</span></span><br><span class="line">    <span class="keyword">let</span> bindingAge = <span class="type">Binding</span>&lt;<span class="type">String</span>&gt;(<span class="keyword">get</span>: &#123;</span><br><span class="line">      <span class="string">"<span class="subst">\(<span class="keyword">self</span>.person.age)</span>"</span> == <span class="string">"0"</span> ? <span class="string">""</span> : <span class="string">"<span class="subst">\(<span class="keyword">self</span>.person.age)</span>"</span></span><br><span class="line">    &#125;) &#123; value <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>.person.age = <span class="type">Int</span>(value) ?? <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Form</span> &#123;</span><br><span class="line">      <span class="type">TextField</span>(<span class="string">"Input name"</span>, text: $person.name)</span><br><span class="line">      <span class="type">TextField</span>(<span class="string">"Input age"</span>, text: bindingAge)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ObservedObjectView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">ObservedObject</span> <span class="keyword">private</span> <span class="keyword">var</span> person = <span class="type">Person</span>(name: <span class="string">"Bruce"</span>, age: <span class="number">30</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">List</span> &#123;</span><br><span class="line">      <span class="type">Text</span>(person.name)</span><br><span class="line">      <span class="type">Text</span>(<span class="string">"<span class="subst">\(person.age)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .navigationBarTitle(<span class="string">"Person"</span>, displayMode: .inline)</span><br><span class="line">    .navigationBarItems(trailing:</span><br><span class="line">      <span class="type">NavigationLink</span>(destination: <span class="type">EditView</span>(person: <span class="keyword">self</span>.person)) &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"Edit"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Environment、EnvironmentValues"><a href="#Environment、EnvironmentValues" class="headerlink" title="@Environment、EnvironmentValues"></a>@Environment、EnvironmentValues</h1><p>@Environment 可以让我们在 View 中直接访问预设的环境变量，比如系统是否暗黑模式、系统日历、时区等。</p>
+<p>下面是一个可以返回上一个页面的实例，<code>@Environment</code>将<code>.presentationMode</code>绑定在当前的 View，我们可以直接调用<code>presentationMode</code>来获取它的值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">EnvironmentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">Environment</span>(\.presentationMode) <span class="keyword">private</span> <span class="keyword">var</span> presentationMode</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">Button</span>(<span class="string">"Dismiss"</span>) &#123;</span><br><span class="line">      <span class="keyword">self</span>.presentationMode.wrappedValue.dismiss()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>系统为我们提供了许多有用的预设变量，详见 <a href="https://developer.apple.com/documentation/swiftui/environmentvalues" target="_blank" rel="noopener">https://developer.apple.com/documentation/swiftui/environmentvalues</a></p>
+<p>我们也可以为预设值注入新值，比如我们将返回按钮标题改为 “Dismiss\nDismiss”，这时可以看见一个换行的按钮，而当我们给<code>.lineLimit</code>注入新值得时候，按钮标题就只有一行了：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">"Dismiss\nDismiss"</span>) &#123;</span><br><span class="line">  <span class="keyword">self</span>.presentationMode.wrappedValue.dismiss()</span><br><span class="line">&#125;</span><br><span class="line">.environment(\.lineLimit, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>这里只是举个例子，我们使用<code>.lineLimit(1)</code>也能达到同样的效果。</p>
+<p>我们也可以自定义 EnvironmentValues：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DismissColorKey</span>: <span class="title">EnvironmentKey</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">let</span> defaultValue = <span class="type">Color</span>.red</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">EnvironmentValues</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> dismissColor: <span class="type">Color</span> &#123;</span><br><span class="line">    <span class="keyword">set</span> &#123; <span class="keyword">self</span>[<span class="type">DismissColorKey</span>.<span class="keyword">self</span>] = newValue &#125;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">self</span>[<span class="type">DismissColorKey</span>.<span class="keyword">self</span>] &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们添加一个新的属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">Environment</span>(\.dismissColor) <span class="keyword">private</span> <span class="keyword">var</span> dismissColor</span><br></pre></td></tr></table></figure>
+<p>再使用自定义的预设值添加一个红色的返回按钮：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(action: &#123;</span><br><span class="line">  <span class="keyword">self</span>.presentationMode.wrappedValue.dismiss()</span><br><span class="line">&#125;) &#123;</span><br><span class="line">  <span class="type">Text</span>(<span class="string">"Red Dismiss"</span>)</span><br><span class="line">  .foregroundColor(dismissColor)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="EnvironmentObject"><a href="#EnvironmentObject" class="headerlink" title="@EnvironmentObject"></a>@EnvironmentObject</h1><p>@EnvironmentObject 和 @ObservedObject 很像，都需要遵循 ObservableObject 协议，都可以同步数据状态，但是它具备更强大的功能，那就是子视图可以自动获取父视图注入的环境变量。</p>
+<p>比如我们有如下视图层级：A -&gt; B -&gt; C -&gt; D -&gt; E，后一个是前一个视图的子视图。如果我们使用 @ObservedObject 在 A 视图包装一个变量，我们需要在每个视图包装一个变量，将变量一层层传递到  E 视图。而使用 @EnvironmentObject 我们不需要这么复杂，我们在 A 视图声明一个变量后，在 E 视图用 @EnvironmentObject 包装一个变量后，就可以获取到 A 视图注入的环境变量了，而且可以同步数据的修改，这简直是太方便了。要注意的是，如果 E 视图找不到这个环境变量，程序会崩溃，所以要确保 E 视图能获取到注入的环境变量。</p>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">  @<span class="type">Published</span> <span class="keyword">var</span> name = <span class="string">"Bruce"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ViewA</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">ViewB</span>()</span><br><span class="line">    .frame(width: <span class="number">300</span>, height: <span class="number">300</span>)</span><br><span class="line">      .background(<span class="type">Color</span>.red)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ViewB</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">ViewC</span>()</span><br><span class="line">    .frame(width: <span class="number">200</span>, height: <span class="number">200</span>)</span><br><span class="line">    .background(<span class="type">Color</span>.black)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ViewC</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  @<span class="type">EnvironmentObject</span> <span class="keyword">var</span> user: <span class="type">User</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">Text</span>(user.name)</span><br><span class="line">    .frame(width: <span class="number">100</span>, height: <span class="number">100</span>)</span><br><span class="line">      .background(<span class="type">Color</span>.white)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">EnvironmentObjectView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">let</span> user = <span class="type">User</span>()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">ViewA</span>().environmentObject(user)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <a href="https://github.com/keisme/SwiftUI_Learning/tree/master/PropertyWrapperExample" target="_blank" rel="noopener">Demo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览-NSConflict-keisme-mac13.0.html" title="SwiftUI 中常见的属性包装器（Property Wrapper）概览">http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览-NSConflict-keisme-mac13.0.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/SwiftUI/" rel="tag"><i class="fa fa-tag"></i> SwiftUI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html" rel="next" title="SwiftUI 中常见的属性包装器（Property Wrapper）概览">
+                <i class="fa fa-chevron-left"></i> SwiftUI 中常见的属性包装器（Property Wrapper）概览
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/SwiftUI（iOS-14）新增属性包装器（Property-Wrapper）.html" rel="prev" title="SwiftUI（iOS 14）新增属性包装器（Property Wrapper）">
+                SwiftUI（iOS 14）新增属性包装器（Property Wrapper） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#State"><span class="nav-number">1.</span> <span class="nav-text"><a href="#State" class="headerlink" title="@State"></a>@State</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Binding"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Binding" class="headerlink" title="@Binding"></a>@Binding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ObservedObject、-Published、ObservableObject"><span class="nav-number">3.</span> <span class="nav-text"><a href="#ObservedObject&#x3001;-Published&#x3001;ObservableObject" class="headerlink" title="@ObservedObject&#x3001;@Published&#x3001;ObservableObject"></a>@ObservedObject&#x3001;@Published&#x3001;ObservableObject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Environment、EnvironmentValues"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Environment&#x3001;EnvironmentValues" class="headerlink" title="@Environment&#x3001;EnvironmentValues"></a>@Environment&#x3001;EnvironmentValues</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EnvironmentObject"><span class="nav-number">5.</span> <span class="nav-text"><a href="#EnvironmentObject" class="headerlink" title="@EnvironmentObject"></a>@EnvironmentObject</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共66.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

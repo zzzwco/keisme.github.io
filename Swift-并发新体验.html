@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="iOS,Swift,Concurrency,并发,async,await,task" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言对于诞生于 2014 年的 Swift 而言，它已不再年轻。至今我还记得初次体验 Swift 时的喜悦之情，比起冗长的 OC 而言，它更加现代、简洁、优雅。但 Swift 的前期发展是野蛮而动荡的，每次发布新版本时都会导致旧项目出现大量的报错和告警，项目迁移工作令开发者苦不堪言。不得不说，Swift 诞生之初就敢于在项目中实践并运用的人，是真的猛士。我是从 Swift 4 才开始将项目逐渐从">
+<meta name="keywords" content="iOS,Swift,Concurrency,并发,async,await,task">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 并发新体验">
+<meta property="og:url" content="http://keisme.cn/Swift-并发新体验.html">
+<meta property="og:site_name" content="keisme">
+<meta property="og:description" content="引言对于诞生于 2014 年的 Swift 而言，它已不再年轻。至今我还记得初次体验 Swift 时的喜悦之情，比起冗长的 OC 而言，它更加现代、简洁、优雅。但 Swift 的前期发展是野蛮而动荡的，每次发布新版本时都会导致旧项目出现大量的报错和告警，项目迁移工作令开发者苦不堪言。不得不说，Swift 诞生之初就敢于在项目中实践并运用的人，是真的猛士。我是从 Swift 4 才开始将项目逐渐从">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.snookerclub.top/eul/9_1_1.png">
+<meta property="og:updated_time" content="2022-02-13T14:01:17.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 并发新体验">
+<meta name="twitter:description" content="引言对于诞生于 2014 年的 Swift 而言，它已不再年轻。至今我还记得初次体验 Swift 时的喜悦之情，比起冗长的 OC 而言，它更加现代、简洁、优雅。但 Swift 的前期发展是野蛮而动荡的，每次发布新版本时都会导致旧项目出现大量的报错和告警，项目迁移工作令开发者苦不堪言。不得不说，Swift 诞生之初就敢于在项目中实践并运用的人，是真的猛士。我是从 Swift 4 才开始将项目逐渐从">
+<meta name="twitter:image" content="https://images.snookerclub.top/eul/9_1_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://keisme.cn/Swift-并发新体验.html"/>
+
+
+
+
+
+<script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>Swift 并发新体验 | keisme</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">keisme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-并发新体验.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="keisme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="keisme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Swift 并发新体验</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-13T21:53:04+08:00">
+                2022-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,986
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>对于诞生于 2014 年的 <strong>Swift</strong> 而言，它已不再年轻。至今我还记得初次体验 Swift 时的喜悦之情，比起冗长的 OC 而言，它更加现代、简洁、优雅。但 Swift 的前期发展是野蛮而动荡的，每次发布新版本时都会导致旧项目出现大量的报错和告警，项目迁移工作令开发者苦不堪言。不得不说，Swift 诞生之初就敢于在项目中实践并运用的人，是真的猛士。我是从 Swift 4 才开始将项目逐渐从 OC 向 Swift 迁移的，到 2019 年 Swift 5 实现了 ABI 稳定时，才全面迁移至纯 Swift 开发。</p>
+<p>ABI 的稳定象征着 Swift 的成熟，然而在并发编程方面，Swift 却落后了一截。Chris Lattner 早在2017年发表的 <a href="https://gist.github.com/lattner/31ed37682ef1576b16bca1432ea9f782" target="_blank" rel="noopener">《Swift 并发宣言》</a> 中就描绘了令人兴奋的前景。2021 年 Swift 5.5 的发布终于将 <a href="https://developer.apple.com/documentation/swift/swift_standard_library/concurrency" target="_blank" rel="noopener">Concurrency</a> 加入了标准库，从此，Swift 并发编程变得更为简单、高效和安全。</p>
+<a id="more"></a>
+<p>在此之前，我们通常使用闭包来处理异步事件的回调，如下是一个下载网络图片的示例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchImage</span><span class="params">(from: String, completion: @escaping <span class="params">(Result&lt;UIImage?, Error&gt;)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  <span class="type">URLSession</span>.shared.dataTask(with: .<span class="keyword">init</span>(string: from)!) &#123; data, resp, error <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</span><br><span class="line">      completion(.failure(error))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">        completion(.success(.<span class="keyword">init</span>(data: data!)))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;.resume()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码并不复杂，不过这只是针对下载单一图片的场景。我们将需求设计的再复杂一点点：先下载前两张图片（无先后顺序）并展示，然后再下载第三张图片并展示，当三张图片都下载完成后，再展示在 UI 界面。当然，实际开发中一般是先下载的图片先展示，这里的非常规设计只作举例而已。</p>
+<p>完整的实现代码变成如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> sv = <span class="type">UIScrollView</span>(frame: <span class="type">UIScreen</span>.main.bounds)</span><br><span class="line">  <span class="keyword">let</span> imageViews = [<span class="type">UIImageView</span>(), <span class="type">UIImageView</span>(), <span class="type">UIImageView</span>()]</span><br><span class="line">  <span class="keyword">let</span> from = [</span><br><span class="line">    <span class="string">"https://images.pexels.com/photos/10646758/pexels-photo-10646758.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"</span>,</span><br><span class="line">    <span class="string">"https://images.pexels.com/photos/9391321/pexels-photo-9391321.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"</span>,</span><br><span class="line">    <span class="string">"https://images.pexels.com/photos/9801136/pexels-photo-9801136.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"</span></span><br><span class="line">  ]</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    </span><br><span class="line">    sv.backgroundColor = .white</span><br><span class="line">    view.addSubview(sv)</span><br><span class="line">    sv.contentSize = .<span class="keyword">init</span>(width: <span class="number">0</span>, height: <span class="type">UIScreen</span>.main.bounds.height + <span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    imageViews.enumerated().forEach &#123; i, v <span class="keyword">in</span></span><br><span class="line">      v.backgroundColor = .lightGray</span><br><span class="line">      v.contentMode = .scaleAspectFill</span><br><span class="line">      v.clipsToBounds = <span class="literal">true</span></span><br><span class="line">      v.frame = .<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="type">CGFloat</span>(i) * <span class="number">220</span>, width: <span class="type">UIScreen</span>.main.bounds.width, height: <span class="number">200</span>)</span><br><span class="line">      sv.addSubview(v)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> group = <span class="type">DispatchGroup</span>()</span><br><span class="line">    <span class="keyword">let</span> queue = <span class="type">DispatchQueue</span>(label: <span class="string">"fetchImage"</span>, qos: .userInitiated, attributes: .concurrent)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> itemClosure: (<span class="type">Int</span>, <span class="type">DispatchWorkItemFlags</span>, @escaping () -&gt; ()) -&gt; <span class="type">DispatchWorkItem</span> = &#123; idx, flags, completion <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">return</span> <span class="type">DispatchWorkItem</span>(flags: flags) &#123;</span><br><span class="line">        <span class="keyword">self</span>.fetchImage(from: <span class="keyword">self</span>.from[idx]) &#123; result <span class="keyword">in</span></span><br><span class="line">          <span class="built_in">print</span>(idx)</span><br><span class="line">          <span class="keyword">switch</span> result &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="keyword">let</span> .success(image):</span><br><span class="line">            <span class="keyword">self</span>.imageViews[idx].image = image</span><br><span class="line">          <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</span><br><span class="line">            <span class="built_in">print</span>(error)</span><br><span class="line">          &#125;</span><br><span class="line">          completion()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    from.enumerated().forEach &#123; i, <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">      group.enter()</span><br><span class="line">      <span class="keyword">let</span> flags: <span class="type">DispatchWorkItemFlags</span> = (i == <span class="number">2</span>) ? .barrier : []</span><br><span class="line">      queue.async(group: group, execute: itemClosure(i, flags, &#123;</span><br><span class="line">        group.leave()</span><br><span class="line">      &#125;))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    group.notify(queue: queue) &#123;</span><br><span class="line">      <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"end"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用了 GCD 来实现需求，看上去也不是特别复杂，我们还能使用 <a href="https://github.com/mxcl/PromiseKit" target="_blank" rel="noopener">PromiseKit</a> 来管理事件总线，不直接编写 GCD 层面的代码，使代码更简洁更易读。但是试想一下，实际需求可能更复杂，我们也许要先从服务端获取一些数据后，再下载图片并进行解码以及缓存，同时可能还会有下载音频、视频等任务要处理，这样的情况就更加复杂了。不管有没有使用 PromiseKit 这样优秀的库，随着业务的复杂度增加，都无法回避会越来越明显地暴露出来的问题：</p>
+<ul>
+<li>闭包本身难以阅读，还有导致循环引用的潜在风险</li>
+<li>回调必须覆盖各种情况，一旦遗漏则难以排查问题所在</li>
+<li>Result 虽然较好地处理了错误，但难以解决错误向上传递的问题</li>
+<li>嵌套层级太深导致回调地狱</li>
+<li>……</li>
+</ul>
+<h2 id="async-await-初体验"><a href="#async-await-初体验" class="headerlink" title="async/await 初体验"></a>async/await 初体验</h2><p>针对上面的这些问题，Concurrency 的解决方案是使用 <code>async/await</code> 模式，该模式在 C#、Javascript 等语言中有着成熟的应用。现在，我们终于可以在 Swift 中使用它了！</p>
+<p>下面是使用 async/await 改造 fetchImage 的代码，这里先了解一下 <code>async</code> 和 <code>await</code> 关键字的基本使用：</p>
+<ul>
+<li>async：添加在函数末尾，标记其为异步函数</li>
+<li>await：添加在调用 async 函数前，表明该处的代码会受到阻塞，直到异步事件返回</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchImage</span><span class="params">(idx: Int)</span></span> async <span class="keyword">throws</span>  -&gt; <span class="type">UIImage</span> &#123; <span class="comment">// 1</span></span><br><span class="line">  <span class="keyword">let</span> request = <span class="type">URLRequest</span>(url: .<span class="keyword">init</span>(string: from[idx])!)</span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="keyword">let</span> (data, resp) = <span class="keyword">try</span> await <span class="type">URLSession</span>.shared.data(<span class="keyword">for</span>: request)</span><br><span class="line">  <span class="comment">// 3</span></span><br><span class="line">  <span class="built_in">print</span>(idx, <span class="type">Thread</span>.current)</span><br><span class="line">  <span class="keyword">guard</span> (resp <span class="keyword">as</span>? <span class="type">HTTPURLResponse</span>)?.statusCode == <span class="number">200</span> <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">FetchImageError</span>.badNetwork</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: data) <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="type">FetchImageError</span>.downloadFailed</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> image</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>async throws 表明该函数是异步的、可抛出错误的</p>
+</li>
+<li><p>URLSession.shared.data 方法的全名如下，因此我们需要使用 try await 来调用该方法</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">data</span><span class="params">(from url: URL, delegate: URLSessionTaskDelegate? = <span class="literal">nil</span>)</span></span> async <span class="keyword">throws</span> -&gt; (<span class="type">Data</span>, <span class="type">URLResponse</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码执行到这里时，表明下载图片的异步事件已经结束了</p>
+</li>
+</ol>
+<p>相信你对 async/await 的使用已经有点感觉了：async 用来标记异步事件，await 用来调用异步事件，等待异步事件返回，然后继续执行后面的代码。它和 throws、try 这对关键词很像，几乎总是同时出现在相关场合。有的读者可能会纳闷，为何 try await 和 async throws 的顺序是反的，这里不必纠结，设计如此罢了，而且 try await 好像听上去和写起来更顺一点？</p>
+<p>接下来我们要做的就是调用异步函数 fetchImage，并且需要控制图片的下载顺序，实现代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">async <span class="keyword">let</span> image0 = <span class="keyword">try</span>? fetchImage(idx: <span class="number">0</span>)</span><br><span class="line">async <span class="keyword">let</span> image1 = <span class="keyword">try</span>? fetchImage(idx: <span class="number">1</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> images = await [image0, image1]</span><br><span class="line">imageViews[<span class="number">0</span>].image = images[<span class="number">0</span>]</span><br><span class="line">imageViews[<span class="number">1</span>].image = images[<span class="number">1</span>]</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">imageViews[<span class="number">2</span>].image = <span class="keyword">try</span>? await fetchImage(idx: <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>async let 可以让多个异步事件同时执行，这里表示同时异步下载前两张图片。</p>
+<p>前面我们说了 async 用来标记异步函数，await 用来调用，几乎总是出现在同一场合。而且编译器会去检查调用 async 函数时是否使用了 await，如果没有，则会报错。而这里，我们在调用 fetchImage 时并没有使用 await，依然可以通过编译，是因为在使用 async let 时，如果我们没有显示地使用 try await，Swift 会隐式的实现它，而且能将 try await 的调用时机推迟。</p>
+<p>上面的代码，我们将它改成如下也是可以的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">let</span> image0 = fetchImage(idx: <span class="number">0</span>)</span><br><span class="line">async <span class="keyword">let</span> image1 = fetchImage(idx: <span class="number">1</span>)</span><br><span class="line"><span class="keyword">let</span> images = <span class="keyword">try</span> await [image0, image1]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>await 阻塞当前任务，等待上面的两个异步任务返回结果</p>
+</li>
+<li><p>前两张图片下载完成之后，继续异步下载第三张图片并展示</p>
+</li>
+</ol>
+<p>将上面的代码放在 viewDidLoad 中执行，发现凡是有 async 的地方都报红了。这是因为如果某个函数内部调用了 async 函数，该函数也需要标记为 async，这样才能为函数体内部提供异步环境，并且将异步事件进行传递。而 viewDidLoad 没有被标记为 async，编译器发现了这一问题并报错了。但是，我们不能这样做。因为 viewDidLoad 是重写的 UIViewController 中的方法，它是运行在主线程中的同步函数而且必须如此。</p>
+<p>那么这个问题该如何解决呢？Swift 为我们提供了 <code>Task</code>，在创建的 Task 实例闭包中，我们将获得一个新的异步环境，如此，就可以调用异步函数了。Task 就像打破同步环境结界的桥梁，为我们提供了通向异步环境的通道。</p>
+<p>我们将上面的代码放在 Task 实例的闭包中，就可以顺利运行程序了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Task</span> &#123;</span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  async <span class="keyword">let</span> image0 = fetchImage(idx: <span class="number">0</span>)</span><br><span class="line">  async <span class="keyword">let</span> image1 = fetchImage(idx: <span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="keyword">let</span> images = <span class="keyword">try</span> await [image0, image1]</span><br><span class="line">  imageViews[<span class="number">0</span>].image = images[<span class="number">0</span>]</span><br><span class="line">  imageViews[<span class="number">1</span>].image = images[<span class="number">1</span>]</span><br><span class="line">  <span class="comment">// 3</span></span><br><span class="line">  imageViews[<span class="number">2</span>].image = <span class="keyword">try</span>? await fetchImage(idx: <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码最终的表现结果和改造前还有点细微差别：前两张图片虽然是同时异步下载的，但是会相互等待，直到两张图片都下载完成后，才展示在界面上。这里提供两个思路去实现与之前同样的效果，一是将展示图片的逻辑放在 fetchImage 方法中，另一种是使用 Task 解决，参考代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Task</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> task1 = <span class="type">Task</span> &#123;</span><br><span class="line">    imageViews[<span class="number">0</span>].image = <span class="keyword">try</span>? await fetchImage(idx: <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> task2 = <span class="type">Task</span> &#123;</span><br><span class="line">    imageViews[<span class="number">1</span>].image = <span class="keyword">try</span>? await fetchImage(idx: <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> <span class="number">_</span> = await [task1.value, task2.value]</span><br><span class="line">  imageViews[<span class="number">2</span>].image = <span class="keyword">try</span>? await fetchImage(idx: <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于 Task、TaskGroup 并不在本文的讨论范畴，后面会有单独的章节去详述。</p>
+<p>这里要补充说明的是，当我们使用 async let 时，实际上是在当前任务中隐式地创建了一个新的 task，或者叫子任务。async let 就像一个匿名的 Task，我们没有显示地创建它，也不能使用本地变量存储它。所以 Task 相关的 value、cancel() 等属性和方法，我们都无法使用。</p>
+<p>async let 其实就是一个语法糖，我们可以使用它应对多数场景下的异步事件处理。如果要处理的异步事件数量多且关系复杂，甚至涉及到事件的优先级，那么使用 Task、TaskGroup 是更明智的选择。</p>
+<h2 id="Refactor-to-Async"><a href="#Refactor-to-Async" class="headerlink" title="Refactor to Async"></a>Refactor to Async</h2><p>如果你想把之前基于回调的异步函数迁移至 async/await（最低支持 iOS 13），Xcode 内置了非常方便的操作，能够快速地进行零成本的迁移和兼容。</p>
+<p>如图所示，选中相应的方法，右键选择 Refactor，会有三种选择：</p>
+<ol>
+<li>Convert Function to Async：将当前的回调函数转换成 async，覆盖当前函数</li>
+<li>Add Async Alternative：使用 async 改写当前的回调函数，基于改写后的函数结合 Task 再提供一个回调函数</li>
+<li>Add Async Wrapper：保留当前的回调函数，在此基础上提供一个 async 函数</li>
+</ol>
+<p>从上我们可以得知 Wrapper 支持的 iOS 版本范围是大于 Alternative 的，我们可以根据项目的最低支持版本按需操作：</p>
+<ul>
+<li><code>&lt; iOS 13</code>，选 3</li>
+<li><code>&gt;= iOS 13</code><ul>
+<li>整体迁移至 async：选 1</li>
+<li>保留回调函数 API：选 3 或 1</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://images.snookerclub.top/eul/9_1_1.png" alt=""></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>async/await 简化了异步事件的处理，我们无需和线程直接打交道，就可以写出安全高效的并发代码。回调机制经常衍生出的面条式代码也不复存在，我们可以用线性结构来清晰地表达并发意图。</p>
+<p>这得益于<a href="https://en.wikipedia.org/wiki/Structured_concurrency" target="_blank" rel="noopener">结构化并发</a>的编程范式在背后做理念支撑，结构化并发的思想和<a href="https://zh.wikipedia.org/wiki/结构化编程" target="_blank" rel="noopener">结构化编程</a>是类似的。每个并发任务都有自己的作用域，并且有着明确且唯一的入口和出口。不管这个并发任务内部的实现有多复杂，它的出口一定是单一的。</p>
+<p>我们把要执行并发任务想象成一根管道，水流就是管道内要执行的任务。在非结构化编程的世界，子任务会生成许多的管道分支，水流会从不同的分支出口流出去，也可能会遇到故障，我们需要在不同的出口去处理水流结果，出口越多，我们越手忙脚乱。而结构化编程的世界里，我们无需关心各个分支出口，只要守住管道另一端的唯一出口就可以了，分支出口不管多复杂，水流最终会回到管道的出口。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    keisme
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://keisme.cn/Swift-并发新体验.html" title="Swift 并发新体验">http://keisme.cn/Swift-并发新体验.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"><i class="fa fa-tag"></i> Swift</a>
+          
+            <a href="/tags/Concurrency/" rel="tag"><i class="fa fa-tag"></i> Concurrency</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-协议的实战应用.html" rel="next" title="Swift 协议的实战应用">
+                <i class="fa fa-chevron-left"></i> Swift 协议的实战应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Swift-5-6-新特性.html" rel="prev" title="Swift 5.6 新特性">
+                Swift 5.6 新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="keisme" />
+            
+              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5F15;&#x8A00;" class="headerlink" title="&#x5F15;&#x8A00;"></a>&#x5F15;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#async-await-初体验"><span class="nav-number">2.</span> <span class="nav-text"><a href="#async-await-&#x521D;&#x4F53;&#x9A8C;" class="headerlink" title="async/await &#x521D;&#x4F53;&#x9A8C;"></a>async/await &#x521D;&#x4F53;&#x9A8C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refactor-to-Async"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Refactor-to-Async" class="headerlink" title="Refactor to Async"></a>Refactor to Async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">keisme</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共66.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
