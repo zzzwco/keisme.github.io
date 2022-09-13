@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift 中的 Result builders]]></title>
+    <url>%2FSwift-%E4%B8%AD%E7%9A%84-Result-builders.html</url>
+    <content type="text"><![CDATA[2022/08/30 Xcode 14 iOS 16 macOS 13 在以往的命令式编程中，通常这样构建视图： 123let label = UILabel()label.frame = self.view.boundsself.view.addSubview(label) 但 SwiftUI 采用的是声明式语法： 123456VStack &#123; Text("1") List &#123; Text("") &#125;&#125; 显而易见，SwiftUI 比 UIKit 要简洁地多，我们可以轻松地将不同的视图组合成复杂的界面。这得益于 Result builders（结果构造器），它使 SwiftUI 成为了特定领域语言（DSL）。 结果构造器是 Swift 5.4 正式引入的新特性，它可以将一系列子对象组合成新的对象，这个新对象又可以作为子对象去构造更复杂的对象。它在 SwiftUI 中无处不在，如构建场景的 @SceneBuilder，构建视图的 @ViewBuilder，还有 Swift 5.7 新增的正则构造器 RegexBuilder 等。 下面通过一个简单的示例来演示结果构造器的基本使用，假设我们想赋予 UIKit 类似 SwiftUI 的声明式语法，首先声明一个构造器： 123456@resultBuilder struct VStackBuilder &#123; static func buildBlock(_ components: UIView...) -&gt; [UIView] &#123; components &#125;&#125; 如上所示，要实现一个结果构造器，需要使用 @resultBuilder 修饰，并且必须实现 buildBlock 方法。 然后可以使用 @VStackBuilder 修饰相应的构造块（build block），如下的 VStack 会从 content 闭包构建视图： 1234567891011121314151617181920212223final class VStack: UIStackView &#123; @discardableResult init(superView: UIView, spacing: CGFloat = 10.0, @VStackBuilder content: () -&gt; [UIView]) &#123; super.init(frame: .zero) self.axis = .vertical self.spacing = spacing self.translatesAutoresizingMaskIntoConstraints = false content().forEach &#123; self.addArrangedSubview($0) &#125; superView.addSubview(self) NSLayoutConstraint.activate([ self.centerXAnchor.constraint(equalTo: superView.centerXAnchor), self.centerYAnchor.constraint(equalTo: superView.centerYAnchor), ]) &#125; required init(coder: NSCoder) &#123; fatalError("init(coder:) has not been implemented") &#125;&#125; 然后就可以愉快地使用 VStack 了： 12345678910111213141516171819202122232425262728293031323334353637class ViewController: UIViewController &#123; override func viewDidLoad() &#123; super.viewDidLoad() VStack(superView: self.view) &#123; UILabel() .text("Hello") .textColor(.orange) UILabel() .text("World") .textColor(.cyan) &#125; &#125;&#125;extension UILabel &#123; @discardableResult func text(_ text: String?) -&gt; Self &#123; self.text = text return self &#125; @discardableResult func font(_ font: UIFont) -&gt; Self &#123; self.font = font return self &#125; @discardableResult func textColor(_ textColor: UIColor) -&gt; Self &#123; self.textColor = textColor return self &#125;&#125; 如果需要在 VStack 中条件渲染视图，只需在相应的 VStackBuilder 中实现相应的静态方法 buildEither 即可： 1234567891011static func buildBlock(_ component: UIView) -&gt; UIView &#123; component&#125;static func buildEither(first component: UIView) -&gt; UIView &#123; component&#125;static func buildEither(second component: UIView) -&gt; UIView &#123; component&#125; 然后就可以这样写： 1234567VStack &#123; if Bool.random() &#123; UILabel().text("True") &#125; else &#123; UILabel().text("False") &#125;&#125; 关于结果构造器的更多细节和使用参考：SE-0289。 结果构造器使用简单，但效果神奇！它可以快速地实现 DSL，简化工作。 上例只实现了小部分构件 UI 的功能，并不具备数据绑定和更新状态的能力。此处仅为演示结果构造器的基本用法，并无指导意义。如果你的项目支持的最低版本为 iOS 13，可桥接使用 SwiftUI。 Github 有个仓库收集了许多 Result builders 的用法，参考：awesome-result-builders。]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Swift</tag>
+        <tag>SwiftUI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift 中的不透明类型、存在类型以及 some、any 关键字]]></title>
     <url>%2FSwift-%E4%B8%AD%E7%9A%84%E4%B8%8D%E9%80%8F%E6%98%8E%E7%B1%BB%E5%9E%8B%E3%80%81%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A-some%E3%80%81any-%E5%85%B3%E9%94%AE%E5%AD%97.html</url>
     <content type="text"><![CDATA[Xcode 14 beta 3 Swift 5.7 不透明类型、some 关键字some 关键字由 Swift 5.1 引入，它用来修饰某个协议，使之成为不透明类型。 不透明类型是隐藏类型信息的抽象类型，其底层的具体类型不可动态改变。 初次接触 SwiftUI 的读者会看到这样的代码： 123var body: some View &#123; Text("Hello")&#125; body 是不透明类型 some View，调用者只知其是一个遵循 View 协议的抽象类型，却不知其底层的具体类型（Text），因为不透明类型对调用者隐藏了类型信息。 这里的”不可见“是对调用者而言的，而编译器具有”透视“视角，它能够在编译期获取到不透明类型底层的具体类型（Text），并确保其底层类型是静态的。 如果在 body 内这样写： 1Bool.random() ? Text("Hello") : Image(systemName: "swift") 编译器能够诊断出 Text 和 Image 是不同的类型，因而抛出错误。假设 body 内部可以动态地改变其底层的具体类型，这意味着更多的内存占用和复杂计算，这会导致程序的性能损耗。 基于以上特性，不透明类型非常适合在模块之间调用，它可以保护类型信息为私有状态而不被暴露，而编译器能够访问类型信息并作出优化工作。 不透明类型受实现者约束，这和泛型受调用者约束是相反的。因此，不透明类型又被称为反向泛型。比如下面的代码： 1234567891011func build1&lt;V: View&gt;(_ v: V) -&gt; V &#123; v&#125;// v1 is Textlet v1 = build1(Text("Hello"))func build2() -&gt; some View &#123; Text("Hello")&#125;// v2 is Viewlet v2 = build2() 调用 build1 时就需要指定具体类型，此处入参为 Text 类型，因此 v1 的类型也是 Text。 build2 返回的具体类型由内部实现决定，这里返回的是 Text 类型。鉴于不透明类型对调用者隐藏了类型信息，因此 v2 的类型在编译期是 View，在运行时是 Text。 更优雅的泛型下面的代码用于比较两个集合，如果所有元素相同，返回 true。 12345678910111213141516func compare&lt;C1: Collection, C2: Collection&gt;(_ c1: C1, _ c2: C2) -&gt; Boolwhere C1.Element == C2.Element, C1.Element: Equatable &#123; if c1.count != c2.count &#123; return false &#125; for i in 0..&lt;c1.count &#123; let v1 = c1[c1.index(c1.startIndex, offsetBy: i)] let v2 = c2[c2.index(c2.startIndex, offsetBy: i)] if v1 != v2 &#123; return false &#125; &#125; return true&#125;let c1: [Int] = [1, 2, 3]let c2: Set&lt;Int&gt; = [1, 2, 3]let ans = compare(c1, c2) // true 这里使用泛型约束保证 C1 和 C2 是集合类型，使用 where 分句确保二者的关联类型 Element 是能够判等的相同类型。功能虽已实现，但写起来非常繁琐，也不利于阅读。那么，该如何简化呢？ 在简化之前，先来看看 Swift 5.7 新增的两个新特性： 使用范围更广的不透明类型 此前，不透明类型只能用于返回值。现在，我们还可以将其用于属性、下标以及函数参数。 主要关联类型 协议支持多个关联类型，使用尖括号声明（类似泛型写法）的则是主要关联类型。 如下 Collection 协议中的 Element，就是主要关联类型。 借助这一特性，在使用具有关联类型的协议时，写法可以非常简洁。比如上面的 where 分句，我们可以简写成 Collection&lt;Equatable&gt;。 123456public protocol Collection&lt;Element&gt; : Sequence &#123; associatedtype Element associatedtype Iterator = IndexingIterator&lt;Self&gt; ...&#125; 将以上两点结合起来，更优雅的写法如下： 123func compare&lt;E: Equatable&gt;(_ c1: some Collection&lt;E&gt;, _ c2: some Collection&lt;E&gt;) -&gt; Bool &#123; ...&#125; c1 和 c2 可以是任意集合类型，如果没有使用 some 标记，它就是下文提到的存在类型，编译器会提示使用 any 修饰。但这里将其声明为不透明类型，基于以下两点： 旧函数在调用时就已经确定了入参的具体类型，这和 any 的表达的意思有悖。 此处的不透明类型并没有用作返回值，只是在函数被调用时的入参，其具体类型是固定的，没有必要使用 any，这和旧函数表达的意图一致。 仔细对比两个函数，能够发现：some P 和 T where T: P 表达的意思其实是一样的。如果 P 带有关联类型 E，那么 T where T: P, T.E: V 可以简写为 some P&lt;V&gt;。 存在类型、any 关键字any 关键字由 Swift 5.6 引入，它用来修饰存在类型：一个能够容纳任意遵循某个协议的的具体类型的容器类型。 我们结合下面的代码来理解这段抽象的描述： 123456789101112protocol P &#123;&#125;struct CP1: P &#123;&#125;struct CP2: P &#123;&#125;func f1(_ p: any P) -&gt; any P &#123; p&#125;func f2&lt;V: P&gt;(_ p: V) -&gt; V &#123; p&#125; f1 中的 p 及其返回值都是存在类型，只要是遵循协议 P 的类型实例都是合法的。 f2 中的 p 及其返回值都不是存在类型，而是遵循协议 P 的某个具体类型。 在编译期间，f1 中 p 是存在类型（any P），它将 p 底层的具体类型包装在一个“容器”中。而在运行时，从容器中取出内容物才能得知 p 底层的具体类型。p 的类型可被任何遵循协议 P 的某个具体类型进行替换，因此存在类型具有动态分发的特性。 比如下面的代码： 123func f3() -&gt; any P &#123; Bool.random() ? CP1() : CP2()&#125; f3 的返回类型在编译期间是存在类型 any P，但是在运行期间的具体类型是 CP1 或 CP2。 而 f2 中的 p 没有被“容器”包装，无需进行装箱、拆箱操作。由于泛型的约束，当我们调用该方法时，就已经确定了它的具体类型。无论是编译期还是运行时，它的类型都是具体的，这又称为静态分发。比如这样调用时：f2(CP1()) ，入参和返回值类型都就已经固化为 CP1，在编译期和运行时都保持为该具体类型。 因为动态分发会带来一定的性能损耗，因此 Swift 引入了 any 关键字来向我们警示存在类型的负面影响，我们应该尽量避免使用它。 上面的示例代码不使用 any 关键字还能通过编译，但从 Swift 6 开始，当我们使用存在类型时，编译器会强制要求使用 any 关键字标记，否则会报错。 在实际开发中，推荐优先使用泛型和 some，尽可能地避免使用 any，除非你真的需要一个动态的类型。 文中涉及源码参考：Source code。]]></content>
@@ -80,8 +93,8 @@
   </entry>
   <entry>
     <title><![CDATA[SwiftUI、Combine 简明教程 App：Eul]]></title>
-    <url>%2FSwiftUI%E3%80%81Combine%20%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%20App%EF%BC%9AEul.html</url>
-    <content type="text"><![CDATA[简介Eul 是一款 SwiftUI &amp; Combine 教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 12+、iOS 14+，macOS 11+）的形式呈现给读者。 笔者意在尽可能使用简洁明了的语言阐述 SwiftUI &amp; Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。 下面是 App 内实图： iOS： macOS： 下载链接iOS/macOS：https://apps.apple.com/cn/app/eul/id1541991958 联系反馈 邮箱：bruce8.0@outlook.com 微博：Bruce2077 twitter：Bruce_2077]]></content>
+    <url>%2FSwiftUI%20%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%20App%EF%BC%9AEul.html</url>
+    <content type="text"><![CDATA[简介Eul 是一款 SwiftUI、Concurrency 简明教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 13+、iOS 15+，macOS 12+）的形式呈现给读者。 笔者意在尽可能使用简洁明了的语言阐述 SwiftUI、Concurrency、Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。 下面是 App 内实图： iOS： macOS： 下载链接iOS/macOS：AppStore 联系反馈 邮箱：zzzwco@outlook.com 微博：zzzwwco twitter：zzzwco]]></content>
       <categories>
         <category>Products</category>
       </categories>
@@ -91,19 +104,6 @@
         <tag>Products</tag>
         <tag>App</tag>
         <tag>Combine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[SwiftUI & Combine 简明教程 App：Eul]]></title>
-    <url>%2FSwiftUI%20%26%20Combine%20%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%20App%EF%BC%9AEul.html</url>
-    <content type="text"><![CDATA[简介Eul 是一款 SwiftUI &amp; Combine 教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 12+、iOS 14+，macOS 11+）的形式呈现给读者。 笔者意在尽可能使用简洁明了的语言阐述 SwiftUI &amp; Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。 由于笔者目前尚未购入 M1芯片的 mac，暂时不会提供苹果芯片版本。 下面是 App 内实图： iOS： macOS： 下载链接iOS/macOS：https://apps.apple.com/cn/app/eul/id1541991958 联系反馈 邮箱：bruce8.0@outlook.com 微博：Bruce2077 twitter：Bruce_2077]]></content>
-      <categories>
-        <category>SwiftUI</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
-        <tag>Eul</tag>
       </tags>
   </entry>
   <entry>
@@ -120,18 +120,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SwiftUI PreferenceKey]]></title>
-    <url>%2FSwiftUI-PreferenceKey-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[下图所示是一个常规的登录界面，只需少量代码即可实现： 123456789101112131415161718192021struct ContentView : View &#123; @State private var email = "" @State private var password = "" var body: some View &#123; Form &#123; HStack &#123; Text("电子邮箱") TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; HStack &#123; Text("密码") TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; &#125; &#125;&#125; 但是通常我们为了美观，会将左边的文字列等宽对齐，也许固定宽度是个不错的想法，但是可扩展性太差，我们如何解决这个问题呢？ 常规的思路就是，获取文字列所有的内容的宽度，取最大值，重绘界面即可。那么问题来了，如何获取这个最大值呢？答案就是 PreferenceKey，它可以收集视图树中子视图的数据，回传给父视图（跨层级亦可）。这里我们需要获取尺寸，还用到了 GeometryReader。 改造后的效果和代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253struct ContentView : View &#123; @State private var email = "" @State private var password = "" // 保存、更新文字列所需要的合适宽度，这里是最大值 @State private var textWidth: CGFloat? var body: some View &#123; Form &#123; HStack &#123; Text("电子邮箱") .frame(width: textWidth, alignment: .leading) .background(TextBackgroundView()) TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; HStack &#123; Text("密码") .frame(width: textWidth, alignment: .leading) .background(TextBackgroundView()) TextField("请输入", text: $email) .textFieldStyle(RoundedBorderTextFieldStyle()) &#125; &#125; .onPreferenceChange(TextWidthPreferenceKey.self) &#123; (value) in print(value) textWidth = value.max() &#125; &#125;&#125;struct TextBackgroundView: View &#123; var body: some View &#123; GeometryReader &#123; gr in Rectangle() .fill(Color.clear) .preference(key: TextWidthPreferenceKey.self, value: [gr.size.width]) &#125; &#125;&#125;struct TextWidthPreferenceKey: PreferenceKey &#123; // 偏好值没有被设定时，使用默认值 static var defaultValue: [CGFloat] = [] // 收集视图树中的数据 // nextValue 的闭包是惰性调用的，只有需要用到它时才会去获取相应的值 static func reduce(value: inout [CGFloat], nextValue: () -&gt; [CGFloat]) &#123; value.append(contentsOf: nextValue()) &#125;&#125; 有一点需要注意，为什么我们要使用 TextBackgroundView 来作为背景回传所需要的值呢？因为我们期望 Form 列表的布局是根据子视图的布局来更新的，而子视图又依赖父视图传入的宽度值，这样形成了一个得不到结果的死循环。而 TextBackgroundView 可以打破这个僵局，父视图所依赖的布局不再是文字的布局，而是背景层的视图布局。 补充说明一下，SwiftUI 的视图层级是不同于 UIKit 的，在 UIKit 中，背景是控件的属性，而 SwiftUI 中，.background 会在视图树中生成一个新的视图，是独立与所修饰的控件的。 另外有一点令我不解的是，既然我是要获取最大宽度，只需要在 TextWidthPreferenceKey 将关联类型设置为 CGFloat 即可，在 reduce 方法中写入 value = max(value, nextValue())，然后在 onPreferenceChange 中将最大值传给 textWidth ，这样不是更简单吗？但是事与愿违，这样达不到我们想要的效果，观察控制台，我发现确实可以获取到最大宽度值，但是不会更新视图布局，百思不得其解，网上也没找到合理的解释。暂且放下，以后再研究一下这个问题。 参考： PreferenceKey’s reduce method demystified Inspecting the View Tree – Part 1: PreferenceKey SwiftUI 小技巧：透過 PreferenceKey 簡單對齊視圖]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SwiftUI GeometryReader 与坐标系]]></title>
     <url>%2FSwiftUI-GeometryReader-%E4%B8%8E%E5%9D%90%E6%A0%87%E7%B3%BB.html</url>
     <content type="text"><![CDATA[GeometryReader 是一个通过闭包来构建视图的容器，可以返回一个 GeometryProxy 类型的结构体，它包含如下属性和方法，由此我们可以获取当前视图容器（即父视图）的尺寸和位置，绘制以其为参考坐标系的视图。 12345678var safeAreaInsets: EdgeInsets// The safe area inset of the container view.var size: CGSize// The size of the container view.func frame(in: CoordinateSpace) -&gt; CGRect// Returns the container view’s bounds rectangle, converted to a defined coordinate space. 比如，我们需要绘制一个长宽均为父视图一半的矩形： 12345678910struct ContentView: View &#123; var body: some View &#123; GeometryReader &#123; gr in RoundedRectangle(cornerRadius: 10) .fill(Color.blue) .frame(width: gr.size.width * 0.5, height: gr.size.height * 0.5) .position(x: gr.frame(in: .local).midX, y: gr.frame(in: .local).midY) &#125; &#125;&#125; 我们再来看看 GeometryProxy 包含的实例方法：func frame(in: CoordinateSpace) -&gt; CGRect，这里的 CoordinateSpace 是个枚举类型，有以下几种情况： 123case global // 参考系为屏幕case local // 参考系为父视图case named(AnyHashable) // 参考系为自定义 通过这个方法，我们可以获取到当前视图在不同参考系中的位置和尺寸，我们将代码改成如下： 123456789101112131415161718192021222324252627282930313233343536373839struct ContentView: View &#123; var body: some View &#123; VStack(spacing: 10) &#123; text("Top", width: 100, height: 50) HStack(spacing: 10) &#123; text("Left", width: 50, height: 100) roundRect .background(Color.black) text("Right", width: 50, height: 100) &#125; text("Bottom", width: 100, height: 50) &#125; .coordinateSpace(name: "VStack") &#125; var roundRect: some View &#123; GeometryReader &#123; gr in RoundedRectangle(cornerRadius: 10) .fill(Color.blue) .frame(width: gr.size.width * 0.5, height: gr.size.height * 0.5) .position(x: gr.frame(in: .local).midX, y: gr.frame(in: .local).midY) .onTapGesture &#123; print("screen: \(UIScreen.main.bounds)") print("global: \(gr.frame(in: .global))") print("local: \(gr.frame(in: .local))") print("custom: \(gr.frame(in: .named("VStack")))") &#125; &#125; &#125; func text(_ text: String, width: CGFloat, height: CGFloat) -&gt; some View &#123; Text(text) .frame(width: width, height: height) .background(Color.orange) .cornerRadius(10) &#125;&#125; 运行模拟器 iPhone 12 Pro（safeAreaInsets: 47.0, 0.0, 34.0, 0.0），点击蓝色区域，控制台打印如下结果： 1234screen: (0.0, 0.0, 390.0, 844.0)global: (60.0, 107.0, 270.0, 643.0)local: (0.0, 0.0, 270.0, 643.0)custom: (60.0, 60.0, 270.0, 643.0) 这与我们之前所说的枚举类型对应的坐标参考系是一致的。]]></content>
@@ -142,30 +130,6 @@
         <tag>ios</tag>
         <tag>swiftui</tag>
         <tag>GeometryReader</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[SwiftUI GeometryReader 与坐标系]]></title>
-    <url>%2FSwiftUI-GeometryReader-%E4%B8%8E%E5%9D%90%E6%A0%87%E7%B3%BB-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[GeometryReader 是一个通过闭包来构建视图的容器，可以返回一个 GeometryProxy 类型的结构体，它包含如下属性和方法，由此我们可以获取当前视图容器（即父视图）的尺寸和位置，绘制以其为参考坐标系的视图。 12345678var safeAreaInsets: EdgeInsets// The safe area inset of the container view.var size: CGSize// The size of the container view.func frame(in: CoordinateSpace) -&gt; CGRect// Returns the container view’s bounds rectangle, converted to a defined coordinate space. 比如，我们需要绘制一个长宽均为父视图一半的矩形： 12345678910struct ContentView: View &#123; var body: some View &#123; GeometryReader &#123; gr in RoundedRectangle(cornerRadius: 10) .fill(Color.blue) .frame(width: gr.size.width * 0.5, height: gr.size.height * 0.5) .position(x: gr.frame(in: .local).midX, y: gr.frame(in: .local).midY) &#125; &#125;&#125; 我们再来看看 GeometryProxy 包含的实例方法：func frame(in: CoordinateSpace) -&gt; CGRect，这里的 CoordinateSpace 是个枚举类型，有以下几种情况： 123case global // 参考系为屏幕case local // 参考系为父视图case named(AnyHashable) // 参考系为自定义 通过这个方法，我们可以获取到当前视图在不同参考系中的位置和尺寸，我们将代码改成如下： 123456789101112131415161718192021222324252627282930313233343536373839struct ContentView: View &#123; var body: some View &#123; VStack(spacing: 10) &#123; text("Top", width: 100, height: 50) HStack(spacing: 10) &#123; text("Left", width: 50, height: 100) roundRect .background(Color.black) text("Right", width: 50, height: 100) &#125; text("Bottom", width: 100, height: 50) &#125; .coordinateSpace(name: "VStack") &#125; var roundRect: some View &#123; GeometryReader &#123; gr in RoundedRectangle(cornerRadius: 10) .fill(Color.blue) .frame(width: gr.size.width * 0.5, height: gr.size.height * 0.5) .position(x: gr.frame(in: .local).midX, y: gr.frame(in: .local).midY) .onTapGesture &#123; print("screen: \(UIScreen.main.bounds)") print("global: \(gr.frame(in: .global))") print("local: \(gr.frame(in: .local))") print("custom: \(gr.frame(in: .named("VStack")))") &#125; &#125; &#125; func text(_ text: String, width: CGFloat, height: CGFloat) -&gt; some View &#123; Text(text) .frame(width: width, height: height) .background(Color.orange) .cornerRadius(10) &#125;&#125; 运行模拟器 iPhone 12 Pro（safeAreaInsets: 47.0, 0.0, 34.0, 0.0），点击蓝色区域，控制台打印如下结果： 1234screen: (0.0, 0.0, 390.0, 844.0)global: (60.0, 107.0, 270.0, 643.0)local: (0.0, 0.0, 270.0, 643.0)custom: (60.0, 60.0, 270.0, 643.0) 这与我们之前所说的枚举类型对应的坐标参考系是一致的。]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift 中的协议、泛型、不透明类型]]></title>
-    <url>%2FSwift-%E4%B8%AD%E7%9A%84%E5%8D%8F%E8%AE%AE%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E4%B8%8D%E9%80%8F%E6%98%8E%E7%B1%BB%E5%9E%8B-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[在学习 SwiftUI 的过程中，发现对标题中的内容还不甚熟悉，而这些内容是 SwiftUI 中极其重要的部分，不理解就很难熟练地掌握 SwiftUI，故温习并记录，以下内容可视为官方教程的简装版。 协议定义协议规定了实现某一特定功能的方法和属性。 类、结构体、枚举类型都可以遵循协议。 语法123protocol SomeProtocol &#123; // 协议内容&#125; 属性要求属性可以是存储型或计算型，必须明确其可读写性。 12345protocol Cat &#123; var food: String &#123; get set &#125; // 可读写 var color: Color &#123; get &#125; // 只读 static var age: Int &#123; get &#125; // static 用于 class 的类型属性&#125; 方法要求方法可以是实例方法或类方法，方法参数不能使用默认值。 异变方法要求协议中的实例方法可以标记为 mutating，当结构体、枚举这样的值类型实现相应的方法时，需要加上 mutating 关键字，而类作为引用类型，不需要该关键字。 初始化器要求协议可以要求遵循者实现指定的初始化器，只是不需要写初始化器的实体，即大括号里的内容。 1234protocal Cat &#123; init(from: String) init?(color: Color) // 可失败的初始化器&#125; 协议初始化器要求的类实现在遵循协议的类中实现的构造器，可以指定为类的指定构造器或便利构造器，在这两种情况下，必须使用 required 修饰构造器。该修饰符保证：所有遵循该协议的子类，都能有一个明确的继承实现。 123456789101112protocol P &#123; init()&#125;class SomeSuperClass &#123; init() &#123;&#125;&#125;class SomeSubClass: SomeSuperClass, P &#123; // SomeSubClass 遵循协议 P，所以要用 required 修饰 required override init &#123;&#125;&#125; 将协议作为类型使用场合： 在函数、方法或者初始化器里作为形参类型或者返回类型 作为常量、变量或者属性的类型 作为数组、字典或者其他存储器的元素的类型 123456789101112131415161718192021222324252627282930313233343536protocol LifeStyle &#123; func lifeStyle() -&gt; [String]&#125;class Person &#123; var name: String var lifeStyle: LifeStyle init(name: String, lifeStyle: LifeStyle) &#123; self.name = name self.lifeStyle = lifeStyle &#125; func beBetterFrom() -&gt; [String] &#123; return lifeStyle.lifeStyle() &#125; func perf(with addition: String) -&gt; [String] &#123; var newStyle = lifeStyle.lifeStyle() newStyle.append(addition) return newStyle &#125;&#125;struct Recommend: LifeStyle &#123; func lifeStyle() -&gt; [String] &#123; return ["read", "travel"] &#125;&#125;let p = Person(name: "p", lifeStyle: Recommend())print(p.beBetterFrom())/// ["read", "travel"]let newStyle = p.perf(with: "love")print(newStyle)/// ["read", "travel", "love"] 在扩展里添加协议遵循扩展可以补充协议中已存在的内容，或是提供默认的实现，还可以给协议新增内容。 有条件的遵循协议123extension Array where Element: Equatable &#123; // code&#125; 使用扩展声明采纳协议如果一个类型已经遵循类协议的要求，但是还没有声明采纳协议，可以通过一个空的扩展来显式地声明它采纳协议。 1234567891011struct Hamster &#123; var name: String var textualDescription: String &#123; return "A hamster named \(name)" &#125;&#125;extension Hamster: TextRepresentable &#123;&#125;let simonTheHamster = Hamster(name: "Simon")let somethingTextRepresentable: TextRepresentable = simonTheHamsterprint(somethingTextRepresentable.textualDescription) 协议类型的集合1234let things: [TextRepresentable] = [game, d12, simonTheHamster]for thing in things &#123; print(thing.textualDescription)&#125; 协议继承123protocol InheritingProtocol: SomeProtocol, AnotherProtocol &#123; // protocol definition goes here&#125; 类专用的协议123protocol SomeClassOnlyProtocol: AnyObject, SomeInheritedProtocol &#123; // class-only protocol definition goes here&#125; 协议组合12345678910111213141516protocol Named &#123; var name: String &#123; get &#125;&#125;protocol Aged &#123; var age: Int &#123; get &#125;&#125;struct Person: Named, Aged &#123; var name: String var age: Int&#125;func wishHappyBirthday(to celebrator: Named &amp; Aged) &#123; print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")&#125;let birthdayPerson = Person(name: "Malcolm", age: 21)wishHappyBirthday(to: birthdayPerson)// Prints "Happy birthday, Malcolm, you're 21!" 协议遵循的检查 如果实例遵循协议 is 运算符返回 true 否则返回 false as? 版本的向下转换运算符返回协议的可选项，如果实例不遵循这个协议的话值就是 nil as! 版本的向下转换运算符强制转换协议类型并且在失败是触发运行时错误 可选协议要求 略 协议扩展略 泛型类型形式参数1func swapTwoValues&lt;T&gt;(_ a: inout T, _ b: inout T) 占位符 T 就是类型形式参数，当我们调用函数时，用实际类型来替换类型形参。 泛型类型Swift 允许自定义泛型类型，它们可以使自定义类、结构体、枚举。 123456789struct Stack&lt;Element&gt; &#123; var items = [Element]() mutating func push(_ item: Element) &#123; items.append(item) &#125; mutating func pop() -&gt; Element &#123; return items.removeLast() &#125;&#125; 扩展一个泛型类型12345extension Stack &#123; var topItem: Element? &#123; return items.isEmpty ? nil : items[items.count - 1] &#125;&#125; 类型约束类型约束语法123func someFunction&lt;T: SomeClass, U: SomeProtocol&gt;(someT: T, someU: U) &#123; // function body goes here&#125; 类型约束的应用12345678func findIndex&lt;T: Equatable&gt;(of valueToFind: T, in array:[T]) -&gt; Int? &#123; for (index, value) in array.enumerated() &#123; if value == valueToFind &#123; return index &#125; &#125; return nil&#125; 关联类型定义一个协议时，声明一个或多个关联类型是很有用的。关联类型个协议中用到的类型一个占位符名称，直到采纳协议时，才指定实际类型。 关联类型的应用1234567891011121314151617181920212223242526272829protocol Container &#123; associatedtype ItemType mutating func append(_ item: ItemType) var count: Int &#123; get &#125; subscript(i: Int) -&gt; ItemType &#123; get &#125;&#125;struct Stack&lt;Element&gt;: Container &#123; var items = [Element]() mutating func push(_ item: Element) &#123; items.append(item) &#125; mutating func pop() -&gt; Element &#123; return items.removeLast() &#125; // 可省略，应为 Swift 可以推断出此处的关联类型 // typealias ItemType = Element mutating func append(_ item: Element) &#123; self.push(item) &#125; var count: Int &#123; items.count &#125; subscript(i: Int) -&gt; Element &#123; return items[i] &#125;&#125; 给关联类型添加约束123456protocol Container &#123; associatedtype Item: Equatable mutating func append(_ item: Item) var count: Int &#123; get &#125; subscript(i: Int) -&gt; Item &#123; get &#125;&#125; 在关联类型约束里使用协议123456789101112131415161718192021protocol SuffixableContainer: Container &#123; associatedtype Suffix: SuffixableContainer where Suffix.Item == Item func suffix(_ size: Int) -&gt; Suffix&#125;extension Stack: SuffixableContainer &#123; func suffix(_ size: Int) -&gt; Stack &#123; var res = Stack() for i in (count-size)..&lt;count &#123; res.append(self[i]) &#125; return res &#125;&#125;var stackOfInts = Stack&lt;Int&gt;()stackOfInts.append(10)stackOfInts.append(20)stackOfInts.append(30)print(stackOfInts.suffix(2))// "Stack&lt;Int&gt;(items: [20, 30])" 扩展现有类型来指定关联类型Swift 中的 Array 类型已经提供了 Container 协议中的方法和属性，我们只需要用一个空的扩展显示地声明采纳协议即可： 1extension Array: Container &#123;&#125; 现在我们可以把任何 Array 当做一个 Container 使用。 泛型 Where 分句12345678910func allItemsMatch&lt;C1: Container, C2: Container&gt;( _ c1: C1, _ c2: C2) -&gt; Bool where C1.Item == C2.Item &#123; if c1.count != c2.count &#123; return false &#125; for i in 0..&lt;c1.count &#123; if c1[i] != c2[i] &#123; return false &#125; &#125; return true&#125; 带有泛型 Where 分句的扩展123456789extension Container where Item == Double &#123; func average() -&gt; Double &#123; var sum = 0.0 for i in 0..&lt;count &#123; sum += self[i] &#125; return sum / Double(count) &#125;&#125; 泛型下标1234567891011extension Container &#123; // 传入的 indices 形参是一个整数的序列 subscript&lt;Indices: Sequence&gt;(indices: Indices) -&gt; [Item] where Indices.Iterator.Element == Int &#123; var res = [Item]() for i in indices &#123; res.append(self[i]) &#125; return res &#125;&#125; 不透明类型具有不透明返回类型的函数或者方法会隐藏它返回值的具体类型信息，而以它支持的协议进行描述。隐藏类型信息在模块之间调用代码时很好用，因为返回值的具体类型可以保持私有。不同于返回一个协议类型的值，不透明类型保持了类型的身份——编译器可以访问类型信息，但是模块不能。 不透明类型也可以理解为“反向泛型”，泛型受调用者约束，而不透明类型受被调用者约束。 函数不能返回带有 Self 或 associatedtype 的协议，而不透明类型可以。函数可以返回不同的协议类型，不透明类型每次必须返回相同的类型。 12345678910111213141516171819202122232425262728293031323334353637383940protocol UIMode &#123; func color() -&gt; UIColor&#125;struct LightMode: UIMode &#123; func color() -&gt; UIColor &#123; return .white &#125;&#125;struct DarkMode: UIMode &#123; func color() -&gt; UIColor &#123; return .black &#125;&#125;let light = LightMode()let dark = DarkMode()func getMode(isDay: Bool) -&gt; UIMode &#123; isDay ? light : dark&#125;print(getMode(isDay: true).color())print(getMode(isDay: false).color())struct AutoMode: UIMode &#123; var isDay: Bool func color() -&gt; UIColor &#123; isDay ? .white : .black &#125;&#125;func getModeOpaque(isDay: Bool) -&gt; some UIMode &#123; return AutoMode(isDay: isDay)&#125;print(getModeOpaque(isDay: true).color())print(getModeOpaque(isDay: false).color())]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
       </tags>
   </entry>
   <entry>
@@ -182,18 +146,6 @@
   </entry>
   <entry>
     <title><![CDATA[SwiftUI（iOS 14）新增属性包装器（Property Wrapper）]]></title>
-    <url>%2FSwiftUI%EF%BC%88iOS-14%EF%BC%89%E6%96%B0%E5%A2%9E%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%EF%BC%88Property-Wrapper%EF%BC%89-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[@StateObject@StateObject 修饰的对象与 @ObservedObject 一样，都需要遵循 Observable 协议，功能也类似。区别在于，@StateObject 修饰的对象只会在所属的 View 中创建一次并在 View 的生命周期内存储相应的状态，而 @ObservedObject 修饰的对象会随着 View 的重绘生成新的对象，不会在 View 的生命周期内存储该对象的状态。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667class Counter: ObservableObject &#123; @Published var count: Int = 0&#125;struct StateObjectView: View &#123; @State private var buttonTitle = "Tap me" var body: some View &#123; VStack &#123; Group &#123; Button(buttonTitle) &#123; buttonTitle = buttonTitle == "Tap me" ? "Tapped" : "Tap me" &#125; CounterView1() CounterView2() &#125; .padding() &#125; &#125;&#125;struct ItemList: View &#123; @State private var items = ["hello", "world"] var body: some View &#123; VStack &#123; Button("Append item to list") &#123; items.append("test") &#125; List(items, id: \.self) &#123; name in Text(name) &#125; CounterView1() CounterView2() &#125; &#125;&#125;struct CounterView1: View &#123; @StateObject var counter1 = Counter() var body: some View &#123; VStack &#123; Text("StateObject count: \(counter1.count)") Button("IncrementStateObject") &#123; counter1.count += 1 &#125; &#125; &#125;&#125;struct CounterView2: View &#123; @ObservedObject var counter2 = Counter() var body: some View &#123; VStack &#123; Text("ObservedObject count: \(counter2.count)") Button("IncrementStateObject") &#123; counter2.count += 1 &#125; &#125; &#125;&#125; 如上代码所示，当我们点击 CounterView1 和 CounterView2 中的按钮时，会给相应的 Counter 实例的 count 属性加 1，一旦我们点击 “Tap me” 按钮，View 会执行重绘，这时 CounterView2 中的 count 会重置为 0，而 CounterView1 中使用 @StateObject 修饰的对象中的 count 仍然持有当前的数据状态。 那么我们应该在什么场景下分别使用这两个属性包装器呢？ 在 View 的生命周期内，需要一直持有并存储对象的状态时，使用 @StateObject 修饰。基本上，绝大多数情况下的 viewModel 都会是这种情况。 只有在少数情况下，View 不需要一直持有该对象，该对象的状态会随着外界的条件改变而刷新自己时，我们才用到 @ObservedObject 修饰，比如上面的例子，如果我们要求点击 “Tap me” 按钮时，count 就重置，就需要用 @ObservedObject 修饰了。 @AppStorage等同于 Userdefaults。 @SceneStorage用于多窗口模式，相当于为每个场景持久化了一个场景值，每个场景只能读取该场景持久化的值。 当场景销毁时，该值也会销毁。建议存储轻量的、不敏感的数据。 @UIApplicationDelegateAdaptor用来调用 AppDelegate 中的生命周期方法。 1234567891011121314class AppDelegate: NSObject, UIApplicationDelegate &#123; &#125;@mainstruct MyApp: App &#123; @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate var body: some Scene &#123; WindowGroup &#123; ContentView() &#125; &#125;&#125; 其它参考之前的文章SwiftUI 中常见的属性包装器（Property Wrapper）概览和今天这篇，只是列举了一些常用的，更多相关内容和使用方法可以参考下面两片佳作： swiftuipropertywrappers All SwiftUI property wrappers explained and compared Source code]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[SwiftUI（iOS 14）新增属性包装器（Property Wrapper）]]></title>
     <url>%2FSwiftUI%EF%BC%88iOS-14%EF%BC%89%E6%96%B0%E5%A2%9E%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%EF%BC%88Property-Wrapper%EF%BC%89.html</url>
     <content type="text"><![CDATA[@StateObject@StateObject 修饰的对象与 @ObservedObject 一样，都需要遵循 Observable 协议，功能也类似。区别在于，@StateObject 修饰的对象只会在所属的 View 中创建一次并在 View 的生命周期内存储相应的状态，而 @ObservedObject 修饰的对象会随着 View 的重绘生成新的对象，不会在 View 的生命周期内存储该对象的状态。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667class Counter: ObservableObject &#123; @Published var count: Int = 0&#125;struct StateObjectView: View &#123; @State private var buttonTitle = "Tap me" var body: some View &#123; VStack &#123; Group &#123; Button(buttonTitle) &#123; buttonTitle = buttonTitle == "Tap me" ? "Tapped" : "Tap me" &#125; CounterView1() CounterView2() &#125; .padding() &#125; &#125;&#125;struct ItemList: View &#123; @State private var items = ["hello", "world"] var body: some View &#123; VStack &#123; Button("Append item to list") &#123; items.append("test") &#125; List(items, id: \.self) &#123; name in Text(name) &#125; CounterView1() CounterView2() &#125; &#125;&#125;struct CounterView1: View &#123; @StateObject var counter1 = Counter() var body: some View &#123; VStack &#123; Text("StateObject count: \(counter1.count)") Button("IncrementStateObject") &#123; counter1.count += 1 &#125; &#125; &#125;&#125;struct CounterView2: View &#123; @ObservedObject var counter2 = Counter() var body: some View &#123; VStack &#123; Text("ObservedObject count: \(counter2.count)") Button("IncrementStateObject") &#123; counter2.count += 1 &#125; &#125; &#125;&#125; 如上代码所示，当我们点击 CounterView1 和 CounterView2 中的按钮时，会给相应的 Counter 实例的 count 属性加 1，一旦我们点击 “Tap me” 按钮，View 会执行重绘，这时 CounterView2 中的 count 会重置为 0，而 CounterView1 中使用 @StateObject 修饰的对象中的 count 仍然持有当前的数据状态。 那么我们应该在什么场景下分别使用这两个属性包装器呢？ 在 View 的生命周期内，需要一直持有并存储对象的状态时，使用 @StateObject 修饰。基本上，绝大多数情况下的 viewModel 都会是这种情况。 只有在少数情况下，View 不需要一直持有该对象，该对象的状态会随着外界的条件改变而刷新自己时，我们才用到 @ObservedObject 修饰，比如上面的例子，如果我们要求点击 “Tap me” 按钮时，count 就重置，就需要用 @ObservedObject 修饰了。 @AppStorage等同于 Userdefaults。 @SceneStorage用于多窗口模式，相当于为每个场景持久化了一个场景值，每个场景只能读取该场景持久化的值。 当场景销毁时，该值也会销毁。建议存储轻量的、不敏感的数据。 @UIApplicationDelegateAdaptor用来调用 AppDelegate 中的生命周期方法。 1234567891011121314class AppDelegate: NSObject, UIApplicationDelegate &#123; &#125;@mainstruct MyApp: App &#123; @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate var body: some Scene &#123; WindowGroup &#123; ContentView() &#125; &#125;&#125; 其它参考之前的文章SwiftUI 中常见的属性包装器（Property Wrapper）概览和今天这篇，只是列举了一些常用的，更多相关内容和使用方法可以参考下面两片佳作： swiftuipropertywrappers All SwiftUI property wrappers explained and compared Source code]]></content>
       <categories>
@@ -202,18 +154,6 @@
       <tags>
         <tag>ios</tag>
         <tag>swiftui</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[SwiftUI 中常见的属性包装器（Property Wrapper）概览]]></title>
-    <url>%2FSwiftUI-%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8C%85%E8%A3%85%E5%99%A8%EF%BC%88Property-Wrapper%EF%BC%89%E6%A6%82%E8%A7%88-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[@State由 SwiftUI 管理的可读写的属性包装器，当修饰的属性值改变的时候，界面会随之更新。由 @State 包装的属性通常用 private 修饰，在 body 内使用。 下面的实例是一个可以切换天气的界面，并且可以控制天气是否可变。 1234567891011121314151617181920212223242526272829303132333435363738394041424344enum Weather: String, CaseIterable &#123; case sun = "Sun" case cloud = "Cloud" case rain = "Rain" case snow = "Snow" var imageName: String &#123; switch self &#123; case .sun: return "sun.max" case .cloud: return "cloud" case .rain: return "cloud.rain" case .snow: return "snow" &#125; &#125;&#125;struct StateView: View &#123; @State private var weather: Weather = .sun @State private var mutableWeather = false var body: some View &#123; VStack &#123; Toggle(isOn: $mutableWeather) &#123; Text(mutableWeather ? "Mutable" : "Immutable") &#125; .padding() // add weather view Spacer() &#125; .navigationBarTitle("Weather", displayMode: .inline) .navigationBarItems(trailing: Button(action: &#123; if self.mutableWeather &#123; let random = Int.random(in: 0..&lt;Weather.allCases.count) self.weather = Weather.allCases[random] &#125; &#125;) &#123; Text(weather.rawValue) &#125;) &#125;&#125; @Binding接下来，我们用自定义的 WeatherView 去展示天气图片，图片会跟随父视图天气变化做相应改变，并且在 WeatherView 中可以通过点击改变天气。这个时候，我们就需要用到 @binding 来做数据的双向绑定。 12345678910111213141516struct WeatherView: View &#123; @Binding var weather: Weather @Binding var mutableWeather: Bool var body: some View &#123; Image(systemName: weather.imageName) .resizable() .scaledToFill() .frame(width: 150, height: 150) .onTapGesture &#123; self.mutableWeather = true let random = Int.random(in: 0..&lt;Weather.allCases.count) self.weather = Weather.allCases[random] &#125; &#125;&#125; 接下来我们在 // add weather view下面添加如下代码： 1WeatherView(weather: $weather, mutableWeather: $mutableWeather) @ObservedObject、@Published、ObservableObject遵循 ObservableObject 协议的类的属性可以用 @Published 包装，在多个界面之间同步数据，只需要将需要监听的实例对象用 @ObservedObject 包装即可。注意：这里适用的对象类型是 class，因为 class 是在内存中共享数据的。 下面是一个可以编辑一个人姓名和年龄的实例，在 EditView 所做的更改，会同步至 Person 界面。 12345678910111213141516171819202122232425262728293031323334353637383940414243class Person: ObservableObject &#123; @Published var name: String @Published var age: Int init(name: String, age: Int) &#123; self.name = name self.age = age &#125;&#125;struct EditView: View &#123; @ObservedObject var person: Person var body: some View &#123; // TextField 只能绑定 String，需要自定义 Binding let bindingAge = Binding&lt;String&gt;(get: &#123; "\(self.person.age)" == "0" ? "" : "\(self.person.age)" &#125;) &#123; value in self.person.age = Int(value) ?? 0 &#125; return Form &#123; TextField("Input name", text: $person.name) TextField("Input age", text: bindingAge) &#125; &#125;&#125;struct ObservedObjectView: View &#123; @ObservedObject private var person = Person(name: "Bruce", age: 30) var body: some View &#123; List &#123; Text(person.name) Text("\(person.age)") &#125; .navigationBarTitle("Person", displayMode: .inline) .navigationBarItems(trailing: NavigationLink(destination: EditView(person: self.person)) &#123; Text("Edit") &#125; ) &#125;&#125; @Environment、EnvironmentValues@Environment 可以让我们在 View 中直接访问预设的环境变量，比如系统是否暗黑模式、系统日历、时区等。 下面是一个可以返回上一个页面的实例，@Environment将.presentationMode绑定在当前的 View，我们可以直接调用presentationMode来获取它的值： 123456789struct EnvironmentView: View &#123; @Environment(\.presentationMode) private var presentationMode var body: some View &#123; Button("Dismiss") &#123; self.presentationMode.wrappedValue.dismiss() &#125; &#125;&#125; 系统为我们提供了许多有用的预设变量，详见 https://developer.apple.com/documentation/swiftui/environmentvalues 我们也可以为预设值注入新值，比如我们将返回按钮标题改为 “Dismiss\nDismiss”，这时可以看见一个换行的按钮，而当我们给.lineLimit注入新值得时候，按钮标题就只有一行了： 1234Button("Dismiss\nDismiss") &#123; self.presentationMode.wrappedValue.dismiss()&#125;.environment(\.lineLimit, 1) 这里只是举个例子，我们使用.lineLimit(1)也能达到同样的效果。 我们也可以自定义 EnvironmentValues： 12345678910struct DismissColorKey: EnvironmentKey &#123; public static let defaultValue = Color.red&#125;extension EnvironmentValues &#123; var dismissColor: Color &#123; set &#123; self[DismissColorKey.self] = newValue &#125; get &#123; self[DismissColorKey.self] &#125; &#125;&#125; 然后我们添加一个新的属性： 1@Environment(\.dismissColor) private var dismissColor 再使用自定义的预设值添加一个红色的返回按钮： 123456Button(action: &#123; self.presentationMode.wrappedValue.dismiss()&#125;) &#123; Text("Red Dismiss") .foregroundColor(dismissColor)&#125; @EnvironmentObject@EnvironmentObject 和 @ObservedObject 很像，都需要遵循 ObservableObject 协议，都可以同步数据状态，但是它具备更强大的功能，那就是子视图可以自动获取父视图注入的环境变量。 比如我们有如下视图层级：A -&gt; B -&gt; C -&gt; D -&gt; E，后一个是前一个视图的子视图。如果我们使用 @ObservedObject 在 A 视图包装一个变量，我们需要在每个视图包装一个变量，将变量一层层传递到 E 视图。而使用 @EnvironmentObject 我们不需要这么复杂，我们在 A 视图声明一个变量后，在 E 视图用 @EnvironmentObject 包装一个变量后，就可以获取到 A 视图注入的环境变量了，而且可以同步数据的修改，这简直是太方便了。要注意的是，如果 E 视图找不到这个环境变量，程序会崩溃，所以要确保 E 视图能获取到注入的环境变量。 12345678910111213141516171819202122232425262728293031323334353637class User: ObservableObject &#123; @Published var name = "Bruce"&#125;struct ViewA: View &#123; var body: some View &#123; ViewB() .frame(width: 300, height: 300) .background(Color.red) &#125;&#125;struct ViewB: View &#123; var body: some View &#123; ViewC() .frame(width: 200, height: 200) .background(Color.black) &#125;&#125;struct ViewC: View &#123; @EnvironmentObject var user: User var body: some View &#123; Text(user.name) .frame(width: 100, height: 100) .background(Color.white) &#125;&#125;struct EnvironmentObjectView: View &#123; private let user = User() var body: some View &#123; ViewA().environmentObject(user) &#125;&#125; ​ Demo]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>SwiftUI</tag>
       </tags>
   </entry>
   <entry>
@@ -267,18 +207,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SwiftFormat 的使用]]></title>
-    <url>%2FSwiftFormat-%E7%9A%84%E4%BD%BF%E7%94%A8-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[虽然 Xcode 自带格式对齐（Ctrl + i），但是在多人协作的情况下，就很难保证编码风格的统一了，SwiftFormat就是解决这一问题的好工具。 SwiftFormat具有多种使用方式，目前我在实际工作中使用的是CocoaPods集成。具体使用方法： pod &#39;SwiftFormat/CLI&#39;，安装 SwiftFormat TARGETS - Build Phases - New Run Script Phase，添加如下脚本： 1"$&#123;PODS_ROOT&#125;/SwiftFormat/CommandLineTool/swiftformat" . --exclude Pods,Generated 在编译或运行的时候，SwiftFormat会对齐不符合格式的代码。Enjoy it~]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Xcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Xcode 创建自定义文件模板]]></title>
     <url>%2FXcode-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF.html</url>
     <content type="text"><![CDATA[首先，创建我们的自定义模板文件夹： 1mkdir -p ~/Library/Developer/Xcode/Templates/Custom 然后复制系统提供的模板文件，路径如下： 1/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates/Source/Swift File.xctemplate 将Swift File.xctemplate整个文件夹复制到刚才创建的Custom文件夹。 然后我们开始自定义，只需要修改___FILEBASENAME___.swift中的内容即可。 其中涉及到一些宏定义可以参考：Text macros reference。注意：宏定义前后必须加上三个下划线。 然后我们就可以使用了，如图：]]></content>
@@ -288,18 +216,6 @@
       <tags>
         <tag>ios</tag>
         <tag>xcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Xcode 创建自定义文件模板]]></title>
-    <url>%2FXcode-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[首先，创建我们的自定义模板文件夹： 1mkdir -p ~/Library/Developer/Xcode/Templates/Custom 然后复制系统提供的模板文件，路径如下： 1/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates/Source/Swift File.xctemplate 将Swift File.xctemplate整个文件夹复制到刚才创建的Custom文件夹。 然后我们开始自定义，只需要修改___FILEBASENAME___.swift中的内容即可。 其中涉及到一些宏定义可以参考：Text macros reference。注意：宏定义前后必须加上三个下划线。 然后我们就可以使用了，如图：]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Xcode</tag>
       </tags>
   </entry>
   <entry>
@@ -328,18 +244,6 @@
   </entry>
   <entry>
     <title><![CDATA[Swift 命名空间（namespace）的实现]]></title>
-    <url>%2FSwift-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%88namespace%EF%BC%89%E7%9A%84%E5%AE%9E%E7%8E%B0-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&lt;WrappedType&gt; &#123; /// 包装后的值 let wrappedValue: WrappedType init(wrappedValue: WrappedType) &#123; self.wrappedValue = wrappedValue &#125;&#125;/// 命名空间协议public protocol NameSpaceWrapper &#123; associatedtype WrapperType var cc: WrapperType &#123; get &#125; static var cc: WrapperType.Type &#123; get &#125;&#125;/// 命名空间协议默认实现public extension NameSpaceWrapper &#123; var cc: CCWrapper&lt;Self&gt; &#123; return CCWrapper(wrappedValue: self) &#125; static var cc: CCWrapper&lt;Self&gt;.Type &#123; return CCWrapper.self &#125;&#125;// 使用extension String: NameSpaceWrapper &#123;&#125;extension CCWrapper where WrappedType == String &#123; var hi: String &#123; return "Hi, I'm \(self.wrappedValue)" &#125; func sayHi(to person: String) &#123; print("\(self.wrappedValue) say hi to \(person)") &#125; static func hi(_ person: String) &#123; print("Hi, \(person)") &#125; &#125;print("Bruce".cc.hi)//Hi, I'm Bruce"Bruce".cc.sayHi(to: "Max")//Bruce say hi to MaxString.cc.hi("Jack")//Hi, Jack]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift 命名空间（namespace）的实现]]></title>
     <url>%2FSwift-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%88namespace%EF%BC%89%E7%9A%84%E5%AE%9E%E7%8E%B0.html</url>
     <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/// 实例对象的包装器public struct CCWrapper&lt;WrappedType&gt; &#123; /// 包装后的值 let wrappedValue: WrappedType init(wrappedValue: WrappedType) &#123; self.wrappedValue = wrappedValue &#125;&#125;/// 命名空间协议public protocol NameSpaceWrapper &#123; associatedtype WrapperType var cc: WrapperType &#123; get &#125; static var cc: WrapperType.Type &#123; get &#125;&#125;/// 命名空间协议默认实现public extension NameSpaceWrapper &#123; var cc: CCWrapper&lt;Self&gt; &#123; return CCWrapper(wrappedValue: self) &#125; static var cc: CCWrapper&lt;Self&gt;.Type &#123; return CCWrapper.self &#125;&#125;// 使用extension String: NameSpaceWrapper &#123;&#125;extension CCWrapper where WrappedType == String &#123; var hi: String &#123; return "Hi, I'm \(self.wrappedValue)" &#125; func sayHi(to person: String) &#123; print("\(self.wrappedValue) say hi to \(person)") &#125; static func hi(_ person: String) &#123; print("Hi, \(person)") &#125; &#125;print("Bruce".cc.hi)//Hi, I'm Bruce"Bruce".cc.sayHi(to: "Max")//Bruce say hi to MaxString.cc.hi("Jack")//Hi, Jack]]></content>
       <categories>
@@ -348,18 +252,6 @@
       <tags>
         <tag>ios</tag>
         <tag>swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift 关联类型（associatedtype）的使用]]></title>
-    <url>%2FSwift-%E5%85%B3%E8%81%94%E7%B1%BB%E5%9E%8B%EF%BC%88associatedtype%EF%BC%89%E7%9A%84%E4%BD%BF%E7%94%A8-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[定义一个协议时，有时在协议定义里声明一个或多个关联类型是很有用的。关联类型给协议中用到的类型一个占位符名称。直到采纳协议时，才指定用于该关联类型的实际类型。关联类型通过 associatedtype 关键字指定。 举个例子： 12345678910111213141516171819202122232425protocol Eat &#123; associatedtype FoodType func eat(_ food: FoodType) -&gt; FoodType&#125;protocol Food &#123; var weight: CGFloat &#123; get set &#125; var desc: String &#123; get set &#125;&#125;struct Meat: Food &#123; var weight: CGFloat var desc: String&#125;struct Vegetable: Food &#123; var weight: CGFloat var desc: String&#125;struct Person&lt;T&gt;: Eat &#123; func eat(_ food: Food) -&gt; Food &#123; return food &#125;&#125; 我们定义了一个 Person，它每天都得吃饭，我们要求它遵循吃饭的协议 Eat，并实现了其中的 eat 方法。在协议 Eat 中我们声明了一个关联类型 FoodType。当 Person 的实例去调用 eat 方法时，我们使用泛型类型去指定之前的占位符 FoodType，那么我们就能清晰地知道 Person 的实例到底吃的是什么。 123456789let p = Person&lt;Food&gt;()let food1 = p.eat(Meat(weight: 1.2, desc: "meat"))print("eat \(food1.desc), weight \(food1.weight)")// eat meat, weight 1.2let food2 = p.eat(Vegetable(weight: 0.8, desc: "meat"))print("eat \(food2.desc), weight \(food2.weight)")// eat meat, weight 0.8]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -382,22 +274,10 @@
         <category>mac</category>
       </categories>
       <tags>
-        <tag>mac</tag>
         <tag>终端</tag>
+        <tag>mac</tag>
         <tag>fish</tag>
         <tag>omf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Mac 终端配置：fish + omf]]></title>
-    <url>%2FMac-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9Afish-omf-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[安装与配置 fish根据官网：https://fishshell.com/ 指引安装即可。 安装完之后，使用命令sudo vim /etc/shells打开配置文件，在文末加上/usr/local/bin/fish，保存退出。 运行chsh -s /usr/local/bin/fish命令使fish成为默认 shell。 使用fish_config配置主题，这里我选Solarized Dark。 安装 oh my fishcurl -L https://get.oh-my.fish | fish 安装之后，使用omf install eclm主题即可。 其它终端描述文件： https://github.com/altercation/solarized 下载后导入名为 Solarized Dark ansi 的配置文件。]]></content>
-      <categories>
-        <category>Mac</category>
-      </categories>
-      <tags>
-        <tag>终端</tag>
-        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -409,17 +289,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Git 查看某个文件的修改历史]]></title>
-    <url>%2FGit-%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[查看某文件的修改记录git lg [filename] 查看某文件所有变更历史git lg -p [filename] 查看某文件在某次提交中的变更历史git show &lt;commit-id&gt; [filename] 恢复某个文件至某个版本git checkout &lt;commit-id&gt; [filename] lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -524,18 +393,6 @@
   </entry>
   <entry>
     <title><![CDATA[Swift 运算符的重载和自定义]]></title>
-    <url>%2FSwift-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[1. 运算符的重载1.1 基本运算符的重载1234567891011func * (lhs: String, rhs: Int) -&gt; String &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;let t = "abc"print(t * 3)// print "abcabcabc" 如上所示，我们重载了运算符 * 。再看看另一个例子： 123struct Vector2D &#123; var x = 0.0, y = 0.0&#125; 我们定义了如上的结构体，如果想把两个 Vector2D 类型的实例相加，编译器是会报错的。如果我们重载操作符 + ，就可以实现相加： 1234567func + (lhs: Vector2D, rhs: Vector2D) -&gt; Vector2D &#123; return Vector2D(x: lhs.x + lhs.x, y: rhs.y + rhs.y)&#125;let first = Vector2D(x: 1.0, y: 2.0)let second = Vector2D(x: 3.0, y: 4.0)print(first + second)// print "Vector2D(x: 4.0, y: 6.0)" 1.2 泛型运算符 1234567func * &lt;T&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125; 按照常理，我们会将第一个例子做如上改写，但是编译器会提示 Binary operator ‘+=’ cannot be applied to two ‘T’ operands ，这是因为 T 类型并不能直接使用加法符合运算符，我们可以通过让 T 类型遵循实现了加法功能的协议来解决这个问题，改写后的代码如下： 1234567891011121314151617protocol Type &#123; static func + (lhs: Self, rhs: Self) -&gt; Self static func += (lhs: inout Self, rhs: Self)&#125;extension String: Type &#123;&#125;extension Int: Type &#123;&#125;extension CGFloat: Type &#123;&#125;func * &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123;// result = result + lhs result += lhs &#125; return result&#125; 2. 运算符的自定义先介绍 Swift 中的三个关键字： prefix：前缀运算符，比如 ++i 中的 ++ postfix：后缀运算符，比如 i++ 中的 ++ infix：中缀运算符，比如 a + b 中的 + 这里仅以 infix 为例示范其用法，现在我们自定义一个运算符 ** 和符合运算符 **= ，实现第一个例子的功能。 12345678910111213141516171819202122infix operator **func ** &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;infix operator **=func **= &lt;T: Type&gt; (lhs: inout T, rhs: Int) &#123; lhs = lhs ** rhs&#125;let t = "abc"let s = t ** 3print(s)// print "abcabcabc"var u = "abc"u **= 3print(u)// print "abcabcabc" 至此，运算符的重载和自定义的基本功能就介绍完毕了。当然，自定义运算符同样是可以定义优先级和结合性的，这里不做过多讲解，有兴趣的朋友可以自行查阅资料。]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift 运算符的重载和自定义]]></title>
     <url>%2FSwift-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89.html</url>
     <content type="text"><![CDATA[1. 运算符的重载1.1 基本运算符的重载1234567891011func * (lhs: String, rhs: Int) -&gt; String &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;let t = "abc"print(t * 3)// print "abcabcabc" 如上所示，我们重载了运算符 * 。再看看另一个例子： 123struct Vector2D &#123; var x = 0.0, y = 0.0&#125; 我们定义了如上的结构体，如果想把两个 Vector2D 类型的实例相加，编译器是会报错的。如果我们重载操作符 + ，就可以实现相加： 1234567func + (lhs: Vector2D, rhs: Vector2D) -&gt; Vector2D &#123; return Vector2D(x: lhs.x + lhs.x, y: rhs.y + rhs.y)&#125;let first = Vector2D(x: 1.0, y: 2.0)let second = Vector2D(x: 3.0, y: 4.0)print(first + second)// print "Vector2D(x: 4.0, y: 6.0)" 1.2 泛型运算符 1234567func * &lt;T&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125; 按照常理，我们会将第一个例子做如上改写，但是编译器会提示 Binary operator ‘+=’ cannot be applied to two ‘T’ operands ，这是因为 T 类型并不能直接使用加法符合运算符，我们可以通过让 T 类型遵循实现了加法功能的协议来解决这个问题，改写后的代码如下： 1234567891011121314151617protocol Type &#123; static func + (lhs: Self, rhs: Self) -&gt; Self static func += (lhs: inout Self, rhs: Self)&#125;extension String: Type &#123;&#125;extension Int: Type &#123;&#125;extension CGFloat: Type &#123;&#125;func * &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123;// result = result + lhs result += lhs &#125; return result&#125; 2. 运算符的自定义先介绍 Swift 中的三个关键字： prefix：前缀运算符，比如 ++i 中的 ++ postfix：后缀运算符，比如 i++ 中的 ++ infix：中缀运算符，比如 a + b 中的 + 这里仅以 infix 为例示范其用法，现在我们自定义一个运算符 ** 和符合运算符 **= ，实现第一个例子的功能。 12345678910111213141516171819202122infix operator **func ** &lt;T: Type&gt; (lhs: T, rhs: Int) -&gt; T &#123; var result = lhs for _ in 1..&lt;rhs &#123; result += lhs &#125; return result&#125;infix operator **=func **= &lt;T: Type&gt; (lhs: inout T, rhs: Int) &#123; lhs = lhs ** rhs&#125;let t = "abc"let s = t ** 3print(s)// print "abcabcabc"var u = "abc"u **= 3print(u)// print "abcabcabc" 至此，运算符的重载和自定义的基本功能就介绍完毕了。当然，自定义运算符同样是可以定义优先级和结合性的，这里不做过多讲解，有兴趣的朋友可以自行查阅资料。]]></content>
       <categories>
@@ -556,18 +413,6 @@
       <tags>
         <tag>ios</tag>
         <tag>cocoapods</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift 编译器提示 TODO 和 FIXME]]></title>
-    <url>%2FSwift-%E7%BC%96%E8%AF%91%E5%99%A8%E6%8F%90%E7%A4%BA-TODO-%E5%92%8C-FIXME-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[Build Phases，点击 +，添加 New Run Script Phase，添加如下内容： 123TAGS="TODO:|FIXME:"echo "searching $&#123;SRCROOT&#125; for $&#123;TAGS&#125;"find "$&#123;SRCROOT&#125;" \( -name "*.swift" \) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($TAGS).*\$" | perl -p -e "s/($TAGS)/ warning: \$1/" 在代码处添加如下标记：12// TODO: something to do// FIXME: fix bug 编译器会自动给出相应的警告，并且可以快速定位到相应的代码处。]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -774,8 +619,8 @@
         <category>trick</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>trick</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -823,8 +668,8 @@
         <category>trick</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>trick</tag>
+        <tag>git</tag>
         <tag>xcode</tag>
       </tags>
   </entry>
@@ -838,18 +683,6 @@
       <tags>
         <tag>swift</tag>
         <tag>枚举</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Mac 终端配置：oh-my-zsh + Solarized 配色方案]]></title>
-    <url>%2FMac-%E7%BB%88%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9Aoh-my-zsh-Solarized-%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88-NSConflict-keisme-mac13.0.html</url>
-    <content type="text"><![CDATA[1. 安装 oh-my-zsh2. 下载solarized3. 打开终端 -&gt; 偏好设置 -&gt; 描述文件 -&gt; 导入文件，导入 solarized/osx-terminal.app-colors-solarized/Solarized Dark ansi.terminal，设置通用下的默认描述文件为Solarized Dark ansi。 4. 附：git log 配置：终端运行：1git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset'" 重启终端即可。]]></content>
-      <categories>
-        <category>Mac</category>
-      </categories>
-      <tags>
-        <tag>终端</tag>
-        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -1031,7 +864,7 @@
   <entry>
     <title><![CDATA[博客迁移记]]></title>
     <url>%2F%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%AE%B0.html</url>
-    <content type="text"><![CDATA[几年前就折腾过一个 keisme.com 的域名，也是用的 hexo + github 搭建的，后来没有维护，域名也过期了。现在想重新拾起，发现域名已被注册，只好注册了现在的这个域名 keisme.cn，又折腾了一阵子，才有了现在这个站点。 其实比较懒，一直没有写作的习惯，如今年岁渐长，愈发觉得时光过得飞快，回忆往昔，只觉如梦一场，竟想不起过去的许多事，而文字能记下一些点滴，于是决定坚持写下去。这大半年算是养成了写东西的习惯，有的公诸网络，有的私下琐记。 现在有了这个新的角落，自然想把以前写的一些杂乱文章搬过来，却不能尽数迁移，只好选择其中一部分作为保留。 恩，差不多就是这样。]]></content>
+    <content type="text"><![CDATA[几年前就折腾过一个的域名，也是用的 hexo + github 搭建的，后来没有维护，域名也过期了。现在想重新拾起，发现域名已被注册，只好注册了现在的这个域名，又折腾了一阵子，才有了现在这个站点。 其实比较懒，一直没有写作的习惯，如今年岁渐长，愈发觉得时光过得飞快，回忆往昔，只觉如梦一场，竟想不起过去的许多事，而文字能记下一些点滴，于是决定坚持写下去。这大半年算是养成了写东西的习惯，有的私下琐记，有的公之于网络。 现在有了这个新的角落，自然想把以前写的一些杂乱文章搬过来，却不能尽数迁移，只好选择其中一部分作为保留。 恩，差不多就是这样。]]></content>
       <categories>
         <category>notes</category>
       </categories>

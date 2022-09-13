@@ -61,13 +61,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon16.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.3">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.3" color="#222">
 
 
   <link rel="manifest" href="/images/manifest.json">
@@ -88,16 +88,16 @@
 
 
 
-<meta name="description" content="Just For Fun">
+<meta name="description" content="cool">
 <meta property="og:type" content="website">
-<meta property="og:title" content="keisme">
-<meta property="og:url" content="http://keisme.cn/index.html">
-<meta property="og:site_name" content="keisme">
-<meta property="og:description" content="Just For Fun">
+<meta property="og:title" content="zzzwco">
+<meta property="og:url" content="http://zzzw.cool/index.html">
+<meta property="og:site_name" content="zzzwco">
+<meta property="og:description" content="cool">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="keisme">
-<meta name="twitter:description" content="Just For Fun">
+<meta name="twitter:title" content="zzzwco">
+<meta name="twitter:description" content="cool">
 
 
 
@@ -127,14 +127,14 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/"/>
+  <link rel="canonical" href="http://zzzw.cool/"/>
 
 
 
 
 
 <script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>keisme - Just For Fun</title>
+  <title>zzzwco - cool</title>
   
 
 
@@ -165,12 +165,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keisme</span>
+        <span class="site-title">zzzwco</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -306,16 +306,191 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-中的不透明类型、存在类型以及-some、any-关键字.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-中的-Result-builders.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Swift-中的-Result-builders.html" itemprop="url">Swift 中的 Result builders</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-13T16:09:11+08:00">
+                2022-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  768
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><code>2022/08/30</code>  <code>Xcode 14</code>  <code>iOS 16</code>  <code>macOS 13</code>  </p>
+<p>在以往的命令式编程中，通常这样构建视图：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> label = <span class="type">UILabel</span>()</span><br><span class="line">label.frame = <span class="keyword">self</span>.view.bounds</span><br><span class="line"><span class="keyword">self</span>.view.addSubview(label)</span><br></pre></td></tr></table></figure>
+<p>但 SwiftUI 采用的是声明式语法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">VStack</span> &#123;</span><br><span class="line">  <span class="type">Text</span>(<span class="string">"1"</span>)</span><br><span class="line">	<span class="type">List</span> &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">""</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显而易见，SwiftUI 比 UIKit 要简洁地多，我们可以轻松地将不同的视图组合成复杂的界面。这得益于 Result builders（结果构造器），它使 SwiftUI 成为了特定领域语言（DSL）。</p>
+<p>结果构造器是 Swift 5.4 正式引入的新特性，它可以将一系列子对象组合成新的对象，这个新对象又可以作为子对象去构造更复杂的对象。它在 SwiftUI 中无处不在，如构建场景的 <code>@SceneBuilder</code>，构建视图的 <code>@ViewBuilder</code>，还有 Swift 5.7 新增的正则构造器 <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0351-regex-builder.md" target="_blank" rel="noopener">RegexBuilder</a> 等。</p>
+<p>下面通过一个简单的示例来演示结果构造器的基本使用，假设我们想赋予 UIKit 类似 SwiftUI 的声明式语法，首先声明一个构造器：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@resultBuilder <span class="class"><span class="keyword">struct</span> <span class="title">VStackBuilder</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">buildBlock</span><span class="params">(<span class="number">_</span> components: UIView...)</span></span> -&gt; [<span class="type">UIView</span>] &#123;</span><br><span class="line">    components</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Swift-中的-Result-builders.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-中的不透明类型、存在类型以及-some、any-关键字.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzwco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -483,16 +658,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-5-7-新特性.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-5-7-新特性.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -658,16 +833,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-5-6-新特性.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-5-6-新特性.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -833,16 +1008,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-并发新体验.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-并发新体验.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1001,16 +1176,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-协议的实战应用.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-协议的实战应用.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1174,16 +1349,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Swift-协议属性和方法的默认实现.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-协议属性和方法的默认实现.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1346,16 +1521,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftUI、Combine 简明教程 App：Eul.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI 简明教程 App：Eul.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1365,7 +1540,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/SwiftUI、Combine 简明教程 App：Eul.html" itemprop="url">SwiftUI、Combine 简明教程 App：Eul</a></h2>
+                <a class="post-title-link" href="/SwiftUI 简明教程 App：Eul.html" itemprop="url">SwiftUI、Combine 简明教程 App：Eul</a></h2>
         
 
         <div class="post-meta">
@@ -1433,7 +1608,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  152
+                  147
                 </span>
               
 
@@ -1460,20 +1635,20 @@
       
         
           
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Eul 是一款 SwiftUI &amp; Combine 教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 12+、iOS 14+，macOS 11+）的形式呈现给读者。</p>
-<p>笔者意在尽可能使用简洁明了的语言阐述 SwiftUI &amp; Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。</p>
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Eul 是一款 SwiftUI、Concurrency 简明教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 13+、iOS 15+，macOS 12+）的形式呈现给读者。</p>
+<p>笔者意在尽可能使用简洁明了的语言阐述 SwiftUI、Concurrency、Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。</p>
 <p>下面是 App 内实图：</p>
 <p>iOS：</p>
-<img src="/SwiftUI、Combine%20简明教程%20App：Eul/iOS_1.png">
+<img src="/SwiftUI%20简明教程%20App：Eul/iOS_1.png">
 <p>macOS：</p>
-<img src="/SwiftUI、Combine%20简明教程%20App：Eul/mac_1.png">
-<img src="/SwiftUI、Combine%20简明教程%20App：Eul/mac_2.png">
-<img src="/SwiftUI、Combine%20简明教程%20App：Eul/mac_3.png">
-<h1 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h1><p>iOS/macOS：<a href="https://apps.apple.com/cn/app/eul/id1541991958" target="_blank" rel="noopener">https://apps.apple.com/cn/app/eul/id1541991958</a></p>
+<img src="/SwiftUI%20简明教程%20App：Eul/mac_1.png">
+<img src="/SwiftUI%20简明教程%20App：Eul/mac_2.png">
+<img src="/SwiftUI%20简明教程%20App：Eul/mac_3.png">
+<h1 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h1><p>iOS/macOS：<a href="https://apps.apple.com/cn/app/eul/id1541991958" target="_blank" rel="noopener">AppStore</a></p>
 <h1 id="联系反馈"><a href="#联系反馈" class="headerlink" title="联系反馈"></a>联系反馈</h1><ul>
-<li>邮箱：<a href="bruce8.0@outlook.com">bruce8.0@outlook.com</a></li>
-<li>微博：<a href="https://weibo.com/bruce2077" target="_blank" rel="noopener">Bruce2077</a></li>
-<li>twitter：<a href="https://twitter.com/Bruce_2077" target="_blank" rel="noopener">Bruce_2077</a></li>
+<li>邮箱：<a href="zzzwco@outlook.com">zzzwco@outlook.com</a></li>
+<li>微博：<a href="https://weibo.com/u/7530226721" target="_blank" rel="noopener">zzzwwco</a></li>
+<li>twitter：<a href="https://twitter.com/zzzwco" target="_blank" rel="noopener">zzzwco</a></li>
 </ul>
 
           
@@ -1523,194 +1698,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftUI & Combine 简明教程 App：Eul.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI-PreferenceKey.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/SwiftUI & Combine 简明教程 App：Eul.html" itemprop="url">SwiftUI & Combine 简明教程 App：Eul</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-01T16:31:10+08:00">
-                2021-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SwiftUI/" itemprop="url" rel="index">
-                    <span itemprop="name">SwiftUI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  179
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Eul 是一款 SwiftUI &amp; Combine 教程 App（支持 iPhone、iPad、Mac），以文章（文字、图片、代码）配合真机示例（Xcode 12+、iOS 14+，macOS 11+）的形式呈现给读者。</p>
-<p>笔者意在尽可能使用简洁明了的语言阐述 SwiftUI &amp; Combine 相关的知识，使读者能快速掌握并在 iOS 开发中实践。读者若能从中获益，笔者深感欣慰。如有笔误之处，恳请斧正，不甚感激。</p>
-<p>由于笔者目前尚未购入 M1芯片的 mac，暂时不会提供苹果芯片版本。</p>
-<p>下面是 App 内实图：</p>
-<p>iOS：</p>
-<img src="/SwiftUI%20&%20Combine%20简明教程%20App：Eul/iOS_1.png">
-<p>macOS：</p>
-<img src="/SwiftUI%20&%20Combine%20简明教程%20App：Eul/mac_1.png">
-<img src="/SwiftUI%20&%20Combine%20简明教程%20App：Eul/mac_2.png">
-<img src="/SwiftUI%20&%20Combine%20简明教程%20App：Eul/mac_3.png">
-<h1 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h1><p>iOS/macOS：<a href="https://apps.apple.com/cn/app/eul/id1541991958" target="_blank" rel="noopener">https://apps.apple.com/cn/app/eul/id1541991958</a></p>
-<h1 id="联系反馈"><a href="#联系反馈" class="headerlink" title="联系反馈"></a>联系反馈</h1><ul>
-<li>邮箱：<a href="bruce8.0@outlook.com">bruce8.0@outlook.com</a></li>
-<li>微博：<a href="https://weibo.com/bruce2077" target="_blank" rel="noopener">Bruce2077</a></li>
-<li>twitter：<a href="https://twitter.com/Bruce_2077" target="_blank" rel="noopener">Bruce_2077</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftUI-PreferenceKey.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1871,16 +1868,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/SwiftUI-PreferenceKey-NSConflict-keisme-mac13.0.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI-GeometryReader-与坐标系.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -1890,7 +1887,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/SwiftUI-PreferenceKey-NSConflict-keisme-mac13.0.html" itemprop="url">SwiftUI PreferenceKey</a></h2>
+                <a class="post-title-link" href="/SwiftUI-GeometryReader-与坐标系.html" itemprop="url">SwiftUI GeometryReader 与坐标系</a></h2>
         
 
         <div class="post-meta">
@@ -1902,7 +1899,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-12T22:34:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-12T22:32:34+08:00">
                 2020-11-12
               </time>
             
@@ -1925,8 +1922,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
                   </a>
                 </span>
 
@@ -1958,7 +1955,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  837
+                  568
                 </span>
               
 
@@ -1984,13 +1981,13 @@
 
       
         
-          <p>下图所示是一个常规的登录界面，只需少量代码即可实现：</p>
-
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span> : <span class="title">View</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> email = <span class="string">""</span></span><br><span class="line">  @<span class="type">State</span> <span class="keyword">private</span> <span class="keyword">var</span> password = <span class="string">""</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">Form</span> &#123;</span><br><span class="line">      <span class="type">HStack</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"电子邮箱"</span>)</span><br><span class="line">        <span class="type">TextField</span>(<span class="string">"请输入"</span>, text: $email)</span><br><span class="line">          .textFieldStyle(<span class="type">RoundedBorderTextFieldStyle</span>())</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="type">HStack</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"密码"</span>)</span><br><span class="line">        <span class="type">TextField</span>(<span class="string">"请输入"</span>, text: $email)</span><br><span class="line">          .textFieldStyle(<span class="type">RoundedBorderTextFieldStyle</span>())</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是通常我们为了美观，会将左边的文字列等宽对齐，也许固定宽度是个不错的想法，但是可扩展性太差，我们如何解决这个问题呢？</p>
+          <p><code>GeometryReader</code> 是一个通过闭包来构建视图的容器，可以返回一个 <code>GeometryProxy</code> 类型的结构体，它包含如下属性和方法，由此我们可以获取当前视图容器（即父视图）的尺寸和位置，绘制以其为参考坐标系的视图。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> safeAreaInsets: <span class="type">EdgeInsets</span></span><br><span class="line"><span class="comment">// The safe area inset of the container view.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> size: <span class="type">CGSize</span></span><br><span class="line"><span class="comment">// The size of the container view.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">frame</span><span class="params">(<span class="keyword">in</span>: CoordinateSpace)</span></span> -&gt; <span class="type">CGRect</span></span><br><span class="line"><span class="comment">// Returns the container view’s bounds rectangle, converted to a defined coordinate space.</span></span><br></pre></td></tr></table></figure>
+<p>比如，我们需要绘制一个长宽均为父视图一半的矩形：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">GeometryReader</span> &#123; gr <span class="keyword">in</span></span><br><span class="line">      <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">10</span>)</span><br><span class="line">        .fill(<span class="type">Color</span>.blue)</span><br><span class="line">        .frame(width: gr.size.width * <span class="number">0.5</span>, height: gr.size.height * <span class="number">0.5</span>)</span><br><span class="line">        .position(x: gr.frame(<span class="keyword">in</span>: .local).midX, y: gr.frame(<span class="keyword">in</span>: .local).midY)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/SwiftUI-PreferenceKey-NSConflict-keisme-mac13.0.html#more" rel="contents">
+            <a class="btn" href="/SwiftUI-GeometryReader-与坐标系.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2032,7 +2029,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2069,9 +2066,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="keisme" />
+                alt="zzzwco" />
             
-              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-author-name" itemprop="name">zzzwco</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -2082,7 +2079,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2118,19 +2115,19 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                  <a href="https://github.com/zzzwco" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                  <a href="https://weibo.com/u/7530226721" target="_blank" title="Weibo">
                     
                       <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                  <a href="https://twitter.com/zzzwco" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
@@ -2172,7 +2169,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">keisme</span>
+  <span class="author" itemprop="copyrightHolder">zzzwco</span>
 
   
 </div>
@@ -2193,7 +2190,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.1k字</span>
+  <span class="post-count">博客全站共59.3k字</span>
 </div>
 
         

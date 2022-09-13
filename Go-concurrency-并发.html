@@ -61,13 +61,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon16.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.3">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.3" color="#222">
 
 
   <link rel="manifest" href="/images/manifest.json">
@@ -92,8 +92,8 @@
 <meta name="keywords" content="go, concurrency, 并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go concurrency(并发)">
-<meta property="og:url" content="http://keisme.cn/Go-concurrency-并发.html">
-<meta property="og:site_name" content="keisme">
+<meta property="og:url" content="http://zzzw.cool/Go-concurrency-并发.html">
+<meta property="og:site_name" content="zzzwco">
 <meta property="og:description" content="1. 简介goroutine 是 Go 中的并发执行单位，可以理解为“线程”，但它不是“线程”。生成一个 goroutine 非常简单，只需 go 一下就实现了。在同一个程序中所有的 goroutine 共享一个地址空间。goroutine 通过通信来共享内存，而不是共享内存来通信。 channel 是各个 goroutine 之间通信的管道，它是引用类型，可以使用 == 进行比较，如果引用了相同">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-05-02T09:06:29.000Z">
@@ -129,14 +129,14 @@
 
 
 
-  <link rel="canonical" href="http://keisme.cn/Go-concurrency-并发.html"/>
+  <link rel="canonical" href="http://zzzw.cool/Go-concurrency-并发.html"/>
 
 
 
 
 
 <script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>Go concurrency(并发) | keisme</title>
+  <title>Go concurrency(并发) | zzzwco</title>
   
 
 
@@ -166,12 +166,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">keisme</span>
+        <span class="site-title">zzzwco</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">Just For Fun</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -307,16 +307,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://keisme.cn/Go-concurrency-并发.html">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Go-concurrency-并发.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="keisme">
+      <meta itemprop="name" content="zzzwco">
     </span>
 
     
@@ -464,14 +464,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="keisme 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="zzzwco 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="keisme 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zzzwco 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -489,11 +489,11 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    keisme
+    zzzwco
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://keisme.cn/Go-concurrency-并发.html" title="Go concurrency(并发)">http://keisme.cn/Go-concurrency-并发.html</a>
+    <a href="http://zzzw.cool/Go-concurrency-并发.html" title="Go concurrency(并发)">http://zzzw.cool/Go-concurrency-并发.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -614,9 +614,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="keisme" />
+                alt="zzzwco" />
             
-              <p class="site-author-name" itemprop="name">keisme</p>
+              <p class="site-author-name" itemprop="name">zzzwco</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -627,7 +627,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -663,19 +663,19 @@
             
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/keisme" target="_blank" title="GitHub">
+                  <a href="https://github.com/zzzwco" target="_blank" title="GitHub">
                     
                       <i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://weibo.com/bruce2077" target="_blank" title="Weibo">
+                  <a href="https://weibo.com/u/7530226721" target="_blank" title="Weibo">
                     
                       <i class="fa fa-fw fa-weibo"></i>Weibo</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://twitter.com/Bruce_2077" target="_blank" title="Twitter">
+                  <a href="https://twitter.com/zzzwco" target="_blank" title="Twitter">
                     
                       <i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
@@ -733,7 +733,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">keisme</span>
+  <span class="author" itemprop="copyrightHolder">zzzwco</span>
 
   
 </div>
@@ -754,7 +754,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共66.1k字</span>
+  <span class="post-count">博客全站共59.3k字</span>
 </div>
 
         
