@@ -434,7 +434,7 @@
 <p>当场景销毁时，该值也会销毁。建议存储轻量的、不敏感的数据。</p>
 <h2 id="UIApplicationDelegateAdaptor"><a href="#UIApplicationDelegateAdaptor" class="headerlink" title="@UIApplicationDelegateAdaptor"></a>@UIApplicationDelegateAdaptor</h2><p>用来调用 AppDelegate 中的生命周期方法。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">NSObject</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@main</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MyApp</span>: <span class="title">App</span> </span>&#123;</span><br><span class="line">    @<span class="type">UIApplicationDelegateAdaptor</span>(<span class="type">AppDelegate</span>.<span class="keyword">self</span>) <span class="keyword">var</span> appDelegate</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: some <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">ContentView</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="其它参考"><a href="#其它参考" class="headerlink" title="其它参考"></a>其它参考</h2><p>之前的文章<a href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html">SwiftUI 中常见的属性包装器（Property Wrapper）概览</a>和今天这篇，只是列举了一些常用的，更多相关内容和使用方法可以参考下面两片佳作：</p>
+<h2 id="其它参考"><a href="#其它参考" class="headerlink" title="其它参考"></a>其它参考</h2><p>之前的文章<a href="http://keisme.cn/SwiftUI-中常见的属性包装器（Property-Wrapper）概览.html" target="_blank" rel="noopener">SwiftUI 中常见的属性包装器（Property Wrapper）概览</a>和今天这篇，只是列举了一些常用的，更多相关内容和使用方法可以参考下面两片佳作：</p>
 <ul>
 <li><p><a href="https://swiftuipropertywrappers.com" target="_blank" rel="noopener">swiftuipropertywrappers</a></p>
 </li>
@@ -625,7 +625,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,7 +636,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -647,7 +647,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -752,7 +752,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共59.3k字</span>
+  <span class="post-count">博客全站共42.9k字</span>
 </div>
 
         
