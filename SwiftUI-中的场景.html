@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon16.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.3" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="ios,swift,swiftui,scene,windowgroup,window,settings,documentgroup,menubarextra" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2022/08/29  Xcode 14  iOS 16  macOS 13   鉴于 Scene 比较特殊，难以在 Eul 中内置示例，笔者为其单独创建了一个样例工程，源码：Eul/SampleScene。 在《生命周期的演变》 中已经介绍过一些关于场景的概念了，下面逐一介绍 SwiftUI 内置的场景及其用法。 WindowGroup这是最重要、最常用的场景，新建一个 SwiftUI 工程时，">
+<meta name="keywords" content="ios,swift,swiftui,scene,windowgroup,window,settings,documentgroup,menubarextra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SwiftUI 中的场景">
+<meta property="og:url" content="http://zzzw.cool/SwiftUI-中的场景.html">
+<meta property="og:site_name" content="zzzwco">
+<meta property="og:description" content="2022/08/29  Xcode 14  iOS 16  macOS 13   鉴于 Scene 比较特殊，难以在 Eul 中内置示例，笔者为其单独创建了一个样例工程，源码：Eul/SampleScene。 在《生命周期的演变》 中已经介绍过一些关于场景的概念了，下面逐一介绍 SwiftUI 内置的场景及其用法。 WindowGroup这是最重要、最常用的场景，新建一个 SwiftUI 工程时，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zzzw.cool/SwiftUI-中的场景/scene_1.png">
+<meta property="og:image" content="http://zzzw.cool/SwiftUI-中的场景/scene_2.png">
+<meta property="og:image" content="http://zzzw.cool/SwiftUI-中的场景/scene_3.png">
+<meta property="og:updated_time" content="2022-10-19T13:21:36.422Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SwiftUI 中的场景">
+<meta name="twitter:description" content="2022/08/29  Xcode 14  iOS 16  macOS 13   鉴于 Scene 比较特殊，难以在 Eul 中内置示例，笔者为其单独创建了一个样例工程，源码：Eul/SampleScene。 在《生命周期的演变》 中已经介绍过一些关于场景的概念了，下面逐一介绍 SwiftUI 内置的场景及其用法。 WindowGroup这是最重要、最常用的场景，新建一个 SwiftUI 工程时，">
+<meta name="twitter:image" content="http://zzzw.cool/SwiftUI-中的场景/scene_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzzw.cool/SwiftUI-中的场景.html"/>
+
+
+
+
+
+<script data-ad-client="ca-pub-4783769464073974" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>SwiftUI 中的场景 | zzzwco</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zzzwco</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI-中的场景.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzwco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzzwco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SwiftUI 中的场景</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-19T21:16:40+08:00">
+                2022-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,397
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>2022/08/29</code>  <code>Xcode 14</code>  <code>iOS 16</code>  <code>macOS 13</code>  </p>
+<p><em>鉴于 Scene 比较特殊，难以在 <a href="https://apps.apple.com/app/id1541991958" target="_blank" rel="noopener">Eul</a> 中内置示例，笔者为其单独创建了一个样例工程，源码：<a href="https://github.com/zzzwco/resources/tree/main/eul/SampleScene" target="_blank" rel="noopener">Eul/SampleScene</a>。</em></p>
+<p>在《生命周期的演变》 中已经介绍过一些关于场景的概念了，下面逐一介绍 SwiftUI 内置的场景及其用法。</p>
+<h2 id="WindowGroup"><a href="#WindowGroup" class="headerlink" title="WindowGroup"></a><a href="https://developer.apple.com/documentation/swiftui/windowgroup?changes=latest_minor" target="_blank" rel="noopener">WindowGroup</a></h2><p>这是最重要、最常用的场景，新建一个 SwiftUI 工程时，在 app 入口处就会看到如下代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@main</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MyAppApp</span>: <span class="title">App</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">Scene</span> &#123;</span><br><span class="line">    <span class="type">WindowGroup</span> &#123;</span><br><span class="line">      <span class="type">ContentView</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WindowGroup 在不同的平台表现不一：在 iOS、watchOS 仅支持单窗口，iPadOS、macOS 支持多窗口。</p>
+<p>比如在 Mac 下创建新窗口（系统默认快捷键为 ⌘ + N）：</p>
+<img src="/SwiftUI-中的场景/scene_1.png">
+<a id="more"></a>
+<p>在 iPad 中的多窗口界面：</p>
+<img src="/SwiftUI-中的场景/scene_2.png">
+<p>在 app 入口处可以添加多个 scene，但只有第一个会被初始化并展示在界面上。比如示例中多个平台共用的 scene，在 app 启动后呈现的只有 MainWindow：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SharedScene</span>: <span class="title">Scene</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">Scene</span> &#123;</span><br><span class="line">    <span class="type">WindowGroup</span>(<span class="string">"MainWindow"</span>) &#123;</span><br><span class="line">      <span class="type">MainWindow</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    #<span class="keyword">if</span> os(macOS)</span><br><span class="line">    <span class="comment">// 设置窗口默认尺寸</span></span><br><span class="line">    .defaultSize(width: <span class="number">600</span>, height: <span class="number">1000</span>)</span><br><span class="line">    <span class="comment">// 设置默认位置</span></span><br><span class="line">    .defaultPosition(.center)</span><br><span class="line">    <span class="comment">// 系统默认快捷键为 ⌘ + N，这里设置为 ⌘ + T</span></span><br><span class="line">    .keyboardShortcut(<span class="string">"t"</span>, modifiers: [.command])</span><br><span class="line">    #endif</span><br><span class="line">    </span><br><span class="line">    <span class="type">WindowGroup</span>(<span class="string">"WindowGroup1"</span>, id: <span class="string">"WindowGroup1"</span>, <span class="keyword">for</span>: <span class="type">String</span>.<span class="keyword">self</span>) &#123; $value <span class="keyword">in</span></span><br><span class="line">      <span class="type">Text</span>(value ?? <span class="string">"WindowGroup1 没有传值"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    #<span class="keyword">if</span> os(macOS)</span><br><span class="line">    .keyboardShortcut(<span class="string">"1"</span>, modifiers: [.command, .shift])</span><br><span class="line">    #endif</span><br><span class="line"></span><br><span class="line">    <span class="type">WindowGroup</span>(<span class="string">"WindowGroup2"</span>, id: <span class="string">"WindowGroup2"</span>, <span class="keyword">for</span>: <span class="type">String</span>.<span class="keyword">self</span>) &#123; $value <span class="keyword">in</span></span><br><span class="line">      <span class="type">Text</span>(value)</span><br><span class="line">    &#125; defaultValue: &#123;</span><br><span class="line">      <span class="string">"WindowGroup2 默认传值"</span></span><br><span class="line">    &#125;</span><br><span class="line">    #<span class="keyword">if</span> os(macOS)</span><br><span class="line">    .keyboardShortcut(<span class="string">"2"</span>, modifiers: [.command, .shift])</span><br><span class="line">    #endif</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WindowGroup 有多个初始化方法，可以不添加任何参数直接通过闭包构建，也可以添加一至多个参数，具体就不一一例举了，读者可以对着苹果文档敲一遍。</p>
+<p>上面的代码涉及到如下常用的参数：</p>
+<ul>
+<li>title：WindowGroup 的标题，支持字符串、本地化字符串、Text。</li>
+<li>id：WindowGroup 的身份标识，使用 openWindow 时会根据 id 找到对应的 WindowGroup，如果已经存在 value 相同的窗口，则会将其前置，如果没有，则新建窗口。</li>
+<li>for：遵循 Codable &amp; Hashable 协议，即 WindowGroup 接收到的传值类型。</li>
+<li>$value：openWindow 通过环境变量传递过来的绑定值，其类型由 for 参数约束。</li>
+<li>defaultValue：如果传值为 nil，该闭包可以指定一个与 for 参数类型一致的默认值。</li>
+</ul>
+<p>这里提到了 <a href="https://developer.apple.com/documentation/swiftui/environmentvalues/openwindow" target="_blank" rel="noopener">openWindow</a>，它其实是一个环境变量，在使用时先对其进行声明：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">Environment</span>(\.openWindow) <span class="keyword">private</span> <span class="keyword">var</span> openWindow</span><br></pre></td></tr></table></figure>
+<p>然后，在需要的地方调用 openWindow 方法就可以打开在 app 入口处声明过的 WindowGroup 了。刚才提到 openWindow 是一个变量，为何又能以方法的形式进行调用呢？那是因为它实现了 callAsFunction 方法，希望进一步了解的可以参考：<a href="https://github.com/apple/swift-evolution/blob/main/proposals/0253-callable.md" target="_blank" rel="noopener">SE-0253</a>。</p>
+<p>openWindow 有三个方法：</p>
+<ul>
+<li>openWindow(id:)</li>
+<li>openWindow(value:)</li>
+<li>openWindow(id:value:)</li>
+</ul>
+<p>这里的 id 和 value 对应的就是 WindowGroup 的入参，只有数据类型保持一致，openWindow 才能正确地打开对应的 WindowGroup。</p>
+<p>示例工程运行之后的界面如下，你可以根据以下两种操作来加深对 WindowGroup 的理解：</p>
+<ul>
+<li>选择不同的方法和入参之后执行 openWindow。</li>
+<li>直接使用快捷键 ⌘ + ⇧ + 1/2 分别打开 WindowGroup1 和 WindowGroup2。</li>
+</ul>
+<img src="/SwiftUI-中的场景/scene_3.png">
+<p>另外，Xcode 新建的工程默认是支持多窗口的，如果要禁用 iPad 的多窗功能，可以 <em>Target &gt; Info</em> 中设置 <em>Application Scene Manifest &gt; Enable Multiple Windows</em> 为 <em>No</em>。</p>
+<p>不过，这一做法对 Mac 是不生效的，但使用 Window 可以创建单窗口应用。</p>
+<h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a><a href="https://developer.apple.com/documentation/swiftui/window?changes=latest_minor" target="_blank" rel="noopener">Window</a></h2><p>Window 只支持一个窗口，从命名上也很好区分它与 WindowGroup 的区别：</p>
+<ul>
+<li>WindowGroup 是一个组，它可以创建多个窗口，它们以标签页组的形式聚合在一起。</li>
+<li>Window 是一个独立的窗口，它无法创建新窗口。</li>
+</ul>
+<p>由于 Window 在程序运行时是唯一的实例，系统就没有必要为其指定 id 以示身份了。这也是为什么 openWindow 只支持 WindowGroup 的原因，因为 WindowGroup 需要区分不同的窗口并向其传递变量。</p>
+<p>那么如何打开 Window 呢？我们看看示例代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Window &gt; SingleWindow，或者使用快捷键 ⌘ + ⇧ + S</span></span><br><span class="line"><span class="type">Window</span>(<span class="string">"SingleWindow"</span>, id: <span class="string">"SingleWindow"</span>) &#123;</span><br><span class="line">  <span class="type">Text</span>(<span class="string">"I'm a single, unque window."</span>)</span><br><span class="line">&#125;</span><br><span class="line">.keyboardShortcut(<span class="string">"s"</span>, modifiers: [.command, .shift])</span><br></pre></td></tr></table></figure>
+<p>在 app 入口处声明 Window 实例后，程序运行后可以通过菜单栏中的 <em>Window &gt; SingleWindow</em> 打开它。也可以为其指定快捷键，该快捷键也会显示在 <em>Window</em> 菜单中。</p>
+<p>理解了 Window 之后，要创建一个单窗口的 mac 程序就非常简单了，只需要将 Window 实例声明为 app 的唯一场景即可。</p>
+<h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a><a href="https://developer.apple.com/documentation/swiftui/settings" target="_blank" rel="noopener">Settings</a></h2><p>Settings 只能在 mac 上使用，用于打开程序的设置界面，⌘ + , 是默认快捷键。</p>
+<p>它也是一个单独的窗口，从表象上看，其实就是一个特殊的 Window。</p>
+<h2 id="MenuBarExtra"><a href="#MenuBarExtra" class="headerlink" title="MenuBarExtra"></a><a href="https://developer.apple.com/documentation/swiftui/menubarextra" target="_blank" rel="noopener">MenuBarExtra</a></h2><p>MenuBarExtra 可以为程序在菜单栏中添加一个控件，支持 <code>.menu</code> 和 <code>.window</code> 两种样式。</p>
+<p>如果想要创建一个只停留在 mac 菜单栏的 app，只需将 MenuBarExtra 实例作为 app 的唯一场景。不过，程序坞依然会出现 app 图标，此时需要在 <em>Info.plist</em> 中将属性 <em>Application is agent (UIElement)</em> 设置为 <em>YES</em>。</p>
+<p>Settings 和 MenuBarExtra 的使用比较简单，这里就不展开来讲了，看看示例工程的运行效果和源码就可以明白。</p>
+<h2 id="DocumentGroup"><a href="#DocumentGroup" class="headerlink" title="DocumentGroup"></a><a href="https://developer.apple.com/documentation/swiftui/documentgroup?changes=latest_minor" target="_blank" rel="noopener">DocumentGroup</a></h2><p>DocumentGroup 可以在多个平台上快速构建文件类型的场景界面，支持新建、打开、保存文件。</p>
+<p>苹果官方有一个非常详细的样例，参考：<a href="https://developer.apple.com/documentation/swiftui/building_a_document-based_app_with_swiftui?changes=latest_minor" target="_blank" rel="noopener">Building a Document-Based App with SwiftUI</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="zzzwco 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zzzwco 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    zzzwco
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zzzw.cool/SwiftUI-中的场景.html" title="SwiftUI 中的场景">http://zzzw.cool/SwiftUI-中的场景.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+            <a href="/tags/swiftui/" rel="tag"><i class="fa fa-tag"></i> swiftui</a>
+          
+            <a href="/tags/scene/" rel="tag"><i class="fa fa-tag"></i> scene</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Swift-中的-Result-builders.html" rel="next" title="Swift 中的 Result builders">
+                <i class="fa fa-chevron-left"></i> Swift 中的 Result builders
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a3530bf7514314b" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjQ3MS85MDMy"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="zzzwco" />
+            
+              <p class="site-author-name" itemprop="name">zzzwco</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zzzwco" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/7530226721" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zzzwco" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WindowGroup"><span class="nav-number">1.</span> <span class="nav-text"><a href="#WindowGroup" class="headerlink" title="WindowGroup"></a><a href="https://developer.apple.com/documentation/swiftui/windowgroup?changes=latest_minor" target="_blank" rel="noopener">WindowGroup</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Window"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Window" class="headerlink" title="Window"></a><a href="https://developer.apple.com/documentation/swiftui/window?changes=latest_minor" target="_blank" rel="noopener">Window</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Settings"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Settings" class="headerlink" title="Settings"></a><a href="https://developer.apple.com/documentation/swiftui/settings" target="_blank" rel="noopener">Settings</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MenuBarExtra"><span class="nav-number">4.</span> <span class="nav-text"><a href="#MenuBarExtra" class="headerlink" title="MenuBarExtra"></a><a href="https://developer.apple.com/documentation/swiftui/menubarextra" target="_blank" rel="noopener">MenuBarExtra</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DocumentGroup"><span class="nav-number">5.</span> <span class="nav-text"><a href="#DocumentGroup" class="headerlink" title="DocumentGroup"></a><a href="https://developer.apple.com/documentation/swiftui/documentgroup?changes=latest_minor" target="_blank" rel="noopener">DocumentGroup</a></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzzwco</span>
+
+  
+</div>
+
+本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+&nbsp;&nbsp;|&nbsp;&nbsp;<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共44.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

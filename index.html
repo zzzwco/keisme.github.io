@@ -306,6 +306,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI-中的场景.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzwco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zzzwco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/SwiftUI-中的场景.html" itemprop="url">SwiftUI 中的场景</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-19T21:16:40+08:00">
+                2022-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,397
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><code>2022/08/29</code>  <code>Xcode 14</code>  <code>iOS 16</code>  <code>macOS 13</code>  </p>
+<p><em>鉴于 Scene 比较特殊，难以在 <a href="https://apps.apple.com/app/id1541991958" target="_blank" rel="noopener">Eul</a> 中内置示例，笔者为其单独创建了一个样例工程，源码：<a href="https://github.com/zzzwco/resources/tree/main/eul/SampleScene" target="_blank" rel="noopener">Eul/SampleScene</a>。</em></p>
+<p>在《生命周期的演变》 中已经介绍过一些关于场景的概念了，下面逐一介绍 SwiftUI 内置的场景及其用法。</p>
+<h2 id="WindowGroup"><a href="#WindowGroup" class="headerlink" title="WindowGroup"></a><a href="https://developer.apple.com/documentation/swiftui/windowgroup?changes=latest_minor" target="_blank" rel="noopener">WindowGroup</a></h2><p>这是最重要、最常用的场景，新建一个 SwiftUI 工程时，在 app 入口处就会看到如下代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@main</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MyAppApp</span>: <span class="title">App</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">Scene</span> &#123;</span><br><span class="line">    <span class="type">WindowGroup</span> &#123;</span><br><span class="line">      <span class="type">ContentView</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WindowGroup 在不同的平台表现不一：在 iOS、watchOS 仅支持单窗口，iPadOS、macOS 支持多窗口。</p>
+<p>比如在 Mac 下创建新窗口（系统默认快捷键为 ⌘ + N）：</p>
+<img src="/SwiftUI-中的场景/scene_1.png">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/SwiftUI-中的场景.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zzzw.cool/Swift-中的-Result-builders.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1855,176 +2029,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zzzw.cool/SwiftUI-GeometryReader-与坐标系.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzwco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zzzwco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/SwiftUI-GeometryReader-与坐标系.html" itemprop="url">SwiftUI GeometryReader 与坐标系</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-12T22:32:34+08:00">
-                2020-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  568
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><code>GeometryReader</code> 是一个通过闭包来构建视图的容器，可以返回一个 <code>GeometryProxy</code> 类型的结构体，它包含如下属性和方法，由此我们可以获取当前视图容器（即父视图）的尺寸和位置，绘制以其为参考坐标系的视图。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> safeAreaInsets: <span class="type">EdgeInsets</span></span><br><span class="line"><span class="comment">// The safe area inset of the container view.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> size: <span class="type">CGSize</span></span><br><span class="line"><span class="comment">// The size of the container view.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">frame</span><span class="params">(<span class="keyword">in</span>: CoordinateSpace)</span></span> -&gt; <span class="type">CGRect</span></span><br><span class="line"><span class="comment">// Returns the container view’s bounds rectangle, converted to a defined coordinate space.</span></span><br></pre></td></tr></table></figure>
-<p>比如，我们需要绘制一个长宽均为父视图一半的矩形：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> body: some <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">GeometryReader</span> &#123; gr <span class="keyword">in</span></span><br><span class="line">      <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">10</span>)</span><br><span class="line">        .fill(<span class="type">Color</span>.blue)</span><br><span class="line">        .frame(width: gr.size.width * <span class="number">0.5</span>, height: gr.size.height * <span class="number">0.5</span>)</span><br><span class="line">        .position(x: gr.frame(<span class="keyword">in</span>: .local).midX, y: gr.frame(<span class="keyword">in</span>: .local).midY)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/SwiftUI-GeometryReader-与坐标系.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2079,7 +2083,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2101,7 +2105,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2190,7 +2194,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共42.9k字</span>
+  <span class="post-count">博客全站共44.3k字</span>
 </div>
 
         
